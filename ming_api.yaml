@@ -1,0 +1,1773 @@
+openapi: 3.0.0
+info:
+  title: MING STORE API
+  description: This is the OAS for the Ming Store.
+  contact:
+    name: Ming Developing Team
+    email: ming@enterprise.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.1.0
+tags:
+  - name: "Authentication"
+    description: "A user register, log in, etc"
+  - name: "Admin"
+    description: "Everything about admin"
+  - name: "User"
+    description: "Everything about a user"
+  - name: "Publisher"
+    description: "Everything about a publisher"
+  - name: "Store"
+    description: "Everything about a the web store"
+paths: 
+  /users/login:
+    post:
+      tags: 
+        - "Authentication"
+      summary: The user logs in the site
+      description: |
+        The user can log in the store with hisaccount
+      requestBody:
+        description: The user's information
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/login"
+      responses:
+        "200":
+            description: Login was successful!
+            content: 
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    id:
+                      description: |
+                        User's ID
+                      example: "235"
+                      type: string
+                    jwt:
+                      description: |
+                        Authentication Key
+                      example: "235456456ds7dfs786fdf7g68df6g"
+                      type: string
+        "400":
+          description: Invalid requestBody!
+        "403":
+          description: Invalid credentials!
+        "500":
+          description: Server error!
+  /users/signup:
+    post:
+      tags: 
+        - "Authentication"
+      summary: The user creates an account
+      description: |
+        The user can create an account
+      requestBody:
+        description: The user's information
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/register"
+      responses:
+        "200":
+            description: SignUp was successful!
+        "400":
+          description: Invalid requestBody!
+        "500":
+          description: Server error!
+  /users/{id}:
+    get:
+      tags: 
+        - "User"
+      summary: The user sees his profile info
+      description: |
+        The user can see his account information
+      parameters:
+        - name: id
+          description: |
+            The user´s unique id.
+          in: "path"
+          required: true
+          schema:
+            type: string
+        - name: jwt
+          description: |
+            Authentication Key
+          in: "header"
+          required: true
+          example: "235456456ds7dfs786fdf7g68df6g"
+          schema:
+            type: string
+      responses:
+        "200":
+            description: Request was successful!
+            content: 
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/user_info"
+        "400":
+          description: Bad request!
+        "404":
+          description: User not found!
+        "403":
+          description: Forbiden access!
+        "500":
+          description: Server error!
+    put:
+      tags: 
+        - "User"
+      summary: The user can edit his profile info
+      description: |
+        The user can edit his account information
+      parameters:
+        - name: id
+          description: |
+            The user´s unique id.
+          in: "path"
+          required: true
+          schema:
+            type: string
+        - name: jwt
+          description: |
+            Authentication Key
+          in: "header"
+          required: true
+          example: "235456456ds7dfs786fdf7g68df6g"
+          schema:
+            type: string
+      requestBody:
+        description: The user's information to edit
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/user_info_edit"
+      responses:
+        "200":
+            description: Request was successful!
+            content: 
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/user_info"
+        "400":
+          description: Bad request!
+        "404":
+          description: User not found!
+        "403":
+          description: Forbiden access!
+        "500":
+          description: Server error!
+  /users/{id}/password:
+    put:
+      tags: 
+        - "User"
+      summary: The user can edit his password
+      description: |
+        The user can edit his password
+      parameters:
+        - name: id
+          description: |
+            The user´s unique id.
+          in: "path"
+          required: true
+          schema:
+            type: string
+        - name: jwt
+          description: |
+            Authentication Key
+          in: "header"
+          required: true
+          example: "235456456ds7dfs786fdf7g68df6g"
+          schema:
+            type: string
+      requestBody:
+        description: The user's information to edit
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/user_password_edit"
+      responses:
+        "200":
+            description: Request was successful!
+            content: 
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/user_info"
+        "400":
+          description: Bad request!
+        "404":
+          description: User not found!
+        "403":
+          description: Forbiden access!
+        "500":
+          description: Server error!
+  /users/{id}/library:
+    get:
+      tags: 
+        - "User"
+      summary: The user sees his game library
+      description: |
+        The user can see his game library and download games
+      parameters:
+        - name: id
+          description: |
+            The user´s unique id.
+          in: "path"
+          required: true
+          schema:
+            type: string
+        - name: jwt
+          description: |
+            Authentication Key
+          in: "header"
+          required: true
+          example: "235456456ds7dfs786fdf7g68df6g"
+          schema:
+            type: string
+      responses:
+        "200":
+            description: Request was successful!
+            content: 
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/library"
+        "400":
+          description: Bad request!
+        "404":
+          description: User not found!
+        "403":
+          description: Forbiden access!
+        "500":
+          description: Server error!
+  /users/{id}/cart:
+    get:
+      tags: 
+        - "User"
+      summary: The user sees his to purchase cart
+      description: |
+        The user can see his cart with the games that he is willing to buy
+      parameters:
+        - name: id
+          description: |
+            The user´s unique id.
+          in: "path"
+          required: true
+          schema:
+            type: string
+        - name: jwt
+          description: |
+            Authentication Key
+          in: "header"
+          required: true
+          example: "235456456ds7dfs786fdf7g68df6g"
+          schema:
+            type: string
+      responses:
+        "200":
+            description: Request was successful!
+            content: 
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    order_id:
+                      type: string
+                      example: "1564"
+                    games:
+                      type: array
+                      items:
+                        $ref: "#/components/schemas/cart"
+                    
+                    
+        "400":
+          description: Bad request!
+        "404":
+          description: User not found!
+        "403":
+          description: Forbiden access!
+        "500":
+          description: Server error!
+    post:
+      tags: 
+        - "User"
+      summary: The user adds a game to his purchase cart
+      description: |
+        The user can add a game to his purchase cart
+      parameters:
+        - name: id
+          description: |
+            The user´s unique id.
+          in: "path"
+          required: true
+          schema:
+            type: string
+        - name: game_id
+          description: |
+            The game´s to delete unique id.
+          in: "query"
+          required: true
+          schema:
+            type: string
+        - name: jwt
+          description: |
+            Authentication Key
+          in: "header"
+          required: true
+          example: "235456456ds7dfs786fdf7g68df6g"
+          schema:
+            type: string
+      responses:
+        "200":
+            description: Request was successful!
+            content: 
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/cart"
+        "400":
+          description: Bad request!
+        "404":
+          description: User not found!
+        "403":
+          description: Forbiden access!
+        "500":
+          description: Server error!
+    delete:
+      tags: 
+        - "User"
+      summary: The user deletes a game from his purchase cart
+      description: |
+        The user can delete a game from his purchase cart
+      parameters:
+        - name: id
+          description: |
+            The user´s unique id.
+          in: "path"
+          required: true
+          schema:
+            type: string
+        - name: game_id
+          description: |
+            The game´s to delete unique id.
+          in: "query"
+          required: true
+          schema:
+            type: string
+        - name: jwt
+          description: |
+            Authentication Key
+          in: "header"
+          required: true
+          example: "235456456ds7dfs786fdf7g68df6g"
+          schema:
+            type: string
+      responses:
+        "200":
+            description: Request was successful!
+        "400":
+          description: Bad request!
+        "404":
+          description: User not found!
+        "403":
+          description: Forbiden access!
+        "500":
+          description: Server error!
+  /users/{id}/cart/purchase:
+    post:
+      tags: 
+        - "User"
+      summary: The user purchases the game on the cart
+      description: |
+        The user purchases the game on the cart
+      parameters:
+        - name: id
+          description: |
+            The user´s unique id.
+          in: "path"
+          required: true
+          schema:
+            type: string
+        - name: order_id
+          description: |
+            The game´s order_id that's gotten on the shopping cart page.
+          in: "query"
+          required: true
+          schema:
+            type: string
+        - name: jwt
+          description: |
+            Authentication Key
+          in: "header"
+          required: true
+          example: "235456456ds7dfs786fdf7g68df6g"
+          schema:
+            type: string
+      responses:
+        "200":
+            description: Purchase was successful!
+        "400":
+          description: Bad request!
+        "404":
+          description: User not found!
+        "403":
+          description: Forbiden access!
+        "500":
+          description: Server error!
+  /store/homepage:
+    get:
+      tags: 
+        - "Store"
+      summary: The site´s home page
+      description: |
+        The store first page
+      parameters:
+        - name: page
+          description: |
+            The home page current page.
+          in: "query"
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+            description: Request was successful!
+            content: 
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/home_page_game"
+        "400":
+          description: Bad Request!
+        "404":
+          description: Page not found!
+        "500":
+          description: Server error!
+  /store/highlights:
+    get:
+      tags: 
+        - "Store"
+      summary: The highlighted games
+      description: |
+        The store highlights
+      responses:
+        "200":
+            description: Request was successful!
+            content: 
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/highlighted"
+        "400":
+          description: Bad Request!
+        "500":
+          description: Server error!
+  /store/sale:
+    get:
+      tags: 
+        - "Store"
+      summary: The games on sale
+      description: |
+        The store game sale
+      responses:
+        "200":
+            description: Request was successful!
+            content: 
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/sales"
+        "400":
+          description: Bad Request!
+        "500":
+          description: Server error!
+  /store/releases:
+    get:
+      tags: 
+        - "Store"
+      summary: The latest game releases
+      description: |
+        The store latest game releases
+      responses:
+        "200":
+            description: Request was successful!
+            content: 
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/latest"
+        "400":
+          description: Bad Request!
+        "500":
+          description: Server error!
+  /store/games/{id}:
+    get:
+      tags: 
+        - "Store"
+      summary: Game page
+      description: |
+        The detail page for a game
+      parameters:
+        - name: id
+          description: |
+            The game unique id.
+          in: "path"
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+            description: Request was successful!
+            content: 
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/game"
+        "400":
+          description: Bad Request!
+        "404":
+          description: Page not found!
+        "500":
+          description: Server error!         
+  /admin/login:
+      post:
+        tags: 
+          - "Admin"
+        summary: The admin logs in the site
+        description: |
+          The admin can log in the store with hisaccount
+        requestBody:
+          description: The admin's information
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/login"
+        responses:
+          "200":
+              description: Login was successful!
+              content: 
+                application/json:
+                  schema:
+                    type: object
+                    properties:
+                      id:
+                        description: |
+                          User's ID
+                        example: "235"
+                        type: string
+                      jwt:
+                        description: |
+                          Authentication Key
+                        example: "235456456ds7dfs786fdf7g68df6g"
+                        type: string
+          "400":
+            description: Invalid requestBody!
+          "403":
+            description: Invalid credentials!
+          "500":
+            description: Server error!   
+  /publisher/login:
+      post:
+        tags: 
+          - "Publisher"
+        summary: The publisher logs in the site
+        description: |
+          The admin can log in the store with his account
+        requestBody:
+          description: The publisher's information
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/login"
+        responses:
+          "200":
+              description: Login was successful!
+              content: 
+                application/json:
+                  schema:
+                    type: object
+                    properties:
+                      id:
+                        description: |
+                          User's ID
+                        example: "235"
+                        type: string
+                      jwt:
+                        description: |
+                          Authentication Key
+                        example: "235456456ds7dfs786fdf7g68df6g"
+                        type: string
+          "400":
+            description: Invalid requestBody!
+          "403":
+            description: Invalid credentials!
+          "500":
+            description: Server error! 
+  /admin/publisher:
+      post:
+        tags: 
+          - "Admin"
+        summary: The admin creates a publisher account
+        description: |
+          The admin create an account for a publisher
+        requestBody:
+          description: The publisher's information
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/add_publisher"
+        responses:
+          "200":
+              description: Request was successful!
+          "400":
+            description: Invalid requestBody!
+          "403":
+            description: Invalid credentials!
+          "500":
+            description: Server error! 
+      get:
+        tags: 
+          - "Admin"
+        summary: The admin sees a publisher list
+        description: |
+          The admin sees publisher list
+        parameters:
+          - name: jwt
+            description: |
+              Authentication Key
+            in: "header"
+            required: true
+            example: "235456456ds7dfs786fdf7g68df6g"
+            schema:
+              type: string
+        responses:
+          "200":
+              description: Request was successful!
+              content: 
+                application/json:
+                  schema:
+                    $ref: "#/components/schemas/publishers"
+          "400":
+            description: Invalid requestBody!
+          "403":
+            description: Invalid credentials!
+          "500":
+            description: Server error! 
+      delete:
+        tags: 
+          - "Admin"
+        summary: The admin deletes a publisher account
+        description: |
+          The admin deletes a publisher account
+        parameters:
+          - name: id
+            description: |
+              The publisher unique id.
+            in: "query"
+            required: true
+            schema:
+              type: string
+          - name: jwt
+            description: |
+              Authentication Key
+            in: "header"
+            required: true
+            example: "235456456ds7dfs786fdf7g68df6g"
+            schema:
+              type: string
+        responses:
+          "200":
+              description: Delete was successful!
+          "400":
+            description: Invalid requestBody!
+          "403":
+            description: Invalid credentials!
+          "500":
+            description: Server error!
+  /publisher/{id}/dashboard:
+      get:
+        tags: 
+          - "Publisher"
+        summary: The admin sees a publisher statistics
+        description: |
+          The admin checks publisher statistics
+        parameters:
+          - name: id
+            description: |
+              The publisher unique id.
+            in: "path"
+            required: true
+            schema:
+              type: string
+          - name: jwt
+            description: |
+              Authentication Key
+            in: "header"
+            required: true
+            example: "235456456ds7dfs786fdf7g68df6g"
+            schema:
+              type: string
+        responses:
+          "200":
+              description: Request was successful!
+              content: 
+                application/json:
+                  schema:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/game_dashboard"
+          "400":
+            description: Invalid requestBody!
+          "403":
+            description: Invalid credentials!
+          "500":
+            description: Server error!
+  /admin/homepage:
+      put:
+        tags: 
+          - "Admin"
+        summary: The admin edits highlights and latest releases
+        description: |
+          The admin edit game important things
+        requestBody:
+          description: The publisher's information
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/publisher_game"
+        responses:
+          "200":
+              description: Request was successful!
+          "400":
+            description: Invalid requestBody!
+          "403":
+            description: Invalid credentials!
+          "500":
+            description: Server error! 
+  /publisher/{id}:
+      get:
+        tags: 
+          - "Publisher"
+        summary: Shows publisher data
+        description: |
+          The publisher gets his information
+        parameters:
+          - name: id
+            description: |
+              The publisher unique id.
+            in: "path"
+            required: true
+            schema:
+              type: string
+          - name: jwt
+            description: |
+              Authentication Key
+            in: "header"
+            required: true
+            example: "235456456ds7dfs786fdf7g68df6g"
+            schema:
+              type: string
+        responses:
+          "200":
+              description: Request was successful!
+              content:
+                application/json:
+                  schema:
+                    $ref: "#/components/schemas/publisher"
+          "400":
+            description: Invalid requestBody!
+          "403":
+            description: Invalid credentials!
+          "500":
+            description: Server error! 
+      put:
+        tags: 
+          - "Publisher"
+        summary: The publisher can edit his account
+        description: |
+          The publisher modifies his info
+        parameters:
+          - name: id
+            description: |
+              The publisher unique id.
+            in: "path"
+            required: true
+            schema:
+              type: string
+          - name: jwt
+            description: |
+              Authentication Key
+            in: "header"
+            required: true
+            example: "235456456ds7dfs786fdf7g68df6g"
+            schema:
+              type: string
+        requestBody:
+          description: The publisher's game information
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/edit_publisher"
+        responses:
+          "200":
+              description: Request was successful!
+          "400":
+            description: Invalid requestBody!
+          "403":
+            description: Invalid credentials!
+          "500":
+            description: Server error! 
+  /publisher/{id}/game:
+      post:
+        tags: 
+          - "Publisher"
+        summary: The publisher add a game
+        description: |
+          The publisher adds a game
+        parameters:
+          - name: id
+            description: |
+              The publisher unique id.
+            in: "path"
+            required: true
+            schema:
+              type: string
+          - name: jwt
+            description: |
+              Authentication Key
+            in: "header"
+            required: true
+            example: "235456456ds7dfs786fdf7g68df6g"
+            schema:
+              type: string
+        requestBody:
+          description: The publisher's information
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/edit_game"
+        responses:
+          "200":
+              description: Request was successful!
+              content:
+                application/json:
+                  schema:
+                    type: object
+                    properties:
+                      game_id:
+                        type: string
+                        example: "1234"
+                      title:
+                        type: string
+                        example: "Noita"
+          "400":
+            description: Invalid requestBody!
+          "403":
+            description: Invalid credentials!
+          "500":
+            description: Server error!
+      put:
+        tags: 
+          - "Publisher"
+        summary: The publisher edit a game
+        description: |
+          The publisher edits a game
+        parameters:
+          - name: id
+            description: |
+              The publisher unique id.
+            in: "path"
+            required: true
+            schema:
+              type: string
+          - name: game_id
+            description: |
+              The game´s to delete unique id.
+            in: "query"
+            required: true
+            schema:
+              type: string
+          - name: jwt
+            description: |
+              Authentication Key
+            in: "header"
+            required: true
+            example: "235456456ds7dfs786fdf7g68df6g"
+            schema:
+              type: string
+        requestBody:
+          description: The publisher's game information to edit
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/edit_game"
+        responses:
+          "200":
+              description: Request was successful!
+              content:
+                application/json:
+                  schema:
+                    $ref: "#/components/schemas/game"
+          "400":
+            description: Invalid requestBody!
+          "403":
+            description: Invalid credentials!
+          "500":
+            description: Server error!
+      delete:
+        tags: 
+          - "Publisher"
+        summary: The publisher deletes a game
+        description: |
+          The publisher deletes a game
+        parameters:
+          - name: id
+            description: |
+              The publisher unique id.
+            in: "path"
+            required: true
+            schema:
+              type: string
+          - name: game_id
+            description: |
+              The game´s to delete unique id.
+            in: "query"
+            required: true
+            schema:
+              type: string
+          - name: jwt
+            description: |
+              Authentication Key
+            in: "header"
+            required: true
+            example: "235456456ds7dfs786fdf7g68df6g"
+            schema:
+              type: string
+        responses:
+          "200":
+              description: Request was successful!
+          "400":
+            description: Invalid requestBody!
+          "403":
+            description: Invalid credentials!
+          "500":
+            description: Server error!
+      get:
+        tags: 
+          - "Publisher"
+        summary: The publisher sees his games
+        description: |
+          The publisher displays a list of his games
+        parameters:
+          - name: id
+            description: |
+              The publisher unique id.
+            in: "path"
+            required: true
+            schema:
+              type: string
+          - name: game_id
+            description: |
+              The game´s to delete unique id.
+            in: "query"
+            required: true
+            schema:
+              type: string
+          - name: jwt
+            description: |
+              Authentication Key
+            in: "header"
+            required: true
+            example: "235456456ds7dfs786fdf7g68df6g"
+            schema:
+              type: string
+        responses:
+          "200":
+              description: Request was successful!
+              content:
+                application/json:
+                  schema:
+                    $ref: "#/components/schemas/game"
+          "400":
+            description: Invalid requestBody!
+          "403":
+            description: Invalid credentials!
+          "500":
+            description: Server error!      
+
+components:
+  schemas:
+    login:
+      type: object
+      required: 
+        - email
+        - password
+      properties:
+        email:
+          description: |
+            The user's email
+          example: "ELjojos@smail.com"
+          type: string
+        password:
+          description: |
+            The user's email password
+          example: "securepassword123"
+          type: string
+    register:
+      type: object
+      required: 
+        - username
+        - alias
+        - email
+        - password
+      properties:
+        username:
+          description: |
+            The user's unique username
+          example: "lordT1ncho"
+          type: string
+        alias:
+          description: |
+            The user's nickname
+          example: "el wapo"
+          type: string
+        email:
+          description: |
+            The user's email
+          example: "eljuanqui@gmail.com"
+          type: string
+        password:
+          description: |
+            The user's email password
+          example: "securepassword123"
+          type: string
+    home_page_game:
+      type: object
+      required: 
+        - id
+        - title
+        - price
+        - banner
+      properties:
+        id:
+          description: |
+            The game's id
+          example: "1234"
+          type: string
+        title:
+          description: |
+            The game's title
+          example: "Noita"
+          type: string
+        price:
+          description: |
+            The game's price
+          example: "19.99"
+          type: string
+        sale:
+          description: |
+            The game's offer if it has one
+          example: "9.99"
+          type: string
+        banner:
+          description: |
+            The game's banner
+          example: "game/images/banner.jpg"
+          type: string
+    highlighted:
+      type: object
+      required: 
+        - id
+        - title
+        - game_description
+        - image
+      properties:
+        id:
+          description: |
+            The game's id
+          example: "1234"
+          type: string
+        title:
+          description: |
+            The game's title
+          example: "Noita"
+          type: string
+        game_description:
+          description: |
+            The game's title
+          example: "Noita"
+          type: string
+        image:
+          description: |
+            The game's backgroun image when displayed as a highlighted game
+          example: "game/images/background_image.jpg"
+          type: string
+    sales:
+      type: object
+      required:
+        - id
+        - title
+        - sale
+        - game_description
+        - image
+      properties:
+        id:
+          description: |
+            The game's id
+          example: "1234"
+          type: string
+        title:
+          description: |
+            The game's title
+          example: "Noita"
+          type: string
+        price:
+          description: |
+            The game's price
+          example: "19.99"
+          type: string
+        sale:
+          description: |
+            The game's offer if it has one
+          example: "9.99"
+          type: string
+        banner:
+          description: |
+            The game's banner
+          example: "game/images/banner.jpg"
+          type: string
+    user_info:
+      type: object
+      required: 
+        - username
+        - alias
+        - email
+        - country
+      properties:
+        username:
+          description: |
+            The user's username
+          example: "Muerir"
+          type: string
+        alias:
+          description: |
+            The user's nickname
+          example: "Morrevai"
+          type: string
+        email:
+          description: |
+            The user's email
+          example: "eldeigo@gmail.com"
+          type: string
+        country:
+          description: |
+            The user's country
+          example: "Brasil"
+          type: string
+    library:
+      type: object
+      required: 
+        - title
+        - genre
+        - id
+        - download
+      properties:
+        id:
+          description: |
+            The game's id
+          example: "3448"
+          type: integer
+        title:
+          description: |
+            The game's title
+          example: "Noita"
+          type: string
+        genre:
+          description: |
+            The game's genre
+          type: array
+          items:
+            type: string
+            example: "Action RPG"
+        banner:
+          description: |
+            The game's image banner
+          type: string
+          example: "/images/banner/washin.jpg"
+        download:
+          description: |
+            The game's download link
+          example: "game.resources.objects.download"
+          type: string
+    user_info_edit:
+      type: object
+      properties:
+        username:
+          description: |
+            The user's username
+          example: "Muerir"
+          type: string
+        name:
+          description: |
+            The user's first name
+          example: "Diego"
+          type: string  
+        lastname:
+          description: |
+            The user's lastname
+          example: "Córdova"
+          type: string
+        alias:
+          description: |
+            The user's nickname
+          example: "Morrevai"
+          type: string
+        email:
+          description: |
+            The user's email
+          example: "eldeigo@gmail.com"
+          type: string
+        country:
+          description: |
+            The user's country
+          example: "Brasil"
+          type: string
+    user_password_edit:
+      type: object
+      properties:
+        old_password:
+          description: |
+            The user's old password
+          example: "abc123"
+          type: string
+        new_password:
+          description: |
+            The user's new password
+          example: "123abc"
+          type: string
+    latest:
+      type: object
+      required:
+        - id 
+        - title
+        - price
+        - game_description
+        - banner
+        - release_date
+      properties:
+        id:
+          description: |
+            The game's id
+          example: "123"
+          type: string
+        title:
+          description: |
+            The game's title
+          example: "Noita"
+          type: string
+        game_description:
+          description: |
+            The game's description
+          example: "The best 2D game"
+          type: string
+        price:
+          description: |
+            The game's price
+          example: "19.99"
+          type: string
+        banner:
+          description: |
+            The game's banner
+          example: "game/images/banner.jpg"
+          type: string
+        release_date:
+          description: |
+            The game's release date
+          example: "Jan 2021"
+          type: string
+    game:
+      type: object
+      required: 
+        - title
+        - price
+        - game_description
+        - images
+      properties:
+        title:
+          description: |
+            The game's title
+          example: "Noita"
+          type: string
+        language:
+          description: |
+            The game's language
+          type: array
+          items: 
+            type: string
+            example: "Arabic" 
+        game_description:
+          description: |
+            The game's description
+          example: "A great game about ..."
+          type: string
+        size:
+          description: |
+            The game's size
+          example: "1.2 GB"
+          type: string
+        esrb:
+          description: |
+            The game's age rating
+          type: object
+          properties:
+            esrb:
+              description: |
+                The rating
+              type: string
+              example: "Mature"
+            image:
+              description: |
+                The rating image
+              type: string
+              example: "esrb/images/mature.jpg"
+        images:
+          description: |
+            The game's images
+          type: array
+          items:
+            type: object
+            properties:
+              image:
+                description: |
+                  The rating image
+                type: string
+                example: "esrb/images/logo.jpg"
+        developer:
+          description: |
+            The game's developer
+          example: "Nintendo EU"
+          type: string
+        players:
+          description: |
+            The game's number of players
+          example: "4"
+          type: integer
+        release_date:
+          description: |
+            The game's release date
+          example: "Jun 2020"
+          type: string
+        processor:
+          description: |
+            The game's required processor
+          example: "Jun 2020"
+          type: string
+        memory:
+          description: |
+            The game's required RAM memory
+          example: "16 GB"
+          type: string
+        graphics:
+          description: |
+            The game's required graphics card
+          example: "16 GB"
+          type: string
+        color:
+          description: |
+            The game's main color
+          example: "#ffd0ac"
+          type: string
+        highlighted:
+          description: |
+            The game's status as highlighted
+          example: "true"
+          type: string
+        download_path:
+          description: |
+            The game's download path
+          example: "game.resource.file.download"
+          type: string
+        status:
+          description: |
+            The game's status
+          example: "0"
+          type: string
+    cart:
+      type: object
+      required:
+        - id
+        - title
+        - price
+        - banner
+        - release_date
+      properties:
+        id:
+          description: |
+            The game's id
+          example: "15"
+          type: string
+        title:
+          description: |
+            The game's title
+          example: "Noita"
+          type: string
+        release_date:
+          description: |
+            The game's release_date
+          example: "Jan 2018"
+          type: string
+        price:
+          description: |
+            The game's price
+          example: "19.99"
+          type: string
+        sale:
+          description: |
+            The game's lowered price
+          example: "-10%"
+          type: string
+        banner:
+          description: |
+            The game's banner
+          example: "game/images/banner.jpg"
+          type: string
+# Admin
+    add_publisher:
+        type: object
+        required: 
+          - username
+          - email
+          - publisher
+          - country
+          - password
+        properties:
+            username:
+              description: |
+                The user's username
+              example: "SeRgioPru4"
+              type: string  
+            email:
+              description: |
+                The user's email
+              example: "SeRgioPru4@gmail.com"
+              type: string 
+            publisher:
+              description: |
+                The user's publisher name
+              example: "Rockstar"
+              type: string 
+            country:
+              description: |
+                The user's country
+              example: "USA"
+              type: string 
+            password:
+              description: |
+                The user's password
+              example: "elwashin123"
+              type: string 
+    publishers:
+      type: array
+      required: 
+        - publisher
+        - email
+        - id
+      items:
+        type: object
+        properties:
+          publisher:
+            description: |
+              The publisher's name
+            example: "Nintendo"
+            type: string
+          email:
+            description: |
+              The publisher's email
+            example: "Nintendo@gmail.com"
+            type: string
+          id:
+            description: |
+              The publisher's id
+            example: "47573"
+            type: string
+    publisher_game:
+      type: object
+      required:
+        - id 
+        - title
+        - price
+        - sale
+        - banner
+      properties:
+        id:
+          description: |
+            The game's id
+          example: "15"
+          type: string
+        title:
+          description: |
+            The game's title
+          example: "Noita"
+          type: string
+        price:
+          description: |
+            The game's price
+          example: "19.99"
+          type: string
+        sale:
+          description: |
+            The game's offer if it has one
+          example: "9.99"
+          type: string
+        banner:
+          description: |
+            The game's banner
+          example: "game/images/banner.jpg"
+          type: string
+        highlight:
+          description: |
+            The game's setted as highlighted
+          example: "true"
+          type: string
+        latest:
+          description: |
+            The game's setted as a latest come out
+          example: "true"
+          type: string
+    game_dashboard:
+      type: object
+      required: 
+        - publisher
+        - email
+        - paypal
+      properties:
+        publisher:
+          description: |
+            The publisher's name
+          example: "Nintendo"
+          type: string
+        email:
+          description: |
+            The publisher's email
+          example: "Nintendo@gmail.com"
+          type: string
+        paypal:
+          description: |
+            The publisher's paypal account mail
+          example: "Nintendo@gmail.com"
+          type: string
+        sells:
+          description: |
+            The publisher's total game sellings
+          example: "300"
+          type: integer
+        earnings:
+          description: |
+            The publisher's total earnings
+          example: "3000000"
+          type: string
+        monthly_earnings:
+          description: |
+            The publisher's monthly earnings
+          example: "300"
+          type: string
+        country:
+          description: |
+            The publisher's earnings by country
+          example: "300"
+          type: string
+        game:
+          description: |
+            The publisher's earnings by game
+          example: "300"
+          type: string
+    edit_publisher:
+        type: object
+        properties:
+            username:
+              description: |
+                The user's username
+              example: "SeRgioPru4"
+              type: string  
+            email:
+              description: |
+                The user's email
+              example: "SeRgioPru4@gmail.com"
+              type: string
+            paypal:
+              description: |
+                The user's paypal account email
+              example: "SeRgioPru4@gmail.com"
+              type: string
+            publisher:
+              description: |
+                The user's publisher name
+              example: "Rockstar"
+              type: string 
+            country:
+              description: |
+                The user's country
+              example: "USA"
+              type: string 
+            password:
+              description: |
+                The user's password
+              example: "elwashin123"
+              type: string 
+            repeat_password:
+              description: |
+                The user's repeated password
+              example: "elwashin123"
+              type: string 
+    edit_game:
+      type: object
+      properties:
+        title:
+          description: |
+            The game's title
+          example: "Noita"
+          type: string
+        language:
+          description: |
+            The game's language
+          type: array
+          items: 
+            type: string
+            example: "Arabic" 
+        game_description:
+          description: |
+            The game's description
+          example: "A great game about ..."
+          type: string
+        size:
+          description: |
+            The game's size
+          example: "1.2 GB"
+          type: string
+        esrb:
+          description: |
+            The game's age rating
+          type: array
+          items:
+            type: object
+            properties:
+              esrb:
+                description: |
+                  The rating
+                type: string
+                example: "Mature"
+              image:
+                description: |
+                  The rating image
+                type: string
+                example: "esrb/images/mature.jpg"
+        images:
+          description: |
+            The game's images
+          type: array
+          items:
+            type: object
+            properties:
+              image:
+                description: |
+                  The rating image
+                type: string
+                example: "esrb/images/logo.jpg"
+        developer:
+          description: |
+            The game's developer
+          example: "Nintendo EU"
+          type: string
+        players:
+          description: |
+            The game's number of players
+          example: "4"
+          type: integer
+        release_date:
+          description: |
+            The game's release date
+          example: "Jun 2020"
+          type: string
+        processor:
+          description: |
+            The game's required processor
+          example: "Jun 2020"
+          type: string
+        memory:
+          description: |
+            The game's required RAM memory
+          example: "16 GB"
+          type: string
+        graphics:
+          description: |
+            The game's required graphics card
+          example: "16 GB"
+          type: string
+        color:
+          description: |
+            The game's main color
+          example: "#ffd0ac"
+          type: string
+        highlighted:
+          description: |
+            The game's status as highlighted
+          example: "true"
+          type: string
+        download_path:
+          description: |
+            The game's download path
+          example: "game.resource.file.download"
+          type: string
+        status:
+          description: |
+            The game's status
+          example: "0"
+          type: string
+    publisher:
+        type: object
+        properties:
+            id:
+              description: |
+                The user's id
+              example: "1234"
+              type: string
+            username:
+              description: |
+                The user's username
+              example: "SeRgioPru4"
+              type: string  
+            email:
+              description: |
+                The user's email
+              example: "SeRgioPru4@gmail.com"
+              type: string
+            paypal:
+              description: |
+                The user's paypal account email
+              example: "SeRgioPru4@gmail.com"
+              type: string
+            publisher:
+              description: |
+                The user's publisher name
+              example: "Rockstar"
+              type: string 
+            country:
+              description: |
+                The user's country
+              example: "USA"
+              type: string 
+            password:
+              description: |
+                The user's password
+              example: "elwashin123"
+              type: string 
+            repeat_password:
+              description: |
+                The user's repeated password
+              example: "elwashin123"
+              type: string     
