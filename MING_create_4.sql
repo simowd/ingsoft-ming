@@ -99,7 +99,6 @@ CREATE TABLE h_games (
     name varchar(75) NULL,
     description text NULL,
     size varchar(10) NULL,
-    developer varchar(30) NULL,
     players int NOT NULL,
     release_date date NULL,
     processor varchar(25) NOT NULL,
