@@ -47,5 +47,13 @@
         WHERE
             id_user=#{idUser}
     </update>
+    <select id="listUserMails" resultType="bo.ucb.edu.ingsoft.models.User">
+        SELECT
+               id_user as idUser,
+               email as email
+        FROM users
+        WHERE
+            user_type=1
+    </select>
 
 </mapper>

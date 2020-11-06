@@ -4,6 +4,8 @@ import bo.ucb.edu.ingsoft.models.Publisher;
 import bo.ucb.edu.ingsoft.models.User;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.ArrayList;
+
 @Mapper
 public interface PublisherDao {
 
@@ -16,4 +18,7 @@ public interface PublisherDao {
 
     //Update publisher data;
     public void updatePublisher(Publisher publisher);
+
+    //Get publisher list
+    public ArrayList<Publisher> listPublisher(ArrayList<Integer> idUser);
 }
