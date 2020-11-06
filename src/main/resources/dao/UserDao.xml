@@ -56,6 +56,16 @@
             user_type=1
     </select>
 
+    <select id="publisherMail" resultType="bo.ucb.edu.ingsoft.models.User">
+        SELECT
+               users.email as email
+        FROM users inner join publishers
+        on
+            users.id_user = publishers.id_user
+        where
+        publishers.id_user=idUser
+    </select>
+
     <insert id="userSignUp" parameterType="bo.ucb.edu.ingsoft.models.User">
         INSERT INTO users
         VALUES (

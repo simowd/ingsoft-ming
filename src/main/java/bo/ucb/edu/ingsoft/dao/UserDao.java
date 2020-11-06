@@ -1,5 +1,6 @@
 package bo.ucb.edu.ingsoft.dao;
 
+import bo.ucb.edu.ingsoft.models.Publisher;
 import bo.ucb.edu.ingsoft.models.User;
 import java.util.List;
 
@@ -13,6 +14,9 @@ public interface UserDao {
     //Update publisher data;
     public void updateUser(User user);
 
+    //Get publisher mail
+    public User publisherMail(Publisher idUser);
+
     //Get publisher list (id_user, email)
     public List<User> listUserMails();
 
@@ -24,4 +28,6 @@ public interface UserDao {
 
     //Get User Profile Info for Update
     public User userInfo(Integer idUser);
+
+
 }
