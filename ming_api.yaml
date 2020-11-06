@@ -998,8 +998,7 @@ paths:
           "403":
             description: Invalid credentials!
           "500":
-            description: Server error!      
-
+            description: Server error!
 components:
   schemas:
     login:
@@ -1385,6 +1384,11 @@ components:
         highlighted:
           description: |
             The game's status as highlighted
+          example: "true"
+          type: string
+        sale:
+          description: |
+            The game's on sale offer amount
           example: "true"
           type: string
         download_path:
