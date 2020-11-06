@@ -1,6 +1,6 @@
 package bo.ucb.edu.ingsoft.dto;
 
-public class NewPublisherRequest {
+public class PublisherRequest {
     private Integer userId;
     private String username;
     private String email;
@@ -8,7 +8,7 @@ public class NewPublisherRequest {
     private String country;
     private String password;
 
-    public NewPublisherRequest() {
+    public PublisherRequest() {
 
     }
 
