@@ -19,4 +19,7 @@ public interface UserDao {
 
     //Create new user
     public void UserSignUp(User user);
+
+    //Get User Profile Info
+    public User UserProfileInfo(Integer idUser);
 }

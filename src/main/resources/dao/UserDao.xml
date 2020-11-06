@@ -76,4 +76,16 @@
             #{txDate}
         )
     </insert>
+
+    <select id="UserProfileInfo" resultType="bo.ucb.edu.ingsoft.models.User">
+        SELECT
+                username as userName,
+                alias as alias,
+                email as email,
+                id_country as idCountry,
+                photo_path as photoPath
+        FROM users
+        WHERE
+            id_user=idUser;
+    </select>
 </mapper>
