@@ -104,7 +104,14 @@
                 alias as alias,
                 email as email,
                 id_country as idCountry,
-                photo_path as photoPath,
+                photo_path as photoPath
+        FROM users
+        WHERE
+            id_user=#{idUser};
+    </select>
+
+    <select id="userPassword" resultType="bo.ucb.edu.ingsoft.models.User">
+        SELECT
                 password as password
         FROM users
         WHERE
