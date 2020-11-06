@@ -71,12 +71,12 @@
              highlight as highlight,
              download_path as downloadPath,
              status as status,
-             tx_id=#{txId},
-             tx_host=#{txHost},
-             tx_user_id=#{txUserId},
-             tx_date=#{txDate}
+             tx_id as txId,
+             tx_host as txHost,
+             tx_user_id as txUserId,
+             tx_date as txDate
       FROM games
       WHERE
-            status=1
+            id_game=idGame
     </select>
 </mapper>
