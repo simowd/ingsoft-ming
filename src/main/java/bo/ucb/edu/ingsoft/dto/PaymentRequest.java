@@ -1,36 +1,45 @@
 package bo.ucb.edu.ingsoft.dto;
 
-public class PaymentRequest extends UserRequest {
+public class PaymentRequest extends GamesRequest {
 
     private String email;
+    private String user;
     private Long card;
 //    private GamesModel[] games;
 
 
-    public PaymentRequest(String email, Long card) {
-        this.email = email;
-        this.card = card;
+    public PaymentRequest() {
     }
 
-    public PaymentRequest() {
+    public PaymentRequest(String email, String user, Long card) {
+        this.email = email;
+        this.user = user;
+        this.card = card;
     }
 
     @Override
     public String toString() {
         return "PaymentRequest{" +
                 "email='" + email + '\'' +
+                ", user='" + user + '\'' +
                 ", card=" + card +
                 '}';
     }
 
-    @Override
     public String getEmail() {
         return email;
     }
 
-    @Override
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
     }
 
     public Long getCard() {
