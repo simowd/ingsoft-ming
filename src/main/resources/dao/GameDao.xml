@@ -3,14 +3,17 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bo.ucb.edu.ingsoft.dao.GameDao">
-    <select id="findById" resultType="bo.ucb.edu.ingsoft.models.Game">
+    <select id="findSale" resultType="bo.ucb.edu.ingsoft.models.Game">
         SELECT
-               id_game as idGame,
-               name as name,
-               release_date as releaseDate,
-        FROM games
-        WHERE
-            id_game in (#{idGame})
+               games.id_game as idGame,
+               games.name as name,
+               games.release_date as releaseDate
+        FROM games inner join price
+        on
+            games.id_game = price.id_game
+        where
+        price.sale > 0
+
     </select>
     <select id="findPage" resultType="bo.ucb.edu.ingsoft.models.Game">
         SELECT id_game as idGame,
@@ -27,5 +30,53 @@
         FROM games
         WHERE status = 1
         AND highlight = 1
+    </select>
+    <select id="createGame" resultType="bo.ucb.edu.ingsoft.models.Game">
+      INSERT INTO games
+        VALUES (
+             null,
+             #{idEsrb},
+             #{idDeveloper},
+             #{name},
+             #{description},
+             #{size},
+             #{players},
+             #{releaseDate},
+             #{processor},
+             #{memory},
+             #{graphics},
+             #{color},
+             #{highlight},
+             #{downloadPath},
+             1,
+             #{txId},
+             #{txHost},
+             #{txUserId},
+             #{txDate}
+        )
+    </select>
+    <select id="getGameInfo" resultType="bo.ucb.edu.ingsoft.models.Game">
+      SELECT id_game as idGame,
+             id_esrb as idEsrb,
+             id_developer as idDeveloper,
+             name as name,
+             description as description,
+             size as size,
+             players as players,
+             release_date as releaseDate,
+             processor as processor,
+             memory as memory,
+             graphics as graphics,
+             color as color,
+             highlight as highlight,
+             download_path as downloadPath,
+             status as status,
+             tx_id=#{txId},
+             tx_host=#{txHost},
+             tx_user_id=#{txUserId},
+             tx_date=#{txDate}
+      FROM games
+      WHERE
+            status=1
     </select>
 </mapper>
