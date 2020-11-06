@@ -10,4 +10,5 @@ import java.util.ArrayList;
 public interface GameDao {
     // Get Sale games data
     public ArrayList<Game> findById(ArrayList<Integer> idGame);
+    public ArrayList<Game> getPage(Integer limit, Integer offset);
 }

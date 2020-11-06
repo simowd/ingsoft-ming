@@ -11,4 +11,18 @@
         WHERE
             id_game in (#{idGame}) and type = 1
     </select>
+    <select id="find" resultType="bo.ucb.edu.ingsoft.models.Photo">
+        SELECT *
+            id_photos as idPhoto,
+            id_game as idGame,
+            photo_path as photoPath,
+            type as type
+        FROM photos
+        WHERE id_game in
+        <foreach collection="list" item="item" index="index"
+            open="(" separator="," close = ")">
+         #{item}
+        </foreach>
+        and type = 1;
+    </select>
 </mapper>
