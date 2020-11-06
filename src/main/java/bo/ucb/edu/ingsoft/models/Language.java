@@ -1,10 +1,10 @@
 package bo.ucb.edu.ingsoft.models;
 
-public class Languages {
+public class Language {
     private Integer id_language;
     private String language;
 
-    public Languages() {
+    public Language() {
     }
 
     public Integer getId_language() {
@@ -25,7 +25,7 @@ public class Languages {
 
     @Override
     public String toString() {
-        return "Languages{" +
+        return "Language{" +
                 "id_language=" + id_language +
                 ", language='" + language + '\'' +
                 '}';
