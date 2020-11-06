@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bo.ucb.edu.ingsoft.dao.GameDao">
+    <select id="findById" resultType="bo.ucb.edu.ingsoft.models.Game">
+        SELECT
+               id_game as idGame,
+               name as name,
+               release_date as releaseDate,
+        FROM games
+        WHERE
+            id_game in (#{idGame})
+    </select>
+</mapper>
