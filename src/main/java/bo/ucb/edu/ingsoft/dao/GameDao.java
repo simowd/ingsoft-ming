@@ -23,4 +23,7 @@ public interface GameDao {
 
     //Search Game for User Library
     public List<Game> findLibraryGames(List<Integer> idGame);
+
+    //Last Id game
+    public Integer getLastInsertId();
 }
