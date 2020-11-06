@@ -1,8 +1,8 @@
 package bo.ucb.edu.ingsoft.dao;
 
 import bo.ucb.edu.ingsoft.models.Publisher;
-import bo.ucb.edu.ingsoft.models.User;
 import org.apache.ibatis.annotations.Mapper;
+import java.util.List;
 
 @Mapper
 public interface PublisherDao {
@@ -16,4 +16,7 @@ public interface PublisherDao {
 
     //Update publisher data;
     public void updatePublisher(Publisher publisher);
+
+    //Get publisher list
+    public Publisher listPublisher(List<Integer> idUser);
 }
