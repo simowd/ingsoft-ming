@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public interface UserDao {
     //Create new publisher admi;
-    public void createUser(User user);
+    public void createPublisher(User user);
 
     //Get publisher data
     public User findByUserId(Integer idUser);
@@ -16,4 +16,7 @@ public interface UserDao {
     public void updateUser(User user);
 
     public ArrayList<User> listUserMails(User user);
+
+    //Create new user
+    public void UserSignUp(User user);
 }
