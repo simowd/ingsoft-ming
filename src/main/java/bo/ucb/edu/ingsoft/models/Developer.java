@@ -1,11 +1,11 @@
 package bo.ucb.edu.ingsoft.models;
 
-public class Developers {
+public class Developer {
     private Integer idDeveloper;
     private Integer idPublisher;
     private String developer;
 
-    public Developers(Integer idDeveloper, Integer idPublisher, String developer) {
+    public Developer(Integer idDeveloper, Integer idPublisher, String developer) {
         this.idDeveloper = idDeveloper;
         this.idPublisher = idPublisher;
         this.developer = developer;

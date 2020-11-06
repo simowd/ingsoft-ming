@@ -2,7 +2,7 @@ package bo.ucb.edu.ingsoft.models;
 
 import java.sql.Timestamp;
 
-public class Publishers {
+public class Publisher {
     private Integer idPublisher;
     private Integer idUser;
     private String publisher;
@@ -13,7 +13,7 @@ public class Publishers {
     private Integer ts_user_id;
     private Timestamp tx_date;
 
-    public Publishers(Integer idPublisher, Integer idUser, String publisher, String paypalMail, Integer status, Integer tx_id, String tx_host, Integer ts_user_id, Timestamp tx_date) {
+    public Publisher(Integer idPublisher, Integer idUser, String publisher, String paypalMail, Integer status, Integer tx_id, String tx_host, Integer ts_user_id, Timestamp tx_date) {
         this.idPublisher = idPublisher;
         this.idUser = idUser;
         this.publisher = publisher;
