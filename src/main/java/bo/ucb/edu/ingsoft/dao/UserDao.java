@@ -17,9 +17,11 @@ public interface UserDao {
     public List<User> listUserMails();
 
     //Create new user
-    public void UserSignUp(User user);
+    public void userSignUp(User user);
 
     //Get User Profile Info
-    public User UserProfileInfo(Integer idUser);
+    public User userProfileInfo(Integer idUser);
 
+    //Get User Profile Info for Update
+    public User userInfo(Integer idUser);
 }

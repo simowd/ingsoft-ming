@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface GenreDao {
     //Get Genre name for User Library
-    public List<Genre> GenreLibrary (List<Integer> idGame);
+    public List<Genre> genreLibrary (List<Integer> idGame);
 }
