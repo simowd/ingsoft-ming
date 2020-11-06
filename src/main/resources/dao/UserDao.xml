@@ -14,7 +14,7 @@
             id_user=idUser;
     </select>
 
-    <insert id="createUser" parameterType="bo.ucb.edu.ingsoft.models.User">
+    <insert id="createPublisher" parameterType="bo.ucb.edu.ingsoft.models.User">
         INSERT INTO users
         VALUES (
             null,
@@ -56,4 +56,24 @@
             user_type=1
     </select>
 
+    <insert id="UserSignUp" parameterType="bo.ucb.edu.ingsoft.models.User">
+        INSERT INTO users
+        VALUES (
+            null,
+            29,
+            #{userName},
+            #{password},
+            #{email},
+            0,
+            null,
+            null,
+            null,
+            #{alias},
+            1,
+            #{txId},
+            #{txHost},
+            #{txUserId},
+            #{txDate}
+        )
+    </insert>
 </mapper>

@@ -44,6 +44,10 @@
                 publisher as publisher
         FROM publishers
         WHERE
-            id_user IN (#{idUser})
+        id_user in
+        <foreach collection="list" item="item" index="index"
+                 open="(" separator="," close = ")">
+            #{item}
+        </foreach>
     </select>
 </mapper>
