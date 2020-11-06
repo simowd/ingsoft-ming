@@ -1,43 +1,43 @@
 package bo.ucb.edu.ingsoft.models;
 
 public class OperatingSystem {
-    private Integer id_operating_system;
-    private String operating_system;
-    private String logo_path;
+    private Integer idOperatingSystem;
+    private String operatingSystem;
+    private String logoPath;
 
     public OperatingSystem() {
     }
 
-    public Integer getId_operating_system() {
-        return id_operating_system;
+    public Integer getIdOperatingSystem() {
+        return idOperatingSystem;
     }
 
-    public void setId_operating_system(Integer id_operating_system) {
-        this.id_operating_system = id_operating_system;
+    public void setIdOperatingSystem(Integer idOperatingSystem) {
+        this.idOperatingSystem = idOperatingSystem;
     }
 
-    public String getOperating_system() {
-        return operating_system;
+    public String getOperatingSystem() {
+        return operatingSystem;
     }
 
-    public void setOperating_system(String operating_system) {
-        this.operating_system = operating_system;
+    public void setOperatingSystem(String operatingSystem) {
+        this.operatingSystem = operatingSystem;
     }
 
-    public String getLogo_path() {
-        return logo_path;
+    public String getLogoPath() {
+        return logoPath;
     }
 
-    public void setLogo_path(String logo_path) {
-        this.logo_path = logo_path;
+    public void setLogoPath(String logoPath) {
+        this.logoPath = logoPath;
     }
 
     @Override
     public String toString() {
         return "OperatingSystem{" +
-                "id_operating_system=" + id_operating_system +
-                ", operating_system='" + operating_system + '\'' +
-                ", logo_path='" + logo_path + '\'' +
+                "id_operating_system=" + idOperatingSystem +
+                ", operating_system='" + operatingSystem + '\'' +
+                ", logo_path='" + logoPath + '\'' +
                 '}';
     }
 }
