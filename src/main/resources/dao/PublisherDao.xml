@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bo.ucb.edu.ingsoft.dao.PublisherDao">
+    <select id="findByPublisherId" resultType="bo.ucb.edu.ingsoft.models.Publisher">
+        SELECT
+                id_publisher as idPublisher,
+                paypal_mail as paypalMail,
+                publisher as publisher
+        FROM publishers
+        WHERE
+            id_user=idUser;
+    </select>
+    <insert id="createPublisher" parameterType="bo.ucb.edu.ingsoft.models.Publisher">
+        INSERT INTO publishers
+        VALUES (
+            null,
+            #{idUser},
+            #{publisher},
+            #{paypalMail},
+            1,
+            #{txId},
+            #{txHost},
+            #{txUserId},
+            #{txDate}
+        )
+    </insert>
+    <update id="updatePublisher" parameterType="bo.ucb.edu.ingsoft.models.Publisher">
+        UPDATE publishers
+        SET publisher=#{publisher},
+            paypal_mail=#{paypalMail},
+            tx_id=#{txId},
+            tx_host=#{txHost},
+            tx_user_id=#{txUserId},
+            tx_date=#{txDate}
+        WHERE
+            id_user=#{idUser}
+    </update>
+
+
+
+</mapper>
