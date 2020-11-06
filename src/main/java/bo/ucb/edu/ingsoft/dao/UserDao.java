@@ -14,13 +14,13 @@ public interface UserDao {
     //Update publisher data;
     public void updateUser(User user);
 
-<<<<<<< HEAD
     //Get publisher list (id_user, email)
     public List<User> listUserMails();
-=======
-    public ArrayList<User> listUserMails(User user);
 
     //Create new user
     public void UserSignUp(User user);
->>>>>>> 0de2fa6b4b830b64841a5f1ee6cc7d3836f3457a
+
+    //Get User Profile Info
+    public User UserProfileInfo(Integer idUser);
+
 }

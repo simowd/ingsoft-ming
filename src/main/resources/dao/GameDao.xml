@@ -16,8 +16,7 @@
         SELECT id_game as idGame,
         name as name
         FROM games
-        WHERE
-            LIMIT #{limit} OFFSET #{offset}
+        LIMIT #{a} OFFSET #{b}
     </select>
     <select id="createGame" resultType="bo.ucb.edu.ingsoft.models.Game">
       INSERT INTO games

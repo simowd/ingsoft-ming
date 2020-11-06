@@ -11,8 +11,8 @@
         WHERE
             id_game in (#{idGame}) and type = 1
     </select>
-    <select id="find" resultType="bo.ucb.edu.ingsoft.models.Photo">
-        SELECT *
+    <select id="findBannerbyId" resultType="bo.ucb.edu.ingsoft.models.Photo">
+        SELECT
             id_photos as idPhoto,
             id_game as idGame,
             photo_path as photoPath,
