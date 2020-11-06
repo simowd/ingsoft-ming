@@ -1,5 +1,7 @@
 package bo.ucb.edu.ingsoft.dto;
 
+import java.util.Objects;
+
 public class AddGameToCart extends GameDetailsRequest {
     String user;
     String email;
@@ -37,5 +39,19 @@ public class AddGameToCart extends GameDetailsRequest {
                 "user='" + getUser() + '\'' +
                 ", email='" + getEmail() + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AddGameToCart that = (AddGameToCart) o;
+        return Objects.equals(user, that.user) &&
+                Objects.equals(email, that.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(user, email);
     }
 }
