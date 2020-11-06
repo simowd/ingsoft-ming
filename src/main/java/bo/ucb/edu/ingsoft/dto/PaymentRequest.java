@@ -4,12 +4,14 @@ public class PaymentRequest extends UserRequest {
     private String email;
     private Long card;
 //    private GamesModel[] games;
-    public PaymentRequest() {
-    }
+
 
     public PaymentRequest(String email, Long card) {
         this.email = email;
         this.card = card;
+    }
+
+    public PaymentRequest() {
     }
 
     @Override
