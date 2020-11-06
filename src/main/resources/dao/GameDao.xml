@@ -3,13 +3,16 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bo.ucb.edu.ingsoft.dao.GameDao">
-    <select id="findById" resultType="bo.ucb.edu.ingsoft.models.Game">
+    <select id="findSale" resultType="bo.ucb.edu.ingsoft.models.Game">
         SELECT
-               id_game as idGame,
-               name as name,
-               release_date as releaseDate,
-        FROM games
-        WHERE
-            id_game in (#{idGame})
+               games.id_game as idGame,
+               games.name as name,
+               games.release_date as releaseDate
+        FROM games inner join price
+        on
+            games.id_game = price.id_game
+        where
+        price.sale > 0
+
     </select>
 </mapper>

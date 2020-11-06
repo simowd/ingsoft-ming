@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bo.ucb.edu.ingsoft.dao.PriceDao">
-    <select id="findBySale" resultType="bo.ucb.edu.ingsoft.models.Price">
+    <select id="findByIdGame" resultType="bo.ucb.edu.ingsoft.models.Price">
         SELECT
                id_price as idPrice,
                id_game as idGame,
@@ -11,6 +11,10 @@
                sale as sale
         FROM price
         WHERE
-            sale > 0
+            id_game in
+        <foreach collection="list" item="item" index="index"
+                 open="(" separator="," close = ")">
+            #{item}
+        </foreach>
     </select>
 </mapper>

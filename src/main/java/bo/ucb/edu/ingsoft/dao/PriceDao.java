@@ -7,10 +7,11 @@ import bo.ucb.edu.ingsoft.models.Price;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Mapper
 public interface PriceDao {
     // Get Price data
-    public ArrayList<Price> findBySale(Double sale);
+    public List<Price> findByIdGame(List<Integer> idGame);
 
 }
