@@ -18,11 +18,12 @@
             photo_path as photoPath,
             type as type
         FROM photos
-        WHERE id_game in
+        WHERE id_game IN
         <foreach collection="list" item="item" index="index"
             open="(" separator="," close = ")">
          #{item}
         </foreach>
-        and type = 1;
+        AND type = 1
+        AND status = 1
     </select>
 </mapper>
