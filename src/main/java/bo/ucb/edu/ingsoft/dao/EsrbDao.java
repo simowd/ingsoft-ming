@@ -8,6 +8,6 @@ import org.apache.ibatis.annotations.Mapper;
 public interface EsrbDao {
 
 //    get data esrb
-    public Esrb getEsrbInfo(Integer idEsrb);
+    public Esrb findEsrbById(Integer idEsrb);
 
 }
