@@ -6,8 +6,8 @@ public class GamesRequest {
     private Double price;
     private Double sale;
     private String banner;
-    private boolean highlight;
-    private boolean latest;
+    private Integer highlight;
+    private Integer latest;
 
     public GamesRequest() {
 
@@ -53,19 +53,19 @@ public class GamesRequest {
         this.banner = banner;
     }
 
-    public boolean isHighlight() {
+    public Integer getHighlight() {
         return highlight;
     }
 
-    public void setHighlight(boolean highlight) {
+    public void setHighlight(Integer highlight) {
         this.highlight = highlight;
     }
 
-    public boolean isLatest() {
+    public Integer getLatest() {
         return latest;
     }
 
-    public void setLatest(boolean latest) {
+    public void setLatest(Integer latest) {
         this.latest = latest;
     }
 

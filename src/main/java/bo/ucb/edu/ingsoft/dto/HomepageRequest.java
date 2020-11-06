@@ -7,6 +7,9 @@ public class HomepageRequest {
     private Double sale;
     private String banner;
 
+    public HomepageRequest() {
+    }
+
     public String getId() {
         return id;
     }
