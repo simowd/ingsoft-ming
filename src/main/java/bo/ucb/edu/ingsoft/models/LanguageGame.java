@@ -1,19 +1,19 @@
 package bo.ucb.edu.ingsoft.models;
 
-public class LanguagesGames {
-    private Integer id_languages_games;
+public class LanguageGame {
+    private Integer id_language_game;
     private Integer id_game;
     private Integer id_language;
 
-    public LanguagesGames() {
+    public LanguageGame() {
     }
 
     public Integer getId_languages_games() {
-        return id_languages_games;
+        return id_language_game;
     }
 
-    public void setId_languages_games(Integer id_languages_games) {
-        this.id_languages_games = id_languages_games;
+    public void setId_languages_games(Integer id_language_game) {
+        this.id_language_game = id_language_game;
     }
 
     public Integer getId_game() {
@@ -34,8 +34,8 @@ public class LanguagesGames {
 
     @Override
     public String toString() {
-        return "LanguagesGames{" +
-                "id_languages_games=" + id_languages_games +
+        return "LanguageGame{" +
+                "id_language_game=" + id_language_game +
                 ", id_game=" + id_game +
                 ", id_language=" + id_language +
                 '}';
