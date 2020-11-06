@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bo.ucb.edu.ingsoft.dao.EsrbDao">
+    <select id="findEsrbById" resultType="bo.ucb.edu.ingsoft.models.Esrb">
+        SELECT
+               id_esrb as idEsrb,
+               esrb as esrb,
+               logo_path as logoPath
+        FROM esrb
+        WHERE
+            id_esrb=idEsrb
+    </select>
+</mapper>

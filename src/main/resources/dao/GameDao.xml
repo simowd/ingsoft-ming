@@ -31,7 +31,7 @@
         WHERE status = 1
         AND highlight = 1
     </select>
-    <select id="createGame" resultType="bo.ucb.edu.ingsoft.models.Game">
+    <insert id="createGame" parameterType="bo.ucb.edu.ingsoft.models.Game">
       INSERT INTO games
         VALUES (
              null,
@@ -54,7 +54,7 @@
              #{txUserId},
              #{txDate}
         )
-    </select>
+    </insert>
     <select id="getGameInfo" resultType="bo.ucb.edu.ingsoft.models.Game">
       SELECT id_game as idGame,
              id_esrb as idEsrb,
