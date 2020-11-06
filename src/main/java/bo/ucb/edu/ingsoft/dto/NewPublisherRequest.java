@@ -8,6 +8,10 @@ public class NewPublisherRequest {
     private String country;
     private String password;
 
+    public NewPublisherRequest() {
+
+    }
+
     public Integer getUserId() {
         return userId;
     }
