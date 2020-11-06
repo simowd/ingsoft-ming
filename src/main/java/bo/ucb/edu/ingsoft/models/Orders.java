@@ -26,6 +26,10 @@ public class Orders extends Transactions {
     public Orders() {
     }
 
+    public Orders(Integer txId, String txHost, Integer txUser, java.util.Date txDate) {
+        super(txId, txHost, txUser, txDate);
+    }
+
     public Integer getIdOrder() {
         return idOrder;
     }
