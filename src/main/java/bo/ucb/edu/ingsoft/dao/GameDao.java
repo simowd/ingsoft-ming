@@ -21,4 +21,6 @@ public interface GameDao {
 
     public ArrayList<Game> getPage(@Param("a") Integer limit, @Param("b") Integer offset);
 
+    //Search Game for User Library
+    public List<Game> findLibraryGames(List<Integer> idGame);
 }

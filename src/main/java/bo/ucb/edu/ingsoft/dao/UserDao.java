@@ -1,6 +1,5 @@
 package bo.ucb.edu.ingsoft.dao;
 
-
 import bo.ucb.edu.ingsoft.models.User;
 import java.util.List;
 

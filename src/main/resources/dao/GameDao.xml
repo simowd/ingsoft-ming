@@ -79,4 +79,17 @@
       WHERE
             id_game=idGame
     </select>
+
+    <select id="findLibraryGames" resultType="bo.ucb.edu.ingsoft.models.Game">
+        SELECT
+               name as name,
+               download_path as downloadPath
+        FROM games
+        WHERE
+        id_game in
+        <foreach collection="list" item="item" index="index"
+                 open="(" separator="," close = ")">
+            #{item}
+        </foreach>
+    </select>
 </mapper>

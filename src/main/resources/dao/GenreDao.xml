@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bo.ucb.edu.ingsoft.dao.GenreDao">
+
+    <select id="GenreLibrary" resultType="bo.ucb.edu.ingsoft.models.Genre">
+        SELECT
+               genres.genre as genre
+        FROM genres inner join genres_games
+        on
+            genres.id_genre = genres_games.id_genre
+        WHERE
+            genres_games.id_game in
+        <foreach collection="list" item="item" index="index"
+                 open="(" separator="," close = ")">
+            #{item}
+        </foreach>
+    </select>
+</mapper>
