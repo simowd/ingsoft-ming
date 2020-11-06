@@ -1,5 +1,6 @@
 package bo.ucb.edu.ingsoft.dto;
 
+
 import java.util.Date;
 
 public class ReleaseRequest {

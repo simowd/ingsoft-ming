@@ -1,5 +1,5 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2020-10-29 18:24:22.527
+-- Last modification date: 2020-11-06 14:01:40.306
 
 -- tables
 -- Table: countries
@@ -31,7 +31,7 @@ CREATE TABLE directx (
 CREATE TABLE esrb (
     id_esrb int NOT NULL AUTO_INCREMENT,
     esrb varchar(20) NULL,
-    logo_path varchar(200) NOT NULL,
+    logo_path varchar(200) NULL,
     CONSTRAINT esrb_pk PRIMARY KEY (id_esrb)
 );
 
@@ -40,17 +40,17 @@ CREATE TABLE games (
     id_game int NOT NULL AUTO_INCREMENT,
     id_esrb int NOT NULL,
     id_developer int NOT NULL,
-    name varchar(75) NULL,
+    name varchar(75) NOT NULL,
     description text NULL,
     size varchar(10) NULL,
-    players int NOT NULL,
+    players int NULL,
     release_date date NULL,
-    processor varchar(25) NOT NULL,
-    memory varchar(10) NOT NULL,
-    graphics varchar(50) NOT NULL,
+    processor varchar(25) NULL,
+    memory varchar(10) NULL,
+    graphics varchar(50) NULL,
     color varchar(10) NULL,
-    highlight int NOT NULL,
-    download_path varchar(200) NOT NULL,
+    highlight int NULL,
+    download_path varchar(200) NULL,
     status int NOT NULL,
     tx_id int NOT NULL,
     tx_host varchar(100) NOT NULL,
@@ -96,17 +96,17 @@ CREATE TABLE h_games (
     id_game int NOT NULL,
     id_esrb int NOT NULL,
     id_developer int NOT NULL,
-    name varchar(75) NULL,
+    name varchar(75) NOT NULL,
     description text NULL,
     size varchar(10) NULL,
-    players int NOT NULL,
+    players int NULL,
     release_date date NULL,
-    processor varchar(25) NOT NULL,
-    memory varchar(10) NOT NULL,
-    graphics varchar(50) NOT NULL,
+    processor varchar(25) NULL,
+    memory varchar(10) NULL,
+    graphics varchar(50) NULL,
     color varchar(10) NULL,
-    highlight int NOT NULL,
-    download_path varchar(200) NOT NULL,
+    highlight int NULL,
+    download_path varchar(200) NULL,
     status int NOT NULL,
     tx_id int NOT NULL,
     tx_host varchar(100) NOT NULL,
@@ -118,7 +118,7 @@ CREATE TABLE h_games (
 -- Table: languages
 CREATE TABLE languages (
     id_language int NOT NULL AUTO_INCREMENT,
-    language varchar(15) NOT NULL,
+    language varchar(15) NULL,
     CONSTRAINT languages_pk PRIMARY KEY (id_language)
 );
 
@@ -136,15 +136,15 @@ CREATE TABLE library (
     id_user int NOT NULL,
     id_game int NOT NULL,
     status int NOT NULL,
-    download int NOT NULL,
+    download int NULL,
     CONSTRAINT library_pk PRIMARY KEY (id_library)
 );
 
 -- Table: operating_system
 CREATE TABLE operating_system (
     id_operating_system int NOT NULL AUTO_INCREMENT,
-    operating_system varchar(50) NULL,
-    logo_path varchar(200) NOT NULL,
+    operating_system varchar(50) NOT NULL,
+    logo_path varchar(200) NULL,
     CONSTRAINT operating_system_pk PRIMARY KEY (id_operating_system)
 );
 
@@ -167,7 +167,7 @@ CREATE TABLE orders (
     id_order int NOT NULL AUTO_INCREMENT,
     id_user int NOT NULL,
     date timestamp NOT NULL,
-    status int NULL,
+    status int NOT NULL,
     tx_id int NOT NULL,
     tx_host varchar(100) NOT NULL,
     tx_user_id int NOT NULL,
@@ -180,7 +180,7 @@ CREATE TABLE photos (
     id_photos int NOT NULL AUTO_INCREMENT,
     id_game int NOT NULL,
     photo_path varchar(200) NULL,
-    type int NOT NULL,
+    type int NULL,
     status int NOT NULL,
     CONSTRAINT photos_pk PRIMARY KEY (id_photos)
 );
@@ -190,8 +190,8 @@ CREATE TABLE price (
     id_price int NOT NULL AUTO_INCREMENT,
     id_game int NOT NULL,
     price numeric(10,6) NOT NULL,
-    date timestamp NOT NULL,
-    sale int NOT NULL,
+    date timestamp NULL,
+    sale int NULL,
     status int NOT NULL,
     tx_id int NOT NULL,
     tx_host varchar(100) NOT NULL,
@@ -204,8 +204,8 @@ CREATE TABLE price (
 CREATE TABLE publishers (
     id_publisher int NOT NULL AUTO_INCREMENT,
     id_user int NOT NULL,
-    publisher varchar(50) NULL,
-    paypal_mail varchar(100) NOT NULL,
+    publisher varchar(50) NOT NULL,
+    paypal_mail varchar(100) NULL,
     status int NOT NULL,
     tx_id int NOT NULL,
     tx_host varchar(100) NOT NULL,
@@ -227,17 +227,17 @@ CREATE TABLE transactions (
 CREATE TABLE users (
     id_user int NOT NULL AUTO_INCREMENT,
     id_country int NOT NULL,
-    username varchar(20) NULL,
-    password varchar(35) NULL,
-    email varchar(100) NULL,
-    user_type int NULL COMMENT 'Existen diferentes tipos de usuarios.
+    username varchar(20) NOT NULL,
+    password varchar(35) NOT NULL,
+    email varchar(100) NOT NULL,
+    user_type int NOT NULL COMMENT 'Existen diferentes tipos de usuarios.
 0: user
 1: publisher/developer
 2: admin',
-    photo_path varchar(200) NOT NULL,
-    name varchar(40) NOT NULL,
-    lastname varchar(50) NOT NULL,
-    alias varchar(50) NOT NULL,
+    photo_path varchar(200) NULL,
+    name varchar(40) NULL,
+    lastname varchar(50) NULL,
+    alias varchar(50) NULL,
     status int NOT NULL,
     tx_id int NOT NULL,
     tx_host varchar(100) NOT NULL,
@@ -328,4 +328,3 @@ ALTER TABLE users ADD CONSTRAINT users_countries FOREIGN KEY users_countries (id
     REFERENCES countries (id_country);
 
 -- End of file.
-
