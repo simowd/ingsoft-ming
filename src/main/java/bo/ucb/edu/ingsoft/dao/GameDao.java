@@ -9,5 +9,5 @@ import java.util.ArrayList;
 @Mapper
 public interface GameDao {
     // Get Sale games data
-    public Game findById(ArrayList<Integer> idGame);
+    public ArrayList<Game> findById(ArrayList<Integer> idGame);
 }

@@ -9,6 +9,6 @@ import java.util.ArrayList;
 @Mapper
 public interface PhotoDao {
     // Get Photo Data
-    public Photo findByIdGame(ArrayList<Integer> idGame);
+    public ArrayList<Photo> findByIdGame(ArrayList<Integer> idGame);
 
 }
