@@ -19,4 +19,52 @@
         WHERE
             LIMIT #{limit} OFFSET #{offset}
     </select>
+    <select id="createGame" resultType="bo.ucb.edu.ingsoft.models.Game">
+      INSERT INTO games
+        VALUES (
+             null,
+             #{idEsrb},
+             #{idDeveloper},
+             #{name},
+             #{description},
+             #{size},
+             #{players},
+             #{releaseDate},
+             #{processor},
+             #{memory},
+             #{graphics},
+             #{color},
+             #{highlight},
+             #{downloadPath},
+             1,
+             #{txId},
+             #{txHost},
+             #{txUserId},
+             #{txDate}
+        )
+    </select>
+    <select id="getGameInfo" resultType="bo.ucb.edu.ingsoft.models.Game">
+      SELECT id_game as idGame,
+             id_esrb as idEsrb,
+             id_developer as idDeveloper,
+             name as name,
+             description as description,
+             size as size,
+             players as players,
+             release_date as releaseDate,
+             processor as processor,
+             memory as memory,
+             graphics as graphics,
+             color as color,
+             highlight as highlight,
+             download_path as downloadPath,
+             status as status,
+             tx_id=#{txId},
+             tx_host=#{txHost},
+             tx_user_id=#{txUserId},
+             tx_date=#{txDate}
+      FROM games
+      WHERE
+            status=1
+    </select>
 </mapper>

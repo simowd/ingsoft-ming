@@ -1,6 +1,5 @@
 package bo.ucb.edu.ingsoft.dao;
 
-import bo.ucb.edu.ingsoft.dto.SaleRequest;
 import bo.ucb.edu.ingsoft.models.Game;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -13,5 +12,6 @@ public interface GameDao {
     public ArrayList<Game> getPage(Integer limit, Integer offset);
 
     //Create Game
-    public Game createGame
+    public Game createGame(Game game);
+    public Game getGameInfo(Integer idGame);
 }
