@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bo.ucb.edu.ingsoft.dao.UserDao">
+    <select id="findByUserId" resultType="bo.ucb.edu.ingsoft.models.User">
+        SELECT
+               username as userName,
+               email as email,
+               password as password,
+               id_country as idCountry
+        FROM users
+        WHERE
+            id_user=idUser;
+    </select>
+
+    <insert id="createUser" parameterType="bo.ucb.edu.ingsoft.models.User">
+        INSERT INTO users
+        VALUES (
+            null,
+            #{idCountry},
+            #{userName},
+            #{password},
+            #{email},
+            2,
+            null,
+            null,
+            null,
+            null,
+            1,
+            #{txId},
+            #{txHost},
+            #{txUserId},
+            #{txDate}
+        )
+    </insert>
+    <update id="updateUser" parameterType="bo.ucb.edu.ingsoft.models.User">
+        UPDATE users
+        SET  id_country=#{idCountry},
+            username=#{userName},
+            password=#{password},
+            email=#{email},
+            tx_id=#{txId},
+            tx_host=#{txHost},
+            tx_user_id=#{txUserId},
+            tx_date=#{txDate}
+        WHERE
+            id_user=#{idUser}
+    </update>
+
+</mapper>
