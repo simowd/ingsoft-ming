@@ -16,7 +16,6 @@
         SELECT id_game as idGame,
         name as name
         FROM games
-        WHERE
-            LIMIT #{limit} OFFSET #{offset}
+        LIMIT #{a} OFFSET #{b}
     </select>
 </mapper>
