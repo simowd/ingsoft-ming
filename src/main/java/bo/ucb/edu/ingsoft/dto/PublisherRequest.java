@@ -4,9 +4,11 @@ public class PublisherRequest {
     private Integer userId;
     private String username;
     private String email;
+    private String paypal;
     private String publisher;
     private String country;
     private String password;
+    private String repeat_password;
 
     public PublisherRequest() {
 
@@ -36,6 +38,14 @@ public class PublisherRequest {
         this.email = email;
     }
 
+    public String getPaypal() {
+        return paypal;
+    }
+
+    public void setPaypal(String paypal) {
+        this.paypal = paypal;
+    }
+
     public String getPublisher() {
         return publisher;
     }
@@ -60,15 +70,25 @@ public class PublisherRequest {
         this.password = password;
     }
 
+    public String getRepeat_password() {
+        return repeat_password;
+    }
+
+    public void setRepeat_password(String repeat_password) {
+        this.repeat_password = repeat_password;
+    }
+
     @Override
     public String toString() {
-        return "NewPublisherRequest{" +
+        return "PublisherRequest{" +
                 "userId=" + userId +
                 ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
+                ", paypal='" + paypal + '\'' +
                 ", publisher='" + publisher + '\'' +
                 ", country='" + country + '\'' +
                 ", password='" + password + '\'' +
+                ", repeat_password='" + repeat_password + '\'' +
                 '}';
     }
 }
