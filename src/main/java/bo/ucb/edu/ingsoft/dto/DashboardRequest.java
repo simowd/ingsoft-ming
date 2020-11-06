@@ -13,6 +13,20 @@ public class DashboardRequest {
     public DashboardRequest() {
     }
 
+    @Override
+    public String toString() {
+        return "DashboardRequest{" +
+                "publisher='" + publisher + '\'' +
+                ", email='" + email + '\'' +
+                ", paypal='" + paypal + '\'' +
+                ", sells=" + sells +
+                ", earnings=" + earnings +
+                ", monthly_earnings=" + monthly_earnings +
+                ", country='" + country + '\'' +
+                ", game='" + game + '\'' +
+                '}';
+    }
+
     public String getPublisher() {
         return publisher;
     }
@@ -77,17 +91,4 @@ public class DashboardRequest {
         this.game = game;
     }
 
-    @Override
-    public String toString() {
-        return "DashboardRequest{" +
-                "publisher='" + publisher + '\'' +
-                ", email='" + email + '\'' +
-                ", paypal='" + paypal + '\'' +
-                ", sells=" + sells +
-                ", earnings=" + earnings +
-                ", monthly_earnings=" + monthly_earnings +
-                ", country='" + country + '\'' +
-                ", game='" + game + '\'' +
-                '}';
-    }
 }

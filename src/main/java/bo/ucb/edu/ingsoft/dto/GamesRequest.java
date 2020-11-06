@@ -13,6 +13,19 @@ public class GamesRequest {
 
     }
 
+    @Override
+    public String toString() {
+        return "GamesRequest{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", price=" + price +
+                ", sale=" + sale +
+                ", banner='" + banner + '\'' +
+                ", highlight=" + highlight +
+                ", latest=" + latest +
+                '}';
+    }
+
     public Integer getId() {
         return id;
     }
@@ -69,16 +82,4 @@ public class GamesRequest {
         this.latest = latest;
     }
 
-    @Override
-    public String toString() {
-        return "GamesRequest{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", price=" + price +
-                ", sale=" + sale +
-                ", banner='" + banner + '\'' +
-                ", highlight=" + highlight +
-                ", latest=" + latest +
-                '}';
-    }
 }

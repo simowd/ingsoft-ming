@@ -1,6 +1,7 @@
 package bo.ucb.edu.ingsoft.dto;
 
 public class PaymentRequest extends UserRequest {
+
     private String email;
     private Long card;
 //    private GamesModel[] games;
@@ -17,8 +18,8 @@ public class PaymentRequest extends UserRequest {
     @Override
     public String toString() {
         return "PaymentRequest{" +
-                "email='" + getEmail() + '\'' +
-                ", card=" + getCard() +
+                "email='" + email + '\'' +
+                ", card=" + card +
                 '}';
     }
 

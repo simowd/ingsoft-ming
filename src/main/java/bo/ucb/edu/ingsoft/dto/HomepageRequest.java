@@ -10,6 +10,17 @@ public class HomepageRequest {
     public HomepageRequest() {
     }
 
+    @Override
+    public String toString() {
+        return "HomepageRequest{" +
+                "id='" + id + '\'' +
+                ", title='" + title + '\'' +
+                ", price=" + price +
+                ", sale=" + sale +
+                ", banner='" + banner + '\'' +
+                '}';
+    }
+
     public String getId() {
         return id;
     }
@@ -50,14 +61,4 @@ public class HomepageRequest {
         this.banner = banner;
     }
 
-    @Override
-    public String toString() {
-        return "HomepageRequest{" +
-                "id='" + id + '\'' +
-                ", title='" + title + '\'' +
-                ", price=" + price +
-                ", sale=" + sale +
-                ", banner='" + banner + '\'' +
-                '}';
-    }
 }

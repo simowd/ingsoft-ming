@@ -10,6 +10,17 @@ public class SaleRequest {
     public SaleRequest() {
     }
 
+    @Override
+    public String toString() {
+        return "SaleRequest{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", price=" + price +
+                ", sale=" + sale +
+                ", banner='" + banner + '\'' +
+                '}';
+    }
+
     public String getId() {
         return id;
     }
@@ -50,14 +61,4 @@ public class SaleRequest {
         this.banner = banner;
     }
 
-    @Override
-    public String toString() {
-        return "SaleRequest{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", price=" + price +
-                ", sale=" + sale +
-                ", banner='" + banner + '\'' +
-                '}';
-    }
 }

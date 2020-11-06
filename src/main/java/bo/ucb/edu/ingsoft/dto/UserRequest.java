@@ -9,7 +9,6 @@ public class UserRequest {
     private String country;
 
     public UserRequest(){
-
     }
 
     @Override

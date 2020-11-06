@@ -1,6 +1,6 @@
 package bo.ucb.edu.ingsoft.dto;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 
 public class GameDetailsRequest {
     private String gender;
@@ -8,7 +8,7 @@ public class GameDetailsRequest {
     private String operativeSystem;
     private String developer;
     private Integer players;
-    private String[] languages;
+    private ArrayList<String> languages;
     private String classification;
     private String description;
     private String processor;
@@ -21,8 +21,7 @@ public class GameDetailsRequest {
     public GameDetailsRequest() {
     }
 
-
-    public GameDetailsRequest(String gender, String type, String operativeSystem, String developer, Integer players, String[] languages, String classification, String description, String processor, String memory, String graphics, String driver, Double storage, Double price) {
+    public GameDetailsRequest(String gender, String type, String operativeSystem, String developer, Integer players, ArrayList<String> languages, String classification, String description, String processor, String memory, String graphics, String driver, Double storage, Double price) {
         this.gender = gender;
         this.type = type;
         this.operativeSystem = operativeSystem;
@@ -42,20 +41,20 @@ public class GameDetailsRequest {
     @Override
     public String toString() {
         return "GameDetailsRequest{" +
-                "gender='" + getGender() + '\'' +
-                ", type='" + getType() + '\'' +
-                ", operativeSystem='" + getOperativeSystem() + '\'' +
-                ", developer='" + getDeveloper() + '\'' +
-                ", players=" + getPlayers() +
-                ", languages=" + Arrays.toString(getLanguages()) +
-                ", classification='" + getClassification() + '\'' +
-                ", description='" + getDescription() + '\'' +
-                ", processor='" + getProcessor() + '\'' +
-                ", memory='" + getMemory() + '\'' +
-                ", graphics='" + getGraphics() + '\'' +
-                ", driver='" + getDriver() + '\'' +
-                ", storage=" + getStorage() +
-                ", price=" + getPrice() +
+                "gender='" + gender + '\'' +
+                ", type='" + type + '\'' +
+                ", operativeSystem='" + operativeSystem + '\'' +
+                ", developer='" + developer + '\'' +
+                ", players=" + players +
+                ", languages=" + languages +
+                ", classification='" + classification + '\'' +
+                ", description='" + description + '\'' +
+                ", processor='" + processor + '\'' +
+                ", memory='" + memory + '\'' +
+                ", graphics='" + graphics + '\'' +
+                ", driver='" + driver + '\'' +
+                ", storage=" + storage +
+                ", price=" + price +
                 '}';
     }
 
@@ -107,11 +106,11 @@ public class GameDetailsRequest {
         this.players = players;
     }
 
-    public String[] getLanguages() {
+    public ArrayList<String> getLanguages() {
         return languages;
     }
 
-    public void setLanguages(String[] languages) {
+    public void setLanguages(ArrayList<String> languages) {
         this.languages = languages;
     }
 

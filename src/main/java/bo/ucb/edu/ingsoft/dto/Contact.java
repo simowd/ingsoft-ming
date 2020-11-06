@@ -8,6 +8,15 @@ public class Contact {
     public Contact() {
     }
 
+    @Override
+    public String toString() {
+        return "Contact{" +
+                "contactId=" + contactId +
+                ", firstName='" + firstName + '\'' +
+                ", firstSurname='" + firstSurname + '\'' +
+                '}';
+    }
+
     public Integer getContactId() {
         return contactId;
     }
@@ -32,12 +41,4 @@ public class Contact {
         this.firstSurname = firstSurname;
     }
 
-    @Override
-    public String toString() {
-        return "Contact{" +
-                "contactId=" + contactId +
-                ", firstName='" + firstName + '\'' +
-                ", firstSurname='" + firstSurname + '\'' +
-                '}';
-    }
 }

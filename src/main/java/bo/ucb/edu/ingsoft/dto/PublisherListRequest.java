@@ -9,6 +9,15 @@ public class PublisherListRequest {
 
     }
 
+    @Override
+    public String toString() {
+        return "PublisherListRequest{" +
+                "publisher='" + publisher + '\'' +
+                ", email='" + email + '\'' +
+                ", id=" + id +
+                '}';
+    }
+
     public String getPublisher() {
         return publisher;
     }
@@ -33,12 +42,4 @@ public class PublisherListRequest {
         this.id = id;
     }
 
-    @Override
-    public String toString() {
-        return "PublisherListRequest{" +
-                "publisher='" + publisher + '\'' +
-                ", email='" + email + '\'' +
-                ", id=" + id +
-                '}';
-    }
 }

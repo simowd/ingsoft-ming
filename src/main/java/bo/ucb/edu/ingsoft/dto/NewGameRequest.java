@@ -1,6 +1,6 @@
 package bo.ucb.edu.ingsoft.dto;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.ArrayList;
 
 public class NewGameRequest {
@@ -25,6 +25,30 @@ public class NewGameRequest {
 
     public NewGameRequest() {
 
+    }
+
+    @Override
+    public String toString() {
+        return "CreateGameRequest{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", language=" + language +
+                ", game_description='" + game_description + '\'' +
+                ", size='" + size + '\'' +
+                ", esrb='" + esrb + '\'' +
+                ", images=" + images +
+                ", developer='" + developer + '\'' +
+                ", players=" + players +
+                ", release_date=" + release_date +
+                ", processor='" + processor + '\'' +
+                ", memory='" + memory + '\'' +
+                ", graphics='" + graphics + '\'' +
+                ", color='" + color + '\'' +
+                ", highlighted=" + highlighted +
+                ", download_path='" + download_path + '\'' +
+                ", status=" + status +
+                ", sale=" + sale +
+                '}';
     }
 
     public Integer getId() {
@@ -171,28 +195,4 @@ public class NewGameRequest {
         this.sale = sale;
     }
 
-
-    @Override
-    public String toString() {
-        return "CreateGameRequest{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", language=" + language +
-                ", game_description='" + game_description + '\'' +
-                ", size='" + size + '\'' +
-                ", esrb='" + esrb + '\'' +
-                ", images=" + images +
-                ", developer='" + developer + '\'' +
-                ", players=" + players +
-                ", release_date=" + release_date +
-                ", processor='" + processor + '\'' +
-                ", memory='" + memory + '\'' +
-                ", graphics='" + graphics + '\'' +
-                ", color='" + color + '\'' +
-                ", highlighted=" + highlighted +
-                ", download_path='" + download_path + '\'' +
-                ", status=" + status +
-                ", sale=" + sale +
-                '}';
-    }
 }

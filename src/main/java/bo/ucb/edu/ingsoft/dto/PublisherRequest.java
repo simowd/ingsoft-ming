@@ -11,7 +11,20 @@ public class PublisherRequest {
     private String repeat_password;
 
     public PublisherRequest() {
+    }
 
+    @Override
+    public String toString() {
+        return "PublisherRequest{" +
+                "userId=" + userId +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", paypal='" + paypal + '\'' +
+                ", publisher='" + publisher + '\'' +
+                ", country='" + country + '\'' +
+                ", password='" + password + '\'' +
+                ", repeat_password='" + repeat_password + '\'' +
+                '}';
     }
 
     public Integer getUserId() {
@@ -78,17 +91,4 @@ public class PublisherRequest {
         this.repeat_password = repeat_password;
     }
 
-    @Override
-    public String toString() {
-        return "PublisherRequest{" +
-                "userId=" + userId +
-                ", username='" + username + '\'' +
-                ", email='" + email + '\'' +
-                ", paypal='" + paypal + '\'' +
-                ", publisher='" + publisher + '\'' +
-                ", country='" + country + '\'' +
-                ", password='" + password + '\'' +
-                ", repeat_password='" + repeat_password + '\'' +
-                '}';
-    }
 }
