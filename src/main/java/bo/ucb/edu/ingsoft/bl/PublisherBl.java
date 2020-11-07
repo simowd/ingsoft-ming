@@ -1,8 +1,7 @@
 package bo.ucb.edu.ingsoft.bl;
 
-import bo.ucb.edu.ingsoft.dao.PublisherDao;
-import bo.ucb.edu.ingsoft.dao.TransactionDao;
-import bo.ucb.edu.ingsoft.dao.UserDao;
+import bo.ucb.edu.ingsoft.dao.*;
+import bo.ucb.edu.ingsoft.dto.DashboardRequest;
 import bo.ucb.edu.ingsoft.dto.PublisherRequest;
 import bo.ucb.edu.ingsoft.dto.Transaction;
 import bo.ucb.edu.ingsoft.dto.UserRequest;
@@ -25,14 +24,23 @@ public class PublisherBl {
     private PublisherDao publisherDao;
     private UserDao userDao;
     private TransactionDao transactionDao;
-
+    private OrderDao orderDao;
+    private GameDao gameDao;
+    private DeveloperDao developerDao;
 
     @Autowired
-    public PublisherBl(PublisherDao publisherDao, UserDao userDao, TransactionDao transactionDao) {
+    public PublisherBl(PublisherDao publisherDao, UserDao userDao, TransactionDao transactionDao, OrderDao orderDao, GameDao gameDao, DeveloperDao developerDao) {
         this.publisherDao = publisherDao;
         this.userDao = userDao;
         this.transactionDao = transactionDao;
+        this.orderDao = orderDao;
+        this.gameDao = gameDao;
+        this.developerDao = developerDao;
     }
+
+
+
+
     public PublisherRequest createPublisher(PublisherRequest publisherRequest, Transaction transaction){
 
         User user=new User();
@@ -141,6 +149,43 @@ public class PublisherBl {
         }
 
         return publisherRequest;
+
+    }
+
+    public DashboardRequest PublisherDashboard(Integer idPublisher){
+        Publisher pubId=publisherDao.findByPublisherId(idPublisher);
+        String publisher=publisherDao.findPublisherName(idPublisher);
+
+        String mail=userDao.publisherMail(pubId.getIdUser());
+
+        List<Integer> developer=developerDao.findByPublisher(idPublisher);
+
+        List<Integer> game=gameDao.findGamebyPublisher(developer);
+
+        Integer totalSells=orderDao.gameSellsPublisher(game);
+        Double totalEarnings=orderDao.gameEarnings(game);
+
+        List<Integer> months=new ArrayList<>();
+        for (int i=1;i<=12;i++){
+            months.add(i);
+        }
+
+        List<Double> monthlyEarnings=orderDao.gameEarningsMonth(game,months);
+        List<Integer> totalCountrySells=orderDao.gameOrderCountryCount(game);
+        List<Integer> countries=orderDao.gameOrderCountry(game);
+        List<Integer> gameSells=orderDao.gameSellsGame(game);
+
+        DashboardRequest dashboardRequest=new DashboardRequest();
+
+        dashboardRequest.setPublisher(publisher);
+        dashboardRequest.setEmail(mail);
+        dashboardRequest.setPaypal(pubId.getPaypalMail());
+        dashboardRequest.setSells(totalSells);
+        dashboardRequest.setMonthly_earnings(monthlyEarnings);
+        dashboardRequest.setCountry_earnings(totalCountrySells);
+        dashboardRequest.setGame_earnings(gameSells);
+
+        return dashboardRequest;
 
     }
 

@@ -3,11 +3,8 @@ package bo.ucb.edu.ingsoft.api;
 import bo.ucb.edu.ingsoft.bl.PublisherBl;
 import bo.ucb.edu.ingsoft.bl.TransactionBl;
 
-import bo.ucb.edu.ingsoft.dto.PasswordRequest;
-import bo.ucb.edu.ingsoft.dto.PublisherRequest;
-import bo.ucb.edu.ingsoft.dto.Transaction;
+import bo.ucb.edu.ingsoft.dto.*;
 
-import bo.ucb.edu.ingsoft.dto.UserRequest;
 import bo.ucb.edu.ingsoft.models.Country;
 import bo.ucb.edu.ingsoft.models.Publisher;
 import bo.ucb.edu.ingsoft.models.User;
@@ -89,5 +86,16 @@ public class PublisherApi {
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND, "User Not Found", ex);
         }
+    }
+
+    @RequestMapping(value="/ming/publisher/{id}/dashboard", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public DashboardRequest PublisherDashboard(@RequestParam Integer idPublisher){
+        try {
+            return publisherBl.PublisherDashboard(1);
+        } catch (Exception ex) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "Page Not Found", ex);
+        }
+
     }
 }
