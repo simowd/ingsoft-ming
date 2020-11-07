@@ -1,30 +1,18 @@
 package bo.ucb.edu.ingsoft.dto;
 
+import java.util.List;
+
 public class DashboardRequest {
     private String publisher;
     private String email;
     private String paypal;
     private Integer sells;
     private Double earnings;
-    private Double monthly_earnings;
-    private String country;
-    private String game;
+    private List<Double> monthly_earnings;
+    private List<Integer> country_earnings;
+    private List<Integer> game_earnings;
 
     public DashboardRequest() {
-    }
-
-    @Override
-    public String toString() {
-        return "DashboardRequest{" +
-                "publisher='" + publisher + '\'' +
-                ", email='" + email + '\'' +
-                ", paypal='" + paypal + '\'' +
-                ", sells=" + sells +
-                ", earnings=" + earnings +
-                ", monthly_earnings=" + monthly_earnings +
-                ", country='" + country + '\'' +
-                ", game='" + game + '\'' +
-                '}';
     }
 
     public String getPublisher() {
@@ -67,28 +55,41 @@ public class DashboardRequest {
         this.earnings = earnings;
     }
 
-    public Double getMonthly_earnings() {
+    public List<Double> getMonthly_earnings() {
         return monthly_earnings;
     }
 
-    public void setMonthly_earnings(Double monthly_earnings) {
+    public void setMonthly_earnings(List<Double> monthly_earnings) {
         this.monthly_earnings = monthly_earnings;
     }
 
-    public String getCountry() {
-        return country;
+    public List<Integer> getCountry_earnings() {
+        return country_earnings;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
+    public void setCountry_earnings(List<Integer> country_earnings) {
+        this.country_earnings = country_earnings;
     }
 
-    public String getGame() {
-        return game;
+    public List<Integer> getGame_earnings() {
+        return game_earnings;
     }
 
-    public void setGame(String game) {
-        this.game = game;
+    public void setGame_earnings(List<Integer> game_earnings) {
+        this.game_earnings = game_earnings;
     }
 
+    @Override
+    public String toString() {
+        return "DashboardRequest{" +
+                "publisher='" + publisher + '\'' +
+                ", email='" + email + '\'' +
+                ", paypal='" + paypal + '\'' +
+                ", sells=" + sells +
+                ", earnings=" + earnings +
+                ", monthly_earnings=" + monthly_earnings +
+                ", country_earnings=" + country_earnings +
+                ", game_earnings=" + game_earnings +
+                '}';
+    }
 }

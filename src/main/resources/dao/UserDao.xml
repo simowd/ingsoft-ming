@@ -34,7 +34,7 @@
             #{txDate}
         )
     </insert>
-    <update id="updateUser" parameterType="bo.ucb.edu.ingsoft.models.User">
+    <update id="updateUser" >
         UPDATE users
         SET  id_country=#{idCountry},
             username=#{userName},

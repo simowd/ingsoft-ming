@@ -21,5 +21,21 @@ GET http://localhost:8080/ming/admin/publisher
 Accept: application/json
 
 ###
-PUT http://localhost:8080/ming/admin/publisher/4
+PUT http://localhost:8080/ming/admin/publisher/5
 Accept: application/json
+###
+
+
+PUT http://localhost:8080/ming/publisher/12
+Accept: application/json
+Content-Type: application/json
+
+{
+  "username": "el jojos4",
+  "email": "eljojos2@gmail.com",
+  "paypal": "eljojosconplata2@gmail.com",
+  "publisher": "EpicGames",
+  "country": 1,
+  "password": "Bolivia",
+  "repeat_password": "Bolivia"
+}

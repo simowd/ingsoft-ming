@@ -1,14 +1,18 @@
 package bo.ucb.edu.ingsoft.api;
 
 import bo.ucb.edu.ingsoft.bl.StoreBl;
+import bo.ucb.edu.ingsoft.dto.HighlightRequest;
 import bo.ucb.edu.ingsoft.dto.HomepageRequest;
+import bo.ucb.edu.ingsoft.dto.ReleaseRequest;
 import bo.ucb.edu.ingsoft.dto.SaleRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.MediaType;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -25,10 +29,26 @@ public class StoreApi {
         return storeBl.getHomePage(page);
     }
 
+    @RequestMapping(value="/ming/store/highlights", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<HighlightRequest> getHighlights(){
+        return storeBl.getHighLights();
+    }
+
     @RequestMapping(value="/ming/store/sale", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<SaleRequest> SalePage(){
-        List<SaleRequest> sale = storeBl.SalePage();
-        return sale;
+        try {
+            List<SaleRequest> sale = storeBl.SalePage();
+            return sale;
+        } catch (Exception ex) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "Page Not Found", ex);
+        }
+
+    }
+
+    @RequestMapping(value="/ming/store/releases", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<ReleaseRequest> getLatestReleases(){
+        return storeBl.getLatest();
     }
 
 }

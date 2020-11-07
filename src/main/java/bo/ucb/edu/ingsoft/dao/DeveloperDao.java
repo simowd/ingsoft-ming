@@ -14,6 +14,6 @@ public interface DeveloperDao {
     public Developer findByIdDeveloper(Integer idDeveloper);
 
     // Get developer by publisher
-    public List<Developer> findByPublisher(Integer idPublisher);
+    public List<Integer> findByPublisher(Integer idPublisher);
 
 }
