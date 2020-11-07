@@ -3,6 +3,7 @@ package bo.ucb.edu.ingsoft.api;
 import bo.ucb.edu.ingsoft.bl.StoreBl;
 import bo.ucb.edu.ingsoft.dto.HighlightRequest;
 import bo.ucb.edu.ingsoft.dto.HomepageRequest;
+import bo.ucb.edu.ingsoft.dto.ReleaseRequest;
 import bo.ucb.edu.ingsoft.dto.SaleRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,6 +36,11 @@ public class StoreApi {
     public List<SaleRequest> SalePage(){
         List<SaleRequest> sale = storeBl.SalePage();
         return sale;
+    }
+
+    @RequestMapping(value="/ming/store/releases", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<ReleaseRequest> getLatestReleases(){
+        return storeBl.getLatest();
     }
 
 }

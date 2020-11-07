@@ -5,6 +5,7 @@ import bo.ucb.edu.ingsoft.dao.PhotoDao;
 import bo.ucb.edu.ingsoft.dao.PriceDao;
 import bo.ucb.edu.ingsoft.dto.HighlightRequest;
 import bo.ucb.edu.ingsoft.dto.HomepageRequest;
+import bo.ucb.edu.ingsoft.dto.ReleaseRequest;
 import bo.ucb.edu.ingsoft.models.Game;
 import bo.ucb.edu.ingsoft.models.Photo;
 import bo.ucb.edu.ingsoft.models.Price;
@@ -76,5 +77,23 @@ public class StoreBl {
             sale.add(new SaleRequest(game.get(i).getName(), game.get(i).getReleaseDate(),price.get(i).getPrice(),price.get(i).getSale(),photo.get(i).getPhotoPath()));
         }
         return sale;
+    }
+
+    public List<ReleaseRequest> getLatest(){
+        List<ReleaseRequest> list = new ArrayList<ReleaseRequest>();
+        List<Game> games = gameDao.findLatestReleases();
+        if(!games.isEmpty()){
+            List<Integer> ids = new ArrayList<Integer>();
+            for (Game game : games) {
+                ids.add(game.getIdGame());
+            }
+            List<Photo> photos = photoDao.findBannerbyId(ids);
+            List<Price> prices = priceDao.findByIdGame(ids);
+            for (int i = 0; i < games.size(); i++) {
+                ReleaseRequest homepageRequest = new ReleaseRequest(games.get(i).getIdGame().toString(), games.get(i).getName(), games.get(i).getDescription() , prices.get(i).getPrice(), photos.get(i).getPhotoPath(),games.get(i).getReleaseDate());
+                list.add(homepageRequest);
+            }
+        }
+        return list;
     }
 }

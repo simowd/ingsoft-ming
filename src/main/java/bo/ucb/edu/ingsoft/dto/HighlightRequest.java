@@ -1,5 +1,7 @@
 package bo.ucb.edu.ingsoft.dto;
 
+import java.sql.Timestamp;
+
 public class HighlightRequest {
     private String id;
     private String title;
