@@ -7,14 +7,14 @@
       INSERT INTO games_os
         VALUES (
              null,
-             #{idGame),
+             #{idGame},
              #{idOperatingSystem}
         )
     </insert>
     <select id="findByIdGameOs" resultType="bo.ucb.edu.ingsoft.models.GameOS">
         SELECT
                id_operating_system as idOperatingSystem,
-               operting_system as operatingSystem
+               operating_system as operatingSystem,
                logo_path as logoPath
         FROM operating_system
         WHERE
