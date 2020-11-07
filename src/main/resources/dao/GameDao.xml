@@ -5,9 +5,18 @@
 <mapper namespace="bo.ucb.edu.ingsoft.dao.GameDao">
     <select id="findSale" resultType="bo.ucb.edu.ingsoft.models.Game">
         SELECT
-               games.id_game as idGame,
                games.name as name,
                games.release_date as releaseDate
+        FROM games inner join price
+        on
+            games.id_game = price.id_game
+        where
+        price.sale > 0
+
+    </select>
+    <select id="findSaleIds" resultType="bo.ucb.edu.ingsoft.models.Game">
+        SELECT
+               games.id_game as idGame
         FROM games inner join price
         on
             games.id_game = price.id_game

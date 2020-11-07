@@ -2,6 +2,7 @@ package bo.ucb.edu.ingsoft.api;
 
 import bo.ucb.edu.ingsoft.bl.StoreBl;
 import bo.ucb.edu.ingsoft.dto.HomepageRequest;
+import bo.ucb.edu.ingsoft.dto.SaleRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,6 +23,12 @@ public class StoreApi {
     @RequestMapping(value="/ming/store/homepage", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<HomepageRequest> getHomepage(@RequestParam Integer page){
         return storeBl.getHomePage(page);
+    }
+
+    @RequestMapping(value="/ming/store/salepage", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<SaleRequest> SalePage(){
+        List<SaleRequest> sale=storeBl.SalePage();
+        return sale;
     }
 
 }

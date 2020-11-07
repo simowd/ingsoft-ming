@@ -7,7 +7,7 @@ public class Price {
     private Integer idGame;
     private Double price;
     private Timestamp date;
-    private Integer sale;
+    private Double sale;
     private Integer status;
     private Integer txId;
     private String txHost;
@@ -15,22 +15,6 @@ public class Price {
     private Timestamp txDate;
 
     public Price() {
-    }
-
-    @Override
-    public String toString() {
-        return "Price{" +
-                "idPrice=" + idPrice +
-                ", idGame=" + idGame +
-                ", price=" + price +
-                ", date=" + date +
-                ", sale=" + sale +
-                ", status=" + status +
-                ", txId=" + txId +
-                ", txHost='" + txHost + '\'' +
-                ", txUserId=" + txUserId +
-                ", txDate=" + txDate +
-                '}';
     }
 
     public Integer getIdPrice() {
@@ -65,11 +49,11 @@ public class Price {
         this.date = date;
     }
 
-    public Integer getSale() {
+    public Double getSale() {
         return sale;
     }
 
-    public void setSale(Integer sale) {
+    public void setSale(Double sale) {
         this.sale = sale;
     }
 
@@ -111,5 +95,21 @@ public class Price {
 
     public void setTxDate(Timestamp txDate) {
         this.txDate = txDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Price{" +
+                "idPrice=" + idPrice +
+                ", idGame=" + idGame +
+                ", price=" + price +
+                ", date=" + date +
+                ", sale=" + sale +
+                ", status=" + status +
+                ", txId=" + txId +
+                ", txHost='" + txHost + '\'' +
+                ", txUserId=" + txUserId +
+                ", txDate=" + txDate +
+                '}';
     }
 }
