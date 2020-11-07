@@ -1,6 +1,7 @@
 package bo.ucb.edu.ingsoft.models;
 
-import java.sql.Timestamp;
+
+import java.util.Date;
 
 public class Publisher {
     private Integer idPublisher;
@@ -10,10 +11,14 @@ public class Publisher {
     private Integer status;
     private Integer tx_id;
     private String tx_host;
-    private Integer ts_user_id;
-    private Timestamp tx_date;
+    private Integer tx_user_id;
+    private Date tx_date;
 
-    public Publisher(Integer idPublisher, Integer idUser, String publisher, String paypalMail, Integer status, Integer tx_id, String tx_host, Integer ts_user_id, Timestamp tx_date) {
+    public Publisher() {
+
+    }
+
+    public Publisher(Integer idPublisher, Integer idUser, String publisher, String paypalMail, Integer status, Integer tx_id, String tx_host, Integer tx_user_id, Date tx_date) {
         this.idPublisher = idPublisher;
         this.idUser = idUser;
         this.publisher = publisher;
@@ -21,7 +26,7 @@ public class Publisher {
         this.status = status;
         this.tx_id = tx_id;
         this.tx_host = tx_host;
-        this.ts_user_id = ts_user_id;
+        this.tx_user_id = tx_user_id;
         this.tx_date = tx_date;
     }
 
@@ -35,7 +40,7 @@ public class Publisher {
                 ", status=" + status +
                 ", tx_id=" + tx_id +
                 ", tx_host='" + tx_host + '\'' +
-                ", ts_user_id=" + ts_user_id +
+                ", ts_user_id=" + tx_user_id +
                 ", tx_date=" + tx_date +
                 '}';
     }
@@ -97,18 +102,18 @@ public class Publisher {
     }
 
     public Integer getTs_user_id() {
-        return ts_user_id;
+        return tx_user_id;
     }
 
     public void setTs_user_id(Integer ts_user_id) {
-        this.ts_user_id = ts_user_id;
+        this.tx_user_id = ts_user_id;
     }
 
-    public Timestamp getTx_date() {
+    public Date getTx_date() {
         return tx_date;
     }
 
-    public void setTx_date(Timestamp tx_date) {
+    public void setTx_date(Date tx_date) {
         this.tx_date = tx_date;
     }
 }

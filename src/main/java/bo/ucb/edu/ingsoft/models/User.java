@@ -1,6 +1,6 @@
 package bo.ucb.edu.ingsoft.models;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 public class User {
     private Integer idUser;
@@ -17,12 +17,12 @@ public class User {
     private Integer txId;
     private String txHost;
     private Integer txUserId;
-    private Timestamp txDate;
+    private Date txDate;
 
     public User() {
     }
 
-    public User(Integer idUser, Integer idCountry, String userName, String password, String email, Integer userType, String photoPath, String name, String lastName, String alias, Integer status, Integer txId, String txHost, Integer txUserId, Timestamp txDate) {
+    public User(Integer idUser, Integer idCountry, String userName, String password, String email, Integer userType, String photoPath, String name, String lastName, String alias, Integer status, Integer txId, String txHost, Integer txUserId, Date txDate) {
         this.idUser = idUser;
         this.idCountry = idCountry;
         this.userName = userName;
@@ -173,11 +173,11 @@ public class User {
         this.txUserId = txUserId;
     }
 
-    public Timestamp getTxDate() {
+    public Date getTxDate() {
         return txDate;
     }
 
-    public void setTxDate(Timestamp txDate) {
+    public void setTxDate(Date txDate) {
         this.txDate = txDate;
     }
 }

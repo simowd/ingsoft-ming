@@ -6,7 +6,7 @@ public class PublisherRequest {
     private String email;
     private String paypal;
     private String publisher;
-    private String country;
+    private Integer country;
     private String password;
     private String repeat_password;
 
@@ -67,13 +67,6 @@ public class PublisherRequest {
         this.publisher = publisher;
     }
 
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
 
     public String getPassword() {
         return password;
@@ -91,4 +84,11 @@ public class PublisherRequest {
         this.repeat_password = repeat_password;
     }
 
+    public Integer getCountry() {
+        return country;
+    }
+
+    public void setCountry(Integer country) {
+        this.country = country;
+    }
 }
