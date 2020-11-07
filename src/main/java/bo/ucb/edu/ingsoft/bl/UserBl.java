@@ -35,9 +35,9 @@ public class UserBl {
 
 
     public void changeUserPassword(Integer userId, PasswordRequest passwordRequest, Transaction transaction){
-        String current_password = userDao.userPassword(userId).getPassword();
-        String old_password = passwordRequest.getOld_password();
-        if (new String(old_password).equals(current_password))
+        String currentPassword = userDao.userPassword(userId).getPassword();
+        String oldPassword = passwordRequest.getOld_password();
+        if (new String(oldPassword).equals(currentPassword))
         {
             userDao.updateUserPassword(userId, passwordRequest.getNew_password());
             transactionDao.updateUserTransaction(userId, transaction.getTxId(), transaction.getTxHost(), transaction.getTxUserId(), transaction.getTxDate());
@@ -48,4 +48,15 @@ public class UserBl {
         }
     }
 
+    public void updateUserProfileInfo(Integer userId, UserRequest userRequest, Transaction transaction){
+        User user = new User();
+        user.setIdUser(userId);
+        user.setAlias(userRequest.getAlias());
+        user.setEmail(userRequest.getEmail());
+        user.setIdCountry(userRequest.getId_country());
+        user.setPhotoPath(userRequest.getPhoto_path());
+
+        userDao.updateUserInfo(user);
+        transactionDao.updateUserTransaction(userId, transaction.getTxId(), transaction.getTxHost(), transaction.getTxUserId(), transaction.getTxDate());
+    }
 }

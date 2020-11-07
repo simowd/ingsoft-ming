@@ -45,4 +45,17 @@ public class UserApi {
                     HttpStatus.NOT_FOUND, "User Not Found", ex);
         }
     }
+
+    @RequestMapping(value = "/ming/users/{user}",method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody String updateUserInfo(@PathVariable("user") Integer userId, @RequestBody UserRequest userRequest, HttpServletRequest request) {
+        try {
+            Transaction transaction = TransactionUtil.createTransaction(request);
+            transactionBl.createTransaction(transaction);
+            userBl.updateUserProfileInfo(userId, userRequest, transaction);
+            return "ok";
+        } catch (Exception ex) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "User Not Found", ex);
+        }
+    }
 }
