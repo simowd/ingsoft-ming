@@ -3,10 +3,7 @@ package bo.ucb.edu.ingsoft.api;
 import bo.ucb.edu.ingsoft.bl.GameBl;
 import bo.ucb.edu.ingsoft.bl.PublisherBl;
 import bo.ucb.edu.ingsoft.bl.TransactionBl;
-import bo.ucb.edu.ingsoft.dto.DashboardRequest;
-import bo.ucb.edu.ingsoft.dto.NewGameRequest;
-import bo.ucb.edu.ingsoft.dto.PublisherRequest;
-import bo.ucb.edu.ingsoft.dto.Transaction;
+import bo.ucb.edu.ingsoft.dto.*;
 import bo.ucb.edu.ingsoft.models.Developer;
 import bo.ucb.edu.ingsoft.models.Game;
 import bo.ucb.edu.ingsoft.util.TransactionUtil;
@@ -43,7 +40,7 @@ public class GameApi {
 
 
     @RequestMapping(value = "/store/games/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Game findGameById(@PathVariable("id") Integer gameId) {
+    public GameDetailsRequest findGameById(@PathVariable("id") Integer gameId) {
         try {
             return gameBl.findByGameById(gameId);
         } catch (Exception ex) {

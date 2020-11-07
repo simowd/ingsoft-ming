@@ -1,6 +1,7 @@
 package bo.ucb.edu.ingsoft.bl;
 
 import bo.ucb.edu.ingsoft.dao.*;
+import bo.ucb.edu.ingsoft.dto.GameDetailsRequest;
 import bo.ucb.edu.ingsoft.dto.GamesRequest;
 import bo.ucb.edu.ingsoft.dto.NewGameRequest;
 import bo.ucb.edu.ingsoft.dto.Transaction;
@@ -150,7 +151,24 @@ public class GameBl {
         return newGameRequest;
     }
 
-    public Game findByGameById(Integer gameId) {
-        return gameDao.getGameInfo(gameId);
+    public GameDetailsRequest findByGameById(Integer gameId) {
+        Game game = gameDao.getGameInfo(gameId);
+
+        GameDetailsRequest gameDetailsRequest = new GameDetailsRequest();
+//        gameDetailsRequest.setGender();
+//        gameDetailsRequest.setType();
+//        gameDetailsRequest.setOperativeSystem();
+//        gameDetailsRequest.setDeveloper();
+        gameDetailsRequest.setPlayers(game.getPlayers());
+//        gameDetailsRequest.setLanguages();
+//        gameDetailsRequest.setClassification();
+        gameDetailsRequest.setDescription(game.getDescription());
+        gameDetailsRequest.setProcessor(game.getProcessor());
+        gameDetailsRequest.setMemory(game.getMemory());
+        gameDetailsRequest.setGraphics(game.getGraphics());
+//        gameDetailsRequest.setDriver();
+//        gameDetailsRequest.setStorage(game.getSize());
+//        gameDetailsRequest.setPrice(game.);
+        return gameDetailsRequest;
     }
 }
