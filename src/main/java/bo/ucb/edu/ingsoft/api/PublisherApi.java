@@ -6,11 +6,16 @@ import bo.ucb.edu.ingsoft.bl.TransactionBl;
 import bo.ucb.edu.ingsoft.dto.PublisherRequest;
 import bo.ucb.edu.ingsoft.dto.Transaction;
 
+import bo.ucb.edu.ingsoft.dto.UserRequest;
+import bo.ucb.edu.ingsoft.models.Country;
+import bo.ucb.edu.ingsoft.models.User;
 import bo.ucb.edu.ingsoft.util.TransactionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 
 import javax.servlet.http.HttpServletRequest;
@@ -35,5 +40,15 @@ public class PublisherApi {
         transactionBl.createTransaction(transaction);
         PublisherRequest publisherResponse = publisherBl.createPublisher(publisherRequest, transaction);
         return publisherResponse;
+    }
+
+    @RequestMapping(value = "/ming/publisher/{id}",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public PublisherRequest findById (@PathVariable("id") Integer userId) {
+        try {
+            return publisherBl.findByPublisherId(userId);
+        } catch (Exception ex) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "User Not Found", ex);
+        }
     }
 }

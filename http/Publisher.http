@@ -1,4 +1,4 @@
-GET http://localhost:8080//ming/users/2
+GET http://localhost:8080//ming/publisher/4
 Accept: application/json
 
 ###

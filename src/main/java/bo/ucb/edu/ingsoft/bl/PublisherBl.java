@@ -5,6 +5,9 @@ import bo.ucb.edu.ingsoft.dao.TransactionDao;
 import bo.ucb.edu.ingsoft.dao.UserDao;
 import bo.ucb.edu.ingsoft.dto.PublisherRequest;
 import bo.ucb.edu.ingsoft.dto.Transaction;
+import bo.ucb.edu.ingsoft.dto.UserRequest;
+import bo.ucb.edu.ingsoft.models.Country;
+import bo.ucb.edu.ingsoft.models.Developer;
 import bo.ucb.edu.ingsoft.models.Publisher;
 import bo.ucb.edu.ingsoft.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,8 +44,6 @@ public class PublisherBl {
         userDao.createPublisher(user);
 
         Integer lastId=userDao.getLastInsertId();
-        System.out.println("sfjkheskhlf"+lastId);
-
         publisher.setIdUser(lastId);
         publisher.setPaypalMail(publisherRequest.getPaypal());
         publisher.setPublisher(publisherRequest.getPublisher());
@@ -55,4 +56,21 @@ public class PublisherBl {
 
         return publisherRequest;
     }
+
+    public PublisherRequest findByPublisherId (Integer idUser){
+        PublisherRequest publisherRequest=new PublisherRequest();
+        User user= userDao.findByUserId(idUser);
+        Publisher publisher=publisherDao.findByPublisherId(idUser);
+
+        publisherRequest.setUsername(user.getUserName());
+        publisherRequest.setEmail(user.getEmail());
+        publisherRequest.setPaypal(publisher.getPaypalMail());
+        publisherRequest.setPublisher(publisher.getPublisher());
+        publisherRequest.setCountry(user.getIdCountry());
+        publisherRequest.setPassword(user.getPassword());
+        publisherRequest.setRepeat_password(user.getPassword());
+
+        return publisherRequest;
+    }
+
 }
