@@ -17,4 +17,13 @@
             #{item}
         </foreach>
     </select>
+
+    <insert id="createGenreGame" parameterType="bo.ucb.edu.ingsoft.models.LanguageGame">
+      INSERT INTO genres_games
+        VALUES (
+             null,
+             #{idGame),
+             #{idGenre}
+        )
+    </insert>
 </mapper>

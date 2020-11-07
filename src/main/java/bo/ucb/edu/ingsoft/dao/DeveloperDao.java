@@ -10,4 +10,6 @@ public interface DeveloperDao {
     //Create developer
     public Developer createDeveloper(Developer developer);
 
+    public Developer findByIdDeveloper(Integer idDeveloper);
+
 }
