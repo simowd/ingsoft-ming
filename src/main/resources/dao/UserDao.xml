@@ -143,9 +143,9 @@
             id_user=#{idUser}
     </update>
 
-    <update id="updateUserPassword" parameterType="bo.ucb.edu.ingsoft.models.User">
+    <update id="updateUserPassword">
         UPDATE users
-        SET  password=#{password}
+        SET  password=#{newPassword}
         WHERE
             id_user=#{idUser}
     </update>

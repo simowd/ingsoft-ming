@@ -12,7 +12,18 @@
             #{txDate}
         )
     </insert>
+
     <select id="getLastInsertId" resultType="java.lang.Integer">
         SELECT LAST_INSERT_ID()
     </select>
+
+    <update id="updateUserTransaction">
+        UPDATE users
+        SET tx_id=#{txId},
+            tx_host=#{txHost},
+            tx_user_id=#{txUserId},
+            tx_date=#{txDate}
+        WHERE
+            id_user=#{idUser}
+    </update>
 </mapper>

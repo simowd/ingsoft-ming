@@ -12,6 +12,14 @@ public class UserRequest {
     public UserRequest(){
     }
 
+    public UserRequest(String username, String alias, String email, String country, String photo_path) {
+        this.username = username;
+        this.alias = alias;
+        this.email = email;
+        this.country = country;
+        this.photo_path = photo_path;
+    }
+
     @Override
     public String toString() {
         return "UserRequest{" +
@@ -80,4 +88,5 @@ public class UserRequest {
     public void setPhoto_path(String photo_path) {
         this.photo_path = photo_path;
     }
+
 }
