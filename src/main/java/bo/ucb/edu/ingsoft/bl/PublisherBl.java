@@ -96,8 +96,13 @@ public class PublisherBl {
             publisherRequest.add(publisherRequest1);
         }
 
-
         return publisherRequest;
+    }
+
+    public void deletePublisher (Integer idUser){
+
+      userDao.deleteUserPublisher(idUser);
+      publisherDao.deletePublisher(idUser);
     }
 
 }

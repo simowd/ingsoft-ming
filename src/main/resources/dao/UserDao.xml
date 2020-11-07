@@ -153,4 +153,11 @@
     <select id="getLastInsertId" resultType="java.lang.Integer">
         SELECT LAST_INSERT_ID()
     </select>
+
+    <update id="deleteUserPublisher">
+        UPDATE users
+        SET  status=0
+        WHERE
+            id_user=#{idUser}
+    </update>
 </mapper>

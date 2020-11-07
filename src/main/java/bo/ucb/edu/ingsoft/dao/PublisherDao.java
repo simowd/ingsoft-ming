@@ -19,4 +19,8 @@ public interface PublisherDao {
 
     //Get publisher list
     public List<Publisher> listPublisher(List<Integer> idUser);
+
+    //delete  publihser
+    public void deletePublisher(Integer idUser);
+
 }

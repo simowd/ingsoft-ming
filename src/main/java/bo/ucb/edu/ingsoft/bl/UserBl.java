@@ -32,4 +32,5 @@ public class UserBl {
         userRequest.setPhoto_path(user.getPhotoPath());
         return userRequest;
     }
+
 }
