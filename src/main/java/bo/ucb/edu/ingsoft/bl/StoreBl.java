@@ -31,7 +31,6 @@ public class StoreBl {
         Integer recordsPerPage = 10;
         Integer offsetValue = (page - 1) * recordsPerPage;
         List<Game> games = gameDao.findPage(recordsPerPage, offsetValue);
-        System.out.println(games);
         List<Integer> ids = new ArrayList<Integer>();
         for (Game game : games) {
             ids.add(game.getIdGame());

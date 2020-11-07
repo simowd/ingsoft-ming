@@ -33,6 +33,7 @@ public class UserBl {
         return userRequest;
     }
 
+
     public void changeUserPassword(Integer userId, PasswordRequest passwordRequest, Transaction transaction){
         String current_password = userDao.userPassword(userId).getPassword();
         String old_password = passwordRequest.getOld_password();
@@ -46,4 +47,5 @@ public class UserBl {
                     HttpStatus.UNAUTHORIZED, "Wrong Password");
         }
     }
+
 }

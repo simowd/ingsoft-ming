@@ -46,6 +46,10 @@ public interface UserDao {
     //Update User's Password
     public void updateUserPassword(@Param("idUser") Integer idUser, @Param("newPassword") String newPassword);
 
+    //get last id in user
     public Integer getLastInsertId();
+
+    //delete user publihser
+    public void deleteUserPublisher(Integer idUser);
 
 }

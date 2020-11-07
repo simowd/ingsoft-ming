@@ -53,7 +53,7 @@
                email as email
         FROM users
         WHERE
-            user_type=1
+            user_type=1 and status=1;
     </select>
 
     <select id="publisherMail" resultType="bo.ucb.edu.ingsoft.models.User">
@@ -153,4 +153,11 @@
     <select id="getLastInsertId" resultType="java.lang.Integer">
         SELECT LAST_INSERT_ID()
     </select>
+
+    <update id="deleteUserPublisher">
+        UPDATE users
+        SET  status=0
+        WHERE
+            id_user=#{idUser}
+    </update>
 </mapper>
