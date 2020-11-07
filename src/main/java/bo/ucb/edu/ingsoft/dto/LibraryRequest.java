@@ -1,15 +1,25 @@
 package bo.ucb.edu.ingsoft.dto;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class LibraryRequest {
     private Integer id;
     private String title;
-    private ArrayList<String> genre;
+    private List<String> genre;
     private String banner;
     private String download;
 
     public LibraryRequest() {
+
+    }
+
+    public LibraryRequest(Integer id, String title, List<String> genre, String banner, String download) {
+        this.id = id;
+        this.title = title;
+        this.genre = genre;
+        this.banner = banner;
+        this.download = download;
     }
 
     @Override
@@ -39,11 +49,11 @@ public class LibraryRequest {
         this.title = title;
     }
 
-    public ArrayList<String> getGenre() {
+    public List<String> getGenre() {
         return genre;
     }
 
-    public void setGenre(ArrayList<String> genre) {
+    public void setGenre(List<String> genre) {
         this.genre = genre;
     }
 

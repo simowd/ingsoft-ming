@@ -8,6 +8,7 @@ public class UserRequest {
     private String email;
     private String country;
     private String photo_path;
+    private Integer id_country;
 
     public UserRequest(){
     }
@@ -20,6 +21,7 @@ public class UserRequest {
         this.photo_path = photo_path;
     }
 
+
     @Override
     public String toString() {
         return "UserRequest{" +
@@ -30,6 +32,7 @@ public class UserRequest {
                 ", email='" + email + '\'' +
                 ", country='" + country + '\'' +
                 ", photo_path='" + photo_path + '\'' +
+                ", id_country=" + id_country +
                 '}';
     }
 
@@ -89,4 +92,11 @@ public class UserRequest {
         this.photo_path = photo_path;
     }
 
+    public Integer getId_country() {
+        return id_country;
+    }
+
+    public void setId_country(Integer id_country) {
+        this.id_country = id_country;
+    }
 }

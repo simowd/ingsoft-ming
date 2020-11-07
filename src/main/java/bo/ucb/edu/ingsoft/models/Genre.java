@@ -12,6 +12,7 @@ public class Genre {
     public Genre(Integer idGenre, String genre) {
         this.idGenre = idGenre;
         this.genre = genre;
+
     }
 
     @Override
