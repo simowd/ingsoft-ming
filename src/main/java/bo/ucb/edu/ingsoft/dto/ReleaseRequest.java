@@ -1,6 +1,7 @@
 package bo.ucb.edu.ingsoft.dto;
 
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class ReleaseRequest {
@@ -9,7 +10,16 @@ public class ReleaseRequest {
     private String game_description;
     private Double price;
     private String banner;
-    private Date release_date;
+    private Timestamp release_date;
+
+    public ReleaseRequest(String id, String title, String game_description, Double price, String banner, Timestamp release_date) {
+        this.id = id;
+        this.title = title;
+        this.game_description = game_description;
+        this.price = price;
+        this.banner = banner;
+        this.release_date = release_date;
+    }
 
     public ReleaseRequest() {
     }
@@ -66,11 +76,11 @@ public class ReleaseRequest {
         this.banner = banner;
     }
 
-    public Date getRelease_date() {
+    public Timestamp getRelease_date() {
         return release_date;
     }
 
-    public void setRelease_date(Date release_date) {
+    public void setRelease_date(Timestamp release_date) {
         this.release_date = release_date;
     }
 }

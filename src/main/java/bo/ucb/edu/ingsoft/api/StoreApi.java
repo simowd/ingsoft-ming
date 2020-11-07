@@ -3,6 +3,7 @@ package bo.ucb.edu.ingsoft.api;
 import bo.ucb.edu.ingsoft.bl.StoreBl;
 import bo.ucb.edu.ingsoft.dto.HighlightRequest;
 import bo.ucb.edu.ingsoft.dto.HomepageRequest;
+import bo.ucb.edu.ingsoft.dto.ReleaseRequest;
 import bo.ucb.edu.ingsoft.dto.SaleRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -43,6 +44,11 @@ public class StoreApi {
                     HttpStatus.NOT_FOUND, "Page Not Found", ex);
         }
 
+    }
+
+    @RequestMapping(value="/ming/store/releases", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<ReleaseRequest> getLatestReleases(){
+        return storeBl.getLatest();
     }
 
 }
