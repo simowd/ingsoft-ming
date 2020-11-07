@@ -95,4 +95,16 @@
     <select id="getLastInsertId" resultType="java.lang.Integer">
         SELECT LAST_INSERT_ID()
     </select>
+    <select id="findLatestReleases" resultType="bo.ucb.edu.ingsoft.models.Game">
+        SELECT
+            id_game as idGame,
+            name as name,
+            description as description,
+            release_date as releaseDate
+        FROM
+            games
+        WHERE
+            status = 1
+        AND release_date BETWEEN CURDATE()-INTERVAL 1 WEEK AND CURDATE();
+    </select>
 </mapper>
