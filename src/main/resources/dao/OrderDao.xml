@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bo.ucb.edu.ingsoft.dao.OrderDao">
+    <select id="gameSells" resultType="bo.ucb.edu.ingsoft.models.Order">
+        SELECT
+                count(order_details.id_game)
+        FROM orders inner join order_details
+        on
+            orders.id_order=order_details.id_order
+        WHERE
+            order_details.id_game=#{idGame}
+    </select>
+
+    <select id="gameSellsCountry" resultType="bo.ucb.edu.ingsoft.models.Order">
+        SELECT
+                count(order_details.id_game),
+        FROM orders inner join order_details
+        on
+            orders.id_order=order_details.id_order
+        WHERE
+            order_details.id_game=#{idGame} and
+            orders.id_user=#{idUser}
+    </select>
+
+    <select id="gameEarnings" resultType="bo.ucb.edu.ingsoft.models.Order">
+        SELECT
+                sum(order_details.price)
+        FROM orders inner join order_details
+        on
+            orders.id_order=order_details.id_order
+        WHERE
+            order_details.id_game=#{idGame}
+    </select>
+
+    <select id="gameEarningsMonth" resultType="bo.ucb.edu.ingsoft.models.Order">
+        SELECT
+                sum(order_details.price)
+        FROM orders inner join order_details
+        on
+            orders.id_order=order_details.id_order
+        WHERE
+            order_details.id_game=#{a.idGame} and
+            month(order_details.tx_date) in
+        <foreach collection="list" item="item" index="index"
+                 open="(" separator="," close = ")">
+            #{b.item}
+        </foreach>
+        GROUP BY
+        month(order_details.tx_date)
+    </select>
+
+</mapper>
