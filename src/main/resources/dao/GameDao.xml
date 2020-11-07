@@ -26,12 +26,12 @@
     </select>
     <select id="findGamebyPublisher" resultType="bo.ucb.edu.ingsoft.models.Game">
         SELECT
-               id_game as idGame
+        id_game as idGame
         FROM games
         where
         id_developer in
         <foreach collection="list" item="item" index="index"
-                 open="(" separator="," close = ")">
+                 open="(" separator="," close=")">
             #{item}
         </foreach>
 
@@ -103,13 +103,13 @@
 
     <select id="findLibraryGames" resultType="bo.ucb.edu.ingsoft.models.Game">
         SELECT
-               name as name,
-               download_path as downloadPath
+        name as name,
+        download_path as downloadPath
         FROM games
         WHERE
         id_game in
         <foreach collection="list" item="item" index="index"
-                 open="(" separator="," close = ")">
+                 open="(" separator="," close=")">
             #{item}
         </foreach>
     </select>

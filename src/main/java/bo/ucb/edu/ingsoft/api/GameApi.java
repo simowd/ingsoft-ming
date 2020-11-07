@@ -8,6 +8,7 @@ import bo.ucb.edu.ingsoft.dto.NewGameRequest;
 import bo.ucb.edu.ingsoft.dto.PublisherRequest;
 import bo.ucb.edu.ingsoft.dto.Transaction;
 import bo.ucb.edu.ingsoft.models.Developer;
+import bo.ucb.edu.ingsoft.models.Game;
 import bo.ucb.edu.ingsoft.util.TransactionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,11 +33,22 @@ public class GameApi {
 
 
     @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE,
-            consumes = MediaType.APPLICATION_JSON_VALUE,value = "ming/publisher/{id}/game")
-    public NewGameRequest createGame(@PathVariable("id") Integer idPublisher,@RequestBody NewGameRequest newGameRequest, HttpServletRequest request){
+            consumes = MediaType.APPLICATION_JSON_VALUE, value = "ming/publisher/{id}/game")
+    public NewGameRequest createGame(@PathVariable("id") Integer idPublisher, @RequestBody NewGameRequest newGameRequest, HttpServletRequest request) {
         Transaction transaction = TransactionUtil.createTransaction(request);
         transactionBl.createTransaction(transaction);
-        NewGameRequest newGameResponse=gameBl.createGame(newGameRequest,transaction,idPublisher);
+        NewGameRequest newGameResponse = gameBl.createGame(newGameRequest, transaction, idPublisher);
         return newGameResponse;
+    }
+
+
+    @RequestMapping(value = "/store/games/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Game findGameById(@PathVariable("id") Integer gameId) {
+        try {
+            return gameBl.findByGameById(gameId);
+        } catch (Exception ex) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "User Not Found", ex);
+        }
     }
 }
