@@ -9,7 +9,7 @@ import java.util.List;
 @Mapper
 public interface GamesDirectxDao {
 
-   public GameDirectx createGameDirectx();
+   public GameDirectx createGameDirectx(Directx directx);
 
    public List<Directx> findByIdDirectx(List<Integer> idDirectx);
 
