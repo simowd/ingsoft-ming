@@ -7,7 +7,7 @@
       INSERT INTO games_directx
         VALUES (
              null,
-             #{idGame),
+             #{idGame},
              #{idDirectx}
         )
     </insert>

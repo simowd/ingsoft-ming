@@ -11,7 +11,7 @@
                id_country as idCountry
         FROM users
         WHERE
-            id_user=idUser;
+            id_user=#{idUser};
     </select>
 
     <insert id="createPublisher" parameterType="bo.ucb.edu.ingsoft.models.User">
@@ -63,7 +63,7 @@
         on
             users.id_user = publishers.id_user
         where
-        publishers.id_user=idUser
+        publishers.id_user=#{idUser}
     </select>
 
     <insert id="userSignUp" parameterType="bo.ucb.edu.ingsoft.models.User">

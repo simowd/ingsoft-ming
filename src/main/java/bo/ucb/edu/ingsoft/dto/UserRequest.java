@@ -7,6 +7,7 @@ public class UserRequest {
     private String alias;
     private String email;
     private String country;
+    private String photo_path;
 
     public UserRequest(){
     }
@@ -20,6 +21,7 @@ public class UserRequest {
                 ", alias='" + alias + '\'' +
                 ", email='" + email + '\'' +
                 ", country='" + country + '\'' +
+                ", photo_path='" + photo_path + '\'' +
                 '}';
     }
 
@@ -69,5 +71,13 @@ public class UserRequest {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public String getPhoto_path() {
+        return photo_path;
+    }
+
+    public void setPhoto_path(String photo_path) {
+        this.photo_path = photo_path;
     }
 }

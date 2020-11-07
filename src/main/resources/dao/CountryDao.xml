@@ -8,6 +8,6 @@
                name as name
         FROM countries
         WHERE
-            id_country = {idCountry}
+            id_country = #{idCountry}
     </select>
 </mapper>

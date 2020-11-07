@@ -7,7 +7,7 @@
       INSERT INTO language_games
         VALUES (
              null,
-             #{idGame),
+             #{idGame},
              #{idLanguage}
         )
     </insert>
