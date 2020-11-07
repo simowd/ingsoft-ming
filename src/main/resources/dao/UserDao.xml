@@ -117,4 +117,24 @@
         WHERE
             id_user=#{idUser};
     </select>
+
+    <update id="updateUserInfo" parameterType="bo.ucb.edu.ingsoft.models.User">
+        UPDATE users
+        SET  alias=#{alias},
+            email=#{email},
+            id_country=#{idCountry},
+            tx_id=#{txId},
+            tx_host=#{txHost},
+            tx_user_id=#{txUserId},
+            tx_date=#{txDate}
+        WHERE
+            id_user=#{idUser}
+    </update>
+
+    <update id="updateUserPassword" parameterType="bo.ucb.edu.ingsoft.models.User">
+        UPDATE users
+        SET  password=#{password}
+        WHERE
+            id_user=#{idUser}
+    </update>
 </mapper>
