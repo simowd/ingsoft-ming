@@ -1,6 +1,7 @@
 package bo.ucb.edu.ingsoft.models;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 public class Game {
     private Integer idGame;
@@ -21,7 +22,7 @@ public class Game {
     private Integer txId;
     private String txHost;
     private Integer txUserId;
-    private Timestamp txDate;
+    private Date txDate;
 
     public Game() {
     }
@@ -195,11 +196,11 @@ public class Game {
         this.txUserId = txUserId;
     }
 
-    public Timestamp getTxDate() {
+    public Date getTxDate() {
         return txDate;
     }
 
-    public void setTxDate(Timestamp txDate) {
+    public void setTxDate(Date txDate) {
         this.txDate = txDate;
     }
 }

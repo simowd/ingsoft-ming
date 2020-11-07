@@ -1,0 +1,28 @@
+POST http://localhost:8080/ming/publisher/1/game
+Accept: application/json
+Content-Type: application/json
+
+{
+  "idEsrb": 1,
+  "title": "GTA6",
+  "game_description": "Un juego de ladrones",
+  "size": "70GB",
+  "players": 1,
+  "processor": "Intel 9",
+  "release_date": "2019-10-11T13:33:05.673",
+  "memory": "5GB RAM",
+  "graphics": "GeForce",
+  "color": "#1111",
+  "highlight":  0,
+  "download_path": "jaja.com",
+  "images": ["http//1","http//2","http//3"],
+  "developer": "RockStarXd",
+  "directx": [1,2,3],
+  "operatingSystem": [1,2],
+  "languageGames": [1,2],
+  "genreGames" : [1,2],
+  "price": 19.99,
+  "sale": 10
+
+}
+

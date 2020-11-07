@@ -9,11 +9,14 @@ import java.util.List;
 public interface DeveloperDao {
 
     //Create developer
-    public Developer createDeveloper(Developer developer);
+    public void createDeveloper(Developer developer);
 
     public Developer findByIdDeveloper(Integer idDeveloper);
 
     // Get developer by publisher
     public List<Integer> findByPublisher(Integer idPublisher);
+
+    //get last id in developers
+    public Integer getLastInsertId();
 
 }

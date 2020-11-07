@@ -5,6 +5,10 @@ public class Genre {
     private Integer idGenre;
     private String genre;
 
+    public Genre() {
+
+    }
+
     public Genre(Integer idGenre, String genre) {
         this.idGenre = idGenre;
         this.genre = genre;

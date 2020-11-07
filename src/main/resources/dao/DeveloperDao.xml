@@ -29,4 +29,8 @@
         WHERE
             id_publisher = #{idPublisher}
     </select>
+
+    <select id="getLastInsertId" resultType="java.lang.Integer">
+        SELECT LAST_INSERT_ID()
+    </select>
 </mapper>

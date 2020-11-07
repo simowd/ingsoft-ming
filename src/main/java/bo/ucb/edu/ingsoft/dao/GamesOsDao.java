@@ -10,7 +10,7 @@ import java.util.List;
 @Mapper
 public interface GamesOsDao {
 
-   public GameOS createGameOs();
+   public void createGameOs( GameOS gameOS);
 
    public List<OperatingSystem> findByIdGameOs(List<Integer> idOperatingSystem);
 

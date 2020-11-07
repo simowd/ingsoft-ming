@@ -12,6 +12,10 @@ public class GenreGame {
         this.idGenre = idGenre;
     }
 
+    public GenreGame() {
+
+    }
+
     @Override
     public String toString() {
         return "Genres_Games{" +

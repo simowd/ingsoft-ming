@@ -12,5 +12,5 @@ public interface GenreDao {
     //Get Genre name for User Library
     public List<Genre> genreLibrary (List<Integer> idGame);
 
-    public GenreGame createGenreGame();
+    public void createGenreGame(GenreGame genreGame);
 }
