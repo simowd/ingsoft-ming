@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bo.ucb.edu.ingsoft.dao.GamesLanguagesDao">
+    <insert id="createGameDirectx" parameterType="bo.ucb.edu.ingsoft.models.LanguageGame">
+      INSERT INTO language_games
+        VALUES (
+             null,
+             #{idGame),
+             #{idLanguage}
+        )
+    </insert>
+    <select id="findByIdDirectx" resultType="bo.ucb.edu.ingsoft.models.Language">
+        SELECT
+               id_language as idLanguage,
+               language as language
+        FROM languages
+        WHERE
+            id_language in
+        <foreach collection="list" item="item" index="index"
+                 open="(" separator="," close = ")">
+            #{item}
+        </foreach>
+    </select>
+</mapper>

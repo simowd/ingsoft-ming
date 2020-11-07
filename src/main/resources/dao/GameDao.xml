@@ -77,7 +77,7 @@
              tx_date as txDate
       FROM games
       WHERE
-            id_game=idGame
+            id_game=#{idGame}
     </select>
 
     <select id="findLibraryGames" resultType="bo.ucb.edu.ingsoft.models.Game">

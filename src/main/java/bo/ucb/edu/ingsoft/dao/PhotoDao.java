@@ -11,4 +11,7 @@ public interface PhotoDao {
     // Get Photo Data
     public ArrayList<Photo> findByIdGame(ArrayList<Integer> idGame);
     public ArrayList<Photo> findBannerbyId(ArrayList<Integer> idGame);
+
+
+
 }

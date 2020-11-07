@@ -56,7 +56,17 @@
             user_type=1
     </select>
 
-    <insert id="UserSignUp" parameterType="bo.ucb.edu.ingsoft.models.User">
+    <select id="publisherMail" resultType="bo.ucb.edu.ingsoft.models.User">
+        SELECT
+               users.email as email
+        FROM users inner join publishers
+        on
+            users.id_user = publishers.id_user
+        where
+        publishers.id_user=idUser
+    </select>
+
+    <insert id="userSignUp" parameterType="bo.ucb.edu.ingsoft.models.User">
         INSERT INTO users
         VALUES (
             null,
@@ -77,7 +87,7 @@
         )
     </insert>
 
-    <select id="UserProfileInfo" resultType="bo.ucb.edu.ingsoft.models.User">
+    <select id="userProfileInfo" resultType="bo.ucb.edu.ingsoft.models.User">
         SELECT
                 username as userName,
                 alias as alias,
@@ -86,6 +96,45 @@
                 photo_path as photoPath
         FROM users
         WHERE
-            id_user=idUser;
+            id_user=#{idUser};
     </select>
+
+    <select id="userInfo" resultType="bo.ucb.edu.ingsoft.models.User">
+        SELECT
+                alias as alias,
+                email as email,
+                id_country as idCountry,
+                photo_path as photoPath
+        FROM users
+        WHERE
+            id_user=#{idUser};
+    </select>
+
+    <select id="userPassword" resultType="bo.ucb.edu.ingsoft.models.User">
+        SELECT
+                password as password
+        FROM users
+        WHERE
+            id_user=#{idUser};
+    </select>
+
+    <update id="updateUserInfo" parameterType="bo.ucb.edu.ingsoft.models.User">
+        UPDATE users
+        SET  alias=#{alias},
+            email=#{email},
+            id_country=#{idCountry},
+            tx_id=#{txId},
+            tx_host=#{txHost},
+            tx_user_id=#{txUserId},
+            tx_date=#{txDate}
+        WHERE
+            id_user=#{idUser}
+    </update>
+
+    <update id="updateUserPassword" parameterType="bo.ucb.edu.ingsoft.models.User">
+        UPDATE users
+        SET  password=#{password}
+        WHERE
+            id_user=#{idUser}
+    </update>
 </mapper>

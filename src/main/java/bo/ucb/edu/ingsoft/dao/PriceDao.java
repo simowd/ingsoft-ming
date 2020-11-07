@@ -14,4 +14,6 @@ public interface PriceDao {
     // Get Price data
     public List<Price> findByIdGame(List<Integer> idGame);
 
+    public Price createPrice(Integer idGame);
+
 }

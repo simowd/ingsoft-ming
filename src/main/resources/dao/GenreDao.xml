@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bo.ucb.edu.ingsoft.dao.GenreDao">
 
-    <select id="GenreLibrary" resultType="bo.ucb.edu.ingsoft.models.Genre">
+    <select id="genreLibrary" resultType="bo.ucb.edu.ingsoft.models.Genre">
         SELECT
                genres.genre as genre
         FROM genres inner join genres_games
@@ -17,4 +17,13 @@
             #{item}
         </foreach>
     </select>
+
+    <insert id="createGenreGame" parameterType="bo.ucb.edu.ingsoft.models.LanguageGame">
+      INSERT INTO genres_games
+        VALUES (
+             null,
+             #{idGame),
+             #{idGenre}
+        )
+    </insert>
 </mapper>
