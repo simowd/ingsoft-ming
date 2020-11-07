@@ -1,6 +1,7 @@
 package bo.ucb.edu.ingsoft.api;
 
 import bo.ucb.edu.ingsoft.bl.StoreBl;
+import bo.ucb.edu.ingsoft.dto.HighlightRequest;
 import bo.ucb.edu.ingsoft.dto.HomepageRequest;
 import bo.ucb.edu.ingsoft.dto.SaleRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,11 @@ public class StoreApi {
     @RequestMapping(value="/ming/store/homepage", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<HomepageRequest> getHomepage(@RequestParam Integer page){
         return storeBl.getHomePage(page);
+    }
+
+    @RequestMapping(value="/ming/store/highlights", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<HighlightRequest> getHighlights(){
+        return storeBl.getHighLights();
     }
 
     @RequestMapping(value="/ming/store/sale", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

@@ -58,4 +58,11 @@
             #{item}
         </foreach>
     </select>
+
+    <update id="deletePublisher" >
+        UPDATE publishers
+        SET  status=0
+        WHERE
+            id_user=#{idUser}
+    </update>
 </mapper>

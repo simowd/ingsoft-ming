@@ -11,7 +11,9 @@ import bo.ucb.edu.ingsoft.models.Developer;
 import bo.ucb.edu.ingsoft.models.Publisher;
 import bo.ucb.edu.ingsoft.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -96,8 +98,52 @@ public class PublisherBl {
             publisherRequest.add(publisherRequest1);
         }
 
-
         return publisherRequest;
     }
+
+    public void deletePublisher (Integer idUser, Transaction transaction){
+      userDao.deleteUserPublisher(idUser);
+      publisherDao.deletePublisher(idUser);
+      transactionDao.updateUserTransaction(idUser, transaction.getTxId(), transaction.getTxHost(), transaction.getTxUserId(), transaction.getTxDate());
+    }
+
+    public PublisherRequest updatePublisher(PublisherRequest publisherRequest, Transaction transaction, Integer userId){
+        User user=new User();
+        Publisher publisher=new Publisher();
+
+        user.setIdUser(userId);
+        user.setIdCountry(publisherRequest.getCountry());
+        user.setUserName(publisherRequest.getUsername());
+        user.setPassword(publisherRequest.getPassword());
+        user.setEmail(publisherRequest.getEmail());
+        user.setTxId(transaction.getTxId());
+        user.setTxHost(transaction.getTxHost());
+        user.setTxUserId(transaction.getTxUserId());
+        user.setTxDate(transaction.getTxDate());
+
+        String oldPassword =user.getPassword();
+        String newPassword =publisherRequest.getRepeat_password();
+        if((oldPassword).equals(newPassword)){
+            userDao.updateUser(user);
+            publisher.setIdUser(userId);
+            publisher.setPaypalMail(publisherRequest.getPaypal());
+            publisher.setPublisher(publisherRequest.getPublisher());
+            publisher.setTxId(transaction.getTxId());
+            publisher.setTxHost(transaction.getTxHost());
+            publisher.setTxUserId(transaction.getTxUserId());
+            publisher.setTxDate(transaction.getTxDate());
+
+            publisherDao.updatePublisher(publisher);
+
+        }else{
+            throw new ResponseStatusException(
+                    HttpStatus.UNAUTHORIZED, "Wrong Password");
+        }
+
+        return publisherRequest;
+
+    }
+
+
 
 }

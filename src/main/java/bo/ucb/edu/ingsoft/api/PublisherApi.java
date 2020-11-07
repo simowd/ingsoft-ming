@@ -3,11 +3,13 @@ package bo.ucb.edu.ingsoft.api;
 import bo.ucb.edu.ingsoft.bl.PublisherBl;
 import bo.ucb.edu.ingsoft.bl.TransactionBl;
 
+import bo.ucb.edu.ingsoft.dto.PasswordRequest;
 import bo.ucb.edu.ingsoft.dto.PublisherRequest;
 import bo.ucb.edu.ingsoft.dto.Transaction;
 
 import bo.ucb.edu.ingsoft.dto.UserRequest;
 import bo.ucb.edu.ingsoft.models.Country;
+import bo.ucb.edu.ingsoft.models.Publisher;
 import bo.ucb.edu.ingsoft.models.User;
 import bo.ucb.edu.ingsoft.util.TransactionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,11 +57,37 @@ public class PublisherApi {
 
     @RequestMapping(value = "/ming/admin/publisher",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<PublisherRequest> publisherList() {
-//        try {
+        try {
             return publisherBl.getPublisherList();
-//        } catch (Exception ex) {
-//            throw new ResponseStatusException(
-//                    HttpStatus.NOT_FOUND, "User Not Found", ex);
-//        }
+        } catch (Exception ex) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "User Not Found", ex);
+        }
+    }
+
+    @RequestMapping(value = "/ming/admin/publisher/{id}",method = RequestMethod.PUT)
+    public @ResponseBody String deletePublisher(@PathVariable("id") Integer userId,  HttpServletRequest request) {
+        try {
+            Transaction transaction = TransactionUtil.createTransaction(request);
+            transactionBl.createTransaction(transaction);
+            publisherBl.deletePublisher(userId,transaction);
+            return "ok";
+        } catch (Exception ex) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "User Not Found", ex);
+        }
+    }
+
+    @RequestMapping(value = "/ming/publisher/{id}",method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody String updatePublisher(@PathVariable("id") Integer userId,@RequestBody PublisherRequest publisherRequest, HttpServletRequest request) {
+        try {
+            Transaction transaction = TransactionUtil.createTransaction(request);
+            transactionBl.createTransaction(transaction);
+            publisherBl.updatePublisher(publisherRequest,transaction,userId);
+            return "ok";
+        } catch (Exception ex) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "User Not Found", ex);
+        }
     }
 }

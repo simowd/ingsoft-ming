@@ -6,6 +6,13 @@ public class HighlightRequest {
     private String game_description;
     private String image;
 
+    public HighlightRequest(String id, String title, String game_description, String image) {
+        this.id = id;
+        this.title = title;
+        this.game_description = game_description;
+        this.image = image;
+    }
+
     @Override
     public String toString() {
         return "HighlightRequest{" +
