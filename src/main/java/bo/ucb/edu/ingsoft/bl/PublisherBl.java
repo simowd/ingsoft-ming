@@ -25,10 +25,6 @@ public class PublisherBl {
         this.userDao = userDao;
         this.transactionDao = transactionDao;
     }
-
-
-
-
     public PublisherRequest createPublisher(PublisherRequest publisherRequest, Transaction transaction){
 
         User user=new User();
@@ -45,13 +41,16 @@ public class PublisherBl {
         userDao.createPublisher(user);
 
         Integer lastId=userDao.getLastInsertId();
+        System.out.println("sfjkheskhlf"+lastId);
+
         publisher.setIdUser(lastId);
         publisher.setPaypalMail(publisherRequest.getPaypal());
         publisher.setPublisher(publisherRequest.getPublisher());
-        publisher.setTx_id(transaction.getTxId());
-        publisher.setTx_host(transaction.getTxHost());
-        publisher.setTs_user_id(transaction.getTxUserId());
-        publisher.setTx_date(transaction.getTxDate());
+        publisher.setTxId(transaction.getTxId());
+        publisher.setTxHost(transaction.getTxHost());
+        publisher.setTxUserId(transaction.getTxUserId());
+        publisher.setTxDate(transaction.getTxDate());
+
         publisherDao.createPublisher(publisher);
 
         return publisherRequest;

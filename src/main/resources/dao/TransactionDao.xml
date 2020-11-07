@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bo.ucb.edu.ingsoft.dao.TransactionDao">
     <insert id="create" parameterType="bo.ucb.edu.ingsoft.dto.Transaction">
-        INSERT INTO transaction
+        INSERT INTO transactions
         VALUES (
             null,
             #{txHost},

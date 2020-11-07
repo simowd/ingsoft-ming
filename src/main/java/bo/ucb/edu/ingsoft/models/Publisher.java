@@ -9,39 +9,27 @@ public class Publisher {
     private String publisher;
     private String paypalMail;
     private Integer status;
-    private Integer tx_id;
-    private String tx_host;
-    private Integer tx_user_id;
-    private Date tx_date;
+    private Integer txId;
+    private String txHost;
+    private Integer txUserId;
+    private Date txDate;
 
     public Publisher() {
 
     }
 
-    public Publisher(Integer idPublisher, Integer idUser, String publisher, String paypalMail, Integer status, Integer tx_id, String tx_host, Integer tx_user_id, Date tx_date) {
-        this.idPublisher = idPublisher;
-        this.idUser = idUser;
-        this.publisher = publisher;
-        this.paypalMail = paypalMail;
-        this.status = status;
-        this.tx_id = tx_id;
-        this.tx_host = tx_host;
-        this.tx_user_id = tx_user_id;
-        this.tx_date = tx_date;
-    }
-
     @Override
     public String toString() {
-        return "Publishers{" +
+        return "Publisher{" +
                 "idPublisher=" + idPublisher +
                 ", idUser=" + idUser +
                 ", publisher='" + publisher + '\'' +
                 ", paypalMail='" + paypalMail + '\'' +
                 ", status=" + status +
-                ", tx_id=" + tx_id +
-                ", tx_host='" + tx_host + '\'' +
-                ", ts_user_id=" + tx_user_id +
-                ", tx_date=" + tx_date +
+                ", txId=" + txId +
+                ", txHost='" + txHost + '\'' +
+                ", txUserId=" + txUserId +
+                ", txDate=" + txDate +
                 '}';
     }
 
@@ -85,35 +73,35 @@ public class Publisher {
         this.status = status;
     }
 
-    public Integer getTx_id() {
-        return tx_id;
+    public Integer getTxId() {
+        return txId;
     }
 
-    public void setTx_id(Integer tx_id) {
-        this.tx_id = tx_id;
+    public void setTxId(Integer txId) {
+        this.txId = txId;
     }
 
-    public String getTx_host() {
-        return tx_host;
+    public String getTxHost() {
+        return txHost;
     }
 
-    public void setTx_host(String tx_host) {
-        this.tx_host = tx_host;
+    public void setTxHost(String txHost) {
+        this.txHost = txHost;
     }
 
-    public Integer getTs_user_id() {
-        return tx_user_id;
+    public Integer getTxUserId() {
+        return txUserId;
     }
 
-    public void setTs_user_id(Integer ts_user_id) {
-        this.tx_user_id = ts_user_id;
+    public void setTxUserId(Integer txUserId) {
+        this.txUserId = txUserId;
     }
 
-    public Date getTx_date() {
-        return tx_date;
+    public Date getTxDate() {
+        return txDate;
     }
 
-    public void setTx_date(Date tx_date) {
-        this.tx_date = tx_date;
+    public void setTxDate(Date txDate) {
+        this.txDate = txDate;
     }
 }

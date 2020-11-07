@@ -1,7 +1,6 @@
 package bo.ucb.edu.ingsoft.dto;
 
 public class PublisherRequest {
-    private Integer userId;
     private String username;
     private String email;
     private String paypal;
@@ -16,7 +15,6 @@ public class PublisherRequest {
     @Override
     public String toString() {
         return "PublisherRequest{" +
-                "userId=" + userId +
                 ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
                 ", paypal='" + paypal + '\'' +
@@ -27,13 +25,7 @@ public class PublisherRequest {
                 '}';
     }
 
-    public Integer getUserId() {
-        return userId;
-    }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
 
     public String getUsername() {
         return username;
