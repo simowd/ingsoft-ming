@@ -45,4 +45,6 @@ public interface UserDao {
     //Update User's Password
     public User updateUserPassword(Integer idUser);
 
+    public Integer getLastInsertId();
+
 }
