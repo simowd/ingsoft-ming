@@ -3,19 +3,25 @@ package bo.ucb.edu.ingsoft.api;
 import bo.ucb.edu.ingsoft.bl.UserBl;
 import bo.ucb.edu.ingsoft.dto.UserRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
-@RequestMapping(value = "/user")
 public class UserApi {
     private UserBl userBl;
 
     @Autowired
     public UserApi(UserBl userBl){this.userBl = userBl;}
 
-    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public UserRequest findById(){return userBl.userProfileInfo(1);}
+    @RequestMapping(value = "/ming/users/{user}",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public UserRequest findById(@PathVariable("user") Integer userId) {
+        try {
+            return userBl.userProfileInfo(userId);
+        } catch (Exception ex) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "User Not Found", ex);
+        }
+    }
 }

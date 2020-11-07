@@ -20,6 +20,7 @@ public class UserBl {
         this.countryDao = countryDao;
     }
 
+
     public UserRequest userProfileInfo(Integer idUser){
         UserRequest userRequest = new UserRequest();
         User user = userDao.userProfileInfo(idUser);
