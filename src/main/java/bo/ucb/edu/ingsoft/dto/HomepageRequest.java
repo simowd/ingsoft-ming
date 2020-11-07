@@ -7,6 +7,14 @@ public class HomepageRequest {
     private Double sale;
     private String banner;
 
+    public HomepageRequest(String id, String title, Double price, Double sale, String banner) {
+        this.id = id;
+        this.title = title;
+        this.price = price;
+        this.sale = sale;
+        this.banner = banner;
+    }
+
     public HomepageRequest() {
     }
 

@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.MediaType;
 
+import java.util.List;
+
 @RestController
 public class StoreApi {
     private StoreBl storeBl;
@@ -18,8 +20,8 @@ public class StoreApi {
         this.storeBl = storeBl;
     }
     @RequestMapping(value="/ming/store/homepage", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public String getHomepage(@RequestParam Integer page){
-        return "ID" + page;
+    public List<HomepageRequest> getHomepage(@RequestParam Integer page){
+        return storeBl.getHomePage(page);
     }
 
 }

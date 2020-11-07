@@ -13,7 +13,7 @@ public interface GameDao {
     public List<Game> findSale();
 
     //Find page for the homepage
-    public ArrayList<Game> findPage(@Param("a") Integer limit, @Param("b") Integer offset);
+    public List<Game> findPage(@Param("a") Integer limit, @Param("b") Integer offset);
 
     //Gets all the highlights for the projects
     public List<Game> findHighlight();

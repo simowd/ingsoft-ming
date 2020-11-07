@@ -10,8 +10,8 @@ import java.util.List;
 @Mapper
 public interface PhotoDao {
     // Get Photo Data
-    public ArrayList<Photo> findByIdGame(ArrayList<Integer> idGame);
-    public ArrayList<Photo> findBannerbyId(ArrayList<Integer> idGame);
+    public List<Photo> findByIdGame(List<Integer> idGame);
+    public List<Photo> findBannerbyId(List<Integer> idGame);
 
 
     public Photo createPhotoBanner ();
