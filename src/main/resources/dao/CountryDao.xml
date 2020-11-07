@@ -10,4 +10,16 @@
         WHERE
             id_country = #{idCountry}
     </select>
+
+    <select id="CountryNameList" resultType="bo.ucb.edu.ingsoft.models.Country">
+        SELECT
+               name as name
+        FROM countries
+        WHERE
+            id_country in
+            <foreach collection="list" item="item" index="index"
+                                open="(" separator="," close = ")">
+        #{item}
+    </foreach>
+    </select>
 </mapper>

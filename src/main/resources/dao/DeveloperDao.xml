@@ -21,4 +21,12 @@
         WHERE
             id_directx = #{idDirectx}
     </select>
+
+    <select id="findByIdPublisher" resultType="bo.ucb.edu.ingsoft.models.Developer">
+        SELECT
+               id_developer as idDeveloper
+        FROM developers
+        WHERE
+            id_publisher = #{idPublisher}
+    </select>
 </mapper>

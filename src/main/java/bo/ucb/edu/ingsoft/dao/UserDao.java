@@ -35,6 +35,10 @@ public interface UserDao {
     //Get User Profile Password for Update
     public User userPassword(Integer idUser);
 
+    //Get Countries ids for a group of users
+
+    public List<Integer> findUsersCountries(List<Integer> idUser);
+
     //Update User's Password
     public User updateUserInfo(Integer idUser);
 

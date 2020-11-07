@@ -32,4 +32,7 @@ public interface GameDao {
 
     //Last Id game
     public Integer getLastInsertId();
+
+    //Get publisher developer games
+    public List<Game> findGamebyPublisher(List<Integer> idDeveloper);
 }

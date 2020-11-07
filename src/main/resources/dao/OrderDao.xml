@@ -10,18 +10,63 @@
         on
             orders.id_order=order_details.id_order
         WHERE
-            order_details.id_game=#{idGame}
+            order_details.id_game in
+        <foreach collection="list" item="item" index="index"
+                 open="(" separator="," close = ")">
+            #{item}
+        </foreach>
+        GROUP BY
+        month(order_details.id_game)
     </select>
 
-    <select id="gameSellsCountry" resultType="bo.ucb.edu.ingsoft.models.Orders">
+    <select id="gameSellsPublisher" resultType="bo.ucb.edu.ingsoft.models.Orders">
         SELECT
-                count(order_details.id_game),
+                count(order_details.id_game)
         FROM orders inner join order_details
         on
             orders.id_order=order_details.id_order
         WHERE
-            order_details.id_game=#{idGame} and
-            orders.id_user=#{idUser}
+            order_details.id_game in
+        <foreach collection="list" item="item" index="index"
+                 open="(" separator="," close = ")">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="gameOrderCountry" resultType="bo.ucb.edu.ingsoft.models.Orders">
+        SELECT
+        users.id_country
+        FROM orders inner join order_details
+        on
+        orders.id_order=order_details.id_order
+        inner join users
+        on orders.id_user=users.id_user
+        WHERE
+        order_details.id_game in
+        <foreach collection="list" item="item" index="index"
+                 open="(" separator="," close = ")">
+            #{item}
+        </foreach>
+        group by
+        users.id_country
+    </select>
+
+    <select id="gameOrderCountryCount" resultType="bo.ucb.edu.ingsoft.models.Orders">
+        SELECT
+        count(orders.id_user)
+        FROM orders inner join order_details
+        on
+        orders.id_order=order_details.id_order
+        inner join users
+        on orders.id_user=users.id_user
+        WHERE
+        order_details.id_game in
+        <foreach collection="list" item="item" index="index"
+                 open="(" separator="," close = ")">
+            #{item}
+        </foreach>
+        group by
+        users.id_country
     </select>
 
     <select id="gameEarnings" resultType="bo.ucb.edu.ingsoft.models.Orders">
@@ -31,7 +76,11 @@
         on
             orders.id_order=order_details.id_order
         WHERE
-            order_details.id_game=#{idGame}
+            order_details.id_game in
+        <foreach collection="list" item="item" index="index"
+                 open="(" separator="," close = ")">
+            #{item}
+        </foreach>
     </select>
 
     <select id="gameEarningsMonth" resultType="bo.ucb.edu.ingsoft.models.Orders">
@@ -41,7 +90,11 @@
         on
             orders.id_order=order_details.id_order
         WHERE
-            order_details.id_game=#{a.idGame} and
+            order_details.id_game in
+        <foreach collection="list" item="item" index="index"
+                 open="(" separator="," close = ")">
+            #{a.item}
+        </foreach> and
             month(order_details.tx_date) in
         <foreach collection="list" item="item" index="index"
                  open="(" separator="," close = ")">

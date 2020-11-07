@@ -8,11 +8,15 @@ import java.util.List;
 
 public interface OrderDao {
     // Get Game's sold count
-    public Integer gameSells(Game idGame);
-    // Get Game's sold count by country
-    public List<Integer> gameSellsCountry(@Param("a")Game idGame, @Param("b")User idUser);
-    // Get Game's total earnings
-    public Double gameEarnings(Game idGame);
+    public List<Integer> gameSells(List<Integer> idGame);
+    // Get Game's sold count by Publisher
+    public Integer gameSellsPublisher(List<Integer> idGame);
+    // Get Countries  by games ordered
+    public List<Integer> gameOrderCountry(List<Integer> idGame);
+    // Get Count Countries  by games ordered
+    public List<Integer> gameOrderCountryCount(List<Integer> idGame);
+    // Get Game's total earnings by publisher
+    public Double gameEarnings(List<Integer> idGame);
     // Get Game's total earnings by month
-    public List<Double> gameEarningsMonth(@Param("a") Game idGame, @Param("b")List<Integer> month);
+    public List<Double> gameEarningsMonth(@Param("a") List<Integer> idGame, @Param("b")List<Integer> month);
 }

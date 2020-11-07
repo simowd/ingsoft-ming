@@ -118,6 +118,18 @@
             id_user=#{idUser};
     </select>
 
+    <select id="findUsersCountries" resultType="bo.ucb.edu.ingsoft.models.User">
+        SELECT
+                id_country as idCountry
+        FROM users
+        WHERE
+            id_user in
+            <foreach collection="list" item="item" index="index"
+                            open="(" separator="," close = ")">
+        #{item}
+    </foreach>
+    </select>
+
     <update id="updateUserInfo" parameterType="bo.ucb.edu.ingsoft.models.User">
         UPDATE users
         SET  alias=#{alias},
