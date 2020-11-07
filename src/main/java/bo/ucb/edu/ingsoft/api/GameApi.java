@@ -48,7 +48,7 @@ public class GameApi {
             return gameBl.findByGameById(gameId);
         } catch (Exception ex) {
             throw new ResponseStatusException(
-                    HttpStatus.NOT_FOUND, "User Not Found", ex);
+                    HttpStatus.NOT_FOUND, "Game Not Found", ex);
         }
     }
 }
