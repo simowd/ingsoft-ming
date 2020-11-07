@@ -3,7 +3,7 @@ package bo.ucb.edu.ingsoft.models;
 import java.sql.Timestamp;
 import java.util.Date;
 
-public class Game {
+public class Game extends Transactions{
     private Integer idGame;
     private Integer idEsrb;
     private Integer idDeveloper;
@@ -19,37 +19,45 @@ public class Game {
     private Integer highlight;
     private String downloadPath;
     private Integer status;
-    private Integer txId;
-    private String txHost;
-    private Integer txUserId;
-    private Date txDate;
 
     public Game() {
     }
 
-    @Override
-    public String toString() {
-        return "Game{" +
-                "idGame=" + idGame +
-                ", idEsrb=" + idEsrb +
-                ", idDeveloper=" + idDeveloper +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", size='" + size + '\'' +
-                ", players=" + players +
-                ", releaseDate=" + releaseDate +
-                ", processor='" + processor + '\'' +
-                ", memory='" + memory + '\'' +
-                ", graphics='" + graphics + '\'' +
-                ", color='" + color + '\'' +
-                ", highlight=" + highlight +
-                ", downloadPath='" + downloadPath + '\'' +
-                ", status=" + status +
-                ", txId=" + txId +
-                ", txHost='" + txHost + '\'' +
-                ", txUserId=" + txUserId +
-                ", txDate=" + txDate +
-                '}';
+    public Game(Integer idGame, Integer idEsrb, Integer idDeveloper, String name, String description, String size, Integer players, Timestamp releaseDate, String processor, String memory, String graphics, String color, Integer highlight, String downloadPath, Integer status) {
+        this.idGame = idGame;
+        this.idEsrb = idEsrb;
+        this.idDeveloper = idDeveloper;
+        this.name = name;
+        this.description = description;
+        this.size = size;
+        this.players = players;
+        this.releaseDate = releaseDate;
+        this.processor = processor;
+        this.memory = memory;
+        this.graphics = graphics;
+        this.color = color;
+        this.highlight = highlight;
+        this.downloadPath = downloadPath;
+        this.status = status;
+    }
+
+    public Game(Integer txId, String txHost, Integer txUser, Date txDate, Integer idGame, Integer idEsrb, Integer idDeveloper, String name, String description, String size, Integer players, Timestamp releaseDate, String processor, String memory, String graphics, String color, Integer highlight, String downloadPath, Integer status) {
+        super(txId, txHost, txUser, txDate);
+        this.idGame = idGame;
+        this.idEsrb = idEsrb;
+        this.idDeveloper = idDeveloper;
+        this.name = name;
+        this.description = description;
+        this.size = size;
+        this.players = players;
+        this.releaseDate = releaseDate;
+        this.processor = processor;
+        this.memory = memory;
+        this.graphics = graphics;
+        this.color = color;
+        this.highlight = highlight;
+        this.downloadPath = downloadPath;
+        this.status = status;
     }
 
     public Integer getIdGame() {
@@ -172,35 +180,24 @@ public class Game {
         this.status = status;
     }
 
-    public Integer getTxId() {
-        return txId;
-    }
-
-    public void setTxId(Integer txId) {
-        this.txId = txId;
-    }
-
-    public String getTxHost() {
-        return txHost;
-    }
-
-    public void setTxHost(String txHost) {
-        this.txHost = txHost;
-    }
-
-    public Integer getTxUserId() {
-        return txUserId;
-    }
-
-    public void setTxUserId(Integer txUserId) {
-        this.txUserId = txUserId;
-    }
-
-    public Date getTxDate() {
-        return txDate;
-    }
-
-    public void setTxDate(Date txDate) {
-        this.txDate = txDate;
+    @Override
+    public String toString() {
+        return "Game{" +
+                "idGame=" + idGame +
+                ", idEsrb=" + idEsrb +
+                ", idDeveloper=" + idDeveloper +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", size='" + size + '\'' +
+                ", players=" + players +
+                ", releaseDate=" + releaseDate +
+                ", processor='" + processor + '\'' +
+                ", memory='" + memory + '\'' +
+                ", graphics='" + graphics + '\'' +
+                ", color='" + color + '\'' +
+                ", highlight=" + highlight +
+                ", downloadPath='" + downloadPath + '\'' +
+                ", status=" + status +
+                '}';
     }
 }
