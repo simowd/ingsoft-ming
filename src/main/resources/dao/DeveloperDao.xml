@@ -22,7 +22,7 @@
             id_directx = #{idDirectx}
     </select>
 
-    <select id="findByIdPublisher" resultType="bo.ucb.edu.ingsoft.models.Developer">
+    <select id="findByPublisher" resultType="java.lang.Integer">
         SELECT
                id_developer as idDeveloper
         FROM developers

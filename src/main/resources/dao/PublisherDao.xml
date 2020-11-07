@@ -5,19 +5,13 @@
 <mapper namespace="bo.ucb.edu.ingsoft.dao.PublisherDao">
     <select id="findByPublisherId" resultType="bo.ucb.edu.ingsoft.models.Publisher">
         SELECT
+                id_user as idUser,
+                id_publisher as idPublisher,
                 paypal_mail as paypalMail,
                 publisher as publisher
         FROM publishers
         WHERE
-            id_user=#{idUser};
-    </select>
-
-    <select id="findPublisherName" resultType="bo.ucb.edu.ingsoft.models.Publisher">
-        SELECT
-                publisher as publisher
-        FROM publishers
-        WHERE
-            id_user=#{idUser};
+            id_user=#{idUser}
     </select>
 
     <insert id="createPublisher" parameterType="bo.ucb.edu.ingsoft.models.Publisher">

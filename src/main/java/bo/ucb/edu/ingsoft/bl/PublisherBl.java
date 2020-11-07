@@ -152,13 +152,13 @@ public class PublisherBl {
 
     }
 
-    public DashboardRequest PublisherDashboard(Integer idPublisher){
-        Publisher pubId=publisherDao.findByPublisherId(idPublisher);
-        String publisher=publisherDao.findPublisherName(idPublisher);
+    public DashboardRequest PublisherDashboard(Integer idUser){
+        Publisher pubId=publisherDao.findByPublisherId(idUser);
 
-        String mail=userDao.publisherMail(pubId.getIdUser());
+        User mail=userDao.publisherMail(idUser);
 
-        List<Integer> developer=developerDao.findByPublisher(idPublisher);
+        List<Integer> developer=developerDao.findByPublisher(pubId.getIdPublisher());
+
 
         List<Integer> game=gameDao.findGamebyPublisher(developer);
 
@@ -171,16 +171,20 @@ public class PublisherBl {
         }
 
         List<Double> monthlyEarnings=orderDao.gameEarningsMonth(game,months);
+        System.out.println(monthlyEarnings);
         List<Integer> totalCountrySells=orderDao.gameOrderCountryCount(game);
         List<Integer> countries=orderDao.gameOrderCountry(game);
         List<Integer> gameSells=orderDao.gameSellsGame(game);
 
+
+
         DashboardRequest dashboardRequest=new DashboardRequest();
 
-        dashboardRequest.setPublisher(publisher);
-        dashboardRequest.setEmail(mail);
+        dashboardRequest.setPublisher(pubId.getPublisher());
+        dashboardRequest.setEmail(mail.getEmail());
         dashboardRequest.setPaypal(pubId.getPaypalMail());
         dashboardRequest.setSells(totalSells);
+        dashboardRequest.setEarnings(totalEarnings);
         dashboardRequest.setMonthly_earnings(monthlyEarnings);
         dashboardRequest.setCountry_earnings(totalCountrySells);
         dashboardRequest.setGame_earnings(gameSells);
