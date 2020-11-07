@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bo.ucb.edu.ingsoft.dao.GamesOsDao">
+    <insert id="createGameOs" parameterType="bo.ucb.edu.ingsoft.models.GameOS">
+      INSERT INTO games_os
+        VALUES (
+             null,
+             #{idGame),
+             #{idOperatingSystem}
+        )
+    </insert>
+    <select id="findByIdGameOs" resultType="bo.ucb.edu.ingsoft.models.Directx">
+        SELECT
+               id_operating_system as idOperatingSystem,
+               operting_system as operatingSystem
+               logo_path as logoPath
+        FROM operating_system
+        WHERE
+            id_operating_system in
+        <foreach collection="list" item="item" index="index"
+                 open="(" separator="," close = ")">
+            #{item}
+        </foreach>
+    </select>
+</mapper>

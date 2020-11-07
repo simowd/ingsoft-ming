@@ -17,4 +17,20 @@
             #{item}
         </foreach>
     </select>
+
+    <insert id="createPrice" parameterType="bo.ucb.edu.ingsoft.models.Price">
+      INSERT INTO price
+        VALUES (
+             null,
+             #{idGame},
+             #{price},
+             now(),
+             #{sale},
+             1,
+             #{txId},
+             #{txHost},
+             #{txUserId},
+             #{txDate}
+        )
+    </insert>
 </mapper>

@@ -12,8 +12,14 @@ public interface GameDao {
     // Get Sale games data
     public List<Game> findSale();
 
+    //Find page for the homepage
     public ArrayList<Game> findPage(@Param("a") Integer limit, @Param("b") Integer offset);
-    public List<Game> getfindHighlight();
+
+    //Gets all the highlights for the projects
+    public List<Game> findHighlight();
+
+    //Find latest releases (last week)
+    public List<Game> findLatestReleases();
 
     //Create Game
     public Game createGame(Game game);

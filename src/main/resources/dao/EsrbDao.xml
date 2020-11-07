@@ -10,6 +10,6 @@
                logo_path as logoPath
         FROM esrb
         WHERE
-            id_esrb=idEsrb
+            id_esrb=#{idEsrb}
     </select>
 </mapper>

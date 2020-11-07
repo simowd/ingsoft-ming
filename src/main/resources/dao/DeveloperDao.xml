@@ -11,4 +11,14 @@
              #{developer}
         )
     </insert>
+
+    <select id="findByIdDevoper" resultType="bo.ucb.edu.ingsoft.models.Developer">
+        SELECT
+               id_developer as idDeveloper,
+               id_publisher as idPubliser
+               developer as developer
+        FROM directx
+        WHERE
+            id_directx = #{idDirectx}
+    </select>
 </mapper>

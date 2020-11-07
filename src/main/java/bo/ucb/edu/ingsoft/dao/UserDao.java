@@ -29,5 +29,13 @@ public interface UserDao {
     //Get User Profile Info for Update
     public User userInfo(Integer idUser);
 
+    //Get User Profile Password for Update
+    public User userPassword(Integer idUser);
+
+    //Update User's Password
+    public User updateUserInfo(Integer idUser);
+
+    //Update User's Password
+    public User updateUserPassword(Integer idUser);
 
 }
