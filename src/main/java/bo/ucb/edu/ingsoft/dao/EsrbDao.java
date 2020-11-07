@@ -8,9 +8,7 @@ import java.util.List;
 
 @Mapper
 public interface EsrbDao {
-
     //    get data esrb
-
     public Esrb findEsrbById(Integer idEsrb);
 
 }
