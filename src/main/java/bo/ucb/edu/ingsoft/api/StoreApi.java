@@ -25,9 +25,9 @@ public class StoreApi {
         return storeBl.getHomePage(page);
     }
 
-    @RequestMapping(value="/ming/store/salepage", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value="/ming/store/sale", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<SaleRequest> SalePage(){
-        List<SaleRequest> sale=storeBl.SalePage();
+        List<SaleRequest> sale = storeBl.SalePage();
         return sale;
     }
 
