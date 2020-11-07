@@ -50,8 +50,8 @@
         </foreach>
     </select>
 
-    <update id="deleteUserPublisher" >
-        UPDATE publisher
+    <update id="deletePublisher" >
+        UPDATE publishers
         SET  status=0
         WHERE
             id_user=#{idUser}

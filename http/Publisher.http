@@ -19,3 +19,7 @@ Content-Type: application/json
 ###
 GET http://localhost:8080/ming/admin/publisher
 Accept: application/json
+
+###
+PUT http://localhost:8080/ming/admin/publisher/4
+Accept: application/json

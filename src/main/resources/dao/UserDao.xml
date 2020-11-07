@@ -53,7 +53,7 @@
                email as email
         FROM users
         WHERE
-            user_type=1
+            user_type=1 and status=1;
     </select>
 
     <select id="publisherMail" resultType="bo.ucb.edu.ingsoft.models.User">
