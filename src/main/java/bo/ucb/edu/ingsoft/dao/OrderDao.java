@@ -11,6 +11,8 @@ public interface OrderDao {
     public List<Integer> gameSells(List<Integer> idGame);
     // Get Game's sold count by Publisher
     public Integer gameSellsPublisher(List<Integer> idGame);
+    // Get Game's sold count by Game
+    public List<Integer> gameSellsGame(List<Integer> idGame);
     // Get Countries  by games ordered
     public List<Integer> gameOrderCountry(List<Integer> idGame);
     // Get Count Countries  by games ordered

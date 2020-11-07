@@ -14,6 +14,9 @@ public interface PublisherDao {
     //Get publisher data
     public Publisher findByPublisherId(Integer idUser);
 
+    //Get publisher name
+    public String findPublisherName(Integer idUser);
+
     //Update publisher data;
     public void updatePublisher(Publisher publisher);
 
