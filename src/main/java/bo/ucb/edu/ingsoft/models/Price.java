@@ -1,20 +1,36 @@
 package bo.ucb.edu.ingsoft.models;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
-public class Price {
+public class Price extends Transactions {
     private Integer idPrice;
     private Integer idGame;
     private Double price;
     private Timestamp date;
     private Double sale;
     private Integer status;
-    private Integer txId;
-    private String txHost;
-    private Integer txUserId;
-    private Timestamp txDate;
 
     public Price() {
+    }
+
+    public Price(Integer idPrice, Integer idGame, Double price, Timestamp date, Double sale, Integer status) {
+        this.idPrice = idPrice;
+        this.idGame = idGame;
+        this.price = price;
+        this.date = date;
+        this.sale = sale;
+        this.status = status;
+    }
+
+    public Price(Integer txId, String txHost, Integer txUser, Date txDate, Integer idPrice, Integer idGame, Double price, Timestamp date, Double sale, Integer status) {
+        super(txId, txHost, txUser, txDate);
+        this.idPrice = idPrice;
+        this.idGame = idGame;
+        this.price = price;
+        this.date = date;
+        this.sale = sale;
+        this.status = status;
     }
 
     public Integer getIdPrice() {
@@ -65,38 +81,6 @@ public class Price {
         this.status = status;
     }
 
-    public Integer getTxId() {
-        return txId;
-    }
-
-    public void setTxId(Integer txId) {
-        this.txId = txId;
-    }
-
-    public String getTxHost() {
-        return txHost;
-    }
-
-    public void setTxHost(String txHost) {
-        this.txHost = txHost;
-    }
-
-    public Integer getTxUserId() {
-        return txUserId;
-    }
-
-    public void setTxUserId(Integer txUserId) {
-        this.txUserId = txUserId;
-    }
-
-    public Timestamp getTxDate() {
-        return txDate;
-    }
-
-    public void setTxDate(Timestamp txDate) {
-        this.txDate = txDate;
-    }
-
     @Override
     public String toString() {
         return "Price{" +
@@ -106,10 +90,6 @@ public class Price {
                 ", date=" + date +
                 ", sale=" + sale +
                 ", status=" + status +
-                ", txId=" + txId +
-                ", txHost='" + txHost + '\'' +
-                ", txUserId=" + txUserId +
-                ", txDate=" + txDate +
                 '}';
     }
 }

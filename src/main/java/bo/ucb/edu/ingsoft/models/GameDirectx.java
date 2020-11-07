@@ -5,6 +5,10 @@ public class GameDirectx {
     private Integer idGame;
     private Integer idDirectx;
 
+    public GameDirectx() {
+
+    }
+
     public GameDirectx(Integer idGameDirectx, Integer idGame, Integer idDirectx) {
         this.idGameDirectx = idGameDirectx;
         this.idGame = idGame;

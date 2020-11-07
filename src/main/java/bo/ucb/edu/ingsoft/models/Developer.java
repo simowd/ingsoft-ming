@@ -5,6 +5,10 @@ public class Developer {
     private Integer idPublisher;
     private String developer;
 
+    public Developer() {
+
+    }
+
     public Developer(Integer idDeveloper, Integer idPublisher, String developer) {
         this.idDeveloper = idDeveloper;
         this.idPublisher = idPublisher;

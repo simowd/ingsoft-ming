@@ -11,7 +11,7 @@ import java.util.List;
 @Mapper
 public interface GamesLanguagesDao {
 
-   public LanguageGame createLanguageGame();
+   public void createLanguageGame(LanguageGame languageGame);
 
    public List<Language> findByIdLanguage(List<Integer> idLanguage);
 

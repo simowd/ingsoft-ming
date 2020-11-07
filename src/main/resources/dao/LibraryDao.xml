@@ -4,11 +4,11 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bo.ucb.edu.ingsoft.dao.LibraryDao">
 
-    <select id="UserGames" resultType="bo.ucb.edu.ingsoft.models.Library">
+    <select id="UserGames" resultType="Integer">
         SELECT
                id_game as idGame
         FROM library
         WHERE
-            id_user = idUser
+            id_user = #{idUser}
     </select>
 </mapper>

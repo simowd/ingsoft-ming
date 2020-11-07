@@ -40,8 +40,8 @@ public interface UserDao {
 
     public List<Integer> findUsersCountries(List<Integer> idUser);
 
-    //Update User's Password
-    public User updateUserInfo(Integer idUser);
+    //Update User's Info
+    public void updateUserInfo(User user);
 
     //Update User's Password
     public void updateUserPassword(@Param("idUser") Integer idUser, @Param("newPassword") String newPassword);
@@ -49,7 +49,7 @@ public interface UserDao {
     //get last id in user
     public Integer getLastInsertId();
 
-    //delete user publihser
+    //delete user publisher
     public void deleteUserPublisher(Integer idUser);
 
 }

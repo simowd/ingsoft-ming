@@ -1,27 +1,34 @@
 package bo.ucb.edu.ingsoft.dto;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.ArrayList;
 
 public class NewGameRequest {
     private Integer id;
+    private Integer idEsrb;
     private String title;
-    private ArrayList<String> language;
     private String game_description;
     private String size;
-    private String esrb;
-    private ArrayList<String> images;
-    private String developer;
     private Integer players;
-    private Date release_date;
+    private Timestamp release_date;
     private String processor;
     private String memory;
     private String graphics;
     private String color;
     private Integer highlighted;
     private String download_path;
+    private ArrayList<String> language;
+    private ArrayList<String> images;
+    private String esrb;
+    private String developer;
+    private ArrayList<Integer> directx;
+    private ArrayList<Integer> operatingSystem;
+    private ArrayList<Integer> languageGames;
+    private ArrayList<Integer> genreGames;
     private Integer status;
     private Double sale;
+    private Double price;
 
     public NewGameRequest() {
 
@@ -29,15 +36,12 @@ public class NewGameRequest {
 
     @Override
     public String toString() {
-        return "CreateGameRequest{" +
+        return "NewGameRequest{" +
                 "id=" + id +
+                ", idEsrb=" + idEsrb +
                 ", title='" + title + '\'' +
-                ", language=" + language +
                 ", game_description='" + game_description + '\'' +
                 ", size='" + size + '\'' +
-                ", esrb='" + esrb + '\'' +
-                ", images=" + images +
-                ", developer='" + developer + '\'' +
                 ", players=" + players +
                 ", release_date=" + release_date +
                 ", processor='" + processor + '\'' +
@@ -46,8 +50,17 @@ public class NewGameRequest {
                 ", color='" + color + '\'' +
                 ", highlighted=" + highlighted +
                 ", download_path='" + download_path + '\'' +
+                ", language=" + language +
+                ", images=" + images +
+                ", esrb='" + esrb + '\'' +
+                ", developer='" + developer + '\'' +
+                ", directx=" + directx +
+                ", operatingSystem=" + operatingSystem +
+                ", languageGames=" + languageGames +
+                ", genreGames=" + genreGames +
                 ", status=" + status +
                 ", sale=" + sale +
+                ", price=" + price +
                 '}';
     }
 
@@ -59,20 +72,20 @@ public class NewGameRequest {
         this.id = id;
     }
 
+    public Integer getIdEsrb() {
+        return idEsrb;
+    }
+
+    public void setIdEsrb(Integer idEsrb) {
+        this.idEsrb = idEsrb;
+    }
+
     public String getTitle() {
         return title;
     }
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public ArrayList<String> getLanguage() {
-        return language;
-    }
-
-    public void setLanguage(ArrayList<String> language) {
-        this.language = language;
     }
 
     public String getGame_description() {
@@ -91,30 +104,6 @@ public class NewGameRequest {
         this.size = size;
     }
 
-    public String getEsrb() {
-        return esrb;
-    }
-
-    public void setEsrb(String esrb) {
-        this.esrb = esrb;
-    }
-
-    public ArrayList<String> getImages() {
-        return images;
-    }
-
-    public void setImages(ArrayList<String> images) {
-        this.images = images;
-    }
-
-    public String getDeveloper() {
-        return developer;
-    }
-
-    public void setDeveloper(String developer) {
-        this.developer = developer;
-    }
-
     public Integer getPlayers() {
         return players;
     }
@@ -123,11 +112,11 @@ public class NewGameRequest {
         this.players = players;
     }
 
-    public Date getRelease_date() {
+    public Timestamp getRelease_date() {
         return release_date;
     }
 
-    public void setRelease_date(Date release_date) {
+    public void setRelease_date(Timestamp release_date) {
         this.release_date = release_date;
     }
 
@@ -179,6 +168,46 @@ public class NewGameRequest {
         this.download_path = download_path;
     }
 
+    public ArrayList<String> getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(ArrayList<String> language) {
+        this.language = language;
+    }
+
+    public String getEsrb() {
+        return esrb;
+    }
+
+    public void setEsrb(String esrb) {
+        this.esrb = esrb;
+    }
+
+    public ArrayList<String> getImages() {
+        return images;
+    }
+
+    public void setImages(ArrayList<String> images) {
+        this.images = images;
+    }
+
+    public String getDeveloper() {
+        return developer;
+    }
+
+    public void setDeveloper(String developer) {
+        this.developer = developer;
+    }
+
+    public ArrayList<Integer> getDirectx() {
+        return directx;
+    }
+
+    public void setDirectx(ArrayList<Integer> directx) {
+        this.directx = directx;
+    }
+
     public Integer getStatus() {
         return status;
     }
@@ -195,4 +224,35 @@ public class NewGameRequest {
         this.sale = sale;
     }
 
+    public ArrayList<Integer> getOperatingSystem() {
+        return operatingSystem;
+    }
+
+    public void setOperatingSystem(ArrayList<Integer> operatingSystem) {
+        this.operatingSystem = operatingSystem;
+    }
+
+    public ArrayList<Integer> getLanguageGames() {
+        return languageGames;
+    }
+
+    public void setLanguageGames(ArrayList<Integer> languageGames) {
+        this.languageGames = languageGames;
+    }
+
+    public ArrayList<Integer> getGenreGames() {
+        return genreGames;
+    }
+
+    public void setGenreGames(ArrayList<Integer> genreGames) {
+        this.genreGames = genreGames;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
 }
