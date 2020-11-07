@@ -26,4 +26,26 @@
         AND type = 1
         AND status = 1
     </select>
+    <insert id="createPhotoBanner" parameterType="bo.ucb.edu.ingsoft.models.Photo">
+      INSERT INTO photos
+        VALUES (
+             null,
+             #{idGame),
+             #{photo_path},
+             1,
+             1
+        )
+
+    </insert>
+    <insert id="createPhoto" parameterType="bo.ucb.edu.ingsoft.models.Photo">
+      INSERT INTO photos
+        VALUES (
+             null,
+             #{idGame),
+             #{photo_path},
+             2,
+             1
+        )
+
+    </insert>
 </mapper>

@@ -5,6 +5,7 @@ import bo.ucb.edu.ingsoft.models.Photo;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Mapper
 public interface PhotoDao {
@@ -13,5 +14,6 @@ public interface PhotoDao {
     public ArrayList<Photo> findBannerbyId(ArrayList<Integer> idGame);
 
 
-
+    public Photo createPhotoBanner ();
+    public Photo createPhoto ();
 }

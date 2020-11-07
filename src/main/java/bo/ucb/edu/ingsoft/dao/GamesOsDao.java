@@ -12,7 +12,7 @@ public interface GamesOsDao {
 
    public GameOS createGameOs();
 
-   public List<OperatingSystem> findByIdDirectx(List<Integer> idOperatingSystem);
+   public List<OperatingSystem> findByIdGameOs(List<Integer> idOperatingSystem);
 
 
 }
