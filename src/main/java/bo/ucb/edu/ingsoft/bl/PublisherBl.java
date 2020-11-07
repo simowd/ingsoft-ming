@@ -11,7 +11,9 @@ import bo.ucb.edu.ingsoft.models.Developer;
 import bo.ucb.edu.ingsoft.models.Publisher;
 import bo.ucb.edu.ingsoft.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -118,20 +120,28 @@ public class PublisherBl {
         user.setTxHost(transaction.getTxHost());
         user.setTxUserId(transaction.getTxUserId());
         user.setTxDate(transaction.getTxDate());
-        userDao.updateUser(user);
 
+        String oldPassword =user.getPassword();
+        String newPassword =publisherRequest.getRepeat_password();
+        if((oldPassword).equals(newPassword)){
+            userDao.updateUser(user);
+            publisher.setIdUser(userId);
+            publisher.setPaypalMail(publisherRequest.getPaypal());
+            publisher.setPublisher(publisherRequest.getPublisher());
+            publisher.setTxId(transaction.getTxId());
+            publisher.setTxHost(transaction.getTxHost());
+            publisher.setTxUserId(transaction.getTxUserId());
+            publisher.setTxDate(transaction.getTxDate());
 
-        publisher.setIdUser(userId);
-        publisher.setPaypalMail(publisherRequest.getPaypal());
-        publisher.setPublisher(publisherRequest.getPublisher());
-        publisher.setTxId(transaction.getTxId());
-        publisher.setTxHost(transaction.getTxHost());
-        publisher.setTxUserId(transaction.getTxUserId());
-        publisher.setTxDate(transaction.getTxDate());
+            publisherDao.updatePublisher(publisher);
 
-        publisherDao.updatePublisher(publisher);
+        }else{
+            throw new ResponseStatusException(
+                    HttpStatus.UNAUTHORIZED, "Wrong Password");
+        }
 
         return publisherRequest;
+
     }
 
 
