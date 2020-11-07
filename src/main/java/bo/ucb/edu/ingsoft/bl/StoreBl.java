@@ -3,6 +3,7 @@ package bo.ucb.edu.ingsoft.bl;
 import bo.ucb.edu.ingsoft.dao.GameDao;
 import bo.ucb.edu.ingsoft.dao.PhotoDao;
 import bo.ucb.edu.ingsoft.dao.PriceDao;
+import bo.ucb.edu.ingsoft.dto.HighlightRequest;
 import bo.ucb.edu.ingsoft.dto.HomepageRequest;
 import bo.ucb.edu.ingsoft.models.Game;
 import bo.ucb.edu.ingsoft.models.Photo;
@@ -44,6 +45,21 @@ public class StoreBl {
         }
         return list;
     }
+    public List<HighlightRequest> getHighLights() {
+        List<Game> games = gameDao.findHighlight();
+        System.out.println(games);
+        List<Integer> ids = new ArrayList<Integer>();
+        for (Game game : games) {
+            ids.add(game.getIdGame());
+        }
+        List<Photo> photos = photoDao.findBannerbyId(ids);
+        List<HighlightRequest> list = new ArrayList<HighlightRequest>();
+        for (int i = 0; i < games.size(); i++) {
+            HighlightRequest homepageRequest = new HighlightRequest(games.get(i).getIdGame().toString(), games.get(i).getName(), games.get(i).getDescription() ,photos.get(i).getPhotoPath());
+            list.add(homepageRequest);
+        }
+        return list;
+    }
     public List<SaleRequest> SalePage(){
 
         List<Game> game=gameDao.findSale();
@@ -56,7 +72,6 @@ public class StoreBl {
         for (int i=0;i<game.size();i++){
             sale.add(new SaleRequest(game.get(i).getName(), game.get(i).getReleaseDate(),price.get(i).getPrice(),price.get(i).getSale(),photo.get(i).getPhotoPath()));
         }
-        System.out.println(sale);
         return sale;
     }
 }
