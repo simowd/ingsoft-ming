@@ -19,7 +19,7 @@ public interface UserDao {
     public void updateUser(User user);
 
     //Get publisher mail
-    public User publisherMail(Publisher idUser);
+    public String publisherMail(Integer idUser);
 
     //Get publisher list (id_user, email)
     public List<User> listUserMails();

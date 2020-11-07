@@ -73,6 +73,8 @@ public class StoreBl {
 
         List<SaleRequest> sale=new ArrayList<>();
 
+
+
         for (int i=0;i<game.size();i++){
             sale.add(new SaleRequest(game.get(i).getName(), game.get(i).getReleaseDate(),price.get(i).getPrice(),price.get(i).getSale(),photo.get(i).getPhotoPath()));
         }

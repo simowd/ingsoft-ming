@@ -37,5 +37,5 @@ public interface GameDao {
     public Integer getLastInsertId();
 
     //Get publisher developer games
-    public List<Game> findGamebyPublisher(List<Integer> idDeveloper);
+    public List<Integer> findGamebyPublisher(List<Integer> idDeveloper);
 }
