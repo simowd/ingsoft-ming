@@ -18,5 +18,5 @@ public interface PublisherDao {
     public void updatePublisher(Publisher publisher);
 
     //Get publisher list
-    public Publisher listPublisher(List<Integer> idUser);
+    public List<Publisher> listPublisher(List<Integer> idUser);
 }

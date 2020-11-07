@@ -1,4 +1,4 @@
-GET http://localhost:8080//ming/publisher/4
+GET http://localhost:8080/ming/publisher/12
 Accept: application/json
 
 ###
@@ -15,3 +15,7 @@ Content-Type: application/json
   "password": "Bolivia",
   "repeat_password": "Bolivia"
 }
+
+###
+GET http://localhost:8080/ming/admin/publisher
+Accept: application/json

@@ -19,6 +19,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @RestController
 public class PublisherApi {
@@ -50,5 +51,15 @@ public class PublisherApi {
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND, "User Not Found", ex);
         }
+    }
+
+    @RequestMapping(value = "/ming/admin/publisher",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<PublisherRequest> publisherList() {
+//        try {
+            return publisherBl.getPublisherList();
+//        } catch (Exception ex) {
+//            throw new ResponseStatusException(
+//                    HttpStatus.NOT_FOUND, "User Not Found", ex);
+//        }
     }
 }

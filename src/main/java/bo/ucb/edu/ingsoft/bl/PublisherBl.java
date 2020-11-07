@@ -13,6 +13,9 @@ import bo.ucb.edu.ingsoft.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Service
 public class PublisherBl {
@@ -69,6 +72,30 @@ public class PublisherBl {
         publisherRequest.setCountry(user.getIdCountry());
         publisherRequest.setPassword(user.getPassword());
         publisherRequest.setRepeat_password(user.getPassword());
+
+        return publisherRequest;
+    }
+
+    public List<PublisherRequest> getPublisherList(){
+        List<PublisherRequest> publisherRequest =new ArrayList<PublisherRequest>();
+        List<User> user=userDao.listUserMails();
+
+        List<Integer> ids = new ArrayList<Integer>();
+        for(User users : user){
+            ids.add(users.getIdUser());
+        }
+
+        List<Publisher> publisher=publisherDao.listPublisher(ids);
+        for(int i=0;i< user.size();i++){
+            PublisherRequest publisherRequest1=new PublisherRequest();
+
+            publisherRequest1.setEmail(user.get(i).getEmail());
+            publisherRequest1.setPaypal(publisher.get(i).getPaypalMail());
+            publisherRequest1.setPublisher(publisher.get(i).getPublisher());
+
+            publisherRequest.add(publisherRequest1);
+        }
+
 
         return publisherRequest;
     }
