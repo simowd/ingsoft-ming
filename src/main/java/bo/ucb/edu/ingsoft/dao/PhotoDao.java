@@ -11,7 +11,7 @@ import java.util.List;
 public interface PhotoDao {
     // Get Photo Data
     public ArrayList<Photo> findByIdGame(ArrayList<Integer> idGame);
-    public ArrayList<Photo> findBannerbyId(ArrayList<Integer> idGame);
+    public List<Photo> findBannerbyId(List<Integer> idGame);
 
 
     public Photo createPhotoBanner ();

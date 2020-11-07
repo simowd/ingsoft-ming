@@ -12,6 +12,9 @@ public interface GameDao {
     // Get Sale games data
     public List<Game> findSale();
 
+    // Get Sale games data
+    public List<Integer> findSaleIds();
+
     //Find page for the homepage
     public ArrayList<Game> findPage(@Param("a") Integer limit, @Param("b") Integer offset);
 

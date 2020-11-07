@@ -1,24 +1,22 @@
 package bo.ucb.edu.ingsoft.dto;
 
+import java.sql.Timestamp;
+import java.util.Date;
+
 public class SaleRequest {
         private String id;
         private String title;
+        private Timestamp releaseDate;
         private Double price;
         private Double sale;
         private String banner;
 
-    public SaleRequest() {
-    }
-
-    @Override
-    public String toString() {
-        return "SaleRequest{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", price=" + price +
-                ", sale=" + sale +
-                ", banner='" + banner + '\'' +
-                '}';
+    public SaleRequest(String title, Timestamp releaseDate, Double price, Double sale, String banner) {
+        this.title = title;
+        this.releaseDate = releaseDate;
+        this.price = price;
+        this.sale = sale;
+        this.banner = banner;
     }
 
     public String getId() {
@@ -37,7 +35,15 @@ public class SaleRequest {
         this.title = title;
     }
 
-    public double getPrice() {
+    public Timestamp getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(Timestamp releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
+    public Double getPrice() {
         return price;
     }
 
@@ -45,7 +51,7 @@ public class SaleRequest {
         this.price = price;
     }
 
-    public double getSale() {
+    public Double getSale() {
         return sale;
     }
 
@@ -61,4 +67,15 @@ public class SaleRequest {
         this.banner = banner;
     }
 
+    @Override
+    public String toString() {
+        return "SaleRequest{" +
+                "id='" + id + '\'' +
+                ", title='" + title + '\'' +
+                ", releaseDate=" + releaseDate +
+                ", price=" + price +
+                ", sale=" + sale +
+                ", banner='" + banner + '\'' +
+                '}';
+    }
 }
