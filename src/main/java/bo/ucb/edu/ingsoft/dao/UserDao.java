@@ -3,6 +3,7 @@ package bo.ucb.edu.ingsoft.dao;
 import bo.ucb.edu.ingsoft.models.Publisher;
 import bo.ucb.edu.ingsoft.models.User;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -43,7 +44,7 @@ public interface UserDao {
     public User updateUserInfo(Integer idUser);
 
     //Update User's Password
-    public User updateUserPassword(Integer idUser);
+    public void updateUserPassword(@Param("idUser") Integer idUser, @Param("newPassword") String newPassword);
 
     //get last id in user
     public Integer getLastInsertId();
