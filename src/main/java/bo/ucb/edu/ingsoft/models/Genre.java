@@ -5,9 +5,7 @@ public class Genre {
     private Integer idGenre;
     private String genre;
 
-    public Genre(Integer idGenre, String genre) {
-        this.idGenre = idGenre;
-        this.genre = genre;
+    public Genre() {
     }
 
     @Override

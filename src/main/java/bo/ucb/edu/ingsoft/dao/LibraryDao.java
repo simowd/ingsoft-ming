@@ -8,5 +8,5 @@ import java.util.List;
 @Mapper
 public interface LibraryDao {
     //Get User Games
-    public List<Game> UserGames(Integer idUser);
+    public List<Integer> UserGames(Integer idUser);
 }

@@ -1,15 +1,6 @@
 GET http://localhost:8080/ming/users/2
 Accept: application/json
 ###
-PUT http://localhost:8080/ming/users/6/password
-Accept: application/json
-Content-Type: application/json
-
-{
-   "old_password": "nuevonuevo",
-   "new_password": "nuevonuevonuevo"
-}
-###
 PUT http://localhost:8080/ming/users/7
 Accept: application/json
 Content-Type: application/json
@@ -20,3 +11,15 @@ Content-Type: application/json
   "id_country": 29,
   "photo_path": "nuevarutadelaimagensupergenial.com.nuevo"
 }
+###
+PUT http://localhost:8080/ming/users/6/password
+Accept: application/json
+Content-Type: application/json
+
+{
+  "old_password": "nuevonuevo",
+  "new_password": "nuevonuevonuevo"
+}
+###
+GET http://localhost:8080/ming/users/2/library
+Accept: application/json
