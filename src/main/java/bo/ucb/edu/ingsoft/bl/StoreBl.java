@@ -28,34 +28,38 @@ public class StoreBl {
         this.photoDao = photoDao;
     }
     public List<HomepageRequest> getHomePage(Integer page) {
+        List<HomepageRequest> list = new ArrayList<HomepageRequest>();
         Integer recordsPerPage = 10;
         Integer offsetValue = (page - 1) * recordsPerPage;
         List<Game> games = gameDao.findPage(recordsPerPage, offsetValue);
-        List<Integer> ids = new ArrayList<Integer>();
-        for (Game game : games) {
-            ids.add(game.getIdGame());
-        }
-        List<Price> prices = priceDao.findByIdGame(ids);
-        List<Photo> photos = photoDao.findBannerbyId(ids);
-        List<HomepageRequest> list = new ArrayList<HomepageRequest>();
-        for (int i = 0; i < games.size(); i++) {
-            HomepageRequest homepageRequest = new HomepageRequest(games.get(i).getIdGame().toString(), games.get(i).getName(), prices.get(i).getPrice(), prices.get(i).getSale().doubleValue(), photos.get(i).getPhotoPath());
-            list.add(homepageRequest);
+        if(!games.isEmpty()) {
+            List<Integer> ids = new ArrayList<Integer>();
+            for (Game game : games) {
+                ids.add(game.getIdGame());
+            }
+            List<Price> prices = priceDao.findByIdGame(ids);
+            List<Photo> photos = photoDao.findBannerbyId(ids);
+
+            for (int i = 0; i < games.size(); i++) {
+                HomepageRequest homepageRequest = new HomepageRequest(games.get(i).getIdGame().toString(), games.get(i).getName(), prices.get(i).getPrice(), prices.get(i).getSale().doubleValue(), photos.get(i).getPhotoPath());
+                list.add(homepageRequest);
+            }
         }
         return list;
     }
     public List<HighlightRequest> getHighLights() {
-        List<Game> games = gameDao.findHighlight();
-        System.out.println(games);
-        List<Integer> ids = new ArrayList<Integer>();
-        for (Game game : games) {
-            ids.add(game.getIdGame());
-        }
-        List<Photo> photos = photoDao.findBannerbyId(ids);
         List<HighlightRequest> list = new ArrayList<HighlightRequest>();
-        for (int i = 0; i < games.size(); i++) {
-            HighlightRequest homepageRequest = new HighlightRequest(games.get(i).getIdGame().toString(), games.get(i).getName(), games.get(i).getDescription() ,photos.get(i).getPhotoPath());
-            list.add(homepageRequest);
+        List<Game> games = gameDao.findHighlight();
+        if(!games.isEmpty()){
+            List<Integer> ids = new ArrayList<Integer>();
+            for (Game game : games) {
+                ids.add(game.getIdGame());
+            }
+            List<Photo> photos = photoDao.findBannerbyId(ids);
+            for (int i = 0; i < games.size(); i++) {
+                HighlightRequest homepageRequest = new HighlightRequest(games.get(i).getIdGame().toString(), games.get(i).getName(), games.get(i).getDescription() ,photos.get(i).getPhotoPath());
+                list.add(homepageRequest);
+            }
         }
         return list;
     }
