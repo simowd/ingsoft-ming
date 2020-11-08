@@ -1,6 +1,7 @@
 package bo.ucb.edu.ingsoft.bl;
 
 import bo.ucb.edu.ingsoft.dao.*;
+import bo.ucb.edu.ingsoft.dto.GameDetailsRequest;
 import bo.ucb.edu.ingsoft.dto.GamesRequest;
 import bo.ucb.edu.ingsoft.dto.NewGameRequest;
 import bo.ucb.edu.ingsoft.dto.Transaction;
@@ -41,23 +42,23 @@ public class GameBl {
     }
 
 
-    public NewGameRequest createGame(NewGameRequest newGameRequest, Transaction transaction, Integer idPublisher){
+    public NewGameRequest createGame(NewGameRequest newGameRequest, Transaction transaction, Integer idPublisher) {
 
-        Game game =new Game();
-        Developer developer=new Developer();
-        Esrb esrb =new Esrb();
-        GameDirectx gameDirectx =new GameDirectx();
-        GameOS gameOS=new GameOS();
-        LanguageGame languageGame=new LanguageGame();
-        GenreGame genreGame=new GenreGame();
-        Photo photo=new Photo();
-        Price price=new Price();
+        Game game = new Game();
+        Developer developer = new Developer();
+        Esrb esrb = new Esrb();
+        GameDirectx gameDirectx = new GameDirectx();
+        GameOS gameOS = new GameOS();
+        LanguageGame languageGame = new LanguageGame();
+        GenreGame genreGame = new GenreGame();
+        Photo photo = new Photo();
+        Price price = new Price();
 
         developer.setDeveloper(newGameRequest.getDeveloper());
         developer.setIdPublisher(idPublisher);
         developerDao.createDeveloper(developer);
 
-        Integer idDeveloper=developerDao.getLastInsertId();
+        Integer idDeveloper = developerDao.getLastInsertId();
         game.setIdEsrb(newGameRequest.getIdEsrb());
         game.setIdDeveloper(idDeveloper);
         game.setName(newGameRequest.getTitle());
@@ -77,56 +78,58 @@ public class GameBl {
         game.setTxDate(transaction.getTxDate());
         gameDao.createGame(game);
 
-        List<Integer> directIds=new ArrayList<Integer>();
-        Integer idGame=gameDao.getLastInsertId();
+        List<Integer> directIds = new ArrayList<Integer>();
+        Integer idGame = gameDao.getLastInsertId();
 
-        directIds=newGameRequest.getDirectx();
-        for(int i=0; i<directIds.size();i++){
+        directIds = newGameRequest.getDirectx();
+        for (int i = 0; i < directIds.size(); i++) {
 
             gameDirectx.setIdDirectx(directIds.get(i));
             gameDirectx.setIdGame(idGame);
             gamesDirectxDao.createGameDirectx(gameDirectx);
         }
-        List<Integer> operatingSystemIds=new ArrayList<Integer>();
-        operatingSystemIds=newGameRequest.getOperatingSystem();
-        for(int i=0; i<operatingSystemIds.size();i++){
+        List<Integer> operatingSystemIds = new ArrayList<Integer>();
+        operatingSystemIds = newGameRequest.getOperatingSystem();
+        for (int i = 0; i < operatingSystemIds.size(); i++) {
 
-            gameOS.setIdOperatingSystem(operatingSystemIds.get(i));;
+            gameOS.setIdOperatingSystem(operatingSystemIds.get(i));
+            ;
             gameOS.setIdGame(idGame);
             gamesOsDao.createGameOs(gameOS);
         }
 
-        List<Integer> languagesIds=new ArrayList<Integer>();
-        languagesIds=newGameRequest.getLanguageGames();
-        for(int i=0; i<languagesIds.size();i++){
+        List<Integer> languagesIds = new ArrayList<Integer>();
+        languagesIds = newGameRequest.getLanguageGames();
+        for (int i = 0; i < languagesIds.size(); i++) {
 
-            languageGame.setIdLanguage(languagesIds.get(i));;
+            languageGame.setIdLanguage(languagesIds.get(i));
+            ;
             languageGame.setIdGame(idGame);
             languagesDao.createLanguageGame(languageGame);
         }
 
-        List<Integer> genreIds=new ArrayList<Integer>();
-        genreIds=newGameRequest.getGenreGames();
-        for(int i=0; i<languagesIds.size();i++){
+        List<Integer> genreIds = new ArrayList<Integer>();
+        genreIds = newGameRequest.getGenreGames();
+        for (int i = 0; i < languagesIds.size(); i++) {
 
-            genreGame.setIdGenre(genreIds.get(i));;
+            genreGame.setIdGenre(genreIds.get(i));
+            ;
             genreGame.setIdGame(idGame);
             genreDao.createGenreGame(genreGame);
         }
 
 
+        List<String> imagesPath = new ArrayList<String>();
+        imagesPath = newGameRequest.getImages();
+        for (int i = 0; i < imagesPath.size(); i++) {
 
-        List<String> imagesPath=new ArrayList<String>();
-        imagesPath=newGameRequest.getImages();
-        for(int i=0; i<imagesPath.size();i++){
-
-            if(i==0){
+            if (i == 0) {
                 photo.setIdGame(idGame);
                 photo.setPhotoPath(imagesPath.get(i));
                 photo.setStatus(1);
                 photo.setType(1);
                 photoDao.createPhotoBanner(photo);
-            }else{
+            } else {
                 photo.setIdGame(idGame);
                 photo.setPhotoPath(imagesPath.get(i));
                 photo.setStatus(1);
@@ -147,6 +150,48 @@ public class GameBl {
 
 
         return newGameRequest;
+    }
+
+
+    public GameDetailsRequest getGameInformation(Integer gameId) {
+
+        Game game = gameDao.getGameInfo(gameId);
+        List<Integer> gamesLanguagesDao = languagesDao.findGameLanguages(gameId);
+        List<Language> languageList = languagesDao.findByIdLanguage(gamesLanguagesDao);
+        ArrayList<String> languageListAux = new ArrayList<>();
+        languageList.forEach(language -> {
+            languageListAux.add(language.getLanguage());
+        });
+        Esrb esrb = esrbDao.findEsrbById(game.getIdEsrb());
+        List<Photo> photos = photoDao.findPhotosByGameId(game.getIdGame());
+        List<String> photosAux = new ArrayList<>();
+        photos.forEach(photo -> {
+            photosAux.add(photo.getPhotoPath());
+        });
+
+//        GenreDao genreDao = genreDao.;
+        GameDetailsRequest gameDetailsRequest = new GameDetailsRequest();
+        gameDetailsRequest.setId(gameId);
+        gameDetailsRequest.setTitle(game.getName());
+        gameDetailsRequest.setLanguage(languageListAux);
+        gameDetailsRequest.setGame_description(game.getDescription());
+        gameDetailsRequest.setSize(game.getSize());
+        gameDetailsRequest.setEsrb(esrb);
+        gameDetailsRequest.setImages(photosAux);
+//        gameDetailsRequest.setDeveloper();
+        gameDetailsRequest.setPlayers(game.getPlayers());
+//        gameDetailsRequest.setRelease_date();
+        gameDetailsRequest.setProcessor(game.getProcessor());
+        gameDetailsRequest.setMemory(game.getMemory());
+        gameDetailsRequest.setGraphics(game.getGraphics());
+//        gameDetailsRequest.setColor();
+//        gameDetailsRequest.setHighlighted();
+//        gameDetailsRequest.setDownload_path();
+//        gameDetailsRequest.setStatus();
+//        gameDetailsRequest.setOperating_systems();
+//        gameDetailsRequest.setSale();
+
+        return gameDetailsRequest;
     }
 
 

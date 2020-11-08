@@ -38,14 +38,4 @@ public class GameApi {
         return newGameResponse;
     }
 
-
-    @RequestMapping(value = "/store/games/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public GameDetailsRequest findGameById(@PathVariable("id") Integer gameId) {
-        try {
-            return gameBl.findByGameById(gameId);
-        } catch (Exception ex) {
-            throw new ResponseStatusException(
-                    HttpStatus.NOT_FOUND, "Game Not Found", ex);
-        }
-    }
 }
