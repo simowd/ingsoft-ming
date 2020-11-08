@@ -100,4 +100,9 @@ public class PublisherApi {
     public List<HomepageRequest> getPublisherGames(@PathVariable("id") Integer idPublisher){
         return publisherBl.getAllPublisherGames(idPublisher);
     }
+
+    @RequestMapping(value="/ming/publisher/games", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<GameAdminRequest> getAdminGames(){
+        return publisherBl.getAllGames();
+    }
 }

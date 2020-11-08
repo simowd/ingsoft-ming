@@ -206,4 +206,24 @@ public class PublisherBl {
         return list;
     }
 
+    public List<GameAdminRequest> getAllGames(){
+        List<GameAdminRequest> list = new ArrayList<GameAdminRequest>();
+        List<Game> games = gameDao.findAllGames();
+        if(!games.isEmpty()) {
+            List<Integer> ids = new ArrayList<Integer>();
+            for (Game game : games) {
+                ids.add(game.getIdGame());
+            }
+            for(int i = 0; i < ids.size(); i++){
+                Price price = priceDao.findById(ids.get(i));
+                Photo photo = photoDao.findBannerbyGame(ids.get(i));
+                if(price != null && photo != null){
+                    GameAdminRequest gameAdminRequest = new GameAdminRequest(games.get(i).getIdGame().toString(), games.get(i).getName(), price.getPrice(), price.getSale().doubleValue(), photo.getPhotoPath(),games.get(i).getHighlight());
+                    list.add(gameAdminRequest);
+                }
+            }
+        }
+        return list;
+    }
+
 }
