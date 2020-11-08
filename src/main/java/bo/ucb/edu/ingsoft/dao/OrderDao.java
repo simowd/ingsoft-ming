@@ -1,6 +1,7 @@
 package bo.ucb.edu.ingsoft.dao;
 
 import bo.ucb.edu.ingsoft.models.Game;
+import bo.ucb.edu.ingsoft.models.OrderDetails;
 import bo.ucb.edu.ingsoft.models.Orders;
 import bo.ucb.edu.ingsoft.models.User;
 import org.apache.ibatis.annotations.Mapper;
@@ -36,4 +37,6 @@ public interface OrderDao {
 
     // Create order
     public void createOrder(Orders orders);
+
+    public void createOrderDetails(OrderDetails orderDetails);
 }

@@ -128,9 +128,9 @@ public class StoreBl {
         return list;
     }
 
-    public PaymentRequest getGamePayment(Integer gameId, Integer userId, Transaction transaction) {
-        Game game = gameDao.getGameInfo(gameId);
-        User user = userDao.findByUserId(userId);
+    public PaymentRequest getGamePayment(PaymentRequest paymentRequest, Transaction transaction) {
+        Game game = gameDao.getGameInfo(paymentRequest.getIdGame());
+        User user = userDao.findByUserId(paymentRequest.getIdUser());
         Price price = priceDao.findById(game.getIdGame());
         LOGGER.warn(transaction.toString());
         LOGGER.warn(game.toString());
@@ -145,14 +145,27 @@ public class StoreBl {
         orders.setIdOrder(orderDao.getLastInsertId());
         LOGGER.warn(orders.toString());
 
-        PaymentRequest paymentRequest = new PaymentRequest();
-//        paymentRequest.setUserCard();
+        OrderDetails orderDetails = new OrderDetails();
+        orderDetails.setIdGame(game.getIdGame());
+        orderDetails.setIdOrder(orders.getIdOrder());
+        orderDetails.setPrice(price.getPrice());
+        orderDetails.setTxId(transaction.getTxId());
+        orderDetails.setTxHost(transaction.getTxHost());
+        orderDetails.setTxUserId(transaction.getTxUserId());
+        orderDetails.setTxDate(transaction.getTxDate());
+        orderDao.createOrderDetails(orderDetails);
+        LOGGER.warn(orderDetails.toString());
+
+
         paymentRequest.setTitle(game.getName());
-//        paymentRequest.setBanner(game.get);
-        paymentRequest.setHighlight(game.getHighlight());
-        paymentRequest.setId(game.getIdGame());
-//        paymentRequest.setLatest(game.get);
         paymentRequest.setPrice(price.getPrice());
+//        paymentRequest.setLatest(getLatest());
+
+        paymentRequest.setUsername(user.getUserName());
+        paymentRequest.setName(user.getName());
+        paymentRequest.setLastname(user.getLastName());
+        paymentRequest.setAlias(user.getAlias());
+        paymentRequest.setCountry(user.getIdCountry().toString());
 //        paymentRequest.setSale();
 
 
