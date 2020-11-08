@@ -5,6 +5,7 @@
 <mapper namespace="bo.ucb.edu.ingsoft.dao.UserDao">
     <select id="findByUserId" resultType="bo.ucb.edu.ingsoft.models.User">
         SELECT
+               id_user as idUser,
                username as userName,
                email as email,
                password as password,

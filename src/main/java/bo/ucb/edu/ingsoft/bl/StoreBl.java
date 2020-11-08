@@ -132,14 +132,20 @@ public class StoreBl {
         Game game = gameDao.getGameInfo(gameId);
         User user = userDao.findByUserId(userId);
         Price price = priceDao.findById(game.getIdGame());
+        LOGGER.warn(transaction.toString());
+        LOGGER.warn(game.toString());
         Orders orders = new Orders();
         orders.setIdUser(user.getIdUser());
         orders.setDate(transaction.getTxDate());
+        orders.setTxId(transaction.getTxId());
+        orders.setTxHost(transaction.getTxHost());
+        orders.setTxUserId(transaction.getTxUserId());
+        orders.setTxDate(transaction.getTxDate());
         orderDao.createOrder(orders);
+        orders.setIdOrder(orderDao.getLastInsertId());
+        LOGGER.warn(orders.toString());
 
         PaymentRequest paymentRequest = new PaymentRequest();
-        paymentRequest.setUserName(user.getUserName());
-        paymentRequest.setUserEmail(user.getEmail());
 //        paymentRequest.setUserCard();
         paymentRequest.setTitle(game.getName());
 //        paymentRequest.setBanner(game.get);

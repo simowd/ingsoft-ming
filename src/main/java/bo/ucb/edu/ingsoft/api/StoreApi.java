@@ -67,7 +67,7 @@ public class StoreApi {
         return gameBl.getGameInformation(gameId);
     }
 
-    @RequestMapping(value = "/ming/{user}/{id}/cart/purchase/", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/ming/{user}/{id}/single/purchase/", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public PaymentRequest getGamePayment(@PathVariable("id") Integer gameId, @PathVariable("user") Integer userId, HttpServletRequest request) {
         Transaction transaction = TransactionUtil.createTransaction(request);
         transactionBl.createTransaction(transaction);

@@ -2,50 +2,52 @@ package bo.ucb.edu.ingsoft.dto;
 
 public class PaymentRequest extends GamesRequest {
 
-    private String userEmail;
-    private String userName;
-    private Long userCard;
+    //    private Integer ;
+    private String emailUser;
+    private String nameUser;
+    private Integer idUser;
+//    private Long cardUser;
 
 
     public PaymentRequest() {
     }
 
-    public PaymentRequest(String userEmail, String userName, Long userCard) {
-        this.userEmail = userEmail;
-        this.userName = userName;
-        this.userCard = userCard;
+    public PaymentRequest(String emailUser, String nameUser, Integer idUser) {
+        this.emailUser = emailUser;
+        this.nameUser = nameUser;
+        this.idUser = idUser;
     }
 
-    public String getUserEmail() {
-        return userEmail;
+    public String getEmailUser() {
+        return emailUser;
     }
 
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
+    public void setEmailUser(String emailUser) {
+        this.emailUser = emailUser;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getNameUser() {
+        return nameUser;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setNameUser(String nameUser) {
+        this.nameUser = nameUser;
     }
 
-    public Long getUserCard() {
-        return userCard;
+    public Integer getIdUser() {
+        return idUser;
     }
 
-    public void setUserCard(Long userCard) {
-        this.userCard = userCard;
+    public void setIdUser(Integer idUser) {
+        this.idUser = idUser;
     }
 
     @Override
     public String toString() {
         return "PaymentRequest{" +
-                "userEmail='" + userEmail + '\'' +
-                ", userName='" + userName + '\'' +
-                ", userCard=" + userCard +
+                "emailUser='" + emailUser + '\'' +
+                ", nameUser='" + nameUser + '\'' +
+                ", idUser=" + idUser +
                 '}';
     }
 }

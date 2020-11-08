@@ -125,7 +125,6 @@
         VALUES (
              null,
              #{idUser},
-             #{idDeveloper},
              #{date},
              1,
              #{txId},
