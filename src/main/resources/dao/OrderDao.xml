@@ -5,12 +5,12 @@
 <mapper namespace="bo.ucb.edu.ingsoft.dao.OrderDao">
     <select id="gameSells" resultType="bo.ucb.edu.ingsoft.models.Orders">
         SELECT
-                count(order_details.id_game)
+        count(order_details.id_game)
         FROM orders inner join order_details
         on
-            orders.id_order=order_details.id_order
+        orders.id_order=order_details.id_order
         WHERE
-            order_details.id_game in
+        order_details.id_game in
         <foreach collection="list" item="item" index="index"
                  open="(" separator="," close = ")">
             #{item}
@@ -19,21 +19,21 @@
         month(order_details.id_game)
     </select>
 
-    <select id="gameSellsPublisher" resultType="bo.ucb.edu.ingsoft.models.Orders">
+    <select id="gameSellsPublisher" resultType="java.lang.Integer">
         SELECT
-                count(order_details.id_game)
+        count(order_details.id_game)
         FROM orders inner join order_details
         on
-            orders.id_order=order_details.id_order
+        orders.id_order=order_details.id_order
         WHERE
-            order_details.id_game in
+        order_details.id_game in
         <foreach collection="list" item="item" index="index"
                  open="(" separator="," close = ")">
             #{item}
         </foreach>
     </select>
 
-    <select id="gameSellsGame" resultType="bo.ucb.edu.ingsoft.models.Orders">
+    <select id="gameSellsGame" resultType="java.lang.Integer">
         SELECT
         count(order_details.id_game)
         FROM orders inner join order_details
@@ -49,7 +49,7 @@
         order_details.id_game
     </select>
 
-    <select id="gameOrderCountry" resultType="bo.ucb.edu.ingsoft.models.Orders">
+    <select id="gameOrderCountry" resultType="java.lang.Integer">
         SELECT
         users.id_country
         FROM orders inner join order_details
@@ -67,7 +67,7 @@
         users.id_country
     </select>
 
-    <select id="gameOrderCountryCount" resultType="bo.ucb.edu.ingsoft.models.Orders">
+    <select id="gameOrderCountryCount" resultType="java.lang.Integer">
         SELECT
         count(orders.id_user)
         FROM orders inner join order_details
@@ -85,36 +85,36 @@
         users.id_country
     </select>
 
-    <select id="gameEarnings" resultType="bo.ucb.edu.ingsoft.models.Orders">
+    <select id="gameEarnings" resultType="java.lang.Double">
         SELECT
-                sum(order_details.price)
+        sum(order_details.price)
         FROM orders inner join order_details
         on
-            orders.id_order=order_details.id_order
+        orders.id_order=order_details.id_order
         WHERE
-            order_details.id_game in
+        order_details.id_game in
         <foreach collection="list" item="item" index="index"
                  open="(" separator="," close = ")">
             #{item}
         </foreach>
     </select>
 
-    <select id="gameEarningsMonth" resultType="bo.ucb.edu.ingsoft.models.Orders">
+    <select id="gameEarningsMonth" resultType="java.lang.Double">
         SELECT
-                sum(order_details.price)
+        sum(order_details.price)
         FROM orders inner join order_details
         on
-            orders.id_order=order_details.id_order
+        orders.id_order=order_details.id_order
         WHERE
-            order_details.id_game in
-        <foreach collection="list" item="item" index="index"
+        order_details.id_game in
+        <foreach collection="a" item="item" index="index"
                  open="(" separator="," close = ")">
-            #{a.item}
+            #{item}
         </foreach> and
-            month(order_details.tx_date) in
-        <foreach collection="list" item="item" index="index"
+        month(order_details.tx_date) in
+        <foreach collection="b" item="item" index="index"
                  open="(" separator="," close = ")">
-            #{b.item}
+            #{item}
         </foreach>
         GROUP BY
         month(order_details.tx_date)
