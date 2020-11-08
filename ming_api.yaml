@@ -36,22 +36,12 @@ paths:
               $ref: "#/components/schemas/login"
       responses:
         "200":
-            description: Login was successful!
-            content: 
-              application/json:
+            description: Request was successful!
+            content:
+              text/plain:
                 schema:
-                  type: object
-                  properties:
-                    id:
-                      description: |
-                        User's ID
-                      example: "235"
-                      type: string
-                    jwt:
-                      description: |
-                        Authentication Key
-                      example: "235456456ds7dfs786fdf7g68df6g"
-                      type: string
+                  type: string
+                  example: ok
         "400":
           description: Invalid requestBody!
         "403":
@@ -73,7 +63,12 @@ paths:
               $ref: "#/components/schemas/register"
       responses:
         "200":
-            description: SignUp was successful!
+            description: Request was successful!
+            content:
+              text/plain:
+                schema:
+                  type: string
+                  example: ok
         "400":
           description: Invalid requestBody!
         "500":
@@ -147,10 +142,11 @@ paths:
       responses:
         "200":
             description: Request was successful!
-            content: 
-              application/json:
+            content:
+              text/plain:
                 schema:
-                  $ref: "#/components/schemas/user_info"
+                  type: string
+                  example: ok
         "400":
           description: Bad request!
         "404":
@@ -191,10 +187,11 @@ paths:
       responses:
         "200":
             description: Request was successful!
-            content: 
-              application/json:
+            content:
+              text/plain:
                 schema:
-                  $ref: "#/components/schemas/user_info"
+                  type: string
+                  example: ok
         "400":
           description: Bad request!
         "404":
@@ -534,80 +531,6 @@ paths:
           description: Page not found!
         "500":
           description: Server error!         
-  /admin/login:
-      post:
-        tags: 
-          - "Admin"
-        summary: The admin logs in the site
-        description: |
-          The admin can log in the store with hisaccount
-        requestBody:
-          description: The admin's information
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/login"
-        responses:
-          "200":
-              description: Login was successful!
-              content: 
-                application/json:
-                  schema:
-                    type: object
-                    properties:
-                      id:
-                        description: |
-                          User's ID
-                        example: "235"
-                        type: string
-                      jwt:
-                        description: |
-                          Authentication Key
-                        example: "235456456ds7dfs786fdf7g68df6g"
-                        type: string
-          "400":
-            description: Invalid requestBody!
-          "403":
-            description: Invalid credentials!
-          "500":
-            description: Server error!   
-  /publisher/login:
-      post:
-        tags: 
-          - "Publisher"
-        summary: The publisher logs in the site
-        description: |
-          The admin can log in the store with his account
-        requestBody:
-          description: The publisher's information
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/login"
-        responses:
-          "200":
-              description: Login was successful!
-              content: 
-                application/json:
-                  schema:
-                    type: object
-                    properties:
-                      id:
-                        description: |
-                          User's ID
-                        example: "235"
-                        type: string
-                      jwt:
-                        description: |
-                          Authentication Key
-                        example: "235456456ds7dfs786fdf7g68df6g"
-                        type: string
-          "400":
-            description: Invalid requestBody!
-          "403":
-            description: Invalid credentials!
-          "500":
-            description: Server error! 
   /admin/publisher:
       post:
         tags: 
@@ -623,7 +546,12 @@ paths:
                 $ref: "#/components/schemas/add_publisher"
         responses:
           "200":
-              description: Request was successful!
+            description: Request was successful!
+            content:
+              text/plain:
+                schema:
+                  type: string
+                  example: ok
           "400":
             description: Invalid requestBody!
           "403":
@@ -658,6 +586,7 @@ paths:
             description: Invalid credentials!
           "500":
             description: Server error! 
+  /admin/publisher/{id}:
       delete:
         tags: 
           - "Admin"
@@ -668,7 +597,7 @@ paths:
           - name: id
             description: |
               The publisher unique id.
-            in: "query"
+            in: "path"
             required: true
             schema:
               type: string
@@ -682,13 +611,47 @@ paths:
               type: string
         responses:
           "200":
-              description: Delete was successful!
+            description: Request was successful!
+            content:
+              text/plain:
+                schema:
+                  type: string
+                  example: ok
           "400":
             description: Invalid requestBody!
           "403":
             description: Invalid credentials!
           "500":
             description: Server error!
+  /admin/publisher/games:
+      get:
+        tags: 
+          - "Admin"
+        summary: The admin sees a games list
+        description: |
+          The admin sees publisher list
+        parameters:
+          - name: jwt
+            description: |
+              Authentication Key
+            in: "header"
+            required: true
+            example: "235456456ds7dfs786fdf7g68df6g"
+            schema:
+              type: string
+        responses:
+          "200":
+              description: Request was successful!
+              content: 
+                application/json:
+                  schema:
+                    $ref: "#/components/schemas/admin_home_page_game"
+          "400":
+            description: Invalid requestBody!
+          "403":
+            description: Invalid credentials!
+          "500":
+            description: Server error! 
   /publisher/{id}/dashboard:
       get:
         tags: 
@@ -727,22 +690,27 @@ paths:
             description: Invalid credentials!
           "500":
             description: Server error!
-  /admin/homepage:
+  /admin/homepage/{id}:
       put:
         tags: 
           - "Admin"
-        summary: The admin edits highlights and latest releases
+        summary: The admin edits highlights
         description: |
-          The admin edit game important things
+          The admin edit game things
         requestBody:
           description: The publisher's information
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/publisher_game"
+                $ref: "#/components/schemas/admin_home_page_game"
         responses:
           "200":
-              description: Request was successful!
+            description: Request was successful!
+            content:
+              text/plain:
+                schema:
+                  type: string
+                  example: ok
           "400":
             description: Invalid requestBody!
           "403":
@@ -816,6 +784,11 @@ paths:
         responses:
           "200":
               description: Request was successful!
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                    example: ok
           "400":
             description: Invalid requestBody!
           "403":
@@ -850,7 +823,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/edit_game"
+                $ref: "#/components/schemas/new_game"
         responses:
           "200":
               description: Request was successful!
@@ -878,13 +851,6 @@ paths:
         description: |
           The publisher edits a game
         parameters:
-          - name: id
-            description: |
-              The publisher unique id.
-            in: "path"
-            required: true
-            schema:
-              type: string
           - name: game_id
             description: |
               The game´s to delete unique id.
@@ -905,14 +871,15 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/edit_game"
+                $ref: "#/components/schemas/new_game"
         responses:
           "200":
-              description: Request was successful!
-              content:
-                application/json:
-                  schema:
-                    $ref: "#/components/schemas/game"
+            description: Request was successful!
+            content:
+              text/plain:
+                schema:
+                  type: string
+                  example: ok
           "400":
             description: Invalid requestBody!
           "403":
@@ -928,15 +895,8 @@ paths:
         parameters:
           - name: id
             description: |
-              The publisher unique id.
-            in: "path"
-            required: true
-            schema:
-              type: string
-          - name: game_id
-            description: |
               The game´s to delete unique id.
-            in: "query"
+            in: "path"
             required: true
             schema:
               type: string
@@ -950,7 +910,12 @@ paths:
               type: string
         responses:
           "200":
-              description: Request was successful!
+            description: Request was successful!
+            content:
+              text/plain:
+                schema:
+                  type: string
+                  example: ok
           "400":
             description: Invalid requestBody!
           "403":
@@ -971,13 +936,6 @@ paths:
             required: true
             schema:
               type: string
-          - name: game_id
-            description: |
-              The game´s to delete unique id.
-            in: "query"
-            required: true
-            schema:
-              type: string
           - name: jwt
             description: |
               Authentication Key
@@ -992,7 +950,7 @@ paths:
               content:
                 application/json:
                   schema:
-                    $ref: "#/components/schemas/game"
+                    $ref: "#/components/schemas/home_page_game"
           "400":
             description: Invalid requestBody!
           "403":
@@ -1046,38 +1004,40 @@ components:
           example: "securepassword123"
           type: string
     home_page_game:
-      type: object
+      type: array
       required: 
         - id
         - title
         - price
         - banner
-      properties:
-        id:
-          description: |
-            The game's id
-          example: "1234"
-          type: string
-        title:
-          description: |
-            The game's title
-          example: "Noita"
-          type: string
-        price:
-          description: |
-            The game's price
-          example: "19.99"
-          type: string
-        sale:
-          description: |
-            The game's offer if it has one
-          example: "9.99"
-          type: string
-        banner:
-          description: |
-            The game's banner
-          example: "game/images/banner.jpg"
-          type: string
+      items:
+        type: object
+        properties:
+          id:
+            description: |
+              The game's id
+            example: "1234"
+            type: string
+          title:
+            description: |
+              The game's title
+            example: "Noita"
+            type: string
+          price:
+            description: |
+              The game's price
+            example: "19.99"
+            type: string
+          sale:
+            description: |
+              The game's offer if it has one
+            example: "9.99"
+            type: string
+          banner:
+            description: |
+              The game's banner
+            example: "game/images/banner.jpg"
+            type: string
     highlighted:
       type: object
       required: 
@@ -1147,6 +1107,7 @@ components:
         - alias
         - email
         - country
+        - photo_path
       properties:
         username:
           description: |
@@ -1167,6 +1128,11 @@ components:
           description: |
             The user's country
           example: "Brasil"
+          type: string
+        photo_path:
+          description: |
+            The user's photo path
+          example: "www.images.user.photo"
           type: string
     library:
       type: object
@@ -1205,22 +1171,12 @@ components:
           type: string
     user_info_edit:
       type: object
+      required: 
+        - alias
+        - email
+        - id_country
+        - photo_path
       properties:
-        username:
-          description: |
-            The user's username
-          example: "Muerir"
-          type: string
-        name:
-          description: |
-            The user's first name
-          example: "Diego"
-          type: string  
-        lastname:
-          description: |
-            The user's lastname
-          example: "Córdova"
-          type: string
         alias:
           description: |
             The user's nickname
@@ -1229,12 +1185,17 @@ components:
         email:
           description: |
             The user's email
-          example: "eldeigo@gmail.com"
+          example: "eldeigo1@gmail.com"
           type: string
-        country:
+        id_country:
           description: |
-            The user's country
-          example: "Brasil"
+            The user's country id
+          example: 29
+          type: integer
+        photo_path:
+          description: |
+            The user's image photo path
+          example: "www.images.user.photo"
           type: string
     user_password_edit:
       type: object
@@ -1446,9 +1407,11 @@ components:
         required: 
           - username
           - email
+          - paypal
           - publisher
           - country
           - password
+          - repeat_password
         properties:
             username:
               description: |
@@ -1460,6 +1423,11 @@ components:
                 The user's email
               example: "SeRgioPru4@gmail.com"
               type: string 
+            paypal:
+              description: |
+                The user's paypalemail
+              example: "jojosConPlata@paypal.com"
+              type: string 
             publisher:
               description: |
                 The user's publisher name
@@ -1467,37 +1435,42 @@ components:
               type: string 
             country:
               description: |
-                The user's country
-              example: "USA"
-              type: string 
+                The user's id country
+              example: 29
+              type: integer 
             password:
               description: |
                 The user's password
               example: "elwashin123"
               type: string 
+            repeat_password:
+              description: |
+                The user's password
+              example: "elwashin123repetido"
+              type: string 
     publishers:
       type: array
       required: 
-        - publisher
         - email
-        - id
+        - paypal
+        - publisher
       items:
         type: object
         properties:
-          publisher:
-            description: |
-              The publisher's name
-            example: "Nintendo"
-            type: string
           email:
             description: |
               The publisher's email
             example: "Nintendo@gmail.com"
             type: string
-          id:
+          paypal:
             description: |
-              The publisher's id
-            example: "47573"
+              The publisher's paypal email
+            example: "NintendoPayPal@gmail.com"
+            type: string
+          publisher:
+            description: |
+              The publisher's name
+            example: "Nintendo"
             type: string
     publisher_game:
       type: object
@@ -1549,6 +1522,11 @@ components:
         - publisher
         - email
         - paypal
+        - sells
+        - earnings
+        - monthly_earnings
+        - country_earnings
+        - game_earnings
       properties:
         publisher:
           description: |
@@ -1563,7 +1541,7 @@ components:
         paypal:
           description: |
             The publisher's paypal account mail
-          example: "Nintendo@gmail.com"
+          example: "Nintendo1@gmail.com"
           type: string
         sells:
           description: |
@@ -1578,18 +1556,24 @@ components:
         monthly_earnings:
           description: |
             The publisher's monthly earnings
-          example: "300"
-          type: string
-        country:
+          type: array
+          items:
+            type: number
+            example: [1500,4548,1511]
+        country_earnings:
           description: |
             The publisher's earnings by country
-          example: "300"
-          type: string
-        game:
+          type: array
+          items:
+            type: number
+            example: [2000,6555]
+        game_earnings:
           description: |
             The publisher's earnings by game
-          example: "300"
-          type: string
+          type: array
+          items:
+            type: number
+            example: [4874,6545]
     edit_publisher:
         type: object
         properties:
@@ -1734,12 +1718,14 @@ components:
           type: string
     publisher:
         type: object
+        required: 
+        - username
+        - email
+        - paypal
+        - publisher
+        - country
+        - password
         properties:
-            id:
-              description: |
-                The user's id
-              example: "1234"
-              type: string
             username:
               description: |
                 The user's username
@@ -1774,4 +1760,156 @@ components:
               description: |
                 The user's repeated password
               example: "elwashin123"
-              type: string     
+              type: string
+    new_game:
+      type: object
+      required: 
+        - idEsrb
+        - title
+        - game_description
+        - size
+        - players
+        - processor
+        - release_date
+        - memory
+        - graphics
+        - color
+        - highlighted
+        - download_path
+        - images
+        - developer
+        - directx
+        - operatingSystem
+        - languageGames
+        - genreGames
+        - price
+        - sale
+      properties:
+        idEsrb:
+          description: |
+            The game's title
+          example: 1
+          type: integer
+        title:
+          description: |
+            The game's title
+          example: "Noita"
+          type: string
+        game_description:
+          description: |
+            The game's description
+          example: "Un juego de Aventura en 2D"
+          type: string
+        size:
+          description: |
+            The game's size
+          example: "15GB"
+          type: string
+        players:
+          description: |
+            The game's players support
+          example: 8
+          type: integer
+        processor:
+          description: |
+            The game's required processor
+          example: "Intel 10"
+          type: string
+        release_date:
+          description: |
+            The game's release date
+          example: "2019-10-11T13:33:05.673"
+          type: string
+        memory:
+          description: |
+            The game's required memory
+          example: "15GB RAM"
+          type: string
+        graphics:
+          description: |
+            The game's required graphic
+          example: "GTX 1080 4GB RAM"
+          type: string
+        color:
+          description: |
+            The game's color
+          example: "#0000d45"
+          type: string
+        highlighted:
+          description: |
+            The game's highlighted status
+          example: 1
+          type: integer
+        download_path:
+          description: |
+            The game's download_path
+          example: "www.download.games"
+          type: string
+        images:
+          description: |
+            The game's images download path
+          type: array
+          items: 
+            type: string
+            example: ["http//downloadimage/1","http//downloadimage/2"]
+        developer:
+          description: |
+            The game's developer name
+          example: "Bugisoft"
+          type: string
+        directx:
+          description: |
+            The game's directx required
+          type: array
+          items: 
+            type: integer
+            example: [1,2]
+        operatingSystem:
+          description: |
+            The game's required operating system
+          type: array
+          items: 
+            type: integer
+            example: [1,2,3]
+        languageGames:
+          description: |
+            The game's supported languages
+          type: array
+          items: 
+            type: integer
+            example: [1,2]
+        genreGames:
+          description: |
+            The game's genres
+          type: array
+          items: 
+            type: integer
+            example: [1,2]
+        price:
+          description: |
+            The game's price
+          example: 1
+          type: number
+        sale:
+          description: |
+            The game's sale numbre
+          example: 10
+          type: integer
+    admin_home_page_game:
+      type: array
+      required: 
+        - id
+        - highlight
+      items:
+        type: object
+        properties:
+          id:
+            description: |
+              The game's id
+            example: "1234"
+            type: string
+          highlight:
+            description: |
+              The game's highlight status
+            example: 1
+            type: integer
