@@ -12,4 +12,6 @@ public interface PriceDao {
 
     public void createPrice(Price price);
 
+    public Price findById(Integer idGame);
+
 }

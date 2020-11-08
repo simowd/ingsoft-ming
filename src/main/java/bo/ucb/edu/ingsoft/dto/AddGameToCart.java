@@ -18,8 +18,8 @@ public class AddGameToCart extends GameDetailsRequest {
     }
 
 
-    public AddGameToCart(Integer id, String title, ArrayList<String> language, String game_description, String size, Esrb esrb, List<String> images, String developer, Integer players, Date release_date, String processor, String memory, String graphics, String color, Integer highlighted, String download_path, Integer status, List<OperatingSystem> operating_systems, Double sale) {
-        super(id,  title,  language,  game_description,  size, esrb,  images,  developer,  players, release_date,  processor,  memory,  graphics,  color,  highlighted,  download_path,  status,  operating_systems,sale);
+    public AddGameToCart(Integer id, String title, ArrayList<String> language, String game_description, String size, Esrb esrb, List<String> images, List<String> genres, String developer, Integer players, Date release_date, String processor, String memory, String graphics, String color, Integer highlighted, String download_path, Integer status, List<OperatingSystem> operating_systems, Double sale, Double price) {
+        super(id,  title,  language,  game_description,  size, esrb,  images, genres,developer,  players, release_date,  processor,  memory,  graphics,  color,  highlighted,  download_path,  status,  operating_systems, sale, price);
 
         this.user = user;
         this.email = email;

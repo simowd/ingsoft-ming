@@ -171,7 +171,10 @@ public class GameBl {
         Developer developer = developerDao.findByIdDeveloper(game.getIdDeveloper());
         List<Integer> oS = gamesOsDao.findByGame(game.getIdGame());
         List<OperatingSystem> operatingSystemList = gamesOsDao.findByIdGameOs(oS);
-//        GenreDao genreDao = genreDao.;
+
+        Price price = priceDao.findById(gameId);
+        List<String> genres = genreDao.gameGenre(gameId);
+
         GameDetailsRequest gameDetailsRequest = new GameDetailsRequest();
         gameDetailsRequest.setId(gameId);
         gameDetailsRequest.setTitle(game.getName());
@@ -191,7 +194,9 @@ public class GameBl {
         gameDetailsRequest.setDownload_path(game.getDownloadPath());
         gameDetailsRequest.setStatus(game.getStatus());
         gameDetailsRequest.setOperating_systems(operatingSystemList);
-//        gameDetailsRequest.setSale();
+        gameDetailsRequest.setGenres(genres);
+        gameDetailsRequest.setSale(price.getSale());
+        gameDetailsRequest.setPrice(price.getPrice());
 
         return gameDetailsRequest;
     }

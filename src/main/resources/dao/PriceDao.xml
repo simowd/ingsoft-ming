@@ -33,4 +33,11 @@
              #{txDate}
         )
     </insert>
+
+    <select id="findById" resultType="bo.ucb.edu.ingsoft.models.Price">
+        SELECT price as price,
+               sale as sale
+        FROM price
+        WHERE id_game = #{idGame}
+    </select>
 </mapper>
