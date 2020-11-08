@@ -40,7 +40,6 @@ Content-Type: application/json
   "repeat_password": "Bolivia"
 }
 
-
 ###
 GET http://localhost:8080//ming/publisher/4/dashboard
 Accept: application/json

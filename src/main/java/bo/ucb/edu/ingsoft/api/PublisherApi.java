@@ -89,9 +89,9 @@ public class PublisherApi {
     }
 
     @RequestMapping(value="/ming/publisher/{id}/dashboard", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public DashboardRequest PublisherDashboard(@PathVariable("id") Integer idUser){
+    public DashboardRequest PublisherDashboard(@PathVariable("id") Integer idPublisher){
         try {
-            return publisherBl.PublisherDashboard(idUser);
+            return publisherBl.PublisherDashboard(idPublisher);
         } catch (Exception ex) {
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND, "Page Not Found", ex);
