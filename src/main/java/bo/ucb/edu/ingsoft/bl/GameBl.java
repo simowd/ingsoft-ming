@@ -27,7 +27,7 @@ public class GameBl {
     private PriceDao priceDao;
     private UserDao userDao;
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(StoreBl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(GameBl.class);
 
     @Autowired
     public GameBl(GameDao gameDao, TransactionDao transactionDao, DeveloperDao developerDao, EsrbDao esrbDao, GamesDirectxDao gamesDirectxDao, GamesLanguagesDao languagesDao, GamesOsDao gamesOsDao, GenreDao genreDao, PhotoDao photoDao, PriceDao priceDao, UserDao userDao) {

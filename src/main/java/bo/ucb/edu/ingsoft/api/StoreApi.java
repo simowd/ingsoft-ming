@@ -5,6 +5,8 @@ import bo.ucb.edu.ingsoft.bl.StoreBl;
 import bo.ucb.edu.ingsoft.bl.TransactionBl;
 import bo.ucb.edu.ingsoft.dto.*;
 import bo.ucb.edu.ingsoft.util.TransactionUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +21,7 @@ public class StoreApi {
     private StoreBl storeBl;
     private GameBl gameBl;
     private TransactionBl transactionBl;
+    private static final Logger LOGGER = LoggerFactory.getLogger(StoreApi.class);
 
     @Autowired
     public StoreApi(StoreBl storeBl, GameBl gameBl, TransactionBl transactionBl) {
