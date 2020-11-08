@@ -3,13 +3,10 @@ package bo.ucb.edu.ingsoft.bl;
 import bo.ucb.edu.ingsoft.dao.GameDao;
 import bo.ucb.edu.ingsoft.dao.PhotoDao;
 import bo.ucb.edu.ingsoft.dao.PriceDao;
-import bo.ucb.edu.ingsoft.dto.HighlightRequest;
-import bo.ucb.edu.ingsoft.dto.HomepageRequest;
-import bo.ucb.edu.ingsoft.dto.ReleaseRequest;
+import bo.ucb.edu.ingsoft.dto.*;
 import bo.ucb.edu.ingsoft.models.Game;
 import bo.ucb.edu.ingsoft.models.Photo;
 import bo.ucb.edu.ingsoft.models.Price;
-import bo.ucb.edu.ingsoft.dto.SaleRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -98,4 +95,5 @@ public class StoreBl {
         }
         return list;
     }
+
 }

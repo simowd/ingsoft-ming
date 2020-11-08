@@ -1,93 +1,133 @@
 package bo.ucb.edu.ingsoft.dto;
 
+import bo.ucb.edu.ingsoft.models.Esrb;
+
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class GameDetailsRequest {
-    private String gender;
-    private String type;
-    private String operativeSystem;
+    private Integer id;
+    private String title;
+    private ArrayList<String> language;
+    private String game_description;
+    private String size;
+    private Esrb esrb;
+    private List<String> images;
     private String developer;
     private Integer players;
-    private ArrayList<String> languages;
-    private String classification;
-    private String description;
+    private Date release_date;
     private String processor;
     private String memory;
     private String graphics;
-    private String driver;
-    private Double storage;
-    private Double price;
+    private String color;
+    private Integer highlighted;
+    private String download_path;
+    private Integer status;
+    private Double sale;
 
     public GameDetailsRequest() {
     }
 
-    public GameDetailsRequest(String gender, String type, String operativeSystem, String developer, Integer players, ArrayList<String> languages, String classification, String description, String processor, String memory, String graphics, String driver, Double storage, Double price) {
-        this.gender = gender;
-        this.type = type;
-        this.operativeSystem = operativeSystem;
+    public GameDetailsRequest(Integer id, String title, ArrayList<String> language, String game_description, String size, Esrb esrb, List<String> images, String developer, Integer players, Date release_date, String processor, String memory, String graphics, String color, Integer highlighted, String download_path, Integer status, Double sale) {
+        this.id = id;
+        this.title = title;
+        this.language = language;
+        this.game_description = game_description;
+        this.size = size;
+        this.esrb = esrb;
+        this.images = images;
         this.developer = developer;
         this.players = players;
-        this.languages = languages;
-        this.classification = classification;
-        this.description = description;
+        this.release_date = release_date;
         this.processor = processor;
         this.memory = memory;
         this.graphics = graphics;
-        this.driver = driver;
-        this.storage = storage;
-        this.price = price;
+        this.color = color;
+        this.highlighted = highlighted;
+        this.download_path = download_path;
+        this.status = status;
+        this.sale = sale;
     }
 
     @Override
     public String toString() {
         return "GameDetailsRequest{" +
-                "gender='" + gender + '\'' +
-                ", type='" + type + '\'' +
-                ", operativeSystem='" + operativeSystem + '\'' +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", language=" + language +
+                ", game_description='" + game_description + '\'' +
+                ", size='" + size + '\'' +
+                ", esrb=" + esrb +
+                ", images=" + images +
                 ", developer='" + developer + '\'' +
                 ", players=" + players +
-                ", languages=" + languages +
-                ", classification='" + classification + '\'' +
-                ", description='" + description + '\'' +
+                ", release_date=" + release_date +
                 ", processor='" + processor + '\'' +
                 ", memory='" + memory + '\'' +
                 ", graphics='" + graphics + '\'' +
-                ", driver='" + driver + '\'' +
-                ", storage=" + storage +
-                ", price=" + price +
+                ", color='" + color + '\'' +
+                ", highlighted=" + highlighted +
+                ", download_path='" + download_path + '\'' +
+                ", status=" + status +
+                ", sale=" + sale +
                 '}';
     }
 
-    public Double getPrice() {
-        return price;
+    public Integer getId() {
+        return id;
     }
 
-    public void setPrice(Double price) {
-        this.price = price;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getGender() {
-        return gender;
+    public String getTitle() {
+        return title;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getType() {
-        return type;
+    public ArrayList<String> getLanguage() {
+        return language;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setLanguage(ArrayList<String> language) {
+        this.language = language;
     }
 
-    public String getOperativeSystem() {
-        return operativeSystem;
+    public String getGame_description() {
+        return game_description;
     }
 
-    public void setOperativeSystem(String operativeSystem) {
-        this.operativeSystem = operativeSystem;
+    public void setGame_description(String game_description) {
+        this.game_description = game_description;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public Esrb getEsrb() {
+        return esrb;
+    }
+
+    public void setEsrb(Esrb esrb) {
+        this.esrb = esrb;
+    }
+
+    public List<String> getImages() {
+        return images;
+    }
+
+    public void setImages(List<String> images) {
+        this.images = images;
     }
 
     public String getDeveloper() {
@@ -106,28 +146,12 @@ public class GameDetailsRequest {
         this.players = players;
     }
 
-    public ArrayList<String> getLanguages() {
-        return languages;
+    public Date getRelease_date() {
+        return release_date;
     }
 
-    public void setLanguages(ArrayList<String> languages) {
-        this.languages = languages;
-    }
-
-    public String getClassification() {
-        return classification;
-    }
-
-    public void setClassification(String classification) {
-        this.classification = classification;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+    public void setRelease_date(Date release_date) {
+        this.release_date = release_date;
     }
 
     public String getProcessor() {
@@ -154,19 +178,43 @@ public class GameDetailsRequest {
         this.graphics = graphics;
     }
 
-    public String getDriver() {
-        return driver;
+    public String getColor() {
+        return color;
     }
 
-    public void setDriver(String driver) {
-        this.driver = driver;
+    public void setColor(String color) {
+        this.color = color;
     }
 
-    public Double getStorage() {
-        return storage;
+    public Integer getHighlighted() {
+        return highlighted;
     }
 
-    public void setStorage(Double storage) {
-        this.storage = storage;
+    public void setHighlighted(Integer highlighted) {
+        this.highlighted = highlighted;
+    }
+
+    public String getDownload_path() {
+        return download_path;
+    }
+
+    public void setDownload_path(String download_path) {
+        this.download_path = download_path;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public Double getSale() {
+        return sale;
+    }
+
+    public void setSale(Double sale) {
+        this.sale = sale;
     }
 }

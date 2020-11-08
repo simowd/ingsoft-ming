@@ -47,4 +47,9 @@
              1
         )
     </insert>
+    <select id="findPhotosByGameId" resultType="bo.ucb.edu.ingsoft.models.Photo">
+        SELECT photo_path as photoPath
+        FROM photos
+        WHERE id_game = #{idGame}
+    </select>
 </mapper>

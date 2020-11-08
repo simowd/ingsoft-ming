@@ -23,4 +23,9 @@
                 #{item}
             </foreach>
     </select>
+    <select id="findByGame" resultType="java.lang.Integer">
+        SELECT id_directx
+        FROM  games_directx
+        WHERE id_game = #{gameId}
+    </select>
 </mapper>

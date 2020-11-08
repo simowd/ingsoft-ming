@@ -23,4 +23,9 @@
             #{item}
         </foreach>
     </select>
+    <select id="findGameLanguages" resultType="java.lang.Integer">
+        SELECT id_language
+        FROM languages_games
+        WHERE id_game = #{gameId}
+    </select>
 </mapper>

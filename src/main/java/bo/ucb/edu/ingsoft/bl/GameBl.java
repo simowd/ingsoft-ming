@@ -1,6 +1,7 @@
 package bo.ucb.edu.ingsoft.bl;
 
 import bo.ucb.edu.ingsoft.dao.*;
+import bo.ucb.edu.ingsoft.dto.GameDetailsRequest;
 import bo.ucb.edu.ingsoft.dto.GamesRequest;
 import bo.ucb.edu.ingsoft.dto.NewGameRequest;
 import bo.ucb.edu.ingsoft.dto.Transaction;
@@ -148,5 +149,22 @@ public class GameBl {
         return newGameRequest;
     }
 
+    public GameDetailsRequest getGameInformation(Integer gameId){
+        Game game = gameDao.getGameInfo(gameId);
 
+        List<Integer> languagesId = languagesDao.findGameLanguages(gameId);
+        List<Language> languages = languagesDao.findByIdLanguage(languagesId);
+
+        Esrb esrb = esrbDao.findEsrbById(game.getIdEsrb());
+
+        List<Photo> photos = photoDao.findPhotosByGameId(gameId);
+
+        List<Integer> osId = gamesOsDao.findByGame(gameId);
+        List<OperatingSystem> os = gamesOsDao.findByIdGameOs(osId);
+
+
+        System.out.println(game);
+        System.out.println(photos);
+        return new GameDetailsRequest();
+    }
 }
