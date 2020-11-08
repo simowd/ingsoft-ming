@@ -11,7 +11,7 @@
              #{idOperatingSystem}
         )
     </insert>
-    <select id="findByIdGameOs" resultType="bo.ucb.edu.ingsoft.models.GameOS">
+    <select id="findByIdGameOs" resultType="bo.ucb.edu.ingsoft.models.OperatingSystem">
         SELECT
                id_operating_system as idOperatingSystem,
                operating_system as operatingSystem,
