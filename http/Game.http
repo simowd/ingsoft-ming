@@ -5,7 +5,7 @@ Content-Type: application/json
 
 {
   "idEsrb": 1,
-  "title": "GTA8",
+  "title": "GTA10",
   "game_description": "Lo mismo pero con monas chinas",
   "size": "700GB",
   "players": 7,
@@ -34,7 +34,7 @@ Content-Type: application/json
 
 {
   "idEsrb": 2,
-  "title": "GTA10",
+  "title": "RDR2",
   "game_description": "Lo mismo pero con monas chinas jojo",
   "size": "701GB",
   "players": 8,
