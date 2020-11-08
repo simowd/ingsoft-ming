@@ -1,5 +1,54 @@
+GET http://localhost:8080//ming/publisher/4/dashboard
+Accept: application/json
+
+###
 GET http://localhost:8080/ming/publisher/4
 Accept: application/json
+
+###
+PUT http://localhost:8080/ming/publisher/4
+Accept: application/json
+Content-Type: application/json
+
+{
+  "username": "el jojos7",
+  "email": "eljojos2@gmail.com",
+  "paypal": "eljojosconplata2@gmail.com",
+  "publisher": "EpicGames",
+  "country": 1,
+  "password": "Bolivia",
+  "repeat_password": "Bolivia"
+}
+
+###
+POST http://localhost:8080/ming/publisher/1/game
+Accept: application/json
+Content-Type: application/json
+
+{
+  "idEsrb": 1,
+  "title": "GTA8",
+  "game_description": "Lo mismo pero con monas chinas",
+  "size": "700GB",
+  "players": 7,
+  "processor": "Intel 10",
+  "release_date": "2019-10-11T13:33:05.673",
+  "memory": "15GB RAM",
+  "graphics": "GeForce la chetada x2",
+  "color": "#1111",
+  "highlighted":  1,
+  "download_path": "jaja.com",
+  "images": ["http//11","http//22","http//33"],
+  "developer": "RockStarSdd",
+  "directx": [1,2,3],
+  "operatingSystem": [1,2],
+  "languageGames": [1,2],
+  "genreGames" : [1,2],
+  "price": 19.99,
+  "sale": 10
+
+}
+
 
 ###
 POST http://localhost:8080/ming/admin/publisher
@@ -26,20 +75,6 @@ Accept: application/json
 ###
 
 
-PUT http://localhost:8080/ming/publisher/4
-Accept: application/json
-Content-Type: application/json
 
-{
-  "username": "el jojos7",
-  "email": "eljojos2@gmail.com",
-  "paypal": "eljojosconplata2@gmail.com",
-  "publisher": "EpicGames",
-  "country": 1,
-  "password": "Bolivia",
-  "repeat_password": "Bolivia"
-}
 
-###
-GET http://localhost:8080//ming/publisher/4/dashboard
-Accept: application/json
+
