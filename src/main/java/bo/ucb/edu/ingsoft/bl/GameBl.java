@@ -327,5 +327,13 @@ public class GameBl {
         return gameDetailsRequest;
     }
 
+    public void deleteGame(Integer idGame,Transaction transaction){
+
+        gameDao.deleteGame(idGame);
+
+        transactionDao.updateUserTransaction(4, transaction.getTxId(), transaction.getTxHost(), transaction.getTxUserId(), transaction.getTxDate());
+
+    }
+
 
 }

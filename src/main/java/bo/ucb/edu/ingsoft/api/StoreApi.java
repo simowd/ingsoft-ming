@@ -27,6 +27,11 @@ public class StoreApi {
         return storeBl.getHomePage(page);
     }
 
+    @RequestMapping(value="/ming/store/search", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<HomepageRequest> getSearch(@RequestParam String search){
+        return storeBl.getSearchData(search);
+    }
+
     @RequestMapping(value="/ming/store/highlights", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<HighlightRequest> getHighlights(){
         return storeBl.getHighLights();

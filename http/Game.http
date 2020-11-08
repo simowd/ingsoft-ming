@@ -27,34 +27,6 @@ Content-Type: application/json
 
 }
 
-
-###
-PUT http://localhost:8080/ming/publisher/6/game
-Accept: application/json
-Content-Type: application/json
-
-{
-  "idEsrb": 2,
-  "title": "RDR2",
-  "game_description": "Lo mismo pero con monas chinas jojo",
-  "size": "701GB",
-  "players": 8,
-  "processor": "Intel 10",
-  "release_date": "2019-10-11T13:33:05.673",
-  "memory": "17GB RAM",
-  "graphics": "GeForce la chetada x2",
-  "color": "#1111",
-  "highlighted":  1,
-  "download_path": "jaja.com",
-  "images": ["http//eljojos","http//eljojos1","http//eljojs3"],
-  "developer": "RockStarGamessdd",
-  "directx": [1,2],
-  "operatingSystem": [1],
-  "languageGames": [1,2,3],
-  "genreGames" : [1,2,3],
-  "price": 50,
-  "sale": 60
-}
 ###
 GET http://localhost:8080/ming/store/games/3
 Accept: application/json
