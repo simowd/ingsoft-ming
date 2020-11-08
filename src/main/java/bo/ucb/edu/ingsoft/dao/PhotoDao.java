@@ -13,6 +13,7 @@ public interface PhotoDao {
     public List<Photo> findByIdGame(List<Integer> idGame);
     public List<Photo> findBannerbyId(List<Integer> idGame);
     public List<Photo> findPhotosByGameId(Integer idGame);
+    public Photo findBannerbyGame(Integer idGame);
 
 
     public void createPhotoBanner (Photo photo);

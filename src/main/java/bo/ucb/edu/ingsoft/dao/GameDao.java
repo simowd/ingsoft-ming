@@ -1,5 +1,6 @@
 package bo.ucb.edu.ingsoft.dao;
 
+import bo.ucb.edu.ingsoft.dto.Transaction;
 import bo.ucb.edu.ingsoft.models.Game;
 import bo.ucb.edu.ingsoft.models.Publisher;
 import org.apache.ibatis.annotations.Mapper;
@@ -45,4 +46,13 @@ public interface GameDao {
     public void updateGame(Game game);
 
     public Integer findByDeveloperGame(Integer gameId);
+
+
+
+    //delete  delete
+    public void deleteGame(Integer idGame);
+
+    //Search Query
+    public List<Game> searchQuery(String query);
+
 }
