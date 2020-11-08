@@ -53,7 +53,7 @@ En esta sección se muestra las herramientas utilizadas en el proyecto.
 * [MySQL](https://www.mysql.com/)
 
 <!-- LOGOS IMAGES -->
-<div class="column">
+<div class="row">
     <img src="https://spring.io/images/spring-logo-9146a4d3298760c2e7e49595184e1975.svg" width="500" height="400">
     <img src="https://www.computerworld.es/archivos/201401/java.jpg" width="500" height="350">
     <img src="https://desarrolloweb.com/storage/tag_images/actual/Dz1aCoaslzsDu3WFE5XBrzHI7C4XmcLg9a579paC.png" width="400" height="300">
