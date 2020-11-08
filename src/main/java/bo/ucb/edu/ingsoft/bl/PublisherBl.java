@@ -154,7 +154,6 @@ public class PublisherBl {
 
     public DashboardRequest PublisherDashboard(Integer idUser){
         Publisher pubId=publisherDao.findByPublisherId(idUser);
-
         User mail=userDao.publisherMail(idUser);
 
         List<Integer> developer=developerDao.findByPublisher(pubId.getIdPublisher());
@@ -171,7 +170,6 @@ public class PublisherBl {
         }
 
         List<Double> monthlyEarnings=orderDao.gameEarningsMonth(game,months);
-        System.out.println(monthlyEarnings);
         List<Integer> totalCountrySells=orderDao.gameOrderCountryCount(game);
         List<Integer> countries=orderDao.gameOrderCountry(game);
         List<Integer> gameSells=orderDao.gameSellsGame(game);
