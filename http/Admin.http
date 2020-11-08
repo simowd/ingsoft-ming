@@ -1,0 +1,25 @@
+POST http://localhost:8080/ming/admin/publisher
+Accept: application/json
+Content-Type: application/json
+
+{
+  "username": "el jojos1",
+  "email": "eljojos@gmail.com",
+  "paypal": "eljojosconplata@gmail.com",
+  "publisher": "EpicGames",
+  "country": 1,
+  "password": "Bolivia",
+  "repeat_password": "Bolivia"
+}
+
+###
+GET http://localhost:8080/ming/admin/publisher
+Accept: application/json
+
+###
+DELETE http://localhost:8080/ming/admin/publisher/4
+Accept: application/json
+###
+
+
+

@@ -76,34 +76,10 @@ Content-Type: application/json
   "price": 50,
   "sale": 60
 }
-
-
-###
-POST http://localhost:8080/ming/admin/publisher
-Accept: application/json
-Content-Type: application/json
-
-{
-  "username": "el jojos1",
-  "email": "eljojos@gmail.com",
-  "paypal": "eljojosconplata@gmail.com",
-  "publisher": "EpicGames",
-  "country": 1,
-  "password": "Bolivia",
-  "repeat_password": "Bolivia"
-}
 ###
 DELETE http://localhost:8080/ming/publisher/1/game
 Accept: application/json
 
-###
-GET http://localhost:8080/ming/admin/publisher
-Accept: application/json
-
-###
-DELETE http://localhost:8080/ming/admin/publisher/7
-Accept: application/json
-###
 
 
 
