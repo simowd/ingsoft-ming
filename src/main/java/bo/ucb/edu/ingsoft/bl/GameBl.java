@@ -23,9 +23,10 @@ public class GameBl {
     private GenreDao genreDao;
     private PhotoDao photoDao;
     private PriceDao priceDao;
+    private UserDao userDao;
 
     @Autowired
-    public GameBl(GameDao gameDao, TransactionDao transactionDao, DeveloperDao developerDao, EsrbDao esrbDao, GamesDirectxDao gamesDirectxDao, GamesLanguagesDao languagesDao, GamesOsDao gamesOsDao, GenreDao genreDao, PhotoDao photoDao, PriceDao priceDao) {
+    public GameBl(GameDao gameDao, TransactionDao transactionDao, DeveloperDao developerDao, EsrbDao esrbDao, GamesDirectxDao gamesDirectxDao, GamesLanguagesDao languagesDao, GamesOsDao gamesOsDao, GenreDao genreDao, PhotoDao photoDao, PriceDao priceDao, UserDao userDao) {
         this.gameDao = gameDao;
         this.transactionDao = transactionDao;
         this.developerDao = developerDao;
@@ -36,8 +37,8 @@ public class GameBl {
         this.genreDao = genreDao;
         this.photoDao = photoDao;
         this.priceDao = priceDao;
+        this.userDao = userDao;
     }
-
 
     public NewGameRequest createGame(NewGameRequest newGameRequest, Transaction transaction, Integer idPublisher) {
 
@@ -342,55 +343,4 @@ public class GameBl {
         gameDao.updateHighlight(game);
     }
 
-    public PaymentRequest getGamePayment(Integer gameId, Integer userId) {
-        PaymentRequest paymentRequest = new PaymentRequest();
-//        paymentRequest.setTitle();
-//        paymentRequest.setCard();
-//        paymentRequest.setEmail();
-
-        Game game = gameDao.getGameInfo(gameId);
-        List<Integer> gamesLanguagesDao = languagesDao.findGameLanguages(game.getIdGame());
-        List<Language> languageList = languagesDao.findByIdLanguage(gamesLanguagesDao);
-        ArrayList<String> languageListAux = new ArrayList<>();
-        languageList.forEach(language -> {
-            languageListAux.add(language.getLanguage());
-        });
-        Esrb esrb = esrbDao.findEsrbById(game.getIdEsrb());
-        List<Photo> photos = photoDao.findPhotosByGameId(game.getIdGame());
-        List<String> photosAux = new ArrayList<>();
-        photos.forEach(photo -> {
-            photosAux.add(photo.getPhotoPath());
-        });
-        Developer developer = developerDao.findByIdDeveloper(game.getIdDeveloper());
-        List<Integer> oS = gamesOsDao.findByGame(game.getIdGame());
-        List<OperatingSystem> operatingSystemList = gamesOsDao.findByIdGameOs(oS);
-
-        Price price = priceDao.findById(game.getIdGame());
-        List<String> genres = genreDao.gameGenre(game.getIdGame());
-
-        GameDetailsRequest gameDetailsRequest = new GameDetailsRequest();
-        gameDetailsRequest.setId(game.getIdGame());
-        gameDetailsRequest.setTitle(game.getName());
-        gameDetailsRequest.setLanguage(languageListAux);
-        gameDetailsRequest.setGame_description(game.getDescription());
-        gameDetailsRequest.setSize(game.getSize());
-        gameDetailsRequest.setEsrb(esrb);
-        gameDetailsRequest.setImages(photosAux);
-        gameDetailsRequest.setDeveloper(developer.getDeveloper());
-        gameDetailsRequest.setPlayers(game.getPlayers());
-        gameDetailsRequest.setRelease_date(game.getReleaseDate());
-        gameDetailsRequest.setProcessor(game.getProcessor());
-        gameDetailsRequest.setMemory(game.getMemory());
-        gameDetailsRequest.setGraphics(game.getGraphics());
-        gameDetailsRequest.setColor(game.getColor());
-        gameDetailsRequest.setHighlighted(game.getHighlight());
-        gameDetailsRequest.setDownload_path(game.getDownloadPath());
-        gameDetailsRequest.setStatus(game.getStatus());
-        gameDetailsRequest.setOperating_systems(operatingSystemList);
-        gameDetailsRequest.setGenres(genres);
-        gameDetailsRequest.setSale(price.getSale());
-        gameDetailsRequest.setPrice(price.getPrice());
-
-        return null;
-    }
 }

@@ -120,4 +120,21 @@
         month(order_details.tx_date)
     </select>
 
+    <insert id="createOrder" parameterType="bo.ucb.edu.ingsoft.models.Orders">
+      INSERT INTO orders
+        VALUES (
+             null,
+             #{idUser},
+             #{idDeveloper},
+             #{date},
+             1,
+             #{txId},
+             #{txHost},
+             #{txUserId},
+             #{txDate}
+        )
+    </insert>
+    <select id="getLastInsertId" resultType="java.lang.Integer">
+        SELECT LAST_INSERT_ID()
+    </select>
 </mapper>

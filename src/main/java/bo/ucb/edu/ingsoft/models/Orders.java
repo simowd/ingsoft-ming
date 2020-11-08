@@ -1,6 +1,6 @@
 package bo.ucb.edu.ingsoft.models;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Orders extends Transactions {
     private Integer idOrder;
@@ -71,4 +71,5 @@ public class Orders extends Transactions {
                 ", status=" + getStatus() +
                 '}';
     }
+
 }
