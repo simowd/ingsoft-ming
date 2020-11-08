@@ -45,4 +45,7 @@ public interface GameDao {
     public void updateGame(Game game);
 
     public Integer findByDeveloperGame(Integer gameId);
+
+    //Search Query
+    public List<Game> searchQuery(String query);
 }

@@ -43,6 +43,14 @@
         WHERE status = 1
         LIMIT #{a} OFFSET #{b}
     </select>
+    <select id="searchQuery" resultType="bo.ucb.edu.ingsoft.models.Game">
+        SELECT id_game as idGame,
+        name as name
+        FROM games
+        WHERE status = 1
+        AND name LIKE #{query}
+        LIMIT 5
+    </select>
     <select id="findHighlight" resultType="bo.ucb.edu.ingsoft.models.Game">
         SELECT
             id_game as idGame,

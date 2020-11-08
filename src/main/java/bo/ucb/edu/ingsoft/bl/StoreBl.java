@@ -46,6 +46,26 @@ public class StoreBl {
         }
         return list;
     }
+    public List<HomepageRequest> getSearchData(String search) {
+        List<HomepageRequest> list = new ArrayList<HomepageRequest>();
+        List<Game> games = gameDao.searchQuery("%"+search+"%");
+        System.out.println(search);
+        if(!games.isEmpty()) {
+            List<Integer> ids = new ArrayList<Integer>();
+            for (Game game : games) {
+                ids.add(game.getIdGame());
+            }
+            for(int i = 0; i < ids.size(); i++){
+                Price price = priceDao.findById(ids.get(i));
+                Photo photo = photoDao.findBannerbyGame(ids.get(i));
+                if(price != null && photo != null){
+                    HomepageRequest homepageRequest = new HomepageRequest(games.get(i).getIdGame().toString(), games.get(i).getName(), price.getPrice(), price.getSale().doubleValue(), photo.getPhotoPath());
+                    list.add(homepageRequest);
+                }
+            }
+        }
+        return list;
+    }
     public List<HighlightRequest> getHighLights() {
         List<HighlightRequest> list = new ArrayList<HighlightRequest>();
         List<Game> games = gameDao.findHighlight();
