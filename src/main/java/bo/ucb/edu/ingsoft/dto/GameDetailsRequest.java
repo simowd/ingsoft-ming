@@ -1,6 +1,7 @@
 package bo.ucb.edu.ingsoft.dto;
 
 import bo.ucb.edu.ingsoft.models.Esrb;
+import bo.ucb.edu.ingsoft.models.OperatingSystem;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -24,30 +25,10 @@ public class GameDetailsRequest {
     private Integer highlighted;
     private String download_path;
     private Integer status;
+    private List<OperatingSystem> operating_systems;
     private Double sale;
 
     public GameDetailsRequest() {
-    }
-
-    public GameDetailsRequest(Integer id, String title, ArrayList<String> language, String game_description, String size, Esrb esrb, List<String> images, String developer, Integer players, Date release_date, String processor, String memory, String graphics, String color, Integer highlighted, String download_path, Integer status, Double sale) {
-        this.id = id;
-        this.title = title;
-        this.language = language;
-        this.game_description = game_description;
-        this.size = size;
-        this.esrb = esrb;
-        this.images = images;
-        this.developer = developer;
-        this.players = players;
-        this.release_date = release_date;
-        this.processor = processor;
-        this.memory = memory;
-        this.graphics = graphics;
-        this.color = color;
-        this.highlighted = highlighted;
-        this.download_path = download_path;
-        this.status = status;
-        this.sale = sale;
     }
 
     @Override
@@ -70,6 +51,7 @@ public class GameDetailsRequest {
                 ", highlighted=" + highlighted +
                 ", download_path='" + download_path + '\'' +
                 ", status=" + status +
+                ", operating_systems=" + operating_systems +
                 ", sale=" + sale +
                 '}';
     }
@@ -208,6 +190,14 @@ public class GameDetailsRequest {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public List<OperatingSystem> getOperating_systems() {
+        return operating_systems;
+    }
+
+    public void setOperating_systems(List<OperatingSystem> operating_systems) {
+        this.operating_systems = operating_systems;
     }
 
     public Double getSale() {
