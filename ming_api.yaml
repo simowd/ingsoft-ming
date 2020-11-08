@@ -434,9 +434,7 @@ paths:
             content: 
               application/json:
                 schema:
-                  type: array
-                  items:
-                    $ref: "#/components/schemas/home_page_game"
+                  $ref: "#/components/schemas/home_page_game"
         "400":
           description: Bad Request!
         "404":
@@ -530,7 +528,35 @@ paths:
         "404":
           description: Page not found!
         "500":
-          description: Server error!         
+          description: Server error!       
+  /store/search:
+    get:
+      tags: 
+        - "Store"
+      summary: The Search Bar
+      description: |
+        The store has a search bar
+      parameters:
+        - name: search
+          description: |
+            The home page current page.
+          in: "query"
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+            description: Request was successful!
+            content: 
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/home_page_game"
+        "400":
+          description: Bad Request!
+        "404":
+          description: Page not found!
+        "500":
+          description: Server error!   
   /admin/publisher:
       post:
         tags: 
@@ -694,7 +720,7 @@ paths:
       put:
         tags: 
           - "Admin"
-        summary: The admin edits highlights
+        summary: The admin edit game highlight
         description: |
           The admin edit game things
         requestBody:
@@ -702,7 +728,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/admin_home_page_game"
+                $ref: "#/components/schemas/admin_edit_highlight"
         responses:
           "200":
             description: Request was successful!
@@ -1069,32 +1095,32 @@ components:
     sales:
       type: object
       required:
-        - id
         - title
+        - releaseDate
+        - price
         - sale
-        - game_description
-        - image
+        - banner
       properties:
-        id:
-          description: |
-            The game's id
-          example: "1234"
-          type: string
         title:
           description: |
             The game's title
-          example: "Noita"
+          example: "Paradise VR"
+          type: string
+        releaseDate:
+          description: |
+            The game's release date
+          example: "2020-10-11T13:33:05.673"
           type: string
         price:
           description: |
             The game's price
-          example: "19.99"
-          type: string
+          example: 19.99
+          type: number
         sale:
           description: |
-            The game's offer if it has one
-          example: "9.99"
-          type: string
+            The game's offer
+          example: 10
+          type: integer
         banner:
           description: |
             The game's banner
@@ -1228,7 +1254,7 @@ components:
         title:
           description: |
             The game's title
-          example: "Noita"
+          example: "Among Us VR 3"
           type: string
         game_description:
           description: |
@@ -1238,8 +1264,8 @@ components:
         price:
           description: |
             The game's price
-          example: "19.99"
-          type: string
+          example: 59.99
+          type: number
         banner:
           description: |
             The game's banner
@@ -1248,20 +1274,42 @@ components:
         release_date:
           description: |
             The game's release date
-          example: "Jan 2021"
+          example: "2021-10-11T13:33:05.673"
           type: string
     game:
       type: object
-      required: 
+      required:
+        - id
         - title
-        - price
+        - language
         - game_description
-        - images
+        - size
+        - esrb
+        - image
+        - genres
+        - developer
+        - players
+        - release_date
+        - processor
+        - memory
+        - graphics
+        - color
+        - highlighted
+        - download_path
+        - status
+        - operating_systems
+        - sale
+        - price
       properties:
+        id:
+          description: |
+            The game's id
+          example: 4
+          type: integer
         title:
           description: |
             The game's title
-          example: "Noita"
+          example: "Make Friends with randoms VR"
           type: string
         language:
           description: |
@@ -1269,7 +1317,7 @@ components:
           type: array
           items: 
             type: string
-            example: "Arabic" 
+            example: "Español"
         game_description:
           description: |
             The game's description
@@ -1278,35 +1326,40 @@ components:
         size:
           description: |
             The game's size
-          example: "1.2 GB"
+          example: "9GB"
           type: string
         esrb:
           description: |
             The game's age rating
           type: object
           properties:
+            idEsrb:
+              description: |
+                Esrb id
+              example: 4
+              type: integer
             esrb:
               description: |
                 The rating
               type: string
-              example: "Mature"
-            image:
+              example: "Everyone"
+            logoPath:
               description: |
-                The rating image
+                The rating logo
               type: string
               example: "esrb/images/mature.jpg"
-        images:
+        image:
           description: |
-            The game's images
+            The game's image
+          type: array
+          example: ["game/image/1","game/image/2"]
+        genres:
+          description: |
+            The game's genres
           type: array
           items:
-            type: object
-            properties:
-              image:
-                description: |
-                  The rating image
-                type: string
-                example: "esrb/images/logo.jpg"
+            type: string
+            example: ["Aventura","Plataforma"]
         developer:
           description: |
             The game's developer
@@ -1315,17 +1368,17 @@ components:
         players:
           description: |
             The game's number of players
-          example: "4"
+          example: 4
           type: integer
         release_date:
           description: |
             The game's release date
-          example: "Jun 2020"
+          example: "2025-10-11T00:00:00.000+00:00"
           type: string
         processor:
           description: |
             The game's required processor
-          example: "Jun 2020"
+          example: "AMD R9 3990x"
           type: string
         memory:
           description: |
@@ -1335,7 +1388,7 @@ components:
         graphics:
           description: |
             The game's required graphics card
-          example: "16 GB"
+          example: "RTX 3090 8GB"
           type: string
         color:
           description: |
@@ -1345,23 +1398,49 @@ components:
         highlighted:
           description: |
             The game's status as highlighted
-          example: "true"
-          type: string
-        sale:
-          description: |
-            The game's on sale offer amount
-          example: "true"
-          type: string
+          example: 0
+          type: integer
         download_path:
           description: |
-            The game's download path
-          example: "game.resource.file.download"
+            The game's download_path
+          example: "www.torrent.com"
           type: string
         status:
           description: |
             The game's status
-          example: "0"
-          type: string
+          example: 1
+          type: integer
+        operating_systems:
+          description: |
+            The game's operating system information
+          type: array
+          items:
+            properties:
+              idOperatingSystem:
+                description: |
+                  Operating system Id
+                example: 1
+                type: integer
+              operatingSystem:
+                description: |
+                  Operating system name
+                type: string
+                example: "Linux"
+              logoPath:
+                description: |
+                  Operating system logo path
+                type: string
+                example: "https://www.flaticon.com/svg/static/icons/svg/731/731985.svg"
+        sale:
+          description: |
+            The game's on sale offer amount
+          example: 10
+          type: number
+        price:
+          description: |
+            The game's price
+          example: 29.99
+          type: number
     cart:
       type: object
       required:
@@ -1895,10 +1974,29 @@ components:
             The game's sale numbre
           example: 10
           type: integer
+    admin_edit_highlight:
+      type: object
+      required: 
+        - id
+        - highlight
+      properties:
+        id:
+          description: |
+            The game's id
+          example: 1234
+          type: integer
+        highlight:
+          description: |
+            The game's highlight status
+          example: 1
+          type: integer
     admin_home_page_game:
       type: array
       required: 
         - id
+        - title
+        - price
+        - banner
         - highlight
       items:
         type: object
@@ -1907,6 +2005,26 @@ components:
             description: |
               The game's id
             example: "1234"
+            type: string
+          title:
+            description: |
+              The game's title
+            example: "Noita"
+            type: string
+          price:
+            description: |
+              The game's price
+            example: "19.99"
+            type: string
+          sale:
+            description: |
+              The game's offer if it has one
+            example: "9.99"
+            type: string
+          banner:
+            description: |
+              The game's banner
+            example: "game/images/banner.jpg"
             type: string
           highlight:
             description: |
