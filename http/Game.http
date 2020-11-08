@@ -47,11 +47,11 @@ GET http://localhost:8080/ming/store/games/3
 Accept: application/json
 
 ###
-POST http://localhost:8080/ming/1/2/single/purchase/
+POST http://localhost:8080/ming/single/purchase/
 Accept: application/json
 Content-Type: application/json
 
 {
-  "idUser": 1,
-  "idGame": 1
+  "idGame": 3,
+  "idUser": 2
 }
