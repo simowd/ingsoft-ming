@@ -282,7 +282,7 @@ public class GameBl {
     public GameDetailsRequest getGameInformation(Integer gameId) {
 
         Game game = gameDao.getGameInfo(gameId);
-        List<Integer> gamesLanguagesDao = languagesDao.findGameLanguages(gameId);
+        List<Integer> gamesLanguagesDao = languagesDao.findGameLanguages(game.getIdGame());
         List<Language> languageList = languagesDao.findByIdLanguage(gamesLanguagesDao);
         ArrayList<String> languageListAux = new ArrayList<>();
         languageList.forEach(language -> {
@@ -298,11 +298,11 @@ public class GameBl {
         List<Integer> oS = gamesOsDao.findByGame(game.getIdGame());
         List<OperatingSystem> operatingSystemList = gamesOsDao.findByIdGameOs(oS);
 
-        Price price = priceDao.findById(gameId);
-        List<String> genres = genreDao.gameGenre(gameId);
+        Price price = priceDao.findById(game.getIdGame());
+        List<String> genres = genreDao.gameGenre(game.getIdGame());
 
         GameDetailsRequest gameDetailsRequest = new GameDetailsRequest();
-        gameDetailsRequest.setId(gameId);
+        gameDetailsRequest.setId(game.getIdGame());
         gameDetailsRequest.setTitle(game.getName());
         gameDetailsRequest.setLanguage(languageListAux);
         gameDetailsRequest.setGame_description(game.getDescription());
