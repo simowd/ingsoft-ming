@@ -2,11 +2,13 @@ GET http://localhost:8080/ming/store/homepage?page=1
 Accept: application/json
 
 ###
-GET http://localhost:8080//ming/store/sale
+
+GET http://localhost:8080//ming/store/highlights
 Accept: application/json
 
 ###
-GET http://localhost:8080//ming/store/highlights
+
+GET http://localhost:8080//ming/store/sale
 Accept: application/json
 
 ###
