@@ -59,4 +59,7 @@ public interface GameDao {
 
     public List<Game> findAllGames();
 
+    //Update Highlight
+    public void updateHighlight(Game game);
+
 }

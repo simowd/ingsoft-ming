@@ -181,11 +181,24 @@
         FROM games INNER JOIN developers ON games.id_developer = developers.id_developer
         INNER JOIN publishers ON developers.id_publisher = publishers.id_publisher
         WHERE publishers.id_publisher = #{idPublisher}
+        AND publishers.status = 1
+        AND games.status = 1
     </select>
     <select id="findAllGames" resultType="bo.ucb.edu.ingsoft.models.Game">
         SELECT id_game as idGame,
         name as name,
         highlight as highlight
         FROM games
+        WHERE status = 1
     </select>
+    <update id="updateHighlight" parameterType="bo.ucb.edu.ingsoft.models.Game">
+        UPDATE games
+        SET highlight = #{highlight},
+             tx_id=#{txId},
+             tx_host=#{txHost},
+             tx_user_id=#{txUserId},
+             tx_date=#{txDate}
+        WHERE
+            id_game=#{idGame}
+    </update>
 </mapper>

@@ -1,10 +1,7 @@
 package bo.ucb.edu.ingsoft.bl;
 
 import bo.ucb.edu.ingsoft.dao.*;
-import bo.ucb.edu.ingsoft.dto.GameDetailsRequest;
-import bo.ucb.edu.ingsoft.dto.GamesRequest;
-import bo.ucb.edu.ingsoft.dto.NewGameRequest;
-import bo.ucb.edu.ingsoft.dto.Transaction;
+import bo.ucb.edu.ingsoft.dto.*;
 import bo.ucb.edu.ingsoft.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -298,6 +295,8 @@ public class GameBl {
         List<Integer> oS = gamesOsDao.findByGame(game.getIdGame());
         List<OperatingSystem> operatingSystemList = gamesOsDao.findByIdGameOs(oS);
 
+        System.out.println(operatingSystemList);
+
         Price price = priceDao.findById(gameId);
         List<String> genres = genreDao.gameGenre(gameId);
 
@@ -335,5 +334,15 @@ public class GameBl {
 
     }
 
+    public void updateHighlight(SetHighlightRequest setHighlightRequest, Transaction transaction, Integer gameId){
+        Game game = new Game();
+        game.setHighlight(setHighlightRequest.getHighlight());
+        game.setTxId(transaction.getTxId());
+        game.setTxDate(transaction.getTxDate());
+        game.setTxHost(transaction.getTxHost());
+        game.setTxUserId(transaction.getTxUserId());
+        game.setIdGame(gameId);
+        gameDao.updateHighlight(game);
+    }
 
 }
