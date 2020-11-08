@@ -3,6 +3,8 @@ package bo.ucb.edu.ingsoft.bl;
 import bo.ucb.edu.ingsoft.dao.*;
 import bo.ucb.edu.ingsoft.dto.*;
 import bo.ucb.edu.ingsoft.models.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +26,8 @@ public class GameBl {
     private PhotoDao photoDao;
     private PriceDao priceDao;
     private UserDao userDao;
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(StoreBl.class);
 
     @Autowired
     public GameBl(GameDao gameDao, TransactionDao transactionDao, DeveloperDao developerDao, EsrbDao esrbDao, GamesDirectxDao gamesDirectxDao, GamesLanguagesDao languagesDao, GamesOsDao gamesOsDao, GenreDao genreDao, PhotoDao photoDao, PriceDao priceDao, UserDao userDao) {
