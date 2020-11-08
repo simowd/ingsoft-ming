@@ -24,4 +24,9 @@
             #{item}
         </foreach>
     </select>
+    <select id="findByGame" resultType="java.lang.Integer">
+        SELECT id_operating_system
+        FROM games_os
+        WHERE id_game = #{gameId}
+    </select>
 </mapper>

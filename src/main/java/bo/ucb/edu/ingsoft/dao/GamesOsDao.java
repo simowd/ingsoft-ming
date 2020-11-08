@@ -14,5 +14,6 @@ public interface GamesOsDao {
 
    public List<OperatingSystem> findByIdGameOs(List<Integer> idOperatingSystem);
 
+   public List<Integer> findByGame(Integer gameId);
 
 }

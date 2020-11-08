@@ -12,3 +12,7 @@ Accept: application/json
 ###
 GET http://localhost:8080//ming/store/releases
 Accept: application/json
+
+###
+GET http://localhost:8080//ming/store/games/1
+Accept: application/json

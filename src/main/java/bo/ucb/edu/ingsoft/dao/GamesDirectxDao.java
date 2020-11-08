@@ -13,4 +13,6 @@ public interface GamesDirectxDao {
 
    public List<Directx> findByIdDirectx(List<Integer> idDirectx);
 
+   public List<Integer> findByGame(Integer gameId);
+
 }

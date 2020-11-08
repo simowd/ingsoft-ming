@@ -15,5 +15,5 @@ public interface GamesLanguagesDao {
 
    public List<Language> findByIdLanguage(List<Integer> idLanguage);
 
-
+   public List <Integer> findGameLanguages(Integer gameId);
 }

@@ -1,6 +1,10 @@
 package bo.ucb.edu.ingsoft.dto;
 
+import bo.ucb.edu.ingsoft.models.Esrb;
+
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 public class AddGameToCart extends GameDetailsRequest {
@@ -12,8 +16,8 @@ public class AddGameToCart extends GameDetailsRequest {
         this.email = email;
     }
 
-    public AddGameToCart(String gender, String type, String operativeSystem, String developer, Integer players, ArrayList<String> languages, String classification, String description, String processor, String memory, String graphics, String driver, Double storage, Double price, String user, String email) {
-        super(gender, type, operativeSystem, developer, players, languages, classification, description, processor, memory, graphics, driver, storage, price);
+    public AddGameToCart(Integer id, String title, ArrayList<String> language, String game_description, String size, Esrb esrb, List<String> images, String developer, Integer players, Date release_date, String processor, String memory, String graphics, String color, Integer highlighted, String download_path, Integer status, Double sale) {
+        super(id,  title,  language,  game_description,  size, esrb,  images,  developer,  players, release_date,  processor,  memory,  graphics,  color,  highlighted,  download_path,  status,  sale);
         this.user = user;
         this.email = email;
     }
