@@ -62,7 +62,7 @@ public class PublisherApi {
         }
     }
 
-    @RequestMapping(value = "/ming/admin/publisher/{id}",method = RequestMethod.PUT)
+    @RequestMapping(value = "/ming/admin/publisher/{id}",method = RequestMethod.DELETE)
     public @ResponseBody String deletePublisher(@PathVariable("id") Integer userId,  HttpServletRequest request) {
         try {
             Transaction transaction = TransactionUtil.createTransaction(request);
