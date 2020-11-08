@@ -168,7 +168,9 @@ public class GameBl {
         photos.forEach(photo -> {
             photosAux.add(photo.getPhotoPath());
         });
-
+        Developer developer = developerDao.findByIdDeveloper(game.getIdDeveloper());
+        List<Integer> oS = gamesOsDao.findByGame(game.getIdGame());
+        List<OperatingSystem> operatingSystemList = gamesOsDao.findByIdGameOs(oS);
 //        GenreDao genreDao = genreDao.;
         GameDetailsRequest gameDetailsRequest = new GameDetailsRequest();
         gameDetailsRequest.setId(gameId);
@@ -178,17 +180,17 @@ public class GameBl {
         gameDetailsRequest.setSize(game.getSize());
         gameDetailsRequest.setEsrb(esrb);
         gameDetailsRequest.setImages(photosAux);
-//        gameDetailsRequest.setDeveloper();
+        gameDetailsRequest.setDeveloper(developer.getDeveloper());
         gameDetailsRequest.setPlayers(game.getPlayers());
-//        gameDetailsRequest.setRelease_date();
+        gameDetailsRequest.setRelease_date(game.getReleaseDate());
         gameDetailsRequest.setProcessor(game.getProcessor());
         gameDetailsRequest.setMemory(game.getMemory());
         gameDetailsRequest.setGraphics(game.getGraphics());
-//        gameDetailsRequest.setColor();
-//        gameDetailsRequest.setHighlighted();
-//        gameDetailsRequest.setDownload_path();
-//        gameDetailsRequest.setStatus();
-//        gameDetailsRequest.setOperating_systems();
+        gameDetailsRequest.setColor(game.getColor());
+        gameDetailsRequest.setHighlighted(game.getHighlight());
+        gameDetailsRequest.setDownload_path(game.getDownloadPath());
+        gameDetailsRequest.setStatus(game.getStatus());
+        gameDetailsRequest.setOperating_systems(operatingSystemList);
 //        gameDetailsRequest.setSale();
 
         return gameDetailsRequest;

@@ -12,7 +12,7 @@
         )
     </insert>
 
-    <select id="findByIdDevoper" resultType="bo.ucb.edu.ingsoft.models.Developer">
+    <select id="findByIdDevloper" resultType="bo.ucb.edu.ingsoft.models.Developer">
         SELECT
                id_developer as idDeveloper,
                id_publisher as idPubliser
@@ -32,5 +32,14 @@
 
     <select id="getLastInsertId" resultType="java.lang.Integer">
         SELECT LAST_INSERT_ID()
+    </select>
+    <select id="findByIdDeveloper" resultType="bo.ucb.edu.ingsoft.models.Developer">
+        SELECT
+               id_developer as idDeveloper,
+               id_publisher as idPubliser,
+               developer as developer
+        FROM developers
+        WHERE
+            id_developer = #{idDeveloper}
     </select>
 </mapper>
