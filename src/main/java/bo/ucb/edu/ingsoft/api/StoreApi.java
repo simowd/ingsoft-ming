@@ -58,4 +58,9 @@ public class StoreApi {
     public GameDetailsRequest getGameInformation(@PathVariable("id") Integer gameId){
         return gameBl.getGameInformation(gameId);
     }
+
+    @RequestMapping(value = "/ming/{user}/{id}/cart/purchase/",method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public PaymentRequest getGamePayment(@PathVariable("id") Integer gameId, @PathVariable("user") Integer userId){
+        return gameBl.getGamePayment(gameId, userId);
+    }
 }
