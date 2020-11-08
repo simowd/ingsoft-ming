@@ -28,6 +28,7 @@ public interface GameDao {
     //Create Game
     public void createGame(Game game);
 
+    //Get game info
     public Game getGameInfo(Integer idGame);
 
     public ArrayList<Game> getPage(@Param("a") Integer limit, @Param("b") Integer offset);

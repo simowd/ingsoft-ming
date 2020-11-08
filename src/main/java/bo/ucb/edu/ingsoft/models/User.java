@@ -2,7 +2,7 @@ package bo.ucb.edu.ingsoft.models;
 
 import java.util.Date;
 
-public class User {
+public class User extends Transactions {
     private Integer idUser;
     private Integer idCountry;
     private String userName;
@@ -14,15 +14,12 @@ public class User {
     private String lastName;
     private String alias;
     private Integer status;
-    private Integer txId;
-    private String txHost;
-    private Integer txUserId;
-    private Date txDate;
+
 
     public User() {
     }
 
-    public User(Integer idUser, Integer idCountry, String userName, String password, String email, Integer userType, String photoPath, String name, String lastName, String alias, Integer status, Integer txId, String txHost, Integer txUserId, Date txDate) {
+    public User(Integer idUser, Integer idCountry, String userName, String password, String email, Integer userType, String photoPath, String name, String lastName, String alias, Integer status) {
         this.idUser = idUser;
         this.idCountry = idCountry;
         this.userName = userName;
@@ -34,10 +31,21 @@ public class User {
         this.lastName = lastName;
         this.alias = alias;
         this.status = status;
-        this.txId = txId;
-        this.txHost = txHost;
-        this.txUserId = txUserId;
-        this.txDate = txDate;
+    }
+
+    public User(Integer txId, String txHost, Integer txUser, Date txDate, Integer idUser, Integer idCountry, String userName, String password, String email, Integer userType, String photoPath, String name, String lastName, String alias, Integer status) {
+        super(txId, txHost, txUser, txDate);
+        this.idUser = idUser;
+        this.idCountry = idCountry;
+        this.userName = userName;
+        this.password = password;
+        this.email = email;
+        this.userType = userType;
+        this.photoPath = photoPath;
+        this.name = name;
+        this.lastName = lastName;
+        this.alias = alias;
+        this.status = status;
     }
 
     @Override
@@ -54,10 +62,6 @@ public class User {
                 ", lastName='" + lastName + '\'' +
                 ", alias='" + alias + '\'' +
                 ", status=" + status +
-                ", txId=" + txId +
-                ", txHost='" + txHost + '\'' +
-                ", txUserId=" + txUserId +
-                ", txDate=" + txDate +
                 '}';
     }
 
@@ -149,35 +153,4 @@ public class User {
         this.status = status;
     }
 
-    public Integer getTxId() {
-        return txId;
-    }
-
-    public void setTxId(Integer txId) {
-        this.txId = txId;
-    }
-
-    public String getTxHost() {
-        return txHost;
-    }
-
-    public void setTxHost(String txHost) {
-        this.txHost = txHost;
-    }
-
-    public Integer getTxUserId() {
-        return txUserId;
-    }
-
-    public void setTxUserId(Integer txUserId) {
-        this.txUserId = txUserId;
-    }
-
-    public Date getTxDate() {
-        return txDate;
-    }
-
-    public void setTxDate(Date txDate) {
-        this.txDate = txDate;
-    }
 }

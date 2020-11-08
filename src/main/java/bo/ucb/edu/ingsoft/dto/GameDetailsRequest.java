@@ -15,6 +15,7 @@ public class GameDetailsRequest {
     private String size;
     private Esrb esrb;
     private List<String> images;
+    private List<String> genres;
     private String developer;
     private Integer players;
     private Date release_date;
@@ -27,11 +28,12 @@ public class GameDetailsRequest {
     private Integer status;
     private List<OperatingSystem> operating_systems;
     private Double sale;
+    private Double price;
 
     public GameDetailsRequest() {
     }
 
-    public GameDetailsRequest(Integer id, String title, ArrayList<String> language, String game_description, String size, Esrb esrb, List<String> images, String developer, Integer players, Date release_date, String processor, String memory, String graphics, String color, Integer highlighted, String download_path, Integer status, List<OperatingSystem> operating_systems, Double sale) {
+    public GameDetailsRequest(Integer id, String title, ArrayList<String> language, String game_description, String size, Esrb esrb, List<String> images, List<String> genres, String developer, Integer players, Date release_date, String processor, String memory, String graphics, String color, Integer highlighted, String download_path, Integer status, List<OperatingSystem> operating_systems, Double sale, Double price) {
         this.id = id;
         this.title = title;
         this.language = language;
@@ -39,6 +41,7 @@ public class GameDetailsRequest {
         this.size = size;
         this.esrb = esrb;
         this.images = images;
+        this.genres = genres;
         this.developer = developer;
         this.players = players;
         this.release_date = release_date;
@@ -51,6 +54,7 @@ public class GameDetailsRequest {
         this.status = status;
         this.operating_systems = operating_systems;
         this.sale = sale;
+        this.price = price;
     }
 
     @Override
@@ -63,6 +67,7 @@ public class GameDetailsRequest {
                 ", size='" + size + '\'' +
                 ", esrb=" + esrb +
                 ", images=" + images +
+                ", genres=" + genres +
                 ", developer='" + developer + '\'' +
                 ", players=" + players +
                 ", release_date=" + release_date +
@@ -75,7 +80,24 @@ public class GameDetailsRequest {
                 ", status=" + status +
                 ", operating_systems=" + operating_systems +
                 ", sale=" + sale +
+                ", price=" + price +
                 '}';
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public List<String> getGenres() {
+        return genres;
+    }
+
+    public void setGenres(List<String> genres) {
+        this.genres = genres;
     }
 
     public Integer getId() {

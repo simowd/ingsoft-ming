@@ -12,7 +12,7 @@ Content-Type: application/json
   "photo_path": "nuevarutadelaimagensupergenial.com.nuevo"
 }
 ###
-PUT http://localhost:8080/ming/users/7/password
+PUT http://localhost:8080/ming/users/2/password
 Accept: application/json
 Content-Type: application/json
 

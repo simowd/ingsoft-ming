@@ -34,6 +34,7 @@
         )
     </insert>
 
+
     <update id="updatePrice" parameterType="bo.ucb.edu.ingsoft.models.Price">
         UPDATE price
         SET
@@ -42,4 +43,12 @@
         WHERE
             id_game=#{idGame}
     </update>
+
+    <select id="findById" resultType="bo.ucb.edu.ingsoft.models.Price">
+        SELECT price as price,
+               sale as sale
+        FROM price
+        WHERE id_game = #{idGame}
+    </select>
+
 </mapper>

@@ -14,4 +14,7 @@ public interface PriceDao {
 
     public void updatePrice(Price price);
 
+    public Price findById(Integer idGame);
+
+
 }
