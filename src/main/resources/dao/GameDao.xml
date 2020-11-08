@@ -161,5 +161,12 @@
             id_game = #{idGame}
     </select>
 
+    <update id="deleteGame" >
+        UPDATE games
+        SET  status=0
+        WHERE
+            id_game=#{idGame}
+    </update>
+
 
 </mapper>

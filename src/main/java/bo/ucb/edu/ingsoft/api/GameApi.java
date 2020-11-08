@@ -53,4 +53,18 @@ public class GameApi {
         }
     }
 
+    @RequestMapping(value = "/ming/publisher/{id}/game",method = RequestMethod.DELETE)
+    public @ResponseBody String deleteGame(@PathVariable("id") Integer idGame,  HttpServletRequest request) {
+        try {
+            Transaction transaction = TransactionUtil.createTransaction(request);
+            transactionBl.createTransaction(transaction);
+            gameBl.deleteGame(idGame,transaction);
+            return "ok";
+        } catch (Exception ex) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "User Not Found", ex);
+        }
+    }
+
+
 }
