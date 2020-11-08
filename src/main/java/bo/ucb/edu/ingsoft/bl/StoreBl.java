@@ -35,12 +35,13 @@ public class StoreBl {
             for (Game game : games) {
                 ids.add(game.getIdGame());
             }
-            List<Price> prices = priceDao.findByIdGame(ids);
-            List<Photo> photos = photoDao.findBannerbyId(ids);
-
-            for (int i = 0; i < games.size(); i++) {
-                HomepageRequest homepageRequest = new HomepageRequest(games.get(i).getIdGame().toString(), games.get(i).getName(), prices.get(i).getPrice(), prices.get(i).getSale().doubleValue(), photos.get(i).getPhotoPath());
-                list.add(homepageRequest);
+            for(int i = 0; i < ids.size(); i++){
+                Price price = priceDao.findById(ids.get(i));
+                Photo photo = photoDao.findBannerbyGame(ids.get(i));
+                if(price != null && photo != null){
+                    HomepageRequest homepageRequest = new HomepageRequest(games.get(i).getIdGame().toString(), games.get(i).getName(), price.getPrice(), price.getSale().doubleValue(), photo.getPhotoPath());
+                    list.add(homepageRequest);
+                }
             }
         }
         return list;
@@ -53,10 +54,12 @@ public class StoreBl {
             for (Game game : games) {
                 ids.add(game.getIdGame());
             }
-            List<Photo> photos = photoDao.findBannerbyId(ids);
-            for (int i = 0; i < games.size(); i++) {
-                HighlightRequest homepageRequest = new HighlightRequest(games.get(i).getIdGame().toString(), games.get(i).getName(), games.get(i).getDescription() ,photos.get(i).getPhotoPath());
-                list.add(homepageRequest);
+            for(int i = 0; i < ids.size(); i++){
+                Photo photo = photoDao.findBannerbyGame(ids.get(i));
+                if(photo != null){
+                    HighlightRequest homepageRequest = new HighlightRequest(games.get(i).getIdGame().toString(), games.get(i).getName(), games.get(i).getDescription() ,photo.getPhotoPath());
+                    list.add(homepageRequest);
+                }
             }
         }
         return list;
@@ -86,11 +89,13 @@ public class StoreBl {
             for (Game game : games) {
                 ids.add(game.getIdGame());
             }
-            List<Photo> photos = photoDao.findBannerbyId(ids);
-            List<Price> prices = priceDao.findByIdGame(ids);
-            for (int i = 0; i < games.size(); i++) {
-                ReleaseRequest homepageRequest = new ReleaseRequest(games.get(i).getIdGame().toString(), games.get(i).getName(), games.get(i).getDescription() , prices.get(i).getPrice(), photos.get(i).getPhotoPath(),games.get(i).getReleaseDate());
-                list.add(homepageRequest);
+            for(int i = 0; i < ids.size(); i++){
+                Price price = priceDao.findById(ids.get(i));
+                Photo photo = photoDao.findBannerbyGame(ids.get(i));
+                if(price != null && photo != null){
+                    ReleaseRequest homepageRequest = new ReleaseRequest(games.get(i).getIdGame().toString(), games.get(i).getName(), games.get(i).getDescription() , price.getPrice(), photo.getPhotoPath(),games.get(i).getReleaseDate());
+                    list.add(homepageRequest);
+                }
             }
         }
         return list;

@@ -26,6 +26,17 @@
         AND type = 1
         AND status = 1
     </select>
+    <select id="findBannerbyGame" resultType="bo.ucb.edu.ingsoft.models.Photo">
+        SELECT
+        id_photos as idPhoto,
+        id_game as idGame,
+        photo_path as photoPath,
+        type as type
+        FROM photos
+        WHERE id_game = #{idGame}
+        AND type = 1
+        AND status = 1
+    </select>
     <insert id="createPhotoBanner" parameterType="bo.ucb.edu.ingsoft.models.Photo">
       INSERT INTO photos
         VALUES (
