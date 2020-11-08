@@ -1,4 +1,4 @@
-GET http://localhost:8080/ming/publisher/12
+GET http://localhost:8080/ming/publisher/4
 Accept: application/json
 
 ###
@@ -21,17 +21,17 @@ GET http://localhost:8080/ming/admin/publisher
 Accept: application/json
 
 ###
-PUT http://localhost:8080/ming/admin/publisher/5
+DELETE http://localhost:8080/ming/admin/publisher/7
 Accept: application/json
 ###
 
 
-PUT http://localhost:8080/ming/publisher/12
+PUT http://localhost:8080/ming/publisher/4
 Accept: application/json
 Content-Type: application/json
 
 {
-  "username": "el jojos4",
+  "username": "el jojos7",
   "email": "eljojos2@gmail.com",
   "paypal": "eljojosconplata2@gmail.com",
   "publisher": "EpicGames",

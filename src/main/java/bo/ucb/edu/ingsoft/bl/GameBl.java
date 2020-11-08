@@ -61,6 +61,7 @@ public class GameBl {
         game.setIdEsrb(newGameRequest.getIdEsrb());
         game.setIdDeveloper(idDeveloper);
         game.setName(newGameRequest.getTitle());
+        game.setHighlight(newGameRequest.getHighlighted());
         game.setDescription(newGameRequest.getGame_description());
         game.setSize(newGameRequest.getSize());
         game.setPlayers(newGameRequest.getPlayers());
