@@ -31,6 +31,28 @@ public class GameDetailsRequest {
     public GameDetailsRequest() {
     }
 
+    public GameDetailsRequest(Integer id, String title, ArrayList<String> language, String game_description, String size, Esrb esrb, List<String> images, String developer, Integer players, Date release_date, String processor, String memory, String graphics, String color, Integer highlighted, String download_path, Integer status, List<OperatingSystem> operating_systems, Double sale) {
+        this.id = id;
+        this.title = title;
+        this.language = language;
+        this.game_description = game_description;
+        this.size = size;
+        this.esrb = esrb;
+        this.images = images;
+        this.developer = developer;
+        this.players = players;
+        this.release_date = release_date;
+        this.processor = processor;
+        this.memory = memory;
+        this.graphics = graphics;
+        this.color = color;
+        this.highlighted = highlighted;
+        this.download_path = download_path;
+        this.status = status;
+        this.operating_systems = operating_systems;
+        this.sale = sale;
+    }
+
     @Override
     public String toString() {
         return "GameDetailsRequest{" +
