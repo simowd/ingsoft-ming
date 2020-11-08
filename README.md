@@ -52,13 +52,11 @@ En esta sección se muestra las herramientas utilizadas en el proyecto.
 * [MyBatis](https://mybatis.org/mybatis-3/es/)
 * [MySQL](https://www.mysql.com/)
 
-<!-- LOGOS IMAGES -->
-<div class="row">
-    <img src="https://spring.io/images/spring-logo-9146a4d3298760c2e7e49595184e1975.svg" width="500" height="400">
-    <img src="https://www.computerworld.es/archivos/201401/java.jpg" width="500" height="350">
-    <img src="https://desarrolloweb.com/storage/tag_images/actual/Dz1aCoaslzsDu3WFE5XBrzHI7C4XmcLg9a579paC.png" width="400" height="300">
-    <img src="https://userscontent2.emaze.com/images/779a0d56-16a5-4abe-ba8c-55f8cbb3ffa2/74485f3e-b244-43c2-9198-e351ca880901.png" width="450" height="300">
-</div>
+<!-- TOOLS IMAGE -->
+<p align="center">
+  <a href="https://github.com/simowd/ingsoft-ming">
+    <img src="/Herramientas.jpg" alt="Logo" width="900" height="500">
+  </a>
 
 ### Instalación para Linux
 
