@@ -48,6 +48,11 @@ public interface GameDao {
     public Integer findByDeveloperGame(Integer gameId);
 
 
+
     //delete  delete
     public void deleteGame(Integer idGame);
+
+    //Search Query
+    public List<Game> searchQuery(String query);
+
 }
