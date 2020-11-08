@@ -175,6 +175,17 @@
         WHERE
             id_game=#{idGame}
     </update>
-
-
+    <select id="findByPublisher" resultType="bo.ucb.edu.ingsoft.models.Game">
+        SELECT id_game as idGame,
+        name as name
+        FROM games INNER JOIN developers ON games.id_developer = developers.id_developer
+        INNER JOIN publishers ON developers.id_publisher = publishers.id_publisher
+        WHERE publishers.id_publisher = #{idPublisher}
+    </select>
+    <select id="findAllGames" resultType="bo.ucb.edu.ingsoft.models.Game">
+        SELECT id_game as idGame,
+        name as name,
+        highlight as highlight
+        FROM games
+    </select>
 </mapper>

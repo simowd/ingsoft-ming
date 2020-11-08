@@ -1,14 +1,8 @@
 package bo.ucb.edu.ingsoft.bl;
 
 import bo.ucb.edu.ingsoft.dao.*;
-import bo.ucb.edu.ingsoft.dto.DashboardRequest;
-import bo.ucb.edu.ingsoft.dto.PublisherRequest;
-import bo.ucb.edu.ingsoft.dto.Transaction;
-import bo.ucb.edu.ingsoft.dto.UserRequest;
-import bo.ucb.edu.ingsoft.models.Country;
-import bo.ucb.edu.ingsoft.models.Developer;
-import bo.ucb.edu.ingsoft.models.Publisher;
-import bo.ucb.edu.ingsoft.models.User;
+import bo.ucb.edu.ingsoft.dto.*;
+import bo.ucb.edu.ingsoft.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -27,19 +21,20 @@ public class PublisherBl {
     private OrderDao orderDao;
     private GameDao gameDao;
     private DeveloperDao developerDao;
+    private PriceDao priceDao;
+    private PhotoDao photoDao;
 
     @Autowired
-    public PublisherBl(PublisherDao publisherDao, UserDao userDao, TransactionDao transactionDao, OrderDao orderDao, GameDao gameDao, DeveloperDao developerDao) {
+    public PublisherBl(PublisherDao publisherDao, UserDao userDao, TransactionDao transactionDao, OrderDao orderDao, GameDao gameDao, DeveloperDao developerDao, PriceDao priceDao, PhotoDao photoDao) {
         this.publisherDao = publisherDao;
         this.userDao = userDao;
         this.transactionDao = transactionDao;
         this.orderDao = orderDao;
         this.gameDao = gameDao;
         this.developerDao = developerDao;
+        this.priceDao = priceDao;
+        this.photoDao = photoDao;
     }
-
-
-
 
     public PublisherRequest createPublisher(PublisherRequest publisherRequest, Transaction transaction){
 
@@ -191,6 +186,44 @@ public class PublisherBl {
 
     }
 
+    public List<HomepageRequest> getAllPublisherGames(Integer idPublisher){
+        List<HomepageRequest> list = new ArrayList<HomepageRequest>();
+        List<Game> games = gameDao.findByPublisher(idPublisher);
+        if(!games.isEmpty()) {
+            List<Integer> ids = new ArrayList<Integer>();
+            for (Game game : games) {
+                ids.add(game.getIdGame());
+            }
+            for(int i = 0; i < ids.size(); i++){
+                Price price = priceDao.findById(ids.get(i));
+                Photo photo = photoDao.findBannerbyGame(ids.get(i));
+                if(price != null && photo != null){
+                    HomepageRequest homepageRequest = new HomepageRequest(games.get(i).getIdGame().toString(), games.get(i).getName(), price.getPrice(), price.getSale().doubleValue(), photo.getPhotoPath());
+                    list.add(homepageRequest);
+                }
+            }
+        }
+        return list;
+    }
 
+    public List<GameAdminRequest> getAllGames(){
+        List<GameAdminRequest> list = new ArrayList<GameAdminRequest>();
+        List<Game> games = gameDao.findAllGames();
+        if(!games.isEmpty()) {
+            List<Integer> ids = new ArrayList<Integer>();
+            for (Game game : games) {
+                ids.add(game.getIdGame());
+            }
+            for(int i = 0; i < ids.size(); i++){
+                Price price = priceDao.findById(ids.get(i));
+                Photo photo = photoDao.findBannerbyGame(ids.get(i));
+                if(price != null && photo != null){
+                    GameAdminRequest gameAdminRequest = new GameAdminRequest(games.get(i).getIdGame().toString(), games.get(i).getName(), price.getPrice(), price.getSale().doubleValue(), photo.getPhotoPath(),games.get(i).getHighlight());
+                    list.add(gameAdminRequest);
+                }
+            }
+        }
+        return list;
+    }
 
 }

@@ -5,9 +5,6 @@ import bo.ucb.edu.ingsoft.bl.TransactionBl;
 
 import bo.ucb.edu.ingsoft.dto.*;
 
-import bo.ucb.edu.ingsoft.models.Country;
-import bo.ucb.edu.ingsoft.models.Publisher;
-import bo.ucb.edu.ingsoft.models.User;
 import bo.ucb.edu.ingsoft.util.TransactionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -68,5 +65,15 @@ public class PublisherApi {
                     HttpStatus.NOT_FOUND, "Page Not Found", ex);
         }
 
+    }
+
+    @RequestMapping(value="/ming/publisher/{id}/game", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<HomepageRequest> getPublisherGames(@PathVariable("id") Integer idPublisher){
+        return publisherBl.getAllPublisherGames(idPublisher);
+    }
+
+    @RequestMapping(value="/ming/publisher/games", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<GameAdminRequest> getAdminGames(){
+        return publisherBl.getAllGames();
     }
 }
