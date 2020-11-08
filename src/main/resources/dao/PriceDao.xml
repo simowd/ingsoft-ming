@@ -33,4 +33,13 @@
              #{txDate}
         )
     </insert>
+
+    <update id="updatePrice" parameterType="bo.ucb.edu.ingsoft.models.Price">
+        UPDATE price
+        SET
+           price=#{price},
+           sale=#{sale}
+        WHERE
+            id_game=#{idGame}
+    </update>
 </mapper>

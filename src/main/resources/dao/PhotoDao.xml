@@ -52,4 +52,30 @@
         FROM photos
         WHERE id_game = #{idGame}
     </select>
+
+    <update id="updatePhotoBanner" parameterType="bo.ucb.edu.ingsoft.models.Photo">
+        UPDATE photos
+        SET
+            photo_path=#{photoPath}
+        WHERE
+            id_photos=#{idPhoto}
+    </update>
+
+    <update id="updatePhoto" parameterType="bo.ucb.edu.ingsoft.models.Photo">
+        UPDATE photos
+        SET
+            photo_path=#{photoPath}
+        WHERE
+            id_photos=#{idPhoto}
+    </update>
+
+    <select id="findByPhotos" resultType="java.lang.Integer">
+        SELECT
+             id_photos as idPhoto
+        FROM photos
+        WHERE
+            id_game=#{idGame}
+    </select>
+
+
 </mapper>

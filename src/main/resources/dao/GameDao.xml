@@ -128,4 +128,37 @@
             status = 1
         AND release_date BETWEEN CURDATE()-INTERVAL 1 WEEK AND CURDATE();
     </select>
+
+    <update id="updateGame" parameterType="bo.ucb.edu.ingsoft.models.Game">
+        UPDATE games
+        SET
+             id_esrb=#{idEsrb},
+             id_developer=#{idDeveloper},
+             name=#{name},
+             description=#{description},
+             size=#{size},
+             players=#{players},
+             release_date=#{releaseDate},
+             processor=#{processor},
+             memory=#{memory},
+             graphics=#{graphics},
+             color=#{color},
+             highlight=#{highlight},
+             download_path=#{downloadPath},
+             tx_id=#{txId},
+             tx_host=#{txHost},
+             tx_user_id=#{txUserId},
+             tx_date=#{txDate}
+        WHERE
+            id_game=#{idGame}
+    </update>
+    <select id="findByDeveloperGame" resultType="java.lang.Integer">
+        SELECT
+               id_developer as idDeveloper
+        FROM games
+        WHERE
+            id_game = #{idGame}
+    </select>
+
+
 </mapper>

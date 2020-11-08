@@ -18,4 +18,9 @@ public interface PhotoDao {
     public void createPhotoBanner (Photo photo);
     public void createPhoto (Photo photo);
 
+    public void updatePhotoBanner (Photo photo);
+    public void updatePhoto (Photo photo);
+
+    public List<Integer> findByPhotos(Integer idGame);
+
 }

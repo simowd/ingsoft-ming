@@ -3,6 +3,7 @@ package bo.ucb.edu.ingsoft.api;
 import bo.ucb.edu.ingsoft.bl.GameBl;
 import bo.ucb.edu.ingsoft.bl.PublisherBl;
 import bo.ucb.edu.ingsoft.bl.TransactionBl;
+import bo.ucb.edu.ingsoft.dao.GameDao;
 import bo.ucb.edu.ingsoft.dto.*;
 import bo.ucb.edu.ingsoft.models.Developer;
 import bo.ucb.edu.ingsoft.util.TransactionUtil;
@@ -35,5 +36,18 @@ public class GameApi {
         transactionBl.createTransaction(transaction);
         NewGameRequest newGameResponse=gameBl.createGame(newGameRequest,transaction,idPublisher);
         return newGameResponse;
+    }
+
+    @RequestMapping(value = "/ming/publisher/{id}/game",method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody String updatePublisher(@PathVariable("id") Integer gameId,@RequestBody NewGameRequest newGameRequest, HttpServletRequest request) {
+//        try {
+            Transaction transaction = TransactionUtil.createTransaction(request);
+            transactionBl.createTransaction(transaction);
+            gameBl.updateGame(newGameRequest,transaction,gameId);
+            return "ok";
+//        } catch (Exception ex) {
+//            throw new ResponseStatusException(
+//                    HttpStatus.NOT_FOUND, "User Not Found", ex);
+//        }
     }
 }

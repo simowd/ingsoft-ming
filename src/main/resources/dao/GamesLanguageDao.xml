@@ -28,4 +28,22 @@
         FROM languages_games
         WHERE id_game = #{gameId}
     </select>
+
+    <select id="findByIdGamesLanguages" resultType="java.lang.Integer">
+        SELECT
+            id_languages_games as idLanguageGame
+        FROM languages_games
+        WHERE
+            id_game=#{idGame}
+    </select>
+    <delete id="deleteOldsLanguages">
+        DELETE
+        FROM languages_games
+        WHERE
+        id_languages_games in
+        <foreach collection="list" item="item" index="index"
+                 open="(" separator="," close = ")">
+            #{item}
+        </foreach>
+    </delete>
 </mapper>

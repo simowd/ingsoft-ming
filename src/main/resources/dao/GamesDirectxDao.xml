@@ -28,4 +28,32 @@
         FROM  games_directx
         WHERE id_game = #{gameId}
     </select>
+
+    <update id="updataGameDirectx" parameterType="bo.ucb.edu.ingsoft.models.GameDirectx">
+        UPDATE games_directx
+        SET
+             id_directx=#{idDirectx}
+        WHERE
+            id_game=#{idGame}
+    </update>
+
+    <select id="findByIdDirectxGame" resultType="java.lang.Integer">
+        SELECT
+            id_games_direct_x as idGameDirectx
+        FROM games_directx
+        WHERE
+            id_game=#{idGame}
+    </select>
+    <delete id="deleteOldsDirectx">
+        DELETE
+        FROM games_directx
+        WHERE
+        id_games_direct_x in
+        <foreach collection="list" item="item" index="index"
+                 open="(" separator="," close = ")">
+            #{item}
+        </foreach>
+    </delete>
+
+
 </mapper>

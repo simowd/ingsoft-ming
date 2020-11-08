@@ -17,6 +17,10 @@ public interface GenreDao {
     //Get Genre name for one Game
     public List<String> gameGenre (Integer idGame);
 
+    public List<Integer>  findByIdGamesGenre(Integer idGame);
+
+    public void deleteOldsGenreDao(List<Integer> idGameGenre);
+
 
 
 }

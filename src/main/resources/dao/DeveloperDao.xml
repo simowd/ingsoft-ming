@@ -33,4 +33,12 @@
     <select id="getLastInsertId" resultType="java.lang.Integer">
         SELECT LAST_INSERT_ID()
     </select>
+
+    <update id="updateDeveloper" parameterType="bo.ucb.edu.ingsoft.models.Developer">
+        UPDATE developers
+        SET
+             developer=#{developer}
+        WHERE
+            id_developer=#{idDeveloper}
+    </update>
 </mapper>

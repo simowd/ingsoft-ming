@@ -29,4 +29,22 @@
         FROM games_os
         WHERE id_game = #{gameId}
     </select>
+
+    <select id="findByIdGamesOs" resultType="java.lang.Integer">
+        SELECT
+            id_games_os as idGameOs
+        FROM games_os
+        WHERE
+            id_game=#{idGame}
+    </select>
+    <delete id="deleteOldsOs">
+        DELETE
+        FROM games_os
+        WHERE
+        id_games_os in
+        <foreach collection="list" item="item" index="index"
+                 open="(" separator="," close = ")">
+            #{item}
+        </foreach>
+    </delete>
 </mapper>

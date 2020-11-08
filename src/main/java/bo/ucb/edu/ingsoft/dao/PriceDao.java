@@ -12,4 +12,6 @@ public interface PriceDao {
 
     public void createPrice(Price price);
 
+    public void updatePrice(Price price);
+
 }

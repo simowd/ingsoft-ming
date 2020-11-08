@@ -16,4 +16,8 @@ public interface GamesOsDao {
 
    public List<Integer> findByGame(Integer gameId);
 
+   public List<Integer>  findByIdGamesOs(Integer idGame);
+
+   public void deleteOldsOs(List<Integer> idGameOs);
+
 }

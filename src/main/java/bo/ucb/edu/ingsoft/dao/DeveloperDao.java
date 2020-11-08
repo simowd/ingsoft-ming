@@ -1,6 +1,7 @@
 package bo.ucb.edu.ingsoft.dao;
 
 import bo.ucb.edu.ingsoft.models.Developer;
+import bo.ucb.edu.ingsoft.models.Game;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -16,7 +17,12 @@ public interface DeveloperDao {
     // Get developer by publisher
     public List<Integer> findByPublisher(Integer idPublisher);
 
+
     //get last id in developers
     public Integer getLastInsertId();
+
+    public void updateDeveloper(Developer developer);
+
+
 
 }

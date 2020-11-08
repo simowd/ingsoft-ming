@@ -36,4 +36,22 @@
         WHERE
         genres_games.id_game=#{idGame}
     </select>
+
+    <select id="findByIdGamesGenre" resultType="java.lang.Integer">
+        SELECT
+            id_genre_game as idGenreGame
+        FROM genres_games
+        WHERE
+            id_game=#{idGame}
+    </select>
+    <delete id="deleteOldsGenreDao">
+        DELETE
+        FROM genres_games
+        WHERE
+        id_genre_game in
+        <foreach collection="list" item="item" index="index"
+                 open="(" separator="," close = ")">
+            #{item}
+        </foreach>
+    </delete>
 </mapper>

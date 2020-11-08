@@ -1,6 +1,7 @@
 package bo.ucb.edu.ingsoft.dao;
 
 import bo.ucb.edu.ingsoft.models.Game;
+import bo.ucb.edu.ingsoft.models.Publisher;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -39,4 +40,8 @@ public interface GameDao {
 
     //Get publisher developer games
     public List<Integer> findGamebyPublisher(List<Integer> idDeveloper);
+
+    public void updateGame(Game game);
+
+    public Integer findByDeveloperGame(Integer gameId);
 }
