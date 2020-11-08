@@ -84,6 +84,10 @@ Accept: application/json
 GET http://localhost:8080/ming/publisher/1/game
 Accept: application/json
 
+###
+GET http://localhost:8080/ming/publisher/games
+Accept: application/json
+
 
 
 

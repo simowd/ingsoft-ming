@@ -57,4 +57,6 @@ public interface GameDao {
 
     public List<Game> findByPublisher(Integer idPublisher);
 
+    public List<Game> findAllGames();
+
 }
