@@ -55,4 +55,6 @@ public interface GameDao {
     //Search Query
     public List<Game> searchQuery(String query);
 
+    public List<Game> findByPublisher(Integer idPublisher);
+
 }
