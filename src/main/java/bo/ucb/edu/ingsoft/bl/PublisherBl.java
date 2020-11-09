@@ -23,9 +23,10 @@ public class PublisherBl {
     private DeveloperDao developerDao;
     private PriceDao priceDao;
     private PhotoDao photoDao;
+    private CountryDao countryDao;
 
     @Autowired
-    public PublisherBl(PublisherDao publisherDao, UserDao userDao, TransactionDao transactionDao, OrderDao orderDao, GameDao gameDao, DeveloperDao developerDao, PriceDao priceDao, PhotoDao photoDao) {
+    public PublisherBl(PublisherDao publisherDao, UserDao userDao, TransactionDao transactionDao, OrderDao orderDao, GameDao gameDao, DeveloperDao developerDao, PriceDao priceDao, PhotoDao photoDao, CountryDao countryDao) {
         this.publisherDao = publisherDao;
         this.userDao = userDao;
         this.transactionDao = transactionDao;
@@ -34,7 +35,11 @@ public class PublisherBl {
         this.developerDao = developerDao;
         this.priceDao = priceDao;
         this.photoDao = photoDao;
+        this.countryDao = countryDao;
     }
+
+
+
 
     public PublisherRequest createPublisher(PublisherRequest publisherRequest, Transaction transaction){
 
@@ -155,6 +160,7 @@ public class PublisherBl {
 
 
         List<Integer> game=gameDao.findGamebyPublisher(developer);
+        List<String> gameName=gameDao.listGameNames(game);
 
         Integer totalSells=orderDao.gameSellsPublisher(game);
         Double totalEarnings=orderDao.gameEarnings(game);
@@ -167,6 +173,9 @@ public class PublisherBl {
         List<Double> monthlyEarnings=orderDao.gameEarningsMonth(game,months);
         List<Integer> totalCountrySells=orderDao.gameOrderCountryCount(game);
         List<Integer> countries=orderDao.gameOrderCountry(game);
+
+        List<String> countryNames=countryDao.CountryNameList(countries);
+
         List<Integer> gameSells=orderDao.gameSellsGame(game);
 
 
@@ -178,8 +187,11 @@ public class PublisherBl {
         dashboardRequest.setPaypal(pubId.getPaypalMail());
         dashboardRequest.setSells(totalSells);
         dashboardRequest.setEarnings(totalEarnings);
+        dashboardRequest.setMonths(months);
         dashboardRequest.setMonthly_earnings(monthlyEarnings);
+        dashboardRequest.setCountries(countryNames);
         dashboardRequest.setCountry_earnings(totalCountrySells);
+        dashboardRequest.setGames(gameName);
         dashboardRequest.setGame_earnings(gameSells);
 
         return dashboardRequest;

@@ -36,6 +36,18 @@
         </foreach>
 
     </select>
+    <select id="listGameNames" resultType="java.lang.String">
+        SELECT
+        name as name
+        FROM games
+        where
+        id_game in
+        <foreach collection="list" item="item" index="index"
+                 open="(" separator="," close=")">
+            #{item}
+        </foreach>
+
+    </select>
     <select id="findPage" resultType="bo.ucb.edu.ingsoft.models.Game">
         SELECT id_game as idGame,
         name as name

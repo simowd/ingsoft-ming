@@ -11,7 +11,7 @@
             id_country = #{idCountry}
     </select>
 
-    <select id="CountryNameList" resultType="bo.ucb.edu.ingsoft.models.Country">
+    <select id="CountryNameList" resultType="java.lang.String">
         SELECT
                name as name
         FROM countries

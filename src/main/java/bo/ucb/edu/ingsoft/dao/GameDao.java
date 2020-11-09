@@ -59,6 +59,8 @@ public interface GameDao {
 
     public List<Game> findAllGames();
 
+    public List<String> listGameNames(List<Integer> idGame);
+
     //Update Highlight
     public void updateHighlight(Game game);
 
