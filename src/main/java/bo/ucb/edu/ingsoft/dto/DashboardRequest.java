@@ -8,8 +8,11 @@ public class DashboardRequest {
     private String paypal;
     private Integer sells;
     private Double earnings;
+    private List<Integer> months;
     private List<Double> monthly_earnings;
+    private List<String> countries;
     private List<Integer> country_earnings;
+    private List<String> games;
     private List<Integer> game_earnings;
 
     public DashboardRequest() {
@@ -55,6 +58,14 @@ public class DashboardRequest {
         this.earnings = earnings;
     }
 
+    public List<Integer> getMonths() {
+        return months;
+    }
+
+    public void setMonths(List<Integer> months) {
+        this.months = months;
+    }
+
     public List<Double> getMonthly_earnings() {
         return monthly_earnings;
     }
@@ -63,12 +74,28 @@ public class DashboardRequest {
         this.monthly_earnings = monthly_earnings;
     }
 
+    public List<String> getCountries() {
+        return countries;
+    }
+
+    public void setCountries(List<String> countries) {
+        this.countries = countries;
+    }
+
     public List<Integer> getCountry_earnings() {
         return country_earnings;
     }
 
     public void setCountry_earnings(List<Integer> country_earnings) {
         this.country_earnings = country_earnings;
+    }
+
+    public List<String> getGames() {
+        return games;
+    }
+
+    public void setGames(List<String> games) {
+        this.games = games;
     }
 
     public List<Integer> getGame_earnings() {
@@ -87,8 +114,11 @@ public class DashboardRequest {
                 ", paypal='" + paypal + '\'' +
                 ", sells=" + sells +
                 ", earnings=" + earnings +
+                ", months=" + months +
                 ", monthly_earnings=" + monthly_earnings +
+                ", countries=" + countries +
                 ", country_earnings=" + country_earnings +
+                ", games=" + games +
                 ", game_earnings=" + game_earnings +
                 '}';
     }
