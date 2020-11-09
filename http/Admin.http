@@ -3,13 +3,13 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "username": "el jojos1",
-  "email": "eljojos@gmail.com",
-  "paypal": "eljojosconplata@gmail.com",
-  "publisher": "EpicGames",
-  "country": 1,
-  "password": "Bolivia",
-  "repeat_password": "Bolivia"
+  "username": "Admin",
+  "email": "admin@ea.com",
+  "paypal": "eamoney@gmail.com",
+  "publisher": "Electronic Arts",
+  "country": 8,
+  "password": "qwerty",
+  "repeat_password": "qwerty"
 }
 
 ###

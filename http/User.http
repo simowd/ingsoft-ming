@@ -1,4 +1,4 @@
-GET http://localhost:8080/ming/users/2
+GET http://localhost:8080/ming/users/1
 Accept: application/json
 ###
 PUT http://localhost:8080/ming/users/7
@@ -6,19 +6,19 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "alias": "aliasnuevonuevo",
-  "email": "emailnuevonuevo",
-  "id_country": 29,
-  "photo_path": "nuevarutadelaimagensupergenial.com.nuevo"
+  "alias": "el jojos",
+  "email": "email@eljojos.com",
+  "id_country": 5,
+  "photo_path": "eljojos.com.nuevo"
 }
 ###
-PUT http://localhost:8080/ming/users/2/password
+PUT http://localhost:8080/ming/users/7/password
 Accept: application/json
 Content-Type: application/json
 
 {
-  "old_password": "Bolivia",
-  "new_password": "nuevonuevonuevo"
+  "old_password": "newnew",
+  "new_password": "newn"
 }
 ###
 GET http://localhost:8080/ming/users/2/library
