@@ -1,5 +1,6 @@
 package bo.ucb.edu.ingsoft.dao;
 
+import bo.ucb.edu.ingsoft.dto.GameDetailsRequest;
 import bo.ucb.edu.ingsoft.models.Game;
 import bo.ucb.edu.ingsoft.models.OrderDetails;
 import bo.ucb.edu.ingsoft.models.Orders;
@@ -38,5 +39,18 @@ public interface OrderDao {
     // Create order
     public void createOrder(Orders orders);
 
+    // Create relation between orders and game
     public void createOrderDetails(OrderDetails orderDetails);
+
+    // Get orders with status 0
+    public List<Orders> getOrdersUser(Integer userIdCart);
+
+    // Get orders by user
+    public List<GameDetailsRequest> getCartUser(Integer userIdCart);
+
+    // Update status order with user an order id
+    public void updateOrder(Integer statusUpdate, Integer idOrder);
+
+    public List<Integer> getOrderDetailGameByUser(Integer gameId, Integer userId);
+
 }

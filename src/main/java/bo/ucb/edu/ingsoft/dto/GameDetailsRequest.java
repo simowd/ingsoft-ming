@@ -18,7 +18,7 @@ public class GameDetailsRequest {
     private List<String> genres;
     private String developer;
     private Integer players;
-    private Date release_date;
+    private Date releaseDate;
     private String processor;
     private String memory;
     private String graphics;
@@ -33,7 +33,7 @@ public class GameDetailsRequest {
     public GameDetailsRequest() {
     }
 
-    public GameDetailsRequest(Integer id, String title, ArrayList<String> language, String game_description, String size, Esrb esrb, List<String> images, List<String> genres, String developer, Integer players, Date release_date, String processor, String memory, String graphics, String color, Integer highlighted, String download_path, Integer status, List<OperatingSystem> operating_systems, Double sale, Double price) {
+    public GameDetailsRequest(Integer id, String title, ArrayList<String> language, String game_description, String size, Esrb esrb, List<String> images, List<String> genres, String developer, Integer players, Date releaseDate, String processor, String memory, String graphics, String color, Integer highlighted, String download_path, Integer status, List<OperatingSystem> operating_systems, Double sale, Double price) {
         this.id = id;
         this.title = title;
         this.language = language;
@@ -44,7 +44,7 @@ public class GameDetailsRequest {
         this.genres = genres;
         this.developer = developer;
         this.players = players;
-        this.release_date = release_date;
+        this.releaseDate = releaseDate;
         this.processor = processor;
         this.memory = memory;
         this.graphics = graphics;
@@ -70,7 +70,7 @@ public class GameDetailsRequest {
                 ", genres=" + genres +
                 ", developer='" + developer + '\'' +
                 ", players=" + players +
-                ", release_date=" + release_date +
+                ", release_date=" + releaseDate +
                 ", processor='" + processor + '\'' +
                 ", memory='" + memory + '\'' +
                 ", graphics='" + graphics + '\'' +
@@ -172,12 +172,12 @@ public class GameDetailsRequest {
         this.players = players;
     }
 
-    public Date getRelease_date() {
-        return release_date;
+    public Date getReleaseDate() {
+        return releaseDate;
     }
 
-    public void setRelease_date(Date release_date) {
-        this.release_date = release_date;
+    public void setReleaseDate(Date releaseDate) {
+        this.releaseDate = releaseDate;
     }
 
     public String getProcessor() {

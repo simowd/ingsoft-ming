@@ -145,4 +145,58 @@
             #{txUserId}, #{txDate}
         )
     </insert>
+
+    <select id="getCartUser" resultType="bo.ucb.edu.ingsoft.dto.GameDetailsRequest">
+        SELECT
+        c.id_game as id,
+        c.name as title,
+        c.players as players,
+        c.release_date as releaseDate,
+        b.price as price
+        FROM orders a,
+            order_details b,
+            games c
+        WHERE
+            a.id_user = #{userIdCart} AND
+            a.id_order = b.id_order AND
+            b.id_game = c.id_game AND
+            a.status = 0
+    </select>
+
+    <select id="getOrdersUser" resultType="bo.ucb.edu.ingsoft.models.Orders">
+        SELECT
+        id_order as idOrder,
+        id_user as idUser,
+        date as date,
+        status as status,
+        tx_id as txId,
+        tx_host as txHost,
+        tx_user_id as txUserId,
+        tx_date as txDate
+        FROM orders
+        WHERE
+        id_user = #{userIdCart} AND status = 0
+    </select>
+
+    <update id="updateOrder" parameterType="bo.ucb.edu.ingsoft.models.Orders">
+        UPDATE orders
+        SET
+             status=#{statusUpdate}
+        WHERE
+            id_order=#{idOrder}
+    </update>
+
+    <select id="getOrderDetailGameByUser" resultType="java.lang.Integer">
+        SELECT
+        a.id_order as idOrder
+        FROM
+        orders a,
+        order_details b
+        WHERE
+        a.id_order = b.id_order AND
+        a.id_user = #{userId} AND
+        b.id_game = #{gameId} AND
+        a.status = 0
+
+    </select>
 </mapper>
