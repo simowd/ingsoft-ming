@@ -1,26 +1,30 @@
+#The admin sees a publisher statistics
 GET http://localhost:8080//ming/publisher/4/dashboard
 Accept: application/json
 
 ###
+#Shows a publisher data
 GET http://localhost:8080/ming/publisher/4
 Accept: application/json
 
 ###
+#The publisher can edit his account
 PUT http://localhost:8080/ming/publisher/4
 Accept: application/json
 Content-Type: application/json
 
 {
-  "username": "el jojos7",
-  "email": "eljojos2@gmail.com",
-  "paypal": "eljojosconplata2@gmail.com",
-  "publisher": "EpicGames",
-  "country": 1,
-  "password": "Bolivia",
-  "repeat_password": "Bolivia"
+  "username": "Sasuke",
+  "email": "SasukeNoHokage@gmail.com",
+  "paypal": "shinobiconplata@gmail.com",
+  "publisher": "Treyarch",
+  "country": 15,
+  "password": "Treyarch",
+  "repeat_password": "Treyarch"
 }
 
 ###
+#The publisher add a game
 POST http://localhost:8080/ming/publisher/4/game
 Accept: application/json
 Content-Type: application/json
@@ -39,7 +43,7 @@ Content-Type: application/json
   "highlighted":  1,
   "download_path": "jaja.com",
   "images": ["http//11","http//22","http//33"],
-  "developer": "Santa Monica Peru",
+  "developer": "Mediatonic",
   "directx": [1,2,3],
   "operatingSystem": [1,2],
   "languageGames": [1,2],
@@ -50,6 +54,7 @@ Content-Type: application/json
 }
 
 ###
+#The publisher edit a game
 PUT http://localhost:8080/ming/publisher/4/game
 Accept: application/json
 Content-Type: application/json
@@ -77,10 +82,12 @@ Content-Type: application/json
   "sale": 60
 }
 ###
+#The publisher deletes a game
 DELETE http://localhost:8080/ming/publisher/4/game
 Accept: application/json
 
 ###
+#The publisher sees his games
 GET http://localhost:8080/ming/publisher/1/game
 Accept: application/json
 

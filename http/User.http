@@ -1,32 +1,41 @@
+#The user sees his profile info
 GET http://localhost:8080/ming/users/1
 Accept: application/json
+
 ###
-PUT http://localhost:8080/ming/users/7
+#The user can edit his profile info
+PUT http://localhost:8080/ming/users/1
 Accept: application/json
 Content-Type: application/json
 
 {
-  "alias": "el jojos",
-  "email": "email@eljojos.com",
-  "id_country": 5,
-  "photo_path": "eljojos.com.nuevo"
+  "alias": "Natham Drake",
+  "email": "Drake@yopmail.com",
+  "id_country": 27,
+  "photo_path": "images.com.nuevo"
 }
+
 ###
-PUT http://localhost:8080/ming/users/7/password
+#The user can edit his password
+PUT http://localhost:8080/ming/users/1/password
 Accept: application/json
 Content-Type: application/json
 
 {
-  "old_password": "newnew",
-  "new_password": "newn"
+  "old_password": "contra123",
+  "new_password": "new"
 }
+
 ###
+#The user sees his game library
 GET http://localhost:8080/ming/users/2/library
 Accept: application/json
 
 
+
 ###
-GET http://localhost:8080/ming/users/2/cart
+#The user sees his purchase cart
+GET http://localhost:8080/ming/users/1/cart
 Accept: application/json
 
 ###  /ming/{user add}/{game to}/ cart
