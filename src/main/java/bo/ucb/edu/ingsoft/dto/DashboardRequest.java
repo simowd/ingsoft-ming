@@ -1,5 +1,6 @@
 package bo.ucb.edu.ingsoft.dto;
 
+import bo.ucb.edu.ingsoft.models.countryDashboard;
 import bo.ucb.edu.ingsoft.models.monthlyDashboard;
 
 import java.util.List;
@@ -11,8 +12,7 @@ public class DashboardRequest {
     private Integer sells;
     private Double earnings;
     private List<monthlyDashboard> monthlyData;
-    private List<String> countries;
-    private List<Integer> country_earnings;
+    private List<countryDashboard> countryData;
     private List<String> games;
     private List<Integer> game_earnings;
 
@@ -67,20 +67,12 @@ public class DashboardRequest {
         this.monthlyData = monthlyData;
     }
 
-    public List<String> getCountries() {
-        return countries;
+    public List<countryDashboard> getCountryData() {
+        return countryData;
     }
 
-    public void setCountries(List<String> countries) {
-        this.countries = countries;
-    }
-
-    public List<Integer> getCountry_earnings() {
-        return country_earnings;
-    }
-
-    public void setCountry_earnings(List<Integer> country_earnings) {
-        this.country_earnings = country_earnings;
+    public void setCountryData(List<countryDashboard> countryData) {
+        this.countryData = countryData;
     }
 
     public List<String> getGames() {
@@ -108,8 +100,7 @@ public class DashboardRequest {
                 ", sells=" + sells +
                 ", earnings=" + earnings +
                 ", monthlyData=" + monthlyData +
-                ", countries=" + countries +
-                ", country_earnings=" + country_earnings +
+                ", countryData=" + countryData +
                 ", games=" + games +
                 ", game_earnings=" + game_earnings +
                 '}';
