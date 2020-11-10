@@ -122,15 +122,12 @@
     </select>
 
     <insert id="createOrder" parameterType="bo.ucb.edu.ingsoft.models.Orders">
-      INSERT INTO orders
+      INSERT INTO orders  (`id_user`, `date`, `status`,
+                           `tx_id`, `tx_host`, `tx_user_id`,
+                           `tx_date`)
         VALUES (
-             null,
-             #{idUser},
-             #{date},
-             1,
-             #{txId},
-             #{txHost},
-             #{txUserId},
+             #{idUser}, #{date}, #{status},
+             #{txId}, #{txHost}, #{txUserId},
              #{txDate}
         )
     </insert>
@@ -139,17 +136,13 @@
     </select>
 
     <insert id="createOrderDetails" parameterType="bo.ucb.edu.ingsoft.models.OrderDetails">
-      INSERT INTO order_details
+      INSERT INTO order_details (`id_game`, `id_order`, `price`,
+                                 `status`, `tx_id`, `tx_host`,
+                                 `tx_user_id`, `tx_date`)
         VALUES (
-             null,
-             #{idGame},
-             #{idOrder},
-             #{price},
-             1,
-             #{txId},
-             #{txHost},
-             #{txUserId},
-             #{txDate}
+            #{idGame}, #{idOrder}, #{price},
+            #{status}, #{txId}, #{txHost},
+            #{txUserId}, #{txDate}
         )
     </insert>
 </mapper>

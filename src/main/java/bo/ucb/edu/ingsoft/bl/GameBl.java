@@ -56,21 +56,19 @@ public class GameBl {
         Photo photo = new Photo();
         Price price = new Price();
 
-        String developerName=newGameRequest.getDeveloper();
-        Integer developerId =developerDao.findBydeveloperName(developerName);
+        String developerName = newGameRequest.getDeveloper();
+        Integer developerId = developerDao.findBydeveloperName(developerName);
 
         Integer idDeveloper = null;
-        if(developerId==null){
+        if (developerId == null) {
             developer.setDeveloper(newGameRequest.getDeveloper());
             developer.setIdPublisher(idPublisher);
             developerDao.createDeveloper(developer);
 
             idDeveloper = developerDao.getLastInsertId();
-        } else{
-            idDeveloper=developerId;
+        } else {
+            idDeveloper = developerId;
         }
-
-
 
 
         game.setIdEsrb(newGameRequest.getIdEsrb());
@@ -123,9 +121,9 @@ public class GameBl {
         }
 
 
-        List<Integer> genreIds=new ArrayList<Integer>();
-        genreIds=newGameRequest.getGenreGames();
-        for(int i=0; i<genreIds.size();i++){
+        List<Integer> genreIds = new ArrayList<Integer>();
+        genreIds = newGameRequest.getGenreGames();
+        for (int i = 0; i < genreIds.size(); i++) {
 
             genreGame.setIdGenre(genreIds.get(i));
             genreGame.setIdGame(idGame);
@@ -167,18 +165,18 @@ public class GameBl {
     }
 
 
-    public NewGameRequest updateGame(NewGameRequest newGameRequest, Transaction transaction, Integer idGame){
-        Game game =new Game();
-        Developer developer=new Developer();
-        Esrb esrb =new Esrb();
-        GameDirectx gameDirectx =new GameDirectx();
-        GameOS gameOS=new GameOS();
-        LanguageGame languageGame=new LanguageGame();
-        GenreGame genreGame=new GenreGame();
-        Photo photo=new Photo();
-        Price price=new Price();
+    public NewGameRequest updateGame(NewGameRequest newGameRequest, Transaction transaction, Integer idGame) {
+        Game game = new Game();
+        Developer developer = new Developer();
+        Esrb esrb = new Esrb();
+        GameDirectx gameDirectx = new GameDirectx();
+        GameOS gameOS = new GameOS();
+        LanguageGame languageGame = new LanguageGame();
+        GenreGame genreGame = new GenreGame();
+        Photo photo = new Photo();
+        Price price = new Price();
 
-        Integer idDeveloper=gameDao.findByDeveloperGame(idGame);
+        Integer idDeveloper = gameDao.findByDeveloperGame(idGame);
         developer.setIdDeveloper(idDeveloper);
         developer.setDeveloper(newGameRequest.getDeveloper());
         developerDao.updateDeveloper(developer);
@@ -203,75 +201,77 @@ public class GameBl {
         game.setTxDate(transaction.getTxDate());
         gameDao.updateGame(game);
 
-        List<Integer> directIds=new ArrayList<Integer>();
-        directIds=newGameRequest.getDirectx();
+        List<Integer> directIds = new ArrayList<Integer>();
+        directIds = newGameRequest.getDirectx();
 
-        List<Integer> idGameDirectx=gamesDirectxDao.findByIdDirectxGame(idGame);
+        List<Integer> idGameDirectx = gamesDirectxDao.findByIdDirectxGame(idGame);
         gamesDirectxDao.deleteOldsDirectx(idGameDirectx);
 
 
-        for(int i=0; i<directIds.size();i++){
+        for (int i = 0; i < directIds.size(); i++) {
 
             gameDirectx.setIdDirectx(directIds.get(i));
             gameDirectx.setIdGame(idGame);
             gamesDirectxDao.createGameDirectx(gameDirectx);
         }
 
-        List<Integer> operatingSystemIds=new ArrayList<Integer>();
-        operatingSystemIds=newGameRequest.getOperatingSystem();
+        List<Integer> operatingSystemIds = new ArrayList<Integer>();
+        operatingSystemIds = newGameRequest.getOperatingSystem();
 
-        List<Integer> idGameOs=gamesOsDao.findByIdGamesOs(idGame);
+        List<Integer> idGameOs = gamesOsDao.findByIdGamesOs(idGame);
 
         gamesOsDao.deleteOldsOs(idGameOs);
-        for(int i=0; i<operatingSystemIds.size();i++){
+        for (int i = 0; i < operatingSystemIds.size(); i++) {
 
-            gameOS.setIdOperatingSystem(operatingSystemIds.get(i));;
+            gameOS.setIdOperatingSystem(operatingSystemIds.get(i));
+            ;
             gameOS.setIdGame(idGame);
             gamesOsDao.createGameOs(gameOS);
         }
 
-        List<Integer> languagesIds=new ArrayList<Integer>();
-        languagesIds=newGameRequest.getLanguageGames();
+        List<Integer> languagesIds = new ArrayList<Integer>();
+        languagesIds = newGameRequest.getLanguageGames();
 
-        List<Integer> idGameLanguages=languagesDao.findByIdGamesLanguages(idGame);
+        List<Integer> idGameLanguages = languagesDao.findByIdGamesLanguages(idGame);
         languagesDao.deleteOldsLanguages(idGameLanguages);
 
-        for(int i=0; i<languagesIds.size();i++){
+        for (int i = 0; i < languagesIds.size(); i++) {
 
-            languageGame.setIdLanguage(languagesIds.get(i));;
+            languageGame.setIdLanguage(languagesIds.get(i));
+            ;
             languageGame.setIdGame(idGame);
             languagesDao.createLanguageGame(languageGame);
         }
 
 
+        List<Integer> genreIds = new ArrayList<Integer>();
+        genreIds = newGameRequest.getGenreGames();
 
-        List<Integer> genreIds=new ArrayList<Integer>();
-        genreIds=newGameRequest.getGenreGames();
-
-        List<Integer> idGameGenreId=genreDao.findByIdGamesGenre(idGame);
+        List<Integer> idGameGenreId = genreDao.findByIdGamesGenre(idGame);
         genreDao.deleteOldsGenreDao(idGameGenreId);
 
-        for(int i=0; i<genreIds.size();i++){
+        for (int i = 0; i < genreIds.size(); i++) {
 
-            genreGame.setIdGenre(genreIds.get(i));;
+            genreGame.setIdGenre(genreIds.get(i));
+            ;
             genreGame.setIdGame(idGame);
             genreDao.createGenreGame(genreGame);
         }
 
-        List<String> imagesPath=new ArrayList<String>();
-        imagesPath=newGameRequest.getImages();
+        List<String> imagesPath = new ArrayList<String>();
+        imagesPath = newGameRequest.getImages();
 
-        List<Integer> idGameImages=photoDao.findByPhotos(idGame);
+        List<Integer> idGameImages = photoDao.findByPhotos(idGame);
 
 
-        for(int i=0; i<imagesPath.size();i++){
+        for (int i = 0; i < imagesPath.size(); i++) {
 
-            if(i==0){
+            if (i == 0) {
                 photo.setIdPhoto(idGameImages.get(i));
                 photo.setIdGame(idGame);
                 photo.setPhotoPath(imagesPath.get(i));
                 photoDao.updatePhotoBanner(photo);
-            }else{
+            } else {
                 photo.setIdPhoto(idGameImages.get(i));
                 photo.setIdGame(idGame);
                 photo.setPhotoPath(imagesPath.get(i));
@@ -296,6 +296,7 @@ public class GameBl {
 
         Game game = gameDao.getGameInfo(gameId);
         List<Integer> gamesLanguagesDao = languagesDao.findGameLanguages(gameId);
+        LOGGER.warn(gamesLanguagesDao.toString());
         List<Language> languageList = languagesDao.findByIdLanguage(gamesLanguagesDao);
         ArrayList<String> languageListAux = new ArrayList<>();
         languageList.forEach(language -> {
@@ -340,7 +341,7 @@ public class GameBl {
         return gameDetailsRequest;
     }
 
-    public void deleteGame(Integer idGame,Transaction transaction){
+    public void deleteGame(Integer idGame, Transaction transaction) {
 
         gameDao.deleteGame(idGame);
 
@@ -348,7 +349,7 @@ public class GameBl {
 
     }
 
-    public void updateHighlight(SetHighlightRequest setHighlightRequest, Transaction transaction, Integer gameId){
+    public void updateHighlight(SetHighlightRequest setHighlightRequest, Transaction transaction, Integer gameId) {
         Game game = new Game();
         game.setHighlight(setHighlightRequest.getHighlight());
         game.setTxId(transaction.getTxId());

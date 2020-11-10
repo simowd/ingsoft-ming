@@ -137,6 +137,7 @@ public class StoreBl {
         Orders orders = new Orders();
         orders.setIdUser(user.getIdUser());
         orders.setDate(transaction.getTxDate());
+        orders.setStatus(1);
         orders.setTxId(transaction.getTxId());
         orders.setTxHost(transaction.getTxHost());
         orders.setTxUserId(transaction.getTxUserId());
@@ -149,6 +150,7 @@ public class StoreBl {
         orderDetails.setIdGame(game.getIdGame());
         orderDetails.setIdOrder(orders.getIdOrder());
         orderDetails.setPrice(price.getPrice());
+        orderDetails.setStatus(1);
         orderDetails.setTxId(transaction.getTxId());
         orderDetails.setTxHost(transaction.getTxHost());
         orderDetails.setTxUserId(transaction.getTxUserId());
