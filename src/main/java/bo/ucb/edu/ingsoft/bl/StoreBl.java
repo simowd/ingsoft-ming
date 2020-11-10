@@ -129,11 +129,14 @@ public class StoreBl {
     }
 
     public PaymentRequest getGamePayment(PaymentRequest paymentRequest, Transaction transaction) {
-        Game game = gameDao.getGameInfo(paymentRequest.getIdGame());
-        User user = userDao.findByUserId(paymentRequest.getIdUser());
-        Price price = priceDao.findById(game.getIdGame());
         LOGGER.warn(transaction.toString());
+        Game game = gameDao.getGameInfo(paymentRequest.getIdGame());
         LOGGER.warn(game.toString());
+        User user = userDao.findByUserId(paymentRequest.getIdUser());
+        LOGGER.warn(user.toString());
+        Price price = priceDao.findById(game.getIdGame());
+        LOGGER.warn(price.toString());
+
         Orders orders = new Orders();
         orders.setIdUser(user.getIdUser());
         orders.setDate(transaction.getTxDate());

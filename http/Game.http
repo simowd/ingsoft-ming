@@ -46,8 +46,8 @@ Content-Type: application/json
 GET http://localhost:8080/ming/store/games/3
 Accept: application/json
 
-###
-POST http://localhost:8080/ming/single/purchase/
+### Single purchase POST user's id and game's id
+POST http://localhost:8080/ming/store/single/purchase/
 Accept: application/json
 Content-Type: application/json
 

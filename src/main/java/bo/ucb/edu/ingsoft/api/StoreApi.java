@@ -67,7 +67,7 @@ public class StoreApi {
         return gameBl.getGameInformation(gameId);
     }
 
-    @RequestMapping(value = "/ming/single/purchase/", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/ming/store/single/purchase/", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public PaymentRequest getGamePayment(@RequestBody PaymentRequest paymentRequest, HttpServletRequest request) {
         Transaction transaction = TransactionUtil.createTransaction(request);
         transactionBl.createTransaction(transaction);
