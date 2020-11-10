@@ -47,7 +47,6 @@ public class UserBl {
         return userRequest;
     }
 
-
     public void changeUserPassword(Integer userId, PasswordRequest passwordRequest, Transaction transaction) {
         String currentPassword = userDao.userPassword(userId).getPassword();
         String oldPassword = passwordRequest.getOld_password();

@@ -27,6 +27,9 @@ public class UserApi {
         this.storeBl = storeBl;
     }
 
+    /*
+    GET (/users/{id}) The user sees his profile info
+    */
     @RequestMapping(value = "/ming/users/{user}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public UserRequest getUserProfileInfo(@PathVariable("user") Integer userId) {
         try {
@@ -37,6 +40,9 @@ public class UserApi {
         }
     }
 
+    /*
+    PUT (/users/{id}) The user can edit his profile info
+    */
     @RequestMapping(value = "/ming/users/{user}/password", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     String updateUserPassword(@PathVariable("user") Integer userId, @RequestBody PasswordRequest passwordRequest, HttpServletRequest request) {
@@ -51,6 +57,9 @@ public class UserApi {
         }
     }
 
+    /*
+    PUT (/users/{id}/password) The user can edit his password
+    */
     @RequestMapping(value = "/ming/users/{user}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     String updateUserInfo(@PathVariable("user") Integer userId, @RequestBody UserRequest userRequest, HttpServletRequest request) {
@@ -65,6 +74,9 @@ public class UserApi {
         }
     }
 
+    /*
+    GET (/users/{id}/library) The user sees his game library
+    */
     @RequestMapping(value = "ming/users/{user}/library", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<LibraryRequest> getUserLibrary(@PathVariable("user") Integer userId) {
         return userBl.getUserLibrary(userId);
