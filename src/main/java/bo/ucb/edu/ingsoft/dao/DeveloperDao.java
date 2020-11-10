@@ -24,6 +24,8 @@ public interface DeveloperDao {
 
     public void updateDeveloper(Developer developer);
 
+    public Integer findBydeveloperName(String developer);
+
 
 
 }

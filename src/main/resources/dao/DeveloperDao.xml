@@ -53,4 +53,12 @@
             id_developer = #{idDeveloper}
     </select>
 
+    <select id="findBydeveloperName" resultType="java.lang.Integer">
+        SELECT
+               id_developer as idDeveloper
+        FROM developers
+        WHERE
+            developer = #{developer}
+    </select>
+
 </mapper>

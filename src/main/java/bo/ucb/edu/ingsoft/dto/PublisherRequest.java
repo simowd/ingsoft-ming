@@ -1,6 +1,7 @@
 package bo.ucb.edu.ingsoft.dto;
 
 public class PublisherRequest {
+    private Integer idUser;
     private String username;
     private String email;
     private String paypal;
@@ -9,23 +10,23 @@ public class PublisherRequest {
     private String password;
     private String repeat_password;
 
+
     public PublisherRequest() {
     }
 
     @Override
     public String toString() {
         return "PublisherRequest{" +
-                ", username='" + username + '\'' +
+                "username='" + username + '\'' +
                 ", email='" + email + '\'' +
                 ", paypal='" + paypal + '\'' +
                 ", publisher='" + publisher + '\'' +
-                ", country='" + country + '\'' +
+                ", country=" + country +
                 ", password='" + password + '\'' +
                 ", repeat_password='" + repeat_password + '\'' +
+                ", idUser=" + idUser +
                 '}';
     }
-
-
 
     public String getUsername() {
         return username;
@@ -82,5 +83,13 @@ public class PublisherRequest {
 
     public void setCountry(Integer country) {
         this.country = country;
+    }
+
+    public Integer getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(Integer idUser) {
+        this.idUser = idUser;
     }
 }

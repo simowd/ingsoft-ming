@@ -21,14 +21,14 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:8080/ming/publisher/1/game
+POST http://localhost:8080/ming/publisher/4/game
 Accept: application/json
 Content-Type: application/json
 
 {
   "idEsrb": 1,
-  "title": "God of War",
-  "game_description": "Lo mismo pero con dioses chinos",
+  "title": "God of War el retorno de Zeus",
+  "game_description": "Lo mismo pero con dioses chinos y griegos",
   "size": "70GB",
   "players": 7,
   "processor": "Intel 10",
@@ -39,7 +39,7 @@ Content-Type: application/json
   "highlighted":  1,
   "download_path": "jaja.com",
   "images": ["http//11","http//22","http//33"],
-  "developer": "Santa Monica",
+  "developer": "Santa Monica Peru",
   "directx": [1,2,3],
   "operatingSystem": [1,2],
   "languageGames": [1,2],
@@ -68,7 +68,7 @@ Content-Type: application/json
   "highlighted":  1,
   "download_path": "jaja.com",
   "images": ["http//eljojos","http//eljojos1","http//eljojs3"],
-  "developer": "Bugisoft",
+  "developer": "Santa Monica",
   "directx": [1,2],
   "operatingSystem": [1],
   "languageGames": [1,2,3],

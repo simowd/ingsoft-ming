@@ -99,6 +99,7 @@ public class PublisherBl {
         for(int i=0;i< user.size();i++){
             PublisherRequest publisherRequest1=new PublisherRequest();
 
+            publisherRequest1.setIdUser(user.get(i).getIdUser());
             publisherRequest1.setEmail(user.get(i).getEmail());
             publisherRequest1.setPaypal(publisher.get(i).getPaypalMail());
             publisherRequest1.setPublisher(publisher.get(i).getPublisher());

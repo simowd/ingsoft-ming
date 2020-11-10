@@ -56,11 +56,23 @@ public class GameBl {
         Photo photo = new Photo();
         Price price = new Price();
 
-        developer.setDeveloper(newGameRequest.getDeveloper());
-        developer.setIdPublisher(idPublisher);
-        developerDao.createDeveloper(developer);
+        String developerName=newGameRequest.getDeveloper();
+        Integer developerId =developerDao.findBydeveloperName(developerName);
 
-        Integer idDeveloper = developerDao.getLastInsertId();
+        Integer idDeveloper = null;
+        if(developerId==null){
+            developer.setDeveloper(newGameRequest.getDeveloper());
+            developer.setIdPublisher(idPublisher);
+            developerDao.createDeveloper(developer);
+
+            idDeveloper = developerDao.getLastInsertId();
+        } else{
+            idDeveloper=developerId;
+        }
+
+
+
+
         game.setIdEsrb(newGameRequest.getIdEsrb());
         game.setIdDeveloper(idDeveloper);
         game.setName(newGameRequest.getTitle());
