@@ -32,46 +32,29 @@ public class UserApi {
     */
     @RequestMapping(value = "/ming/users/{user}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public UserRequest getUserProfileInfo(@PathVariable("user") Integer userId) {
-        try {
-            return userBl.userProfileInfo(userId);
-        } catch (Exception ex) {
-            throw new ResponseStatusException(
-                    HttpStatus.NOT_FOUND, "User Not Found", ex);
-        }
+        return userBl.userProfileInfo(userId);
     }
 
     /*
     PUT (/users/{id}) The user can edit his profile info
     */
     @RequestMapping(value = "/ming/users/{user}/password", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public  @ResponseBody
-    String updateUserPassword(@PathVariable("user") Integer userId, @RequestBody PasswordRequest passwordRequest, HttpServletRequest request){
-        try {
-            Transaction transaction = TransactionUtil.createTransaction(request);
-            transactionBl.createTransaction(transaction);
-            userBl.changeUserPassword(userId, passwordRequest, transaction);
-            return "ok";
-        } catch (Exception ex) {
-            throw new ResponseStatusException(
-                    HttpStatus.NOT_FOUND, "User Not Found", ex);
-        }
+    @ResponseStatus(value = HttpStatus.OK)
+    public void updateUserPassword(@PathVariable("user") Integer userId, @RequestBody PasswordRequest passwordRequest, HttpServletRequest request) {
+        Transaction transaction = TransactionUtil.createTransaction(request);
+        transactionBl.createTransaction(transaction);
+        userBl.changeUserPassword(userId, passwordRequest, transaction);
     }
 
     /*
     PUT (/users/{id}/password) The user can edit his password
     */
     @RequestMapping(value = "/ming/users/{user}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public  @ResponseBody
-    String updateUserInfo(@PathVariable("user") Integer userId, @RequestBody UserRequest userRequest, HttpServletRequest request){
-        try {
-            Transaction transaction = TransactionUtil.createTransaction(request);
-            transactionBl.createTransaction(transaction);
-            userBl.updateUserProfileInfo(userId, userRequest, transaction);
-            return "ok";
-        } catch (Exception ex) {
-            throw new ResponseStatusException(
-                    HttpStatus.NOT_FOUND, "User Not Found", ex);
-        }
+    @ResponseStatus(value = HttpStatus.OK)
+    public void updateUserInfo(@PathVariable("user") Integer userId, @RequestBody UserRequest userRequest, HttpServletRequest request){
+        Transaction transaction = TransactionUtil.createTransaction(request);
+        transactionBl.createTransaction(transaction);
+        userBl.updateUserProfileInfo(userId, userRequest, transaction);
     }
 
     /*
