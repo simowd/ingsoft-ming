@@ -33,12 +33,17 @@
         </foreach>
     </select>
 
-    <select id="gameSellsGame" resultType="java.lang.Integer">
+    <select id="gameSellsGame" resultType="bo.ucb.edu.ingsoft.models.gameDashboard">
         SELECT
-        count(order_details.id_game)
+        count(order_details.id_game) as sells,
+        sum(order_details.price) as earnings,
+        games.name as game
         FROM orders inner join order_details
         on
         orders.id_order=order_details.id_order
+        inner join games
+        on
+        games.id_game=order_details.id_game
         WHERE
         order_details.id_game in
         <foreach collection="list" item="item" index="index"

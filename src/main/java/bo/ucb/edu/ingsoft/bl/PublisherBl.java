@@ -177,7 +177,7 @@ public class PublisherBl {
         List<countryDashboard> totalCountrySells=orderDao.gameOrderCountryCount(game,countries);
         List<String> countryNames=countryDao.CountryNameList(countries);
 
-        List<Integer> gameSells=orderDao.gameSellsGame(game);
+        List<gameDashboard> gameSells=orderDao.gameSellsGame(game);
 
 
 
@@ -190,8 +190,7 @@ public class PublisherBl {
         dashboardRequest.setEarnings(totalEarnings);
         dashboardRequest.setMonthlyData(monthlyEarnings);
         dashboardRequest.setCountryData(totalCountrySells);
-        dashboardRequest.setGames(gameName);
-        dashboardRequest.setGame_earnings(gameSells);
+        dashboardRequest.setGameData(gameSells);
 
         return dashboardRequest;
 
