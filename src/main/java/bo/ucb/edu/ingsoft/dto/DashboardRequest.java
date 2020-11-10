@@ -1,6 +1,7 @@
 package bo.ucb.edu.ingsoft.dto;
 
 import bo.ucb.edu.ingsoft.models.countryDashboard;
+import bo.ucb.edu.ingsoft.models.gameDashboard;
 import bo.ucb.edu.ingsoft.models.monthlyDashboard;
 
 import java.util.List;
@@ -13,8 +14,7 @@ public class DashboardRequest {
     private Double earnings;
     private List<monthlyDashboard> monthlyData;
     private List<countryDashboard> countryData;
-    private List<String> games;
-    private List<Integer> game_earnings;
+    private List<gameDashboard> gameData;
 
     public DashboardRequest() {
     }
@@ -75,20 +75,12 @@ public class DashboardRequest {
         this.countryData = countryData;
     }
 
-    public List<String> getGames() {
-        return games;
+    public List<gameDashboard> getGameData() {
+        return gameData;
     }
 
-    public void setGames(List<String> games) {
-        this.games = games;
-    }
-
-    public List<Integer> getGame_earnings() {
-        return game_earnings;
-    }
-
-    public void setGame_earnings(List<Integer> game_earnings) {
-        this.game_earnings = game_earnings;
+    public void setGameData(List<gameDashboard> gameData) {
+        this.gameData = gameData;
     }
 
     @Override
@@ -101,8 +93,7 @@ public class DashboardRequest {
                 ", earnings=" + earnings +
                 ", monthlyData=" + monthlyData +
                 ", countryData=" + countryData +
-                ", games=" + games +
-                ", game_earnings=" + game_earnings +
+                ", gameData=" + gameData +
                 '}';
     }
 }
