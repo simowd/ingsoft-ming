@@ -22,7 +22,7 @@ public interface OrderDao {
     public List<Integer> gameOrderCountry(List<Integer> idGame);
 
     // Get Count Countries  by games ordered
-    public List<Integer> gameOrderCountryCount(List<Integer> idGame);
+    public List<countryDashboard> gameOrderCountryCount(@Param("a") List<Integer> idGame, @Param("b") List<Integer> idCountry);
 
     // Get Game's total earnings by publisher
     public Double gameEarnings(List<Integer> idGame);

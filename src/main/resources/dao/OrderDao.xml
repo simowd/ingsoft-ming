@@ -67,17 +67,27 @@
         users.id_country
     </select>
 
-    <select id="gameOrderCountryCount" resultType="java.lang.Integer">
+    <select id="gameOrderCountryCount" resultType="bo.ucb.edu.ingsoft.models.countryDashboard">
         SELECT
-        count(orders.id_user)
+        countries.name as country,
+        count(orders.id_user) as sells,
+        sum(order_details.price) as earnings
         FROM orders inner join order_details
         on
         orders.id_order=order_details.id_order
         inner join users
         on orders.id_user=users.id_user
+        inner join countries
+        on users.id_country=countries.id_country
         WHERE
         order_details.id_game in
-        <foreach collection="list" item="item" index="index"
+        <foreach collection="a" item="item" index="index"
+                 open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        and
+        countries.id_country in
+        <foreach collection="b" item="item" index="index"
                  open="(" separator="," close=")">
             #{item}
         </foreach>
