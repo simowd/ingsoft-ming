@@ -7,7 +7,7 @@ import java.util.List;
 
 @Mapper
 public interface CountryDao {
-
+    //Get a Country Name
     public Country CountryName (Integer idCountry);
 
     //Get a list of countries

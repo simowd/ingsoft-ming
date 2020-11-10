@@ -56,10 +56,11 @@ public class UserBl {
     public void changeUserPassword(Integer userId, PasswordRequest passwordRequest, Transaction transaction) {
         String currentPassword = userDao.userPassword(userId).getPassword();
         String oldPassword = passwordRequest.getOld_password();
-        if (new String(oldPassword).equals(currentPassword)) {
+        if (new String(oldPassword).equals(currentPassword)){
             userDao.updateUserPassword(userId, passwordRequest.getNew_password());
             transactionDao.updateUserTransaction(userId, transaction.getTxId(), transaction.getTxHost(), transaction.getTxUserId(), transaction.getTxDate());
-        } else {
+        }else
+        {
             throw new ResponseStatusException(
                     HttpStatus.UNAUTHORIZED, "Wrong Password");
         }

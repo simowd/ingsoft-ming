@@ -10,11 +10,13 @@ public interface PriceDao {
     // Get Price data
     public List<Price> findByIdGame(List<Integer> idGame);
 
+    //Creete Game Price
     public void createPrice(Price price);
 
+    //Update Game Price
     public void updatePrice(Price price);
 
+    //Find Price by Id game
     public Price findById(Integer idGame);
-
 
 }
