@@ -27,6 +27,9 @@ public class AdminApi {
         this.gameBl = gameBl;
     }
 
+    /*
+       POST (/admin/publisher) The admin create a new publisher
+    */
     @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE,value = "/ming/admin/publisher")
 
@@ -37,6 +40,9 @@ public class AdminApi {
         return publisherResponse;
     }
 
+    /*
+        GET (/admin/publisher) The admin sees a publisher list
+    */
     @RequestMapping(value = "/ming/admin/publisher",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<PublisherRequest> publisherList() {
         try {
@@ -47,6 +53,10 @@ public class AdminApi {
         }
     }
 
+
+    /*
+          DELETE (/admin/publisher/{id}) The admin delete a publisher account
+     */
     @RequestMapping(value = "/ming/admin/publisher/{id}",method = RequestMethod.DELETE)
     public @ResponseBody
     String deletePublisher(@PathVariable("id") Integer userId, HttpServletRequest request) {

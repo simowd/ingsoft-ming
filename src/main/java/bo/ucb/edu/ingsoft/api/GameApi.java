@@ -29,7 +29,9 @@ public class GameApi {
         this.transactionBl = transactionBl;
     }
 
-
+    /*
+       POST (/publisher/{id}/game) The publisher create a new game
+    */
     @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE, value = "ming/publisher/{id}/game")
     public NewGameRequest createGame(@PathVariable("id") Integer idPublisher, @RequestBody NewGameRequest newGameRequest, HttpServletRequest request) {
@@ -39,7 +41,9 @@ public class GameApi {
         return newGameResponse;
     }
 
-
+    /*
+        PUT (/publisher/{id}/game) The publisher can update a game
+     */
     @RequestMapping(value = "/ming/publisher/{id}/game",method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody String updatePublisher(@PathVariable("id") Integer gameId,@RequestBody NewGameRequest newGameRequest, HttpServletRequest request) {
         try {
@@ -52,7 +56,9 @@ public class GameApi {
                     HttpStatus.NOT_FOUND, "User Not Found", ex);
         }
     }
-
+    /*
+       DELETE (/publisher/{id}/game) The publisher can delete game
+    */
     @RequestMapping(value = "/ming/publisher/{id}/game",method = RequestMethod.DELETE)
     public @ResponseBody String deleteGame(@PathVariable("id") Integer idGame,  HttpServletRequest request) {
         try {
