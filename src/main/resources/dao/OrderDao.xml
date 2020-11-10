@@ -200,4 +200,17 @@
         a.status = 0
 
     </select>
+
+    <select id="getOrderDetailByUser" resultType="java.lang.Integer">
+        SELECT
+        a.id_order as idOrder
+        FROM
+        orders a,
+        order_details b
+        WHERE
+        a.id_order = b.id_order AND
+        a.id_user = #{userId} AND
+        a.status = 0
+
+    </select>
 </mapper>

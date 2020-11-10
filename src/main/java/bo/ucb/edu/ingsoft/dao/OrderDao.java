@@ -51,6 +51,10 @@ public interface OrderDao {
     // Update status order with user an order id
     public void updateOrder(Integer statusUpdate, Integer idOrder);
 
+    // Returns id_order by game and user
     public List<Integer> getOrderDetailGameByUser(Integer gameId, Integer userId);
+
+    // Returns id orders by user
+    public List<Integer> getOrderDetailByUser(Integer userId);
 
 }

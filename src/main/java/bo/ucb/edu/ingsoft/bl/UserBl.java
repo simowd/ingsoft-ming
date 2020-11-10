@@ -151,4 +151,15 @@ public class UserBl {
         LOGGER.info("Games deleted from cart");
     }
 
+    public List<GameDetailsRequest> purchaseGamesCart(Integer userId, Transaction transaction) {
+        LOGGER.warn(userId + " ");
+        List<GameDetailsRequest> detailsRequests = orderDao.getCartUser(userId);
+        LOGGER.warn(detailsRequests.toString());
+        List<Integer> integerList = orderDao.getOrderDetailByUser(userId);
+        integerList.forEach(integer -> {
+            orderDao.updateOrder(1, integer);
+        });
+        return detailsRequests;
+    }
+
 }

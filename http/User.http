@@ -36,3 +36,6 @@ Accept: application/json
 ### /ming/{user}/{remove game from}/cart
 DELETE http://localhost:8080/ming/2/3/cart
 
+### purchase games from /users/{id}/
+POST http://localhost:8080/ming/users/2/cart/purchase
+Accept: application/json
