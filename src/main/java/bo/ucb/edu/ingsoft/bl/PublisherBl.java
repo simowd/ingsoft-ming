@@ -172,9 +172,9 @@ public class PublisherBl {
         }
 
         List<monthlyDashboard> monthlyEarnings=orderDao.gameEarningsMonth(game,months);
-        List<Integer> totalCountrySells=orderDao.gameOrderCountryCount(game);
-        List<Integer> countries=orderDao.gameOrderCountry(game);
 
+        List<Integer> countries=orderDao.gameOrderCountry(game);
+        List<countryDashboard> totalCountrySells=orderDao.gameOrderCountryCount(game,countries);
         List<String> countryNames=countryDao.CountryNameList(countries);
 
         List<Integer> gameSells=orderDao.gameSellsGame(game);
@@ -189,8 +189,7 @@ public class PublisherBl {
         dashboardRequest.setSells(totalSells);
         dashboardRequest.setEarnings(totalEarnings);
         dashboardRequest.setMonthlyData(monthlyEarnings);
-        dashboardRequest.setCountries(countryNames);
-        dashboardRequest.setCountry_earnings(totalCountrySells);
+        dashboardRequest.setCountryData(totalCountrySells);
         dashboardRequest.setGames(gameName);
         dashboardRequest.setGame_earnings(gameSells);
 
