@@ -171,7 +171,7 @@ public class PublisherBl {
             months.add(i);
         }
 
-        List<Double> monthlyEarnings=orderDao.gameEarningsMonth(game,months);
+        List<monthlyDashboard> monthlyEarnings=orderDao.gameEarningsMonth(game,months);
         List<Integer> totalCountrySells=orderDao.gameOrderCountryCount(game);
         List<Integer> countries=orderDao.gameOrderCountry(game);
 
@@ -188,8 +188,7 @@ public class PublisherBl {
         dashboardRequest.setPaypal(pubId.getPaypalMail());
         dashboardRequest.setSells(totalSells);
         dashboardRequest.setEarnings(totalEarnings);
-        dashboardRequest.setMonths(months);
-        dashboardRequest.setMonthly_earnings(monthlyEarnings);
+        dashboardRequest.setMonthlyData(monthlyEarnings);
         dashboardRequest.setCountries(countryNames);
         dashboardRequest.setCountry_earnings(totalCountrySells);
         dashboardRequest.setGames(gameName);
