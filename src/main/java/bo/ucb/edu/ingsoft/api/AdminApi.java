@@ -66,16 +66,14 @@ public class AdminApi {
         return publisherBl.getAllGames();
     }
 
+    /*
+    PUT (/admin/homepage/{gameId}) The selected game changes its highlight status
+    */
+    @ResponseStatus(value = HttpStatus.OK)
     @RequestMapping(value = "/ming/admin/homepage/{id}",method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody String updatePublisher(@PathVariable("id") Integer gameId, @RequestBody SetHighlightRequest setHighlightRequest, HttpServletRequest request) {
-        //try {
+    public @ResponseBody void updatePublisher(@PathVariable("id") Integer gameId, @RequestBody SetHighlightRequest setHighlightRequest, HttpServletRequest request) {
             Transaction transaction = TransactionUtil.createTransaction(request);
             transactionBl.createTransaction(transaction);
             gameBl.updateHighlight(setHighlightRequest,transaction,gameId);
-            return "ok";
-//        } catch (Exception ex) {
-//            throw new ResponseStatusException(
-//                    HttpStatus.NOT_FOUND, "Game Not Found", ex);
-//        }
     }
 }

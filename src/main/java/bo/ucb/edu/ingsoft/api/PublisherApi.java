@@ -67,6 +67,9 @@ public class PublisherApi {
 
     }
 
+    /*
+    GET (/publisher/{publisherId}/game) Returns all of the games released by a publisher.
+    */
     @RequestMapping(value="/ming/publisher/{id}/game", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<HomepageRequest> getPublisherGames(@PathVariable("id") Integer idPublisher){
         return publisherBl.getAllPublisherGames(idPublisher);

@@ -348,6 +348,9 @@ public class GameBl {
 
     }
 
+    /*
+        A Game object is created and sent to the gameDao to update the Highlight
+    */
     public void updateHighlight(SetHighlightRequest setHighlightRequest, Transaction transaction, Integer gameId) {
         Game game = new Game();
         game.setHighlight(setHighlightRequest.getHighlight());

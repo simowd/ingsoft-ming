@@ -31,7 +31,6 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "id": 1,
-  "highlight": 1
+  "highlight": 0
 }
 
