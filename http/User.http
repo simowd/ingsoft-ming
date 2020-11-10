@@ -30,9 +30,9 @@ GET http://localhost:8080/ming/users/2/cart
 Accept: application/json
 
 ###  /ming/{user add}/{game to}/ cart
-POST http://localhost:8080/ming/3/3/cart
+POST http://localhost:8080/ming/2/3/cart
 Accept: application/json
 
 ### /ming/{user}/{remove game from}/cart
-DELETE http://localhost:8080/ming/2/2/cart
+DELETE http://localhost:8080/ming/2/3/cart
 

@@ -181,7 +181,8 @@
     <update id="updateOrder" parameterType="bo.ucb.edu.ingsoft.models.Orders">
         UPDATE orders
         SET
-             status=#{statusUpdate}
+             status=#{statusUpdate},
+             tx_date=NOW()
         WHERE
             id_order=#{idOrder}
     </update>

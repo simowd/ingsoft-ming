@@ -98,4 +98,10 @@ public class UserApi {
     }
 
     //    /users/{id}/cart/purchase the user buy games from cart POST
+//    @RequestMapping(value = "/ming/users/{id}/cart/purchase", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+//    public GameDetailsRequest purchaseGamesFromCart(@PathVariable("id") Integer userId, HttpServletRequest request) {
+//        Transaction transaction = TransactionUtil.createTransaction(request);
+//        transactionBl.createTransaction(transaction);
+//        return userBl.purchaseGamesCart(userId, transaction);
+//    }
 }
