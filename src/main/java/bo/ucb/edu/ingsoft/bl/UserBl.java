@@ -40,6 +40,9 @@ public class UserBl {
         this.priceDao = priceDao;
     }
 
+    /*
+    GET (/users/{id}) The user sees his profile info
+    */
     public UserRequest userProfileInfo(Integer idUser) {
         User user = userDao.userProfileInfo(idUser);
         Country country = countryDao.CountryName(user.getIdCountry());
@@ -47,6 +50,9 @@ public class UserBl {
         return userRequest;
     }
 
+    /*
+    PUT (/users/{id}) The user can edit his profile info
+    */
     public void changeUserPassword(Integer userId, PasswordRequest passwordRequest, Transaction transaction) {
         String currentPassword = userDao.userPassword(userId).getPassword();
         String oldPassword = passwordRequest.getOld_password();
@@ -59,6 +65,9 @@ public class UserBl {
         }
     }
 
+    /*
+    PUT (/users/{id}/password) The user can edit his password
+    */
     public void updateUserProfileInfo(Integer userId, UserRequest userRequest, Transaction transaction) {
         User user = new User();
         user.setIdUser(userId);
@@ -71,6 +80,9 @@ public class UserBl {
         transactionDao.updateUserTransaction(userId, transaction.getTxId(), transaction.getTxHost(), transaction.getTxUserId(), transaction.getTxDate());
     }
 
+    /*
+    GET (/users/{id}/library) The user sees his game library
+    */
     public List<LibraryRequest> getUserLibrary(Integer userId) {
         List<LibraryRequest> list = new ArrayList<LibraryRequest>();
         List<Integer> userIdGames = libraryDao.UserGames(userId);
