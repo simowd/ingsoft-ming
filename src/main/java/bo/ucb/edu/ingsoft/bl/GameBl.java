@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -325,7 +324,7 @@ public class GameBl {
         gameDetailsRequest.setImages(photosAux);
         gameDetailsRequest.setDeveloper(developer.getDeveloper());
         gameDetailsRequest.setPlayers(game.getPlayers());
-        gameDetailsRequest.setRelease_date(game.getReleaseDate());
+        gameDetailsRequest.setReleaseDate(game.getReleaseDate());
         gameDetailsRequest.setProcessor(game.getProcessor());
         gameDetailsRequest.setMemory(game.getMemory());
         gameDetailsRequest.setGraphics(game.getGraphics());

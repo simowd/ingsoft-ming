@@ -1,5 +1,6 @@
 package bo.ucb.edu.ingsoft.api;
 
+import bo.ucb.edu.ingsoft.bl.StoreBl;
 import bo.ucb.edu.ingsoft.bl.TransactionBl;
 import bo.ucb.edu.ingsoft.bl.UserBl;
 import bo.ucb.edu.ingsoft.dto.*;
@@ -17,14 +18,16 @@ import java.util.List;
 public class UserApi {
     private UserBl userBl;
     private TransactionBl transactionBl;
+    private StoreBl storeBl;
 
     @Autowired
-    public UserApi(UserBl userBl, TransactionBl transactionBl) {
+    public UserApi(UserBl userBl, TransactionBl transactionBl, StoreBl storeBl) {
         this.userBl = userBl;
         this.transactionBl = transactionBl;
+        this.storeBl = storeBl;
     }
 
-    @RequestMapping(value = "/ming/users/{user}",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/ming/users/{user}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public UserRequest getUserProfileInfo(@PathVariable("user") Integer userId) {
         try {
             return userBl.userProfileInfo(userId);
@@ -34,8 +37,9 @@ public class UserApi {
         }
     }
 
-    @RequestMapping(value = "/ming/users/{user}/password",method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody String updateUserPassword(@PathVariable("user") Integer userId, @RequestBody PasswordRequest passwordRequest, HttpServletRequest request) {
+    @RequestMapping(value = "/ming/users/{user}/password", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    String updateUserPassword(@PathVariable("user") Integer userId, @RequestBody PasswordRequest passwordRequest, HttpServletRequest request) {
         try {
             Transaction transaction = TransactionUtil.createTransaction(request);
             transactionBl.createTransaction(transaction);
@@ -47,8 +51,9 @@ public class UserApi {
         }
     }
 
-    @RequestMapping(value = "/ming/users/{user}",method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody String updateUserInfo(@PathVariable("user") Integer userId, @RequestBody UserRequest userRequest, HttpServletRequest request) {
+    @RequestMapping(value = "/ming/users/{user}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    String updateUserInfo(@PathVariable("user") Integer userId, @RequestBody UserRequest userRequest, HttpServletRequest request) {
         try {
             Transaction transaction = TransactionUtil.createTransaction(request);
             transactionBl.createTransaction(transaction);
@@ -60,8 +65,37 @@ public class UserApi {
         }
     }
 
-    @RequestMapping(value="ming/users/{user}/library", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<LibraryRequest> getUserLibrary(@PathVariable("user") Integer userId){
+    @RequestMapping(value = "ming/users/{user}/library", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<LibraryRequest> getUserLibrary(@PathVariable("user") Integer userId) {
         return userBl.getUserLibrary(userId);
     }
+
+    //    /users/{id}/cart show user's cart GET
+    @RequestMapping(value = "/ming/users/{id}/cart", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<GameDetailsRequest> getCart(@PathVariable("id") Integer userId) {
+        return userBl.getCartByUser(userId);
+    }
+
+    //    /users/{id}/cart add a game to his cart POST
+    @RequestMapping(value = "/ming/{users}/{id}/cart", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public GameDetailsRequest addGameToCart(@PathVariable("users") Integer userId, @PathVariable("id") Integer gameId, HttpServletRequest request) {
+        Transaction transaction = TransactionUtil.createTransaction(request);
+        transactionBl.createTransaction(transaction);
+        return userBl.addGameToCart(userId, gameId, transaction);
+    }
+
+    //    /users/{id}/cart delete a game to his cart DELETE
+    @RequestMapping(value = "/ming/{users}/{id}/cart", method = RequestMethod.DELETE)
+    public void deleteGameFromCart(@PathVariable("users") Integer userId, @PathVariable("id") Integer gameId, HttpServletRequest request) {
+        try {
+            Transaction transaction = TransactionUtil.createTransaction(request);
+            transactionBl.createTransaction(transaction);
+            userBl.deleteGameFromCart(userId, gameId, transaction);
+        } catch (Exception ex) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "Game Not Found", ex);
+        }
+    }
+
+    //    /users/{id}/cart/purchase the user buy games from cart POST
 }
