@@ -1,10 +1,7 @@
 package bo.ucb.edu.ingsoft.dao;
 
 import bo.ucb.edu.ingsoft.dto.GameDetailsRequest;
-import bo.ucb.edu.ingsoft.models.Game;
-import bo.ucb.edu.ingsoft.models.OrderDetails;
-import bo.ucb.edu.ingsoft.models.Orders;
-import bo.ucb.edu.ingsoft.models.User;
+import bo.ucb.edu.ingsoft.models.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -31,7 +28,7 @@ public interface OrderDao {
     public Double gameEarnings(List<Integer> idGame);
 
     // Get Game's total earnings by month
-    public List<Double> gameEarningsMonth(@Param("a") List<Integer> idGame, @Param("b") List<Integer> month);
+    public List<monthlyDashboard> gameEarningsMonth(@Param("a") List<Integer> idGame, @Param("b") List<Integer> month);
 
     //Last Id game
     public Integer getLastInsertId();
