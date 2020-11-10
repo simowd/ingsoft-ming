@@ -1,3 +1,4 @@
+#The admin creates a publisher account
 POST http://localhost:8080/ming/admin/publisher
 Accept: application/json
 Content-Type: application/json
@@ -13,20 +14,24 @@ Content-Type: application/json
 }
 
 ###
+#The admin sees a publisher list
 GET http://localhost:8080/ming/admin/publisher
 Accept: application/json
 
 ###
-DELETE http://localhost:8080/ming/admin/publisher/4
+#The admin deletes a publisher account
+DELETE http://localhost:8080/ming/admin/publisher/7
 Accept: application/json
 ###
 
 ###
+#The admin sees a games list
 GET http://localhost:8080/ming/publisher/games
 Accept: application/json
 
 ###
-PUT http://localhost:8080/ming/admin/homepage/1
+#The admin edit game highlight
+PUT http://localhost:8080/ming/admin/homepage/3
 Accept: application/json
 Content-Type: application/json
 
