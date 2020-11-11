@@ -290,30 +290,45 @@ public class GameBl {
         return newGameRequest;
     }
 
-
+    // Returns Game details by id
     public GameDetailsRequest getGameInformation(Integer gameId) {
-
+        // Getting game information by game id
         Game game = gameDao.getGameInfo(gameId);
+
+        // Getting the language ids in a list
         List<Integer> gamesLanguagesDao = languagesDao.findGameLanguages(gameId);
-        LOGGER.warn(gamesLanguagesDao.toString());
+
+        // Print language id
+        LOGGER.info(gamesLanguagesDao.toString());
+
+        // Getting the language information in a list
         List<Language> languageList = languagesDao.findByIdLanguage(gamesLanguagesDao);
+        // Changing from List<Language> to List<String>
         ArrayList<String> languageListAux = new ArrayList<>();
-        languageList.forEach(language -> {
-            languageListAux.add(language.getLanguage());
-        });
+        languageList.forEach(language -> languageListAux.add(language.getLanguage()));
+
+        // Getting ESRB by game id
         Esrb esrb = esrbDao.findEsrbById(game.getIdEsrb());
         List<Photo> photos = photoDao.findPhotosByGameId(game.getIdGame());
         List<String> photosAux = new ArrayList<>();
-        photos.forEach(photo -> {
-            photosAux.add(photo.getPhotoPath());
-        });
+
+        // Getting photo paths in string list
+        photos.forEach(photo -> photosAux.add(photo.getPhotoPath()));
+
+        // Getting game developer
         Developer developer = developerDao.findByIdDeveloper(game.getIdDeveloper());
+
+        // Getting operative system into string list
         List<Integer> oS = gamesOsDao.findByGame(game.getIdGame());
         List<OperatingSystem> operatingSystemList = gamesOsDao.findByIdGameOs(oS);
 
+        // Getting price by game id
         Price price = priceDao.findById(game.getIdGame());
+
+        // Getting genres by game id
         List<String> genres = genreDao.gameGenre(game.getIdGame());
 
+        // Loading data into GameDetailsRequest
         GameDetailsRequest gameDetailsRequest = new GameDetailsRequest();
         gameDetailsRequest.setId(gameId);
         gameDetailsRequest.setTitle(game.getName());
@@ -336,6 +351,9 @@ public class GameBl {
         gameDetailsRequest.setGenres(genres);
         gameDetailsRequest.setSale(price.getSale());
         gameDetailsRequest.setPrice(price.getPrice());
+
+        // Print game details data
+        LOGGER.info(gameDetailsRequest.toString());
 
         return gameDetailsRequest;
     }
