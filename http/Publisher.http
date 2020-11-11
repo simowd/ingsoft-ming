@@ -18,7 +18,7 @@ Content-Type: application/json
   "email": "SasukeNoHokage@gmail.com",
   "paypal": "shinobiconplata@gmail.com",
   "publisher": "Treyarch",
-  "country": 15,
+  "country": 18,
   "password": "Treyarch",
   "repeat_password": "Treyarch"
 }
@@ -61,7 +61,7 @@ Content-Type: application/json
 
 {
   "idEsrb": 2,
-  "title": "RDR2",
+  "title": "RD3",
   "game_description": "Lo mismo pero con caballos chinos",
   "size": "1GB",
   "players": 8,

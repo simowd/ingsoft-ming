@@ -44,12 +44,12 @@ public class PublisherApi {
         PUT (/publisher/{id}) The publisher can update his account
     */
     @RequestMapping(value = "/ming/publisher/{id}",method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody String updatePublisher(@PathVariable("id") Integer userId,@RequestBody PublisherRequest publisherRequest, HttpServletRequest request) {
+    public  PublisherRequest updatePublisher(@PathVariable("id") Integer userId,@RequestBody PublisherRequest publisherRequest, HttpServletRequest request) {
 
             Transaction transaction = TransactionUtil.createTransaction(request);
             transactionBl.createTransaction(transaction);
             publisherBl.updatePublisher(publisherRequest,transaction,userId);
-            return "ok";
+            return publisherRequest;
 
     }
 

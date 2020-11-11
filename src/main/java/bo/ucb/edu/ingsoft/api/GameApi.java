@@ -45,12 +45,12 @@ public class GameApi {
         PUT (/publisher/{id}/game) The publisher can update a game
      */
     @RequestMapping(value = "/ming/publisher/{id}/game",method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody String updatePublisher(@PathVariable("id") Integer gameId,@RequestBody NewGameRequest newGameRequest, HttpServletRequest request) {
+    public NewGameRequest updatePublisher(@PathVariable("id") Integer gameId,@RequestBody NewGameRequest newGameRequest, HttpServletRequest request) {
 
             Transaction transaction = TransactionUtil.createTransaction(request);
             transactionBl.createTransaction(transaction);
             gameBl.updateGame(newGameRequest,transaction,gameId);
-            return "ok";
+            return newGameRequest;
     }
     /*
        DELETE (/publisher/{id}/game) The publisher can delete game
