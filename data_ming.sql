@@ -1,5 +1,3 @@
-CREATE DATABASE ming DEFAULT CHARACTER SET 'utf8' DEFAULT COLLATE utf8_general_ci;
-
 -- Trigger h_games
 
 delimiter //
@@ -366,7 +364,7 @@ INSERT INTO games (id_esrb,id_developer,name,description,size,players,release_da
 
 INSERT INTO transactions VALUES (null, '192.168.5.55', 5, now());
 SELECT LAST_INSERT_ID();
-INSERT INTO games (id_esrb,id_developer,name,description,size,players,release_date,processor,memory,graphics,color,highlight,download_path,status,tx_id, tx_host, tx_user_id, tx_date) VALUES (2,2,'Fall Guys','Fall Guys is a massively multiplayer party game with up to 60 players online in a free-for-all struggle through round after round of escalating chaos until one victor remains! ','8GB',1,NOW(),'Intel i5', '8GB RAM','GeForce GT660', '#2ED7DE', 0,'https://store.steampowered.com/app/1097150/Fall_Guys_Ultimate_Knockout/',1,LAST_INSERT_ID(), '192.168.5.55', 5, NOW());
+INSERT INTO games (id_esrb,id_developer,name,description,size,players,release_date,processor,memory,graphics,color,highlight,download_path,status,tx_id, tx_host, tx_user_id, tx_date) VALUES (2,2,'Fall Guys','Fall Guys is a massively multiplayer party game with up to 60 players online in a free-for-all struggle through round after round of escalating chaos until one victor remains! ','8GB',1,NOW(),'Intel i5', '8GB RAM','GeForce GT660', '#2ED7DE', 1,'https://store.steampowered.com/app/1097150/Fall_Guys_Ultimate_Knockout/',1,LAST_INSERT_ID(), '192.168.5.55', 5, NOW());
 
 INSERT INTO transactions VALUES (null, '192.168.6.100', 6, now());
 SELECT LAST_INSERT_ID();
