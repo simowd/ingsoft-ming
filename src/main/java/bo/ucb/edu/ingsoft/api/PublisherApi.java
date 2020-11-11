@@ -35,12 +35,8 @@ public class PublisherApi {
     */
     @RequestMapping(value = "/ming/publisher/{id}",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public PublisherRequest findById (@PathVariable("id") Integer userId) {
-        try {
             return publisherBl.findByPublisherId(userId);
-        } catch (Exception ex) {
-            throw new ResponseStatusException(
-                    HttpStatus.NOT_FOUND, "User Not Found", ex);
-        }
+
     }
 
 
@@ -49,20 +45,18 @@ public class PublisherApi {
     */
     @RequestMapping(value = "/ming/publisher/{id}",method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody String updatePublisher(@PathVariable("id") Integer userId,@RequestBody PublisherRequest publisherRequest, HttpServletRequest request) {
-        try {
+
             Transaction transaction = TransactionUtil.createTransaction(request);
             transactionBl.createTransaction(transaction);
             publisherBl.updatePublisher(publisherRequest,transaction,userId);
             return "ok";
-        } catch (Exception ex) {
-            throw new ResponseStatusException(
-                    HttpStatus.NOT_FOUND, "User Not Found", ex);
-        }
+
     }
 
 
     @RequestMapping(value="/ming/publisher/{id}/dashboard", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public DashboardRequest PublisherDashboard(@PathVariable("id") Integer idPublisher){
+
 
             return publisherBl.PublisherDashboard(idPublisher);
 

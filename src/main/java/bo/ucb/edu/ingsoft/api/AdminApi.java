@@ -45,12 +45,8 @@ public class AdminApi {
     */
     @RequestMapping(value = "/ming/admin/publisher",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<PublisherRequest> publisherList() {
-        try {
             return publisherBl.getPublisherList();
-        } catch (Exception ex) {
-            throw new ResponseStatusException(
-                    HttpStatus.NOT_FOUND, "User Not Found", ex);
-        }
+
     }
 
 
@@ -60,15 +56,12 @@ public class AdminApi {
     @RequestMapping(value = "/ming/admin/publisher/{id}",method = RequestMethod.DELETE)
     public @ResponseBody
     String deletePublisher(@PathVariable("id") Integer userId, HttpServletRequest request) {
-        try {
+
             Transaction transaction = TransactionUtil.createTransaction(request);
             transactionBl.createTransaction(transaction);
             publisherBl.deletePublisher(userId,transaction);
             return "ok";
-        } catch (Exception ex) {
-            throw new ResponseStatusException(
-                    HttpStatus.NOT_FOUND, "User Not Found", ex);
-        }
+
     }
 
     @RequestMapping(value="/ming/publisher/games", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
