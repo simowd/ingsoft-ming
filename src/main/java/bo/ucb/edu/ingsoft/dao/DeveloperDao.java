@@ -12,7 +12,7 @@ public interface DeveloperDao {
 
     //Create developer
     public void createDeveloper(Developer developer);
-
+    // Finds the developer by its id
     public Developer findByIdDeveloper(Integer idDeveloper);
 
     // Get developer by publisher
@@ -21,9 +21,9 @@ public interface DeveloperDao {
 
     //get last id in developers
     public Integer getLastInsertId();
-
+    // Updates the developer info
     public void updateDeveloper(Developer developer);
-
+    // Finds the developer by its name
     public Integer findBydeveloperName(String developer);
 
 

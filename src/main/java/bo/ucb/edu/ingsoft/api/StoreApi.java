@@ -30,16 +30,28 @@ public class StoreApi {
         this.transactionBl = transactionBl;
     }
 
+    /*
+    GET (/store/homepage?page={pageNumber}) It gives you 10 games from the database and orders them
+    in pages.
+    */
     @RequestMapping(value = "/ming/store/homepage", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<HomepageRequest> getHomepage(@RequestParam Integer page) {
         return storeBl.getHomePage(page);
     }
 
+    /*
+    GET (/store/search?query={pageNumber}) It searches all of the database for the games that contain the specified later
+    It's case insensitive
+    */
     @RequestMapping(value = "/ming/store/search", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<HomepageRequest> getSearch(@RequestParam String search) {
-        return storeBl.getSearchData(search);
+    public List<HomepageRequest> getSearch(@RequestParam String query) {
+        return storeBl.getSearchData(query);
     }
 
+    /*
+    GET (/store/highlights) It gives you all of the currently highlighted games.
+    in pages.
+    */
     @RequestMapping(value = "/ming/store/highlights", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<HighlightRequest> getHighlights() {
         return storeBl.getHighLights();
@@ -47,21 +59,23 @@ public class StoreApi {
 
     @RequestMapping(value = "/ming/store/sale", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<SaleRequest> SalePage() {
-        try {
+
             List<SaleRequest> sale = storeBl.SalePage();
             return sale;
-        } catch (Exception ex) {
-            throw new ResponseStatusException(
-                    HttpStatus.NOT_FOUND, "Page Not Found", ex);
-        }
 
     }
 
+    /*
+    GET (/store/releases) Returns a list of the games that were released during the last 7 days.
+    */
     @RequestMapping(value = "/ming/store/releases", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<ReleaseRequest> getLatestReleases() {
         return storeBl.getLatest();
     }
 
+    /*
+    GET (/store/games/{gameId}) Returns all of the important information a game has.
+    */
     @RequestMapping(value = "/ming/store/games/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public GameDetailsRequest getGameInformation(@PathVariable("id") Integer gameId) {
         return gameBl.getGameInformation(gameId);

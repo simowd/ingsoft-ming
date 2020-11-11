@@ -1,5 +1,9 @@
 package bo.ucb.edu.ingsoft.dto;
 
+import bo.ucb.edu.ingsoft.models.countryDashboard;
+import bo.ucb.edu.ingsoft.models.gameDashboard;
+import bo.ucb.edu.ingsoft.models.monthlyDashboard;
+
 import java.util.List;
 
 public class DashboardRequest {
@@ -8,12 +12,9 @@ public class DashboardRequest {
     private String paypal;
     private Integer sells;
     private Double earnings;
-    private List<Integer> months;
-    private List<Double> monthly_earnings;
-    private List<String> countries;
-    private List<Integer> country_earnings;
-    private List<String> games;
-    private List<Integer> game_earnings;
+    private List<monthlyDashboard> monthlyData;
+    private List<countryDashboard> countryData;
+    private List<gameDashboard> gameData;
 
     public DashboardRequest() {
     }
@@ -58,52 +59,28 @@ public class DashboardRequest {
         this.earnings = earnings;
     }
 
-    public List<Integer> getMonths() {
-        return months;
+    public List<monthlyDashboard> getMonthlyData() {
+        return monthlyData;
     }
 
-    public void setMonths(List<Integer> months) {
-        this.months = months;
+    public void setMonthlyData(List<monthlyDashboard> monthlyData) {
+        this.monthlyData = monthlyData;
     }
 
-    public List<Double> getMonthly_earnings() {
-        return monthly_earnings;
+    public List<countryDashboard> getCountryData() {
+        return countryData;
     }
 
-    public void setMonthly_earnings(List<Double> monthly_earnings) {
-        this.monthly_earnings = monthly_earnings;
+    public void setCountryData(List<countryDashboard> countryData) {
+        this.countryData = countryData;
     }
 
-    public List<String> getCountries() {
-        return countries;
+    public List<gameDashboard> getGameData() {
+        return gameData;
     }
 
-    public void setCountries(List<String> countries) {
-        this.countries = countries;
-    }
-
-    public List<Integer> getCountry_earnings() {
-        return country_earnings;
-    }
-
-    public void setCountry_earnings(List<Integer> country_earnings) {
-        this.country_earnings = country_earnings;
-    }
-
-    public List<String> getGames() {
-        return games;
-    }
-
-    public void setGames(List<String> games) {
-        this.games = games;
-    }
-
-    public List<Integer> getGame_earnings() {
-        return game_earnings;
-    }
-
-    public void setGame_earnings(List<Integer> game_earnings) {
-        this.game_earnings = game_earnings;
+    public void setGameData(List<gameDashboard> gameData) {
+        this.gameData = gameData;
     }
 
     @Override
@@ -114,12 +91,9 @@ public class DashboardRequest {
                 ", paypal='" + paypal + '\'' +
                 ", sells=" + sells +
                 ", earnings=" + earnings +
-                ", months=" + months +
-                ", monthly_earnings=" + monthly_earnings +
-                ", countries=" + countries +
-                ", country_earnings=" + country_earnings +
-                ", games=" + games +
-                ", game_earnings=" + game_earnings +
+                ", monthlyData=" + monthlyData +
+                ", countryData=" + countryData +
+                ", gameData=" + gameData +
                 '}';
     }
 }

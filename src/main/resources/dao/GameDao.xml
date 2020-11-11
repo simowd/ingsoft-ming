@@ -60,7 +60,7 @@
         name as name
         FROM games
         WHERE status = 1
-        AND name LIKE #{query}
+        AND LOWER(name) LIKE #{query}
         LIMIT 5
     </select>
     <select id="findHighlight" resultType="bo.ucb.edu.ingsoft.models.Game">

@@ -55,7 +55,7 @@ public class StoreBl {
 
     public List<HomepageRequest> getSearchData(String search) {
         List<HomepageRequest> list = new ArrayList<HomepageRequest>();
-        List<Game> games = gameDao.searchQuery("%" + search + "%");
+        List<Game> games = gameDao.searchQuery("%" + search.toLowerCase() + "%");
         if (!games.isEmpty()) {
             List<Integer> ids = new ArrayList<Integer>();
             for (Game game : games) {

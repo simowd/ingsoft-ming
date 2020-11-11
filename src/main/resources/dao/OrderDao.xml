@@ -33,12 +33,17 @@
         </foreach>
     </select>
 
-    <select id="gameSellsGame" resultType="java.lang.Integer">
+    <select id="gameSellsGame" resultType="bo.ucb.edu.ingsoft.models.gameDashboard">
         SELECT
-        count(order_details.id_game)
+        count(order_details.id_game) as sells,
+        sum(order_details.price) as earnings,
+        games.name as game
         FROM orders inner join order_details
         on
         orders.id_order=order_details.id_order
+        inner join games
+        on
+        games.id_game=order_details.id_game
         WHERE
         order_details.id_game in
         <foreach collection="list" item="item" index="index"
@@ -67,17 +72,27 @@
         users.id_country
     </select>
 
-    <select id="gameOrderCountryCount" resultType="java.lang.Integer">
+    <select id="gameOrderCountryCount" resultType="bo.ucb.edu.ingsoft.models.countryDashboard">
         SELECT
-        count(orders.id_user)
+        countries.name as country,
+        count(orders.id_user) as sells,
+        sum(order_details.price) as earnings
         FROM orders inner join order_details
         on
         orders.id_order=order_details.id_order
         inner join users
         on orders.id_user=users.id_user
+        inner join countries
+        on users.id_country=countries.id_country
         WHERE
         order_details.id_game in
-        <foreach collection="list" item="item" index="index"
+        <foreach collection="a" item="item" index="index"
+                 open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        and
+        countries.id_country in
+        <foreach collection="b" item="item" index="index"
                  open="(" separator="," close=")">
             #{item}
         </foreach>
@@ -99,9 +114,12 @@
         </foreach>
     </select>
 
-    <select id="gameEarningsMonth" resultType="java.lang.Double">
+    <select id="gameEarningsMonth" resultType="bo.ucb.edu.ingsoft.models.monthlyDashboard">
         SELECT
-        sum(order_details.price)
+        count(order_details.id_game) as sells,
+        sum(order_details.price) as earnings,
+        month(order_details.tx_date) as month,
+        year(order_details.tx_date) as year
         FROM orders inner join order_details
         on
         orders.id_order=order_details.id_order
@@ -118,7 +136,8 @@
             #{item}
         </foreach>
         GROUP BY
-        month(order_details.tx_date)
+        month(order_details.tx_date),
+        year(order_details.tx_date)
     </select>
 
     <insert id="createOrder" parameterType="bo.ucb.edu.ingsoft.models.Orders">

@@ -244,7 +244,7 @@ paths:
     get:
       tags: 
         - "User"
-      summary: The user sees his to purchase cart
+      summary: The user sees his purchase cart
       description: |
         The user can see his cart with the games that he is willing to buy
       parameters:
@@ -537,7 +537,7 @@ paths:
       description: |
         The store has a search bar
       parameters:
-        - name: search
+        - name: query
           description: |
             The home page current page.
           in: "query"
@@ -1529,13 +1529,19 @@ components:
               type: string 
     publishers:
       type: array
-      required: 
+      required:
+        - idUser
         - email
         - paypal
         - publisher
       items:
         type: object
         properties:
+          idUser:
+            description: |
+              The publisher's Id user
+            example: 6
+            type: integer
           email:
             description: |
               The publisher's email
@@ -1976,15 +1982,9 @@ components:
           type: integer
     admin_edit_highlight:
       type: object
-      required: 
-        - id
+      required:
         - highlight
       properties:
-        id:
-          description: |
-            The game's id
-          example: 1234
-          type: integer
         highlight:
           description: |
             The game's highlight status
