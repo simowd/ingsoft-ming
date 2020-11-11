@@ -56,7 +56,9 @@ public class PublisherApi {
 
     @RequestMapping(value="/ming/publisher/{id}/dashboard", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public DashboardRequest PublisherDashboard(@PathVariable("id") Integer idPublisher){
-        return publisherBl.PublisherDashboard(idPublisher);
+
+
+            return publisherBl.PublisherDashboard(idPublisher);
 
     }
 
