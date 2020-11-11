@@ -180,22 +180,29 @@ public class UserBl {
     }
 
     public void deleteGameFromCart(Integer userId, Integer gameId, Transaction transaction) {
-        LOGGER.warn(userId + " " + gameId);
+        // Gets rows from order details
         List<Integer> integerList = orderDao.getOrderDetailGameByUser(gameId, userId);
-        integerList.forEach(integer -> {
-            orderDao.updateOrder(2, integer);
-        });
+
+        // Setting status to removed from cart. This is a logical deletion
+        integerList.forEach(integer -> orderDao.updateOrder(2, integer));
+
+        // Print if the game is deleted from cart
         LOGGER.info("Games deleted from cart");
     }
 
     public List<GameDetailsRequest> purchaseGamesCart(Integer userId, Transaction transaction) {
-        LOGGER.warn(userId + " ");
+        // Gets all games on cart by user id
         List<GameDetailsRequest> detailsRequests = orderDao.getCartUser(userId);
+
+        // Warn what games are in there
         LOGGER.warn(detailsRequests.toString());
+
+        // Gets rows from order details
         List<Integer> integerList = orderDao.getOrderDetailByUser(userId);
-        integerList.forEach(integer -> {
-            orderDao.updateOrder(1, integer);
-        });
+
+        // Setting status to game bought.
+        integerList.forEach(integer -> orderDao.updateOrder(1, integer));
+
         return detailsRequests;
     }
 
