@@ -59,13 +59,9 @@ public class StoreApi {
 
     @RequestMapping(value = "/ming/store/sale", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<SaleRequest> SalePage() {
-        try {
+
             List<SaleRequest> sale = storeBl.SalePage();
             return sale;
-        } catch (Exception ex) {
-            throw new ResponseStatusException(
-                    HttpStatus.NOT_FOUND, "Page Not Found", ex);
-        }
 
     }
 
