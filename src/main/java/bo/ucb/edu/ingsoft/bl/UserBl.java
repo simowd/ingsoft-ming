@@ -56,11 +56,10 @@ public class UserBl {
     public void changeUserPassword(Integer userId, PasswordRequest passwordRequest, Transaction transaction) {
         String currentPassword = userDao.userPassword(userId).getPassword();
         String oldPassword = passwordRequest.getOld_password();
-        if (new String(oldPassword).equals(currentPassword)){
+        if (new String(oldPassword).equals(currentPassword)) {
             userDao.updateUserPassword(userId, passwordRequest.getNew_password());
             transactionDao.updateUserTransaction(userId, transaction.getTxId(), transaction.getTxHost(), transaction.getTxUserId(), transaction.getTxDate());
-        }else
-        {
+        } else {
             throw new ResponseStatusException(
                     HttpStatus.UNAUTHORIZED, "Wrong Password");
         }
@@ -111,7 +110,10 @@ public class UserBl {
         // Print cart details information
         LOGGER.info(detailsRequests.toString());
 
-        return detailsRequests;
+        if (detailsRequests.size() > 0)
+            return detailsRequests;
+        else
+            return new ArrayList<>();
     }
 
     public GameDetailsRequest addGameToCart(Integer userId, Integer gameId, Transaction transaction) {
@@ -179,15 +181,22 @@ public class UserBl {
         return gameDetailsRequest;
     }
 
-    public void deleteGameFromCart(Integer userId, Integer gameId, Transaction transaction) {
+    public void deleteGameFromCart(Integer userId, Integer gameId) {
         // Gets rows from order details
         List<Integer> integerList = orderDao.getOrderDetailGameByUser(gameId, userId);
 
-        // Setting status to removed from cart. This is a logical deletion
-        integerList.forEach(integer -> orderDao.updateOrder(2, integer));
+        if (integerList.size() > 0){
+            // Setting status to removed from cart. This is a logical deletion
+            integerList.forEach(integer -> orderDao.updateOrder(2, integer));
 
-        // Print if the game is deleted from cart
-        LOGGER.info("Games deleted from cart");
+            // Print if the game is deleted from cart
+            LOGGER.info("Games deleted from cart");
+        } else {
+            // Print if the game is not deleted from cart
+            LOGGER.info("Games is not found. Game wasn't deleted");
+        }
+
+
     }
 
     public List<GameDetailsRequest> purchaseGamesCart(Integer userId, Transaction transaction) {

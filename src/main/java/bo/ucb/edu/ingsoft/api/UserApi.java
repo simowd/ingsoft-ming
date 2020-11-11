@@ -51,7 +51,7 @@ public class UserApi {
     */
     @RequestMapping(value = "/ming/users/{user}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
-    public void updateUserInfo(@PathVariable("user") Integer userId, @RequestBody UserRequest userRequest, HttpServletRequest request){
+    public void updateUserInfo(@PathVariable("user") Integer userId, @RequestBody UserRequest userRequest, HttpServletRequest request) {
         Transaction transaction = TransactionUtil.createTransaction(request);
         transactionBl.createTransaction(transaction);
         userBl.updateUserProfileInfo(userId, userRequest, transaction);
@@ -85,10 +85,10 @@ public class UserApi {
         try {
             Transaction transaction = TransactionUtil.createTransaction(request);
             transactionBl.createTransaction(transaction);
-            userBl.deleteGameFromCart(userId, gameId, transaction);
+            userBl.deleteGameFromCart(userId, gameId);
         } catch (Exception ex) {
             throw new ResponseStatusException(
-                    HttpStatus.NOT_FOUND, "Game Not Found", ex);
+                    HttpStatus.NOT_FOUND, "Cart Not Found", ex);
         }
     }
 
