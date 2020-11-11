@@ -55,10 +55,13 @@ public interface GameDao {
     //Search Query
     public List<Game> searchQuery(String query);
 
+    //Get a list of the games by a developer
     public List<Game> findByPublisher(Integer idPublisher);
 
+    //Get a list of all the games in the database
     public List<Game> findAllGames();
 
+    //Get a list of the games with a list of ids.
     public List<String> listGameNames(List<Integer> idGame);
 
     //Update Highlight
