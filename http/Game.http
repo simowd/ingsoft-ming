@@ -42,7 +42,7 @@ Content-Type: application/json
   "sale": 10
 }
 
-###
+### Get information game /games/{id}
 GET http://localhost:8080/ming/store/games/3
 Accept: application/json
 
