@@ -173,7 +173,8 @@ public class StoreBl {
         Orders orders = new Orders();
         orders.setIdUser(user.getIdUser());
         orders.setDate(transaction.getTxDate());
-        // Setting status successful
+
+        // Setting status game bought
         orders.setStatus(1);
         orders.setTxId(transaction.getTxId());
         orders.setTxHost(transaction.getTxHost());
@@ -194,6 +195,8 @@ public class StoreBl {
         orderDetails.setIdGame(game.getIdGame());
         orderDetails.setIdOrder(orders.getIdOrder());
         orderDetails.setPrice(price.getPrice());
+
+        // Setting status game bought
         orderDetails.setStatus(1);
         orderDetails.setTxId(transaction.getTxId());
         orderDetails.setTxHost(transaction.getTxHost());
