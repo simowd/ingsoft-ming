@@ -198,7 +198,6 @@
         a.id_user = #{userId} AND
         b.id_game = #{gameId} AND
         a.status = 0
-
     </select>
 
     <select id="getOrderDetailByUser" resultType="java.lang.Integer">
@@ -211,6 +210,5 @@
         a.id_order = b.id_order AND
         a.id_user = #{userId} AND
         a.status = 0
-
     </select>
 </mapper>
