@@ -1,5 +1,5 @@
 #The user creates an account
-PUT http://localhost:8080/ming/users/signup
+POST http://localhost:8080/ming/users/signup
 Accept: application/json
 Content-Type: application/json
 
@@ -9,7 +9,6 @@ Content-Type: application/json
   "email": "contra@gmail.com",
   "password": "contra707"
 }
-
 
 ###
 #The user sees his profile info
