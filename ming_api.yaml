@@ -1638,27 +1638,80 @@ components:
             The publisher's total earnings
           example: "3000000"
           type: string
-        monthly_earnings:
+        monthly_data:
           description: |
-            The publisher's monthly earnings
+            The publisher's monthly statistics
           type: array
           items:
-            type: number
-            example: [1500,4548,1511]
-        country_earnings:
+            properties:
+              year:
+                description: |
+                  The year reference
+                example: 2020
+                type: integer
+              month:
+                description: |
+                  The month reference
+                example: 11
+                type: integer
+              sells:
+                description: |
+                  The month total sells
+                example: 320
+                type: integer
+              earnings:
+                description: |
+                  The month total earnings
+                example: 320.00
+                type: integer
+        country_data:
           description: |
             The publisher's earnings by country
           type: array
           items:
-            type: number
-            example: [2000,6555]
-        game_earnings:
+            properties:
+              country:
+                description: |
+                  The country reference
+                example: "Afganistan"
+                type: string
+              sells:
+                description: |
+                  The country total sells
+                example: 320
+                type: integer
+              earnings:
+                description: |
+                  The country total earnings
+                example: 320.00
+                type: integer
+        game_data:
           description: |
             The publisher's earnings by game
           type: array
+          properties:
+            year:
+              description: |
+                The year reference
+              example: 2020
+              type: integer
           items:
-            type: number
-            example: [4874,6545]
+            properties:
+              game:
+                description: |
+                  The game reference
+                example: "Gris"
+                type: string
+              sells:
+                description: |
+                  The game's total sells
+                example: 320
+                type: integer
+              earnings:
+                description: |
+                  The game's total earnings
+                example: 320.00
+                type: integer
     edit_publisher:
         type: object
         properties:
