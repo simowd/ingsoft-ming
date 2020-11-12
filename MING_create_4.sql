@@ -1,3 +1,5 @@
+CREATE DATABASE ming DEFAULT CHARACTER SET 'utf8' DEFAULT COLLATE utf8_general_ci;
+
 -- Created by Vertabelo (http://vertabelo.com)
 -- Last modification date: 2020-11-06 14:01:40.306
 

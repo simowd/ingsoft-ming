@@ -10,12 +10,14 @@ import java.util.List;
 @Mapper
 public interface GamesDirectxDao {
 
-  //create game_directx
+   //inserts the directX id with a game
    public void createGameDirectx(GameDirectx gameDirectx);
 
 
+   //finds the direct x versions used by a game
    public List<Integer>  findByIdDirectxGame(Integer idGame);
 
-   //Delete olds game_directx
+
+   //updates directx per game
    public void deleteOldsDirectx(List<Integer> idGameDirectx);
 }

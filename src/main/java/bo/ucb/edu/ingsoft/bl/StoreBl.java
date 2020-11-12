@@ -31,11 +31,17 @@ public class StoreBl {
         this.orderDao = orderDao;
     }
 
+    /*
+    The user gets a paginated view of the homepage
+     */
     public List<HomepageRequest> getHomePage(Integer page) {
         List<HomepageRequest> list = new ArrayList<HomepageRequest>();
+        //Setup the query's page limit fir the SQL query
         Integer recordsPerPage = 10;
         Integer offsetValue = (page - 1) * recordsPerPage;
+
         List<Game> games = gameDao.findPage(recordsPerPage, offsetValue);
+        //Verifying the existance of the games.
         if (!games.isEmpty()) {
             List<Integer> ids = new ArrayList<Integer>();
             for (Game game : games) {
@@ -45,6 +51,7 @@ public class StoreBl {
                 Price price = priceDao.findById(ids.get(i));
                 Photo photo = photoDao.findBannerbyGame(ids.get(i));
                 if (price != null && photo != null) {
+                    //Create a desired object and then put it on the list
                     HomepageRequest homepageRequest = new HomepageRequest(games.get(i).getIdGame().toString(), games.get(i).getName(), price.getPrice(), price.getSale().doubleValue(), photo.getPhotoPath());
                     list.add(homepageRequest);
                 }
@@ -53,6 +60,9 @@ public class StoreBl {
         return list;
     }
 
+    /*
+    Search query for all the games that are currently in the database
+     */
     public List<HomepageRequest> getSearchData(String search) {
         List<HomepageRequest> list = new ArrayList<HomepageRequest>();
         List<Game> games = gameDao.searchQuery("%" + search.toLowerCase() + "%");
@@ -65,6 +75,7 @@ public class StoreBl {
                 Price price = priceDao.findById(ids.get(i));
                 Photo photo = photoDao.findBannerbyGame(ids.get(i));
                 if (price != null && photo != null) {
+                    //Create a desired object and then put it on the list
                     HomepageRequest homepageRequest = new HomepageRequest(games.get(i).getIdGame().toString(), games.get(i).getName(), price.getPrice(), price.getSale().doubleValue(), photo.getPhotoPath());
                     list.add(homepageRequest);
                 }
@@ -73,6 +84,9 @@ public class StoreBl {
         return list;
     }
 
+    /*
+    Gets all the highlighted games in the database.
+     */
     public List<HighlightRequest> getHighLights() {
         List<HighlightRequest> list = new ArrayList<HighlightRequest>();
         List<Game> games = gameDao.findHighlight();
@@ -84,6 +98,7 @@ public class StoreBl {
             for (int i = 0; i < ids.size(); i++) {
                 Photo photo = photoDao.findBannerbyGame(ids.get(i));
                 if (photo != null) {
+                    //Create a desired object and then put it on the list
                     HighlightRequest homepageRequest = new HighlightRequest(games.get(i).getIdGame().toString(), games.get(i).getName(), games.get(i).getDescription(), photo.getPhotoPath());
                     list.add(homepageRequest);
                 }
@@ -108,6 +123,9 @@ public class StoreBl {
         return sale;
     }
 
+    /*
+    Returns a list of the games that have a release date range of the last seven days
+     */
     public List<ReleaseRequest> getLatest() {
         List<ReleaseRequest> list = new ArrayList<ReleaseRequest>();
         List<Game> games = gameDao.findLatestReleases();
@@ -120,6 +138,7 @@ public class StoreBl {
                 Price price = priceDao.findById(ids.get(i));
                 Photo photo = photoDao.findBannerbyGame(ids.get(i));
                 if (price != null && photo != null) {
+                    //Create a desired object and then put it on the list
                     ReleaseRequest homepageRequest = new ReleaseRequest(games.get(i).getIdGame().toString(), games.get(i).getName(), games.get(i).getDescription(), price.getPrice(), photo.getPhotoPath(), games.get(i).getReleaseDate());
                     list.add(homepageRequest);
                 }

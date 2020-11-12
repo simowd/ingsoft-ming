@@ -10,16 +10,20 @@ import java.util.List;
 @Mapper
 public interface GamesOsDao {
 
-   //Create ame_os
+
+   //Links a game with operating systems
    public void createGameOs( GameOS gameOS);
 
+   //Gets a list of the operating system and logo using the ids
    public List<OperatingSystem> findByIdGameOs(List<Integer> idOperatingSystem);
 
+   //Gets a list of os ids per game
    public List<Integer> findByGame(Integer gameId);
 
+   //Gets a list of os ids per game
    public List<Integer>  findByIdGamesOs(Integer idGame);
 
-   //Delete olds OS
+   //Updates OSs for a game.
    public void deleteOldsOs(List<Integer> idGameOs);
 
 }

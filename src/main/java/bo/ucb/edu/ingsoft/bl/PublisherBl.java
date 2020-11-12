@@ -205,7 +205,9 @@ public class PublisherBl {
         return dashboardRequest;
 
     }
-
+    /*
+     The publisher gets a list of the games they made.
+     */
     public List<HomepageRequest> getAllPublisherGames(Integer idPublisher){
         List<HomepageRequest> list = new ArrayList<HomepageRequest>();
         List<Game> games = gameDao.findByPublisher(idPublisher);
@@ -226,6 +228,9 @@ public class PublisherBl {
         return list;
     }
 
+    /*
+        The admin gets a list of all the games they made.
+    */
     public List<GameAdminRequest> getAllGames(){
         List<GameAdminRequest> list = new ArrayList<GameAdminRequest>();
         List<Game> games = gameDao.findAllGames();

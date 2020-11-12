@@ -39,7 +39,26 @@ public class UserBl {
         this.orderDao = orderDao;
         this.priceDao = priceDao;
     }
+    /*
+    POST (/users/signup) The user creates an account
+    */
+    public void userSignUp(UserRequest userRequest, Transaction transaction){
 
+        User user=new User();
+
+        user.setUserName(userRequest.getUsername());
+        user.setAlias(userRequest.getAlias());
+        user.setEmail(userRequest.getEmail());
+        user.setPassword((userRequest.getPassword()));
+        user.setTxId(transaction.getTxId());
+        user.setTxHost(transaction.getTxHost());
+        user.setTxUserId(transaction.getTxUserId());
+        user.setTxDate(transaction.getTxDate());
+        userDao.userSignUp(user);
+
+        Integer lastId=userDao.getLastInsertId();
+        transactionDao.updateUserTransaction(lastId, transaction.getTxId(), transaction.getTxHost(), transaction.getTxUserId(), transaction.getTxDate());
+    }
     /*
     GET (/users/{id}) The user sees his profile info
     */
