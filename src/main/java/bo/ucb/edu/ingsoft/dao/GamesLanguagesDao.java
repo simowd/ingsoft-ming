@@ -11,13 +11,18 @@ import java.util.List;
 @Mapper
 public interface GamesLanguagesDao {
 
+   //Create Game_languages
    public void createLanguageGame(LanguageGame languageGame);
 
+   //Find by id languages
    public List<Language> findByIdLanguage(List<Integer> idLanguage);
 
+   //Find Languages games
    public List <Integer> findGameLanguages(Integer gameId);
 
+   //Find id_Game_languages by ids games
    public List<Integer>  findByIdGamesLanguages(Integer idGame);
 
+   //Delete olds Game_languages
    public void deleteOldsLanguages(List<Integer> idGameLanguages);
 }

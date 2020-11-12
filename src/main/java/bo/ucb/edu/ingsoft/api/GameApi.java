@@ -42,8 +42,8 @@ public class GameApi {
     }
 
     /*
-        PUT (/publisher/{id}/game) The publisher can update a game
-     */
+       PUT (/publisher/{id}/game) The publisher can update a game
+    */
     @RequestMapping(value = "/ming/publisher/{id}/game",method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
     public NewGameRequest updatePublisher(@PathVariable("id") Integer gameId,@RequestBody NewGameRequest newGameRequest, HttpServletRequest request) {
 
@@ -56,12 +56,12 @@ public class GameApi {
        DELETE (/publisher/{id}/game) The publisher can delete game
     */
     @RequestMapping(value = "/ming/publisher/{id}/game",method = RequestMethod.DELETE)
-    public @ResponseBody String deleteGame(@PathVariable("id") Integer idGame,  HttpServletRequest request) {
+    @ResponseStatus(value = HttpStatus.OK)
+    public void deleteGame(@PathVariable("id") Integer idGame,  HttpServletRequest request) {
 
             Transaction transaction = TransactionUtil.createTransaction(request);
             transactionBl.createTransaction(transaction);
             gameBl.deleteGame(idGame,transaction);
-            return "ok";
     }
 
 

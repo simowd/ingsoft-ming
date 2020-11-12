@@ -10,6 +10,7 @@ import java.util.List;
 @Mapper
 public interface GamesOsDao {
 
+   //Create ame_os
    public void createGameOs( GameOS gameOS);
 
    public List<OperatingSystem> findByIdGameOs(List<Integer> idOperatingSystem);
@@ -18,6 +19,7 @@ public interface GamesOsDao {
 
    public List<Integer>  findByIdGamesOs(Integer idGame);
 
+   //Delete olds OS
    public void deleteOldsOs(List<Integer> idGameOs);
 
 }

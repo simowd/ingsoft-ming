@@ -43,13 +43,12 @@ public interface GameDao {
     //Get publisher developer games
     public List<Integer> findGamebyPublisher(List<Integer> idDeveloper);
 
+    //Update game
     public void updateGame(Game game);
 
     public Integer findByDeveloperGame(Integer gameId);
 
-
-
-    //delete  delete
+    //delete  game
     public void deleteGame(Integer idGame);
 
     //Search Query

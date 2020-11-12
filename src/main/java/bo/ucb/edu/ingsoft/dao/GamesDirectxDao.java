@@ -10,13 +10,12 @@ import java.util.List;
 @Mapper
 public interface GamesDirectxDao {
 
+  //create game_directx
    public void createGameDirectx(GameDirectx gameDirectx);
 
-   public List<Directx> findByIdDirectx(List<Integer> idDirectx);
-
-   public List<Integer> findByGame(Integer gameId);
 
    public List<Integer>  findByIdDirectxGame(Integer idGame);
 
+   //Delete olds game_directx
    public void deleteOldsDirectx(List<Integer> idGameDirectx);
 }

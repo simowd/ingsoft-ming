@@ -39,8 +39,9 @@ public class PublisherBl {
     }
 
 
-
-
+    /*
+       POST (/admin/publisher) The admin create a new publisher
+    */
     public PublisherRequest createPublisher(PublisherRequest publisherRequest, Transaction transaction){
 
         User user=new User();
@@ -69,7 +70,9 @@ public class PublisherBl {
 
         return publisherRequest;
     }
-
+    /*
+      GET (/publisher/{id}) shows publisher data
+   */
     public PublisherRequest findByPublisherId (Integer idUser){
         PublisherRequest publisherRequest=new PublisherRequest();
         User user= userDao.findByUserId(idUser);
@@ -85,7 +88,9 @@ public class PublisherBl {
 
         return publisherRequest;
     }
-
+    /*
+        GET (/admin/publisher) The admin sees a publisher list
+    */
     public List<PublisherRequest> getPublisherList(){
         List<PublisherRequest> publisherRequest =new ArrayList<PublisherRequest>();
         List<User> user=userDao.listUserMails();
@@ -109,13 +114,18 @@ public class PublisherBl {
 
         return publisherRequest;
     }
-
+    /*
+        DELETE (/admin/publisher/{id}) The admin delete a publisher account
+   */
     public void deletePublisher (Integer idUser, Transaction transaction){
       userDao.deleteUserPublisher(idUser);
       publisherDao.deletePublisher(idUser);
       transactionDao.updateUserTransaction(idUser, transaction.getTxId(), transaction.getTxHost(), transaction.getTxUserId(), transaction.getTxDate());
     }
 
+    /*
+       PUT (/publisher/{id}) The publisher can update his account
+   */
     public PublisherRequest updatePublisher(PublisherRequest publisherRequest, Transaction transaction, Integer userId){
         User user=new User();
         Publisher publisher=new Publisher();
