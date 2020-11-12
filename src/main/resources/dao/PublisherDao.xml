@@ -15,7 +15,7 @@
     </select>
 
     <insert id="createPublisher" parameterType="bo.ucb.edu.ingsoft.models.Publisher">
-        INSERT INTO publishers
+        INSERT INTO publishers (id_publisher,id_user,publisher,paypal_mail,status,tx_id,tx_host,tx_user_id,tx_date)
         VALUES (
             null,
             #{idUser},

@@ -16,7 +16,7 @@
     </select>
 
     <insert id="createPublisher" parameterType="bo.ucb.edu.ingsoft.models.User">
-        INSERT INTO users
+        INSERT INTO users (id_user,id_country,username,password,email,user_type,photo_path,name,lastname,alias,status,tx_id,tx_host,tx_user_id,tx_date)
         VALUES (
             null,
             #{idCountry},

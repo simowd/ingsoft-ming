@@ -19,7 +19,7 @@
     </select>
 
     <insert id="createPrice" parameterType="bo.ucb.edu.ingsoft.models.Price">
-      INSERT INTO price
+      INSERT INTO price (id_price,id_game,price,date,sale,status,tx_id,tx_host,tx_user_id,tx_date)
         VALUES (
              null,
              #{idGame},

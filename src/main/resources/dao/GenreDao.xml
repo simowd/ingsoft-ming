@@ -19,7 +19,7 @@
     </select>
 
     <insert id="createGenreGame" parameterType="bo.ucb.edu.ingsoft.models.Genre">
-      INSERT INTO genres_games
+      INSERT INTO genres_games (id_genre_game,id_game,id_genre)
         VALUES (
              null,
              #{idGame},

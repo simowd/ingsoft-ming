@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bo.ucb.edu.ingsoft.dao.GamesLanguagesDao">
     <insert id="createLanguageGame" parameterType="bo.ucb.edu.ingsoft.models.LanguageGame">
-      INSERT INTO languages_games
+      INSERT INTO languages_games (id_languages_games,id_game,id_language)
         VALUES (
              null,
              #{idGame},

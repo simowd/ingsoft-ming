@@ -31,9 +31,9 @@ Content-Type: application/json
 
 {
   "idEsrb": 1,
-  "title": "GTA 5",
-  "game_description": "Un juego de mundo abierto",
-  "size": "85GB",
+  "title": "Battlefront 2",
+  "game_description": "Un juego de guerritas",
+  "size": "200GB",
   "players": 1,
   "processor": "Intel 7",
   "release_date": "2014-12-10T13:33:05.673",
@@ -41,7 +41,7 @@ Content-Type: application/json
   "graphics": "GeForce 2800 ti",
   "color": "#1111111",
   "highlighted":  0,
-  "download_path": "gta/download.com",
+  "download_path": "brawl/download.com",
   "images": ["http//11","http//22","http//33"],
   "developer": "RockStar North",
   "directx": [1,2,3],
