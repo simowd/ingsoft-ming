@@ -10,6 +10,7 @@ import java.util.List;
 @Mapper
 public interface GamesOsDao {
 
+
    //Links a game with operating systems
    public void createGameOs( GameOS gameOS);
 

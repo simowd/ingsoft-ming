@@ -54,13 +54,12 @@ public class AdminApi {
           DELETE (/admin/publisher/{id}) The admin delete a publisher account
      */
     @RequestMapping(value = "/ming/admin/publisher/{id}",method = RequestMethod.DELETE)
-    public @ResponseBody
-    String deletePublisher(@PathVariable("id") Integer userId, HttpServletRequest request) {
+    @ResponseStatus(value = HttpStatus.OK)
+    public void deletePublisher(@PathVariable("id") Integer userId, HttpServletRequest request) {
 
             Transaction transaction = TransactionUtil.createTransaction(request);
             transactionBl.createTransaction(transaction);
             publisherBl.deletePublisher(userId,transaction);
-            return "ok";
 
     }
 
