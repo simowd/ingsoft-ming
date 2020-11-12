@@ -28,6 +28,17 @@ public class UserApi {
     }
 
     /*
+    POST (/users/signup) The user creates an account
+    */
+    @RequestMapping(value = "/ming/users/signup", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(value = HttpStatus.OK)
+    public void usersignup(@RequestBody UserRequest userRequest, HttpServletRequest request) {
+        Transaction transaction = TransactionUtil.createTransaction(request);
+        transactionBl.createTransaction(transaction);
+        userBl.userSignUp(userRequest, transaction);
+    }
+
+    /*
     GET (/users/{id}) The user sees his profile info
     */
     @RequestMapping(value = "/ming/users/{user}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

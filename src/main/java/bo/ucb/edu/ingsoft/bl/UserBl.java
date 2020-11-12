@@ -39,6 +39,7 @@ public class UserBl {
         this.orderDao = orderDao;
         this.priceDao = priceDao;
     }
+
     /*
     POST (/users/signup) The user creates an account
     */
@@ -59,6 +60,7 @@ public class UserBl {
         Integer lastId=userDao.getLastInsertId();
         transactionDao.updateUserTransaction(lastId, transaction.getTxId(), transaction.getTxHost(), transaction.getTxUserId(), transaction.getTxDate());
     }
+
     /*
     GET (/users/{id}) The user sees his profile info
     */
