@@ -43,6 +43,10 @@ public class GameBl {
         this.userDao = userDao;
     }
 
+
+    /*
+    POST (/publisher/{id}/game) The publisher create a new game
+ */
     public NewGameRequest createGame(NewGameRequest newGameRequest, Transaction transaction, Integer idPublisher) {
 
         Game game = new Game();
@@ -163,7 +167,9 @@ public class GameBl {
         return newGameRequest;
     }
 
-
+    /*
+          PUT (/publisher/{id}/game) The publisher can update a game
+       */
     public NewGameRequest updateGame(NewGameRequest newGameRequest, Transaction transaction, Integer idGame) {
         Game game = new Game();
         Developer developer = new Developer();
@@ -339,13 +345,11 @@ public class GameBl {
 
         return gameDetailsRequest;
     }
-
+    /*
+          DELETE (/publisher/{id}/game) The publisher can delete game
+       */
     public void deleteGame(Integer idGame, Transaction transaction) {
-
         gameDao.deleteGame(idGame);
-
-        transactionDao.updateUserTransaction(4, transaction.getTxId(), transaction.getTxHost(), transaction.getTxUserId(), transaction.getTxDate());
-
     }
 
     /*
