@@ -32,7 +32,7 @@ public class UserApi {
     */
     @RequestMapping(value = "/ming/users/signup", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
-    public void usersignup(@RequestBody UserRequest userRequest, HttpServletRequest request) {
+    public void userSignUp(@RequestBody UserRequest userRequest, HttpServletRequest request) {
         Transaction transaction = TransactionUtil.createTransaction(request);
         transactionBl.createTransaction(transaction);
         userBl.userSignUp(userRequest, transaction);
