@@ -148,47 +148,75 @@ public class StoreBl {
     }
 
     public PaymentRequest getGamePayment(PaymentRequest paymentRequest, Transaction transaction) {
+        // Print transaction information
+        LOGGER.info(transaction.toString());
+
+        // Getting game information by game id
         Game game = gameDao.getGameInfo(paymentRequest.getIdGame());
+
+        // Print game information
+        LOGGER.info(game.toString());
+
+        // Getting user information by user id from paymentRequest
         User user = userDao.findByUserId(paymentRequest.getIdUser());
+
+        // Print user information
+        LOGGER.info(user.toString());
+
+        // Getting price information by game id
         Price price = priceDao.findById(game.getIdGame());
-        LOGGER.warn(transaction.toString());
-        LOGGER.warn(game.toString());
+
+        // Print price information
+        LOGGER.info(price.toString());
+
+        // Loading data from user and transaction into Order
         Orders orders = new Orders();
         orders.setIdUser(user.getIdUser());
         orders.setDate(transaction.getTxDate());
+
+        // Setting status game bought
         orders.setStatus(1);
         orders.setTxId(transaction.getTxId());
         orders.setTxHost(transaction.getTxHost());
         orders.setTxUserId(transaction.getTxUserId());
         orders.setTxDate(transaction.getTxDate());
-        orderDao.createOrder(orders);
-        orders.setIdOrder(orderDao.getLastInsertId());
-        LOGGER.warn(orders.toString());
 
+        // Create a new order in DataBase
+        orderDao.createOrder(orders);
+
+        // Setting id to the current order
+        orders.setIdOrder(orderDao.getLastInsertId());
+
+        // Print orders information
+        LOGGER.info(orders.toString());
+
+        // Loading data from game, orders and price into order details
         OrderDetails orderDetails = new OrderDetails();
         orderDetails.setIdGame(game.getIdGame());
         orderDetails.setIdOrder(orders.getIdOrder());
         orderDetails.setPrice(price.getPrice());
+
+        // Setting status game bought
         orderDetails.setStatus(1);
         orderDetails.setTxId(transaction.getTxId());
         orderDetails.setTxHost(transaction.getTxHost());
         orderDetails.setTxUserId(transaction.getTxUserId());
         orderDetails.setTxDate(transaction.getTxDate());
+
+        // Create a new row on order_details in DataBase
         orderDao.createOrderDetails(orderDetails);
-        LOGGER.warn(orderDetails.toString());
 
+        // Print orderDetails information
+        LOGGER.info(orderDetails.toString());
 
+        // Setting data from game, price and user to return the result
         paymentRequest.setTitle(game.getName());
         paymentRequest.setPrice(price.getPrice());
-//        paymentRequest.setLatest(getLatest());
-
         paymentRequest.setUsername(user.getUserName());
         paymentRequest.setName(user.getName());
         paymentRequest.setLastname(user.getLastName());
         paymentRequest.setAlias(user.getAlias());
         paymentRequest.setCountry(user.getIdCountry().toString());
-//        paymentRequest.setSale();
-
 
         return paymentRequest;
     }

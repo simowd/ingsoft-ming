@@ -38,7 +38,7 @@
         AND status = 1
     </select>
     <insert id="createPhotoBanner" parameterType="bo.ucb.edu.ingsoft.models.Photo">
-      INSERT INTO photos
+      INSERT INTO photos (id_photos,id_game,photo_path,type,status)
         VALUES (
              null,
              #{idGame},
@@ -49,7 +49,7 @@
 
     </insert>
     <insert id="createPhoto" parameterType="bo.ucb.edu.ingsoft.models.Photo">
-      INSERT INTO photos
+      INSERT INTO photos (id_photos,id_game,photo_path,type,status)
         VALUES (
              null,
              #{idGame},

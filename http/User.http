@@ -1,3 +1,16 @@
+#The user creates an account
+POST http://localhost:8080/ming/users/signup
+Accept: application/json
+Content-Type: application/json
+
+{
+  "username": "Crash Bandicoot",
+  "alias": "Crash",
+  "email": "contra@gmail.com",
+  "password": "contra707"
+}
+
+###
 #The user sees his profile info
 GET http://localhost:8080/ming/users/1
 Accept: application/json
@@ -30,8 +43,6 @@ Content-Type: application/json
 #The user sees his game library
 GET http://localhost:8080/ming/users/2/library
 Accept: application/json
-
-
 
 ###
 #The user sees his purchase cart

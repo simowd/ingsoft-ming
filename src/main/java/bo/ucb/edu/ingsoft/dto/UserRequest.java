@@ -9,6 +9,7 @@ public class UserRequest {
     private String country;
     private String photo_path;
     private Integer id_country;
+    private String password;
 
     public UserRequest(){
     }
@@ -21,7 +22,6 @@ public class UserRequest {
         this.photo_path = photo_path;
     }
 
-
     @Override
     public String toString() {
         return "UserRequest{" +
@@ -33,6 +33,7 @@ public class UserRequest {
                 ", country='" + country + '\'' +
                 ", photo_path='" + photo_path + '\'' +
                 ", id_country=" + id_country +
+                ", password='" + password + '\'' +
                 '}';
     }
 
@@ -98,5 +99,13 @@ public class UserRequest {
 
     public void setId_country(Integer id_country) {
         this.id_country = id_country;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

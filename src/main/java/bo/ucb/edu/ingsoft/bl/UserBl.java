@@ -41,6 +41,27 @@ public class UserBl {
     }
 
     /*
+    POST (/users/signup) The user creates an account
+    */
+    public void userSignUp(UserRequest userRequest, Transaction transaction){
+
+        User user=new User();
+
+        user.setUserName(userRequest.getUsername());
+        user.setAlias(userRequest.getAlias());
+        user.setEmail(userRequest.getEmail());
+        user.setPassword((userRequest.getPassword()));
+        user.setTxId(transaction.getTxId());
+        user.setTxHost(transaction.getTxHost());
+        user.setTxUserId(transaction.getTxUserId());
+        user.setTxDate(transaction.getTxDate());
+        userDao.userSignUp(user);
+
+        Integer lastId=userDao.getLastInsertId();
+        transactionDao.updateUserTransaction(lastId, transaction.getTxId(), transaction.getTxHost(), transaction.getTxUserId(), transaction.getTxDate());
+    }
+
+    /*
     GET (/users/{id}) The user sees his profile info
     */
     public UserRequest userProfileInfo(Integer idUser) {
@@ -56,11 +77,10 @@ public class UserBl {
     public void changeUserPassword(Integer userId, PasswordRequest passwordRequest, Transaction transaction) {
         String currentPassword = userDao.userPassword(userId).getPassword();
         String oldPassword = passwordRequest.getOld_password();
-        if (new String(oldPassword).equals(currentPassword)){
+        if (new String(oldPassword).equals(currentPassword)) {
             userDao.updateUserPassword(userId, passwordRequest.getNew_password());
             transactionDao.updateUserTransaction(userId, transaction.getTxId(), transaction.getTxHost(), transaction.getTxUserId(), transaction.getTxDate());
-        }else
-        {
+        } else {
             throw new ResponseStatusException(
                     HttpStatus.UNAUTHORIZED, "Wrong Password");
         }
@@ -105,44 +125,72 @@ public class UserBl {
     }
 
     public List<GameDetailsRequest> getCartByUser(Integer userId) {
-//        List<GameDetailsRequest> gameDetailsRequests = new ArrayList<>();
-//        LOGGER.warn(gameDetailsRequests.toString() + userId);
+        // Getting games from cart by user id
         List<GameDetailsRequest> detailsRequests = orderDao.getCartUser(userId);
-        LOGGER.warn(detailsRequests.toString());
-        return detailsRequests;
+
+        // Print cart details information
+        LOGGER.info(detailsRequests.toString());
+
+        if (detailsRequests.size() > 0)
+            return detailsRequests;
+        else
+            return new ArrayList<>();
     }
 
     public GameDetailsRequest addGameToCart(Integer userId, Integer gameId, Transaction transaction) {
-        LOGGER.warn(userId + " " + gameId);
+        // Getting game information by game id
         Game game = gameDao.getGameInfo(gameId);
+
+        // Getting user information by user id
         User user = userDao.findByUserId(userId);
+
+        // Getting price information by game id
         Price price = priceDao.findById(game.getIdGame());
-        LOGGER.warn(game.toString());
 
-        Orders orders = new Orders();
-        orders.setIdUser(user.getIdUser());
-        orders.setDate(transaction.getTxDate());
-        orders.setStatus(0);
-        orders.setTxId(transaction.getTxId());
-        orders.setTxHost(transaction.getTxHost());
-        orders.setTxUserId(transaction.getTxUserId());
-        orders.setTxDate(transaction.getTxDate());
-        orderDao.createOrder(orders);
-        orders.setIdOrder(orderDao.getLastInsertId());
-        LOGGER.warn(orders.toString());
+        // Print game details information
+        LOGGER.info(game.toString());
 
-        OrderDetails orderDetails = new OrderDetails();
-        orderDetails.setIdGame(game.getIdGame());
-        orderDetails.setIdOrder(orders.getIdOrder());
-        orderDetails.setPrice(price.getPrice());
-        orderDetails.setStatus(0);
-        orderDetails.setTxId(transaction.getTxId());
-        orderDetails.setTxHost(transaction.getTxHost());
-        orderDetails.setTxUserId(transaction.getTxUserId());
-        orderDetails.setTxDate(transaction.getTxDate());
-        orderDao.createOrderDetails(orderDetails);
-        LOGGER.warn(orderDetails.toString());
+        // Loading data from user and transaction into Order
+        Orders order = new Orders();
+        order.setIdUser(user.getIdUser());
+        order.setDate(transaction.getTxDate());
 
+        // Setting status current game on cart
+        order.setStatus(0);
+        order.setTxId(transaction.getTxId());
+        order.setTxHost(transaction.getTxHost());
+        order.setTxUserId(transaction.getTxUserId());
+        order.setTxDate(transaction.getTxDate());
+
+        // Create a new order in Database
+        orderDao.createOrder(order);
+
+        // Setting id to the current order
+        order.setIdOrder(orderDao.getLastInsertId());
+
+        // Print order information
+        LOGGER.info(order.toString());
+
+        // Loading data from game, order and price into order details
+        OrderDetails orderDetail = new OrderDetails();
+        orderDetail.setIdGame(game.getIdGame());
+        orderDetail.setIdOrder(order.getIdOrder());
+        orderDetail.setPrice(price.getPrice());
+
+        // Setting status current game on cart
+        orderDetail.setStatus(0);
+        orderDetail.setTxId(transaction.getTxId());
+        orderDetail.setTxHost(transaction.getTxHost());
+        orderDetail.setTxUserId(transaction.getTxUserId());
+        orderDetail.setTxDate(transaction.getTxDate());
+
+        // Create a new row on order_details in DataBase
+        orderDao.createOrderDetails(orderDetail);
+
+        // Print orderDetails information
+        LOGGER.info(orderDetail.toString());
+
+        // Setting data from game and price to return the result
         GameDetailsRequest gameDetailsRequest = new GameDetailsRequest();
         gameDetailsRequest.setId(game.getIdGame());
         gameDetailsRequest.setTitle(game.getName());
@@ -150,27 +198,41 @@ public class UserBl {
         gameDetailsRequest.setPlayers(game.getPlayers());
         gameDetailsRequest.setSize(game.getSize());
 
-
+        // gameDetailsRequest is the information of the game bought
         return gameDetailsRequest;
     }
 
-    public void deleteGameFromCart(Integer userId, Integer gameId, Transaction transaction) {
-        LOGGER.warn(userId + " " + gameId);
+    public void deleteGameFromCart(Integer userId, Integer gameId) {
+        // Gets rows from order details
         List<Integer> integerList = orderDao.getOrderDetailGameByUser(gameId, userId);
-        integerList.forEach(integer -> {
-            orderDao.updateOrder(2, integer);
-        });
-        LOGGER.info("Games deleted from cart");
+
+        if (integerList.size() > 0){
+            // Setting status to removed from cart. This is a logical deletion
+            integerList.forEach(integer -> orderDao.updateOrder(2, integer));
+
+            // Print if the game is deleted from cart
+            LOGGER.info("Games deleted from cart");
+        } else {
+            // Print if the game is not deleted from cart
+            LOGGER.info("Games is not found. Game wasn't deleted");
+        }
+
+
     }
 
     public List<GameDetailsRequest> purchaseGamesCart(Integer userId, Transaction transaction) {
-        LOGGER.warn(userId + " ");
+        // Gets all games on cart by user id
         List<GameDetailsRequest> detailsRequests = orderDao.getCartUser(userId);
+
+        // Warn what games are in there
         LOGGER.warn(detailsRequests.toString());
+
+        // Gets rows from order details
         List<Integer> integerList = orderDao.getOrderDetailByUser(userId);
-        integerList.forEach(integer -> {
-            orderDao.updateOrder(1, integer);
-        });
+
+        // Setting status to game bought.
+        integerList.forEach(integer -> orderDao.updateOrder(1, integer));
+
         return detailsRequests;
     }
 
