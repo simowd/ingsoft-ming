@@ -152,37 +152,38 @@ public class PublisherBl {
         return publisherRequest;
 
     }
-
+    // Get the publisher statistics
     public DashboardRequest PublisherDashboard(Integer idUser){
+        // Publisher Name, Mail and Paypalmail
         Publisher pubId=publisherDao.findByPublisherId(idUser);
         User mail=userDao.publisherMail(idUser);
-
+        // Publisher's developers ids
         List<Integer> developer=developerDao.findByPublisher(pubId.getIdPublisher());
 
-
+        //Publisher games ids
         List<Integer> game=gameDao.findGamebyPublisher(developer);
-        List<String> gameName=gameDao.listGameNames(game);
-
+        // Publisher total sells and total earnings
         Integer totalSells=orderDao.gameSellsPublisher(game);
         Double totalEarnings=orderDao.gameEarnings(game);
-
+        // Month list
         List<Integer> months=new ArrayList<>();
         for (int i=1;i<=12;i++){
             months.add(i);
         }
-
+        // Monthly statistics
         List<monthlyDashboard> monthlyEarnings=orderDao.gameEarningsMonth(game,months);
-
+        // Countries ids
         List<Integer> countries=orderDao.gameOrderCountry(game);
+        // Country statistics
         List<countryDashboard> totalCountrySells=orderDao.gameOrderCountryCount(game,countries);
-        List<String> countryNames=countryDao.CountryNameList(countries);
 
+        // Games statistics
         List<gameDashboard> gameSells=orderDao.gameSellsGame(game);
 
 
-
+        // Call dashboardrequest dto
         DashboardRequest dashboardRequest=new DashboardRequest();
-
+        // Set dashboard values
         dashboardRequest.setPublisher(pubId.getPublisher());
         dashboardRequest.setEmail(mail.getEmail());
         dashboardRequest.setPaypal(pubId.getPaypalMail());
@@ -191,7 +192,7 @@ public class PublisherBl {
         dashboardRequest.setMonthlyData(monthlyEarnings);
         dashboardRequest.setCountryData(totalCountrySells);
         dashboardRequest.setGameData(gameSells);
-
+        // Return object dashboardrequest for the method
         return dashboardRequest;
 
     }
