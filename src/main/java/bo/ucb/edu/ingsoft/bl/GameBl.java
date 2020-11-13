@@ -302,10 +302,12 @@ public class GameBl {
     public GameDetailsRequest getGameInformation(Integer gameId) {
         // Getting game information by game id
         Game game = gameDao.getGameInfo(gameId);
-        System.out.println(game);
+
         if(game == null){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
         }
+
+        LOGGER.info(game.toString());
         // Getting the language ids in a list
         List<Integer> gamesLanguagesDao = languagesDao.findGameLanguages(gameId);
 
