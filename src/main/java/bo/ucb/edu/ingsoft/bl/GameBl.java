@@ -6,7 +6,9 @@ import bo.ucb.edu.ingsoft.models.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -300,7 +302,10 @@ public class GameBl {
     public GameDetailsRequest getGameInformation(Integer gameId) {
         // Getting game information by game id
         Game game = gameDao.getGameInfo(gameId);
-
+        System.out.println(game);
+        if(game == null){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
+        }
         // Getting the language ids in a list
         List<Integer> gamesLanguagesDao = languagesDao.findGameLanguages(gameId);
 
@@ -383,5 +388,4 @@ public class GameBl {
         game.setIdGame(gameId);
         gameDao.updateHighlight(game);
     }
-
 }
