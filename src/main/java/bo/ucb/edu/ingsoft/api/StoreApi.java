@@ -57,6 +57,10 @@ public class StoreApi {
         return storeBl.getHighLights();
     }
 
+    /*
+    GET (/store/sale) It gives you all of the currently sale games.
+    in pages.
+    */
     @RequestMapping(value = "/ming/store/sale", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<SaleRequest> SalePage() {
 
