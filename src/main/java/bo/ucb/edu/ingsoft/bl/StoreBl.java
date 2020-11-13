@@ -107,16 +107,24 @@ public class StoreBl {
         return list;
     }
 
-    public List<SaleRequest> SalePage() {
+    /*
+    Search query for all the games that are currently on sale
+     */
 
+    public List<SaleRequest> SalePage() {
+        // Get games that have sale
         List<Game> game = gameDao.findSale();
+        // Get the on sale game ids
         List<Integer> gameIds = gameDao.findSaleIds();
+        // Get sale Prices
         List<Price> price = priceDao.findByIdGame(gameIds);
+        // Get on sale game banners
         List<Photo> photo = photoDao.findBannerbyId(gameIds);
 
+        // Call Sale request dto
         List<SaleRequest> sale = new ArrayList<>();
 
-
+        // Set Sale Request values
         for (int i = 0; i < game.size(); i++) {
             sale.add(new SaleRequest(game.get(i).getName(), game.get(i).getReleaseDate(), price.get(i).getPrice(), price.get(i).getSale(), photo.get(i).getPhotoPath()));
         }
