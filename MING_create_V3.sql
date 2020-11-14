@@ -1,3 +1,5 @@
+CREATE DATABASE ming DEFAULT CHARACTER SET 'utf8' DEFAULT COLLATE utf8_general_ci;
+
 -- Created by Vertabelo (http://vertabelo.com)
 -- Last modification date: 2020-11-14 21:49:39.527
 
@@ -57,7 +59,7 @@ CREATE TABLE esrb (
 
 -- Table: game_requirements
 CREATE TABLE game_requirements (
-    id_game_requirement int NOT NULL,
+    id_game_requirement int NOT NULL AUTO_INCREMENT,
     id_game int NOT NULL,
     id_operating_system int NOT NULL,
     processor varchar(25) NOT NULL,
@@ -280,7 +282,7 @@ CREATE TABLE price (
 
 -- Table: publisher_earnings
 CREATE TABLE publisher_earnings (
-    id_publisher_earning int NOT NULL,
+    id_publisher_earning int NOT NULL AUTO_INCREMENT,
     id_publisher int NOT NULL,
     amount numeric(10,6) NOT NULL COMMENT 'Cantidad desembolsada',
     expenditure_date timestamp NOT NULL COMMENT 'Fecha de desembolso',
