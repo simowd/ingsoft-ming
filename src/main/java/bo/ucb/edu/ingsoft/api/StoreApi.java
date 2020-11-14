@@ -8,10 +8,8 @@ import bo.ucb.edu.ingsoft.util.TransactionUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;
-import org.springframework.web.server.ResponseStatusException;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -34,47 +32,9 @@ public class StoreApi {
     GET (/store/homepage?page={pageNumber}) It gives you 10 games from the database and orders them
     in pages.
     */
-    @RequestMapping(value = "/ming/store/homepage", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<HomepageRequest> getHomepage(@RequestParam Integer page) {
-        return storeBl.getHomePage(page);
-    }
-
-    /*
-    GET (/store/search?query={pageNumber}) It searches all of the database for the games that contain the specified later
-    It's case insensitive
-    */
-    @RequestMapping(value = "/ming/store/search", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<HomepageRequest> getSearch(@RequestParam String query) {
-        return storeBl.getSearchData(query);
-    }
-
-    /*
-    GET (/store/highlights) It gives you all of the currently highlighted games.
-    in pages.
-    */
-    @RequestMapping(value = "/ming/store/highlights", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<HighlightRequest> getHighlights() {
-        return storeBl.getHighLights();
-    }
-
-    /*
-    GET (/store/sale) It gives you all of the currently sale games.
-    in pages.
-    */
-    @RequestMapping(value = "/ming/store/sale", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<SaleRequest> SalePage() {
-
-            List<SaleRequest> sale = storeBl.SalePage();
-            return sale;
-
-    }
-
-    /*
-    GET (/store/releases) Returns a list of the games that were released during the last 7 days.
-    */
-    @RequestMapping(value = "/ming/store/releases", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<ReleaseRequest> getLatestReleases() {
-        return storeBl.getLatest();
+    @RequestMapping(value = "/ming/v1/games", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<GamesRequest> getHomepage(@RequestParam Integer page, @RequestParam(required = false) String query, @RequestParam(required = false) Boolean highlight, @RequestParam(required = false) Boolean latest, @RequestParam(required = false) Boolean sale, @RequestParam(required = false) String publisher) {
+        return storeBl.getGames(page,query,highlight,latest,sale,publisher);
     }
 
     /*

@@ -206,50 +206,5 @@ public class PublisherBl {
         return dashboardRequest;
 
     }
-    /*
-     The publisher gets a list of the games they made.
-     */
-    public List<HomepageRequest> getAllPublisherGames(Integer idPublisher){
-        List<HomepageRequest> list = new ArrayList<HomepageRequest>();
-        List<Game> games = gameDao.findByPublisher(idPublisher);
-        if(!games.isEmpty()) {
-            List<Integer> ids = new ArrayList<Integer>();
-            for (Game game : games) {
-                ids.add(game.getIdGame());
-            }
-            for(int i = 0; i < ids.size(); i++){
-                Price price = priceDao.findById(ids.get(i));
-                Photo photo = photoDao.findBannerbyGame(ids.get(i));
-                if(price != null && photo != null){
-                    HomepageRequest homepageRequest = new HomepageRequest(games.get(i).getIdGame().toString(), games.get(i).getName(), price.getPrice(), price.getSale().doubleValue(), photo.getPhotoPath());
-                    list.add(homepageRequest);
-                }
-            }
-        }
-        return list;
-    }
-
-    /*
-        The admin gets a list of all the games they made.
-    */
-    public List<GameAdminRequest> getAllGames(){
-        List<GameAdminRequest> list = new ArrayList<GameAdminRequest>();
-        List<Game> games = gameDao.findAllGames();
-        if(!games.isEmpty()) {
-            List<Integer> ids = new ArrayList<Integer>();
-            for (Game game : games) {
-                ids.add(game.getIdGame());
-            }
-            for(int i = 0; i < ids.size(); i++){
-                Price price = priceDao.findById(ids.get(i));
-                Photo photo = photoDao.findBannerbyGame(ids.get(i));
-                if(price != null && photo != null){
-                    GameAdminRequest gameAdminRequest = new GameAdminRequest(games.get(i).getIdGame().toString(), games.get(i).getName(), price.getPrice(), price.getSale().doubleValue(), photo.getPhotoPath(),games.get(i).getHighlight());
-                    list.add(gameAdminRequest);
-                }
-            }
-        }
-        return list;
-    }
 
 }

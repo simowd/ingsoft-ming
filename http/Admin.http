@@ -26,7 +26,7 @@ Accept: application/json
 
 ###
 #The admin sees a games list
-GET http://localhost:8080/ming/publisher/games
+GET http://localhost:8080/ming/v1/games?page=1
 Accept: application/json
 
 ###

@@ -1,20 +1,20 @@
 #The site's home page
-GET http://localhost:8080/ming/store/homepage?page=1
+GET http://localhost:8080/ming/v1/games?page=1
 Accept: application/json
 
 ###
 #The highlighted games
-GET http://localhost:8080//ming/store/highlights
+GET http://localhost:8080/ming/v1/games?page=1&highlight=true
 Accept: application/json
 
 ###
 #The games on sale
-GET http://localhost:8080//ming/store/sale
+GET http://localhost:8080/ming/v1/games?page=1&sale=true
 Accept: application/json
 
 ###
 #The latest game releases
-GET http://localhost:8080//ming/store/releases
+GET http://localhost:8080/ming/v1/games?page=1&latest=true
 Accept: application/json
 
 ###
@@ -24,5 +24,5 @@ Accept: application/json
 
 ###
 #The Search Bar
-GET http://localhost:8080/ming/store/search?query=G
+GET http://localhost:8080/ming/v1/games?page=1&query=G
 Accept: application/json

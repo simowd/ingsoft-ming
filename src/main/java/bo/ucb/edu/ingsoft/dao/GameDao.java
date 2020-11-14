@@ -1,8 +1,7 @@
 package bo.ucb.edu.ingsoft.dao;
 
-import bo.ucb.edu.ingsoft.dto.Transaction;
 import bo.ucb.edu.ingsoft.models.Game;
-import bo.ucb.edu.ingsoft.models.Publisher;
+import bo.ucb.edu.ingsoft.models.GameHelper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -11,20 +10,8 @@ import java.util.List;
 
 @Mapper
 public interface GameDao {
-    // Get Sale games data
-    public List<Game> findSale();
-
-    // Get Sale games data
-    public List<Integer> findSaleIds();
-
     //Find page for the homepage
-    public List<Game> findPage(@Param("a") Integer limit, @Param("b") Integer offset);
-
-    //Gets all the highlights for the projects
-    public List<Game> findHighlight();
-
-    //Find latest releases (last week)
-    public List<Game> findLatestReleases();
+    public List<Game> findPage(GameHelper gameHelper);
 
     //Create Game
     public void createGame(Game game);
@@ -50,9 +37,6 @@ public interface GameDao {
 
     //delete  game
     public void deleteGame(Integer idGame);
-
-    //Search Query
-    public List<Game> searchQuery(String query);
 
     //Get a list of the games by a developer
     public List<Game> findByPublisher(Integer idPublisher);

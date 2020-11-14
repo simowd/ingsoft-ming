@@ -63,11 +63,6 @@ public class AdminApi {
 
     }
 
-    @RequestMapping(value="/ming/publisher/games", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<GameAdminRequest> getAdminGames(){
-        return publisherBl.getAllGames();
-    }
-
     /*
     PUT (/admin/homepage/{gameId}) The selected game changes its highlight status
     */

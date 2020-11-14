@@ -88,7 +88,7 @@ Accept: application/json
 
 ###
 #The publisher sees his games
-GET http://localhost:8080/ming/publisher/3/game
+GET http://localhost:8080/ming/v1/games?page=1&publisher=1
 Accept: application/json
 
 

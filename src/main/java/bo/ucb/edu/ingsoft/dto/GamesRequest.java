@@ -1,32 +1,90 @@
 package bo.ucb.edu.ingsoft.dto;
 
-public class HomepageRequest {
+import java.sql.Timestamp;
+import java.util.Date;
+
+public class GamesRequest {
     private String id;
     private String title;
+    private String description;
+    private String developer;
     private Double price;
     private Double sale;
     private String banner;
+    private Integer highlight;
+    private String release_date;
+    private String color;
 
-    public HomepageRequest(String id, String title, Double price, Double sale, String banner) {
+    public GamesRequest(String id, String title, String description, String developer, Double price, Double sale, String banner, Integer highlight, String release_date, String color) {
         this.id = id;
         this.title = title;
+        this.description = description;
+        this.developer = developer;
         this.price = price;
         this.sale = sale;
         this.banner = banner;
-    }
-
-    public HomepageRequest() {
+        this.highlight = highlight;
+        this.release_date = release_date;
+        this.color = color;
     }
 
     @Override
     public String toString() {
-        return "HomepageRequest{" +
+        return "GamesRequest{" +
                 "id='" + id + '\'' +
                 ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", developer='" + developer + '\'' +
                 ", price=" + price +
                 ", sale=" + sale +
                 ", banner='" + banner + '\'' +
+                ", highlight=" + highlight +
+                ", release_date=" + release_date +
+                ", color='" + color + '\'' +
                 '}';
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getDeveloper() {
+        return developer;
+    }
+
+    public void setDeveloper(String developer) {
+        this.developer = developer;
+    }
+
+    public Integer getHighlight() {
+        return highlight;
+    }
+
+    public void setHighlight(Integer highlight) {
+        this.highlight = highlight;
+    }
+
+    public String getRelease_date() {
+        return release_date;
+    }
+
+    public void setRelease_date(String release_date) {
+        this.release_date = release_date;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public GamesRequest() {
     }
 
     public String getId() {
