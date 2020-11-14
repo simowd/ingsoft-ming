@@ -1,36 +1,39 @@
 package bo.ucb.edu.ingsoft.dto;
 
-public class GamesRequest {
-    private Integer id;
+public class HomepageRequest {
+    private String id;
     private String title;
     private Double price;
     private Double sale;
     private String banner;
-    private Integer highlight;
-    private Integer latest;
 
-    public GamesRequest() {
+    public HomepageRequest(String id, String title, Double price, Double sale, String banner) {
+        this.id = id;
+        this.title = title;
+        this.price = price;
+        this.sale = sale;
+        this.banner = banner;
+    }
 
+    public HomepageRequest() {
     }
 
     @Override
     public String toString() {
-        return "GamesRequest{" +
-                "id=" + id +
+        return "HomepageRequest{" +
+                "id='" + id + '\'' +
                 ", title='" + title + '\'' +
                 ", price=" + price +
                 ", sale=" + sale +
                 ", banner='" + banner + '\'' +
-                ", highlight=" + highlight +
-                ", latest=" + latest +
                 '}';
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -64,22 +67,6 @@ public class GamesRequest {
 
     public void setBanner(String banner) {
         this.banner = banner;
-    }
-
-    public Integer getHighlight() {
-        return highlight;
-    }
-
-    public void setHighlight(Integer highlight) {
-        this.highlight = highlight;
-    }
-
-    public Integer getLatest() {
-        return latest;
-    }
-
-    public void setLatest(Integer latest) {
-        this.latest = latest;
     }
 
 }
