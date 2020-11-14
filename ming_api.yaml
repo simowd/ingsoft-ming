@@ -413,19 +413,56 @@ paths:
           description: Forbiden access!
         "500":
           description: Server error!
-  /store/homepage:
+  /games:
     get:
       tags: 
         - "Store"
-      summary: The site´s home page
+        - "Admin"
+        - "Publisher"
+      summary: Gets an array of games
       description: |
-        The store first page
+        It gives you an array of games with the important data.
       parameters:
         - name: page
           description: |
             The home page current page.
           in: "query"
           required: true
+          schema:
+            type: string
+        - name: query
+          description: |
+            The search query
+          in: "query"
+          required: false
+          schema:
+            type: string
+        - name: highlight
+          description: |
+            Asks if it is a highlight
+          in: "query"
+          required: false
+          schema:
+            type: boolean
+        - name: latest
+          description: |
+            Asks if for the latest games
+          in: "query"
+          required: false
+          schema:
+            type: boolean
+        - name: sale
+          description: |
+            Asks if the games are on sale
+          in: "query"
+          required: false
+          schema:
+            type: boolean
+        - name: publisher
+          description: |
+            Asks for a publisher id
+          in: "query"
+          required: false
           schema:
             type: string
       responses:
@@ -441,67 +478,7 @@ paths:
           description: Page not found!
         "500":
           description: Server error!
-  /store/highlights:
-    get:
-      tags: 
-        - "Store"
-      summary: The highlighted games
-      description: |
-        The store highlights
-      responses:
-        "200":
-            description: Request was successful!
-            content: 
-              application/json:
-                schema:
-                  type: array
-                  items:
-                    $ref: "#/components/schemas/highlighted"
-        "400":
-          description: Bad Request!
-        "500":
-          description: Server error!
-  /store/sale:
-    get:
-      tags: 
-        - "Store"
-      summary: The games on sale
-      description: |
-        The store game sale
-      responses:
-        "200":
-            description: Request was successful!
-            content: 
-              application/json:
-                schema:
-                  type: array
-                  items:
-                    $ref: "#/components/schemas/sales"
-        "400":
-          description: Bad Request!
-        "500":
-          description: Server error!
-  /store/releases:
-    get:
-      tags: 
-        - "Store"
-      summary: The latest game releases
-      description: |
-        The store latest game releases
-      responses:
-        "200":
-            description: Request was successful!
-            content: 
-              application/json:
-                schema:
-                  type: array
-                  items:
-                    $ref: "#/components/schemas/latest"
-        "400":
-          description: Bad Request!
-        "500":
-          description: Server error!
-  /store/games/{id}:
+  /games/{id}:
     get:
       tags: 
         - "Store"
@@ -529,35 +506,7 @@ paths:
           description: Page not found!
         "500":
           description: Server error!       
-  /store/search:
-    get:
-      tags: 
-        - "Store"
-      summary: The Search Bar
-      description: |
-        The store has a search bar
-      parameters:
-        - name: query
-          description: |
-            The home page current page.
-          in: "query"
-          required: true
-          schema:
-            type: string
-      responses:
-        "200":
-            description: Request was successful!
-            content: 
-              application/json:
-                schema:
-                  $ref: "#/components/schemas/home_page_game"
-        "400":
-          description: Bad Request!
-        "404":
-          description: Page not found!
-        "500":
-          description: Server error!   
-  /admin/publisher:
+  /publisher:
       post:
         tags: 
           - "Admin"
@@ -612,72 +561,6 @@ paths:
             description: Invalid credentials!
           "500":
             description: Server error! 
-  /admin/publisher/{id}:
-      delete:
-        tags: 
-          - "Admin"
-        summary: The admin deletes a publisher account
-        description: |
-          The admin deletes a publisher account
-        parameters:
-          - name: id
-            description: |
-              The publisher unique id.
-            in: "path"
-            required: true
-            schema:
-              type: string
-          - name: jwt
-            description: |
-              Authentication Key
-            in: "header"
-            required: true
-            example: "235456456ds7dfs786fdf7g68df6g"
-            schema:
-              type: string
-        responses:
-          "200":
-            description: Request was successful!
-            content:
-              text/plain:
-                schema:
-                  type: string
-                  example: ok
-          "400":
-            description: Invalid requestBody!
-          "403":
-            description: Invalid credentials!
-          "500":
-            description: Server error!
-  /admin/publisher/games:
-      get:
-        tags: 
-          - "Admin"
-        summary: The admin sees a games list
-        description: |
-          The admin sees publisher list
-        parameters:
-          - name: jwt
-            description: |
-              Authentication Key
-            in: "header"
-            required: true
-            example: "235456456ds7dfs786fdf7g68df6g"
-            schema:
-              type: string
-        responses:
-          "200":
-              description: Request was successful!
-              content: 
-                application/json:
-                  schema:
-                    $ref: "#/components/schemas/admin_home_page_game"
-          "400":
-            description: Invalid requestBody!
-          "403":
-            description: Invalid credentials!
-          "500":
-            description: Server error! 
   /publisher/{id}/dashboard:
       get:
         tags: 
@@ -716,11 +599,19 @@ paths:
             description: Invalid credentials!
           "500":
             description: Server error!
-  /admin/homepage/{id}:
+  /highlight/{id}:
       put:
         tags: 
           - "Admin"
         summary: The admin edit game highlight
+        parameters:
+          - name: id
+            description: |
+              Game's unique id.
+            in: "path"
+            required: true
+            schema:
+              type: string
         description: |
           The admin edit game things
         requestBody:
@@ -820,6 +711,42 @@ paths:
           "403":
             description: Invalid credentials!
           "500":
+            description: Server error!
+      delete:
+        tags: 
+          - "Admin"
+        summary: The admin deletes a publisher account
+        description: |
+          The admin deletes a publisher account
+        parameters:
+          - name: id
+            description: |
+              The publisher unique id.
+            in: "path"
+            required: true
+            schema:
+              type: string
+          - name: jwt
+            description: |
+              Authentication Key
+            in: "header"
+            required: true
+            example: "235456456ds7dfs786fdf7g68df6g"
+            schema:
+              type: string
+        responses:
+          "200":
+            description: Request was successful!
+            content:
+              text/plain:
+                schema:
+                  type: string
+                  example: ok
+          "400":
+            description: Invalid requestBody!
+          "403":
+            description: Invalid credentials!
+          "500":
             description: Server error! 
   /publisher/{id}/game:
       post:
@@ -877,10 +804,10 @@ paths:
         description: |
           The publisher edits a game
         parameters:
-          - name: game_id
+          - name: id
             description: |
               The game´s to delete unique id.
-            in: "query"
+            in: "path"
             required: true
             schema:
               type: string
@@ -942,41 +869,6 @@ paths:
                 schema:
                   type: string
                   example: ok
-          "400":
-            description: Invalid requestBody!
-          "403":
-            description: Invalid credentials!
-          "500":
-            description: Server error!
-      get:
-        tags: 
-          - "Publisher"
-        summary: The publisher sees his games
-        description: |
-          The publisher displays a list of his games
-        parameters:
-          - name: id
-            description: |
-              The publisher unique id.
-            in: "path"
-            required: true
-            schema:
-              type: string
-          - name: jwt
-            description: |
-              Authentication Key
-            in: "header"
-            required: true
-            example: "235456456ds7dfs786fdf7g68df6g"
-            schema:
-              type: string
-        responses:
-          "200":
-              description: Request was successful!
-              content:
-                application/json:
-                  schema:
-                    $ref: "#/components/schemas/home_page_game"
           "400":
             description: Invalid requestBody!
           "403":
@@ -1049,6 +941,16 @@ components:
               The game's title
             example: "Noita"
             type: string
+          description:
+            description: |
+              The game's description
+            example: "Best Game Ever"
+            type: string
+          developer:
+            description: |
+              The game's developer
+            example: "Nolla Games"
+            type: string
           price:
             description: |
               The game's price
@@ -1057,13 +959,29 @@ components:
           sale:
             description: |
               The game's offer if it has one
-            example: "9.99"
+            example: "20"
             type: string
           banner:
             description: |
               The game's banner
             example: "game/images/banner.jpg"
             type: string
+          highlight:
+            description: |
+              The game's highlight status
+            example: 1
+            type: integer
+          release_date:
+            description: |
+              The game's release_date
+            example: "29/30/2020"
+            type: string
+          color:
+            description: |
+              The game's dominant color
+            example: "#292929"
+            type: string
+
     highlighted:
       type: object
       required: 
@@ -1353,6 +1271,11 @@ components:
             The game's image
           type: array
           example: ["game/image/1","game/image/2"]
+          items:
+            properties:
+              image:
+                type: string
+                example: "https://www.flaticon.com/svg/static/icons/svg/731/731985.svg"
         genres:
           description: |
             The game's genres
