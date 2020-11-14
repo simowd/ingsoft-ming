@@ -33,7 +33,7 @@ INSERT INTO countries (name,status,tx_id,tx_host,tx_user_id,tx_date) VALUES('Arg
 INSERT INTO countries (name,status,tx_id,tx_host,tx_user_id,tx_date) VALUES('Argentina',1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
 INSERT INTO countries (name,status,tx_id,tx_host,tx_user_id,tx_date) VALUES('Armenia',1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
 INSERT INTO countries (name,status,tx_id,tx_host,tx_user_id,tx_date) VALUES('Aruba',1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
-INSERT INTO countries (name,status,tx_id,tx_host,tx_user_id,tx_date) VALUES('Australia'),1,LAST_INSERT_ID(),'127.0.0.0',1,NOW();
+INSERT INTO countries (name,status,tx_id,tx_host,tx_user_id,tx_date) VALUES('Australia',1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
 INSERT INTO countries (name,status,tx_id,tx_host,tx_user_id,tx_date) VALUES('Austria',1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
 INSERT INTO countries (name,status,tx_id,tx_host,tx_user_id,tx_date) VALUES('Azerbaiyán',1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
 INSERT INTO countries (name,status,tx_id,tx_host,tx_user_id,tx_date) VALUES('Bahamas',1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
@@ -354,7 +354,7 @@ INSERT INTO publishers (id_user, publisher, paypal_mail, status, tx_id, tx_host,
 
 INSERT INTO transactions VALUES (null, '192.168.1.10', 1, now());
 SELECT LAST_INSERT_ID();
-INSERT INTO publisher_earnings (id_publisher,amount,expenditure_date,card,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (4,39.990000,NOW(),'Visa',1,LAST_INSERT_ID(),'192.168.1.10', 1, now());
+INSERT INTO publisher_earnings (id_publisher,amount,expenditure_date,card,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (1,39.990000,NOW(),'Visa',1,LAST_INSERT_ID(),'192.168.1.10', 1, now());
 
 -- Table developers
 
@@ -444,26 +444,38 @@ INSERT INTO price (id_game,price,date,sale,status,tx_id,tx_host,tx_user_id,tx_da
 
 -- Table photos
 
-INSERT INTO photos (id_game, photo_path, type, status,tx_id,tx_host,tx_user_id,tx_date) VALUES (1,'https://cdn.cloudflare.steamstatic.com/steam/apps/683320/ss_4fa618f5a2141d48a05716d43598a260235b0aaa.600x338.jpg?t=1574359986',1,1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
-INSERT INTO photos (id_game, photo_path, type, status,tx_id,tx_host,tx_user_id,tx_date) VALUES (1,'https://cdn.cloudflare.steamstatic.com/steam/apps/683320/ss_a155ad5423e11e3e764a1a270dcf4f30323f0a35.600x338.jpg?t=1574359986',2,1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
-INSERT INTO photos (id_game, photo_path, type, status,tx_id,tx_host,tx_user_id,tx_date) VALUES (1,'https://cdn.cloudflare.steamstatic.com/steam/apps/683320/ss_973175ba1865c5716c5f37588d00ac135b7d34ba.600x338.jpg?t=1574359986',2,1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO photos (id_game, photo_path, type, status,tx_id,tx_host,tx_user_id,tx_date) VALUES (1,'https://cdn.cloudflare.steamstatic.com/steam/apps/683320/ss_4fa618f5a2141d48a05716d43598a260235b0aaa.600x338.jpg?t=1574359986',1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO photos (id_game, photo_path, type, status,tx_id,tx_host,tx_user_id,tx_date) VALUES (1,'https://cdn.cloudflare.steamstatic.com/steam/apps/683320/ss_a155ad5423e11e3e764a1a270dcf4f30323f0a35.600x338.jpg?t=1574359986',2,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO photos (id_game, photo_path, type, status,tx_id,tx_host,tx_user_id,tx_date) VALUES (1,'https://cdn.cloudflare.steamstatic.com/steam/apps/683320/ss_973175ba1865c5716c5f37588d00ac135b7d34ba.600x338.jpg?t=1574359986',2,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
 
-INSERT INTO photos (id_game, photo_path, type, status,tx_id,tx_host,tx_user_id,tx_date) VALUES (2,'https://cdn.cloudflare.steamstatic.com/steam/apps/1097150/ss_242e6f5aa36e166864002ed976ed0293dfe49011.600x338.jpg?t=1603922857',1,1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
-INSERT INTO photos (id_game, photo_path, type, status,tx_id,tx_host,tx_user_id,tx_date) VALUES (2,'https://cdn.cloudflare.steamstatic.com/steam/apps/1097150/ss_b2b6b170330b8af1f50d0e90efad984adafeb281.600x338.jpg?t=1603922857',2,1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
-INSERT INTO photos (id_game, photo_path, type, status,tx_id,tx_host,tx_user_id,tx_date) VALUES (2,'https://cdn.cloudflare.steamstatic.com/steam/apps/1097150/ss_df2d12f278d6c0203e11fece84fc50226ff077d6.600x338.jpg?t=1603922857',2,1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO photos (id_game, photo_path, type, status,tx_id,tx_host,tx_user_id,tx_date) VALUES (2,'https://cdn.cloudflare.steamstatic.com/steam/apps/1097150/ss_242e6f5aa36e166864002ed976ed0293dfe49011.600x338.jpg?t=1603922857',1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO photos (id_game, photo_path, type, status,tx_id,tx_host,tx_user_id,tx_date) VALUES (2,'https://cdn.cloudflare.steamstatic.com/steam/apps/1097150/ss_b2b6b170330b8af1f50d0e90efad984adafeb281.600x338.jpg?t=1603922857',2,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO photos (id_game, photo_path, type, status,tx_id,tx_host,tx_user_id,tx_date) VALUES (2,'https://cdn.cloudflare.steamstatic.com/steam/apps/1097150/ss_df2d12f278d6c0203e11fece84fc50226ff077d6.600x338.jpg?t=1603922857',2,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
 
-INSERT INTO photos (id_game, photo_path, type, status,tx_id,tx_host,tx_user_id,tx_date) VALUES (3,'https://cdn.cloudflare.steamstatic.com/steam/apps/448510/ss_2a35c15c78f06dd4f23dab8a1e1917a835d0062d.600x338.jpg?t=1594197612',1,1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
-INSERT INTO photos (id_game, photo_path, type, status,tx_id,tx_host,tx_user_id,tx_date) VALUES (3,'https://cdn.cloudflare.steamstatic.com/steam/apps/448510/ss_c307c59c18be77c920050a2d70d76929a2295879.600x338.jpg?t=1594197612',2,1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
-INSERT INTO photos (id_game, photo_path, type, status,tx_id,tx_host,tx_user_id,tx_date) VALUES (3,'https://cdn.cloudflare.steamstatic.com/steam/apps/448510/ss_65929fedb7284c22e6a3d78e84fd4e85ca174d2a.600x338.jpg?t=1594197612',2,1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO photos (id_game, photo_path, type, status,tx_id,tx_host,tx_user_id,tx_date) VALUES (3,'https://cdn.cloudflare.steamstatic.com/steam/apps/448510/ss_2a35c15c78f06dd4f23dab8a1e1917a835d0062d.600x338.jpg?t=1594197612',1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO photos (id_game, photo_path, type, status,tx_id,tx_host,tx_user_id,tx_date) VALUES (3,'https://cdn.cloudflare.steamstatic.com/steam/apps/448510/ss_c307c59c18be77c920050a2d70d76929a2295879.600x338.jpg?t=1594197612',2,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO photos (id_game, photo_path, type, status,tx_id,tx_host,tx_user_id,tx_date) VALUES (3,'https://cdn.cloudflare.steamstatic.com/steam/apps/448510/ss_65929fedb7284c22e6a3d78e84fd4e85ca174d2a.600x338.jpg?t=1594197612',2,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
 
 -- Table library
 
-INSERT INTO library (id_user,id_game,download,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (1,2,1,1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
-INSERT INTO library (id_user,id_game,download,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (1,3,0,1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
-INSERT INTO library (id_user,id_game,download,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (2,1,1,1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
-INSERT INTO library (id_user,id_game,download,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (2,3,0,1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
-INSERT INTO library (id_user,id_game,download,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (3,1,1,1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
-INSERT INTO library (id_user,id_game,download,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (3,2,1,1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO transactions VALUES (null, '192.192.1.2', 2, now());
+SELECT LAST_INSERT_ID();
+INSERT INTO library (id_user,id_game,download,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (1,2,1,1,LAST_INSERT_ID(),'192.192.1.2', 2,NOW());
+INSERT INTO transactions VALUES (null, '192.192.1.2', 3, now());
+SELECT LAST_INSERT_ID();
+INSERT INTO library (id_user,id_game,download,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (1,3,0,1,LAST_INSERT_ID(),'192.192.1.2', 3,NOW());
+INSERT INTO transactions VALUES (null, '192.192.1.2', 1, now());
+SELECT LAST_INSERT_ID();
+INSERT INTO library (id_user,id_game,download,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (2,1,1,1,LAST_INSERT_ID(),'192.192.1.2', 1,NOW());
+INSERT INTO transactions VALUES (null, '192.192.1.2', 2, now());
+SELECT LAST_INSERT_ID();
+INSERT INTO library (id_user,id_game,download,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (2,3,0,1,LAST_INSERT_ID(),'192.192.1.2', 2,NOW());
+INSERT INTO transactions VALUES (null, '192.192.1.2', 3, now());
+SELECT LAST_INSERT_ID();
+INSERT INTO library (id_user,id_game,download,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (3,1,1,1,LAST_INSERT_ID(),'192.192.1.2', 3,NOW());
+INSERT INTO transactions VALUES (null, '192.192.1.2', 1, now());
+SELECT LAST_INSERT_ID();
+INSERT INTO library (id_user,id_game,download,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (3,2,1,1,LAST_INSERT_ID(),'192.192.1.2', 1,NOW());
 
 -- Table Orders
 
@@ -479,7 +491,7 @@ INSERT INTO transactions VALUES (null, '192.192.1.3', 3, now());
 SELECT LAST_INSERT_ID();
 INSERT INTO orders (id_user, date, status, tx_id, tx_host, tx_user_id, tx_date) VALUES (3,NOW(),2,LAST_INSERT_ID(),'192.192.1.3',3,NOW());
 
--- Table Order_detail
+-- Table Order_details
 
 INSERT INTO transactions VALUES (null, '192.192.1.1', 1, now());
 SELECT LAST_INSERT_ID();
