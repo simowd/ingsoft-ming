@@ -2,11 +2,13 @@ package bo.ucb.edu.ingsoft.dto;
 
 import bo.ucb.edu.ingsoft.models.Esrb;
 import bo.ucb.edu.ingsoft.models.OperatingSystem;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class GameDetailsRequest {
     private Integer id;
     private String title;
