@@ -18,7 +18,8 @@
                logo_path as logoPath
         FROM operating_system
         WHERE
-            id_operating_system in
+              status = 1
+        AND id_operating_system in
         <foreach collection="list" item="item" index="index"
                  open="(" separator="," close = ")">
             #{item}
@@ -28,6 +29,7 @@
         SELECT id_operating_system
         FROM games_os
         WHERE id_game = #{gameId}
+        AND status = 1
     </select>
 
     <select id="findByIdGamesOs" resultType="java.lang.Integer">

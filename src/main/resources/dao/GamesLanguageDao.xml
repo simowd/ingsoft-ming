@@ -17,16 +17,19 @@
                language as language
         FROM languages
         WHERE
-            id_language in
+              status = 1
+        AND id_language in
         <foreach collection="list" item="item" index="index"
                  open="(" separator="," close = ")">
             #{item}
         </foreach>
+
     </select>
     <select id="findGameLanguages" resultType="java.lang.Integer">
         SELECT id_language
         FROM languages_games
         WHERE id_game = #{gameId}
+        AND status = 1
     </select>
 
     <select id="findByIdGamesLanguages" resultType="java.lang.Integer">

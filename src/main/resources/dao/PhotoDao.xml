@@ -62,6 +62,7 @@
         SELECT photo_path as photoPath
         FROM photos
         WHERE id_game = #{idGame}
+        AND status = 1
     </select>
 
     <update id="updatePhotoBanner" parameterType="bo.ucb.edu.ingsoft.models.Photo">

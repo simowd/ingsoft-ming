@@ -146,6 +146,8 @@
       FROM games
       WHERE
             id_game=#{idGame}
+      AND
+            status = 1
     </select>
 
     <select id="findLibraryGames" resultType="bo.ucb.edu.ingsoft.models.Game">

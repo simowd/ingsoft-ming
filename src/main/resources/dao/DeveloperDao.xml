@@ -51,6 +51,7 @@
         FROM developers
         WHERE
             id_developer = #{idDeveloper}
+        AND status = 1
     </select>
 
     <select id="findBydeveloperName" resultType="java.lang.Integer">

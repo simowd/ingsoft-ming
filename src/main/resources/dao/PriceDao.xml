@@ -49,6 +49,7 @@
                sale as sale
         FROM price
         WHERE id_game = #{idGame}
+        AND status = 1
     </select>
 
 </mapper>

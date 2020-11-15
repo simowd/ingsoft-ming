@@ -35,6 +35,7 @@
         genres.id_genre = genres_games.id_genre
         WHERE
         genres_games.id_game=#{idGame}
+        AND genres.status = 1
     </select>
 
     <select id="findByIdGamesGenre" resultType="java.lang.Integer">
