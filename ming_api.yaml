@@ -20,10 +20,10 @@ tags:
     description: "Everything about a publisher"
   - name: "Store"
     description: "Everything about a the web store"
-paths: 
+paths:
   /users/login:
     post:
-      tags: 
+      tags:
         - "Authentication"
       summary: The user logs in the site
       description: |
@@ -36,12 +36,7 @@ paths:
               $ref: "#/components/schemas/login"
       responses:
         "200":
-            description: Request was successful!
-            content:
-              text/plain:
-                schema:
-                  type: string
-                  example: ok
+          description: Request was successful!
         "400":
           description: Invalid requestBody!
         "403":
@@ -50,7 +45,7 @@ paths:
           description: Server error!
   /users/signup:
     post:
-      tags: 
+      tags:
         - "Authentication"
       summary: The user creates an account
       description: |
@@ -63,19 +58,14 @@ paths:
               $ref: "#/components/schemas/register"
       responses:
         "200":
-            description: Request was successful!
-            content:
-              text/plain:
-                schema:
-                  type: string
-                  example: ok
+          description: Request was successful!
         "400":
           description: Invalid requestBody!
         "500":
           description: Server error!
   /users/{id}:
     get:
-      tags: 
+      tags:
         - "User"
       summary: The user sees his profile info
       description: |
@@ -98,11 +88,11 @@ paths:
             type: string
       responses:
         "200":
-            description: Request was successful!
-            content: 
-              application/json:
-                schema:
-                  $ref: "#/components/schemas/user_info"
+          description: Request was successful!
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/user_info"
         "400":
           description: Bad request!
         "404":
@@ -112,7 +102,7 @@ paths:
         "500":
           description: Server error!
     put:
-      tags: 
+      tags:
         - "User"
       summary: The user can edit his profile info
       description: |
@@ -141,12 +131,8 @@ paths:
               $ref: "#/components/schemas/user_info_edit"
       responses:
         "200":
-            description: Request was successful!
-            content:
-              text/plain:
-                schema:
-                  type: string
-                  example: ok
+          description: Request was successful!
+
         "400":
           description: Bad request!
         "404":
@@ -157,7 +143,7 @@ paths:
           description: Server error!
   /users/{id}/password:
     put:
-      tags: 
+      tags:
         - "User"
       summary: The user can edit his password
       description: |
@@ -186,12 +172,8 @@ paths:
               $ref: "#/components/schemas/user_password_edit"
       responses:
         "200":
-            description: Request was successful!
-            content:
-              text/plain:
-                schema:
-                  type: string
-                  example: ok
+          description: Request was successful!
+
         "400":
           description: Bad request!
         "404":
@@ -202,7 +184,7 @@ paths:
           description: Server error!
   /users/{id}/library:
     get:
-      tags: 
+      tags:
         - "User"
       summary: The user sees his game library
       description: |
@@ -225,13 +207,13 @@ paths:
             type: string
       responses:
         "200":
-            description: Request was successful!
-            content: 
-              application/json:
-                schema:
-                  type: array
-                  items:
-                    $ref: "#/components/schemas/library"
+          description: Request was successful!
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/library"
         "400":
           description: Bad request!
         "404":
@@ -242,7 +224,7 @@ paths:
           description: Server error!
   /users/{id}/cart:
     get:
-      tags: 
+      tags:
         - "User"
       summary: The user sees his purchase cart
       description: |
@@ -265,21 +247,21 @@ paths:
             type: string
       responses:
         "200":
-            description: Request was successful!
-            content: 
-              application/json:
-                schema:
-                  type: object
-                  properties:
-                    order_id:
-                      type: string
-                      example: "1564"
-                    games:
-                      type: array
-                      items:
-                        $ref: "#/components/schemas/cart"
-                    
-                    
+          description: Request was successful!
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  order_id:
+                    type: string
+                    example: "1564"
+                  games:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/cart"
+
+
         "400":
           description: Bad request!
         "404":
@@ -289,7 +271,7 @@ paths:
         "500":
           description: Server error!
     post:
-      tags: 
+      tags:
         - "User"
       summary: The user adds a game to his purchase cart
       description: |
@@ -319,11 +301,11 @@ paths:
             type: string
       responses:
         "200":
-            description: Request was successful!
-            content: 
-              application/json:
-                schema:
-                  $ref: "#/components/schemas/cart"
+          description: Request was successful!
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/cart"
         "400":
           description: Bad request!
         "404":
@@ -333,7 +315,7 @@ paths:
         "500":
           description: Server error!
     delete:
-      tags: 
+      tags:
         - "User"
       summary: The user deletes a game from his purchase cart
       description: |
@@ -363,7 +345,7 @@ paths:
             type: string
       responses:
         "200":
-            description: Request was successful!
+          description: Request was successful!
         "400":
           description: Bad request!
         "404":
@@ -374,7 +356,7 @@ paths:
           description: Server error!
   /users/{id}/cart/purchase:
     post:
-      tags: 
+      tags:
         - "User"
       summary: The user purchases the game on the cart
       description: |
@@ -404,7 +386,7 @@ paths:
             type: string
       responses:
         "200":
-            description: Purchase was successful!
+          description: Purchase was successful!
         "400":
           description: Bad request!
         "404":
@@ -415,7 +397,7 @@ paths:
           description: Server error!
   /games:
     get:
-      tags: 
+      tags:
         - "Store"
         - "Admin"
         - "Publisher"
@@ -467,11 +449,11 @@ paths:
             type: string
       responses:
         "200":
-            description: Request was successful!
-            content: 
-              application/json:
-                schema:
-                  $ref: "#/components/schemas/home_page_game"
+          description: Request was successful!
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/home_page_game"
         "400":
           description: Bad Request!
         "404":
@@ -480,7 +462,7 @@ paths:
           description: Server error!
   /games/{id}:
     get:
-      tags: 
+      tags:
         - "Store"
       summary: Game page
       description: |
@@ -495,391 +477,356 @@ paths:
             type: string
       responses:
         "200":
-            description: Request was successful!
-            content: 
-              application/json:
-                schema:
-                  $ref: "#/components/schemas/game"
+          description: Request was successful!
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/game"
         "400":
           description: Bad Request!
         "404":
           description: Page not found!
         "500":
-          description: Server error!       
+          description: Server error!
   /publisher:
-      post:
-        tags: 
-          - "Admin"
-        summary: The admin creates a publisher account
-        description: |
-          The admin create an account for a publisher
-        requestBody:
-          description: The publisher's information
+    post:
+      tags:
+        - "Admin"
+      summary: The admin creates a publisher account
+      description: |
+        The admin create an account for a publisher
+      requestBody:
+        description: The publisher's information
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/add_publisher"
+      responses:
+        "200":
+          description: Request was successful!
+
+        "400":
+          description: Invalid requestBody!
+        "403":
+          description: Invalid credentials!
+        "500":
+          description: Server error!
+    get:
+      tags:
+        - "Admin"
+      summary: The admin sees a publisher list
+      description: |
+        The admin sees publisher list
+      parameters:
+        - name: jwt
+          description: |
+            Authentication Key
+          in: "header"
+          required: true
+          example: "235456456ds7dfs786fdf7g68df6g"
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Request was successful!
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/add_publisher"
-        responses:
-          "200":
-            description: Request was successful!
-            content:
-              text/plain:
-                schema:
-                  type: string
-                  example: ok
-          "400":
-            description: Invalid requestBody!
-          "403":
-            description: Invalid credentials!
-          "500":
-            description: Server error! 
-      get:
-        tags: 
-          - "Admin"
-        summary: The admin sees a publisher list
-        description: |
-          The admin sees publisher list
-        parameters:
-          - name: jwt
-            description: |
-              Authentication Key
-            in: "header"
-            required: true
-            example: "235456456ds7dfs786fdf7g68df6g"
-            schema:
-              type: string
-        responses:
-          "200":
-              description: Request was successful!
-              content: 
-                application/json:
-                  schema:
-                    $ref: "#/components/schemas/publishers"
-          "400":
-            description: Invalid requestBody!
-          "403":
-            description: Invalid credentials!
-          "500":
-            description: Server error! 
+                $ref: "#/components/schemas/publishers"
+        "400":
+          description: Invalid requestBody!
+        "403":
+          description: Invalid credentials!
+        "500":
+          description: Server error!
   /publisher/{id}/dashboard:
-      get:
-        tags: 
-          - "Publisher"
-        summary: The admin sees a publisher statistics
-        description: |
-          The admin checks publisher statistics
-        parameters:
-          - name: id
-            description: |
-              The publisher unique id.
-            in: "path"
-            required: true
-            schema:
-              type: string
-          - name: jwt
-            description: |
-              Authentication Key
-            in: "header"
-            required: true
-            example: "235456456ds7dfs786fdf7g68df6g"
-            schema:
-              type: string
-        responses:
-          "200":
-              description: Request was successful!
-              content: 
-                application/json:
-                  schema:
-                    type: array
-                    items:
-                      $ref: "#/components/schemas/game_dashboard"
-          "400":
-            description: Invalid requestBody!
-          "403":
-            description: Invalid credentials!
-          "500":
-            description: Server error!
+    get:
+      tags:
+        - "Publisher"
+      summary: The admin sees a publisher statistics
+      description: |
+        The admin checks publisher statistics
+      parameters:
+        - name: id
+          description: |
+            The publisher unique id.
+          in: "path"
+          required: true
+          schema:
+            type: string
+        - name: jwt
+          description: |
+            Authentication Key
+          in: "header"
+          required: true
+          example: "235456456ds7dfs786fdf7g68df6g"
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Request was successful!
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/game_dashboard"
+        "400":
+          description: Invalid requestBody!
+        "403":
+          description: Invalid credentials!
+        "500":
+          description: Server error!
   /highlight/{id}:
-      put:
-        tags: 
-          - "Admin"
-        summary: The admin edit game highlight
-        parameters:
-          - name: id
-            description: |
-              Game's unique id.
-            in: "path"
-            required: true
+    put:
+      tags:
+        - "Admin"
+      summary: The admin edit game highlight
+      parameters:
+        - name: id
+          description: |
+            Game's unique id.
+          in: "path"
+          required: true
+          schema:
+            type: string
+      description: |
+        The admin edit game things
+      requestBody:
+        description: The publisher's information
+        content:
+          application/json:
             schema:
-              type: string
-        description: |
-          The admin edit game things
-        requestBody:
-          description: The publisher's information
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/admin_edit_highlight"
-        responses:
-          "200":
-            description: Request was successful!
-            content:
-              text/plain:
-                schema:
-                  type: string
-                  example: ok
-          "400":
-            description: Invalid requestBody!
-          "403":
-            description: Invalid credentials!
-          "500":
-            description: Server error! 
+              $ref: "#/components/schemas/admin_edit_highlight"
+      responses:
+        "200":
+          description: Request was successful!
+
+        "400":
+          description: Invalid requestBody!
+        "403":
+          description: Invalid credentials!
+        "500":
+          description: Server error!
   /publisher/{id}:
-      get:
-        tags: 
-          - "Publisher"
-        summary: Shows publisher data
-        description: |
-          The publisher gets his information
-        parameters:
-          - name: id
-            description: |
-              The publisher unique id.
-            in: "path"
-            required: true
-            schema:
-              type: string
-          - name: jwt
-            description: |
-              Authentication Key
-            in: "header"
-            required: true
-            example: "235456456ds7dfs786fdf7g68df6g"
-            schema:
-              type: string
-        responses:
-          "200":
-              description: Request was successful!
-              content:
-                application/json:
-                  schema:
-                    $ref: "#/components/schemas/publisher"
-          "400":
-            description: Invalid requestBody!
-          "403":
-            description: Invalid credentials!
-          "500":
-            description: Server error! 
-      put:
-        tags: 
-          - "Publisher"
-        summary: The publisher can edit his account
-        description: |
-          The publisher modifies his info
-        parameters:
-          - name: id
-            description: |
-              The publisher unique id.
-            in: "path"
-            required: true
-            schema:
-              type: string
-          - name: jwt
-            description: |
-              Authentication Key
-            in: "header"
-            required: true
-            example: "235456456ds7dfs786fdf7g68df6g"
-            schema:
-              type: string
-        requestBody:
-          description: The publisher's game information
+    get:
+      tags:
+        - "Publisher"
+      summary: Shows publisher data
+      description: |
+        The publisher gets his information
+      parameters:
+        - name: id
+          description: |
+            The publisher unique id.
+          in: "path"
+          required: true
+          schema:
+            type: string
+        - name: jwt
+          description: |
+            Authentication Key
+          in: "header"
+          required: true
+          example: "235456456ds7dfs786fdf7g68df6g"
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Request was successful!
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/edit_publisher"
-        responses:
-          "200":
-              description: Request was successful!
-              content:
-                text/plain:
-                  schema:
-                    type: string
-                    example: ok
-          "400":
-            description: Invalid requestBody!
-          "403":
-            description: Invalid credentials!
-          "500":
-            description: Server error!
-      delete:
-        tags: 
-          - "Admin"
-        summary: The admin deletes a publisher account
-        description: |
-          The admin deletes a publisher account
-        parameters:
-          - name: id
-            description: |
-              The publisher unique id.
-            in: "path"
-            required: true
+                $ref: "#/components/schemas/publisher"
+        "400":
+          description: Invalid requestBody!
+        "403":
+          description: Invalid credentials!
+        "500":
+          description: Server error!
+    put:
+      tags:
+        - "Publisher"
+      summary: The publisher can edit his account
+      description: |
+        The publisher modifies his info
+      parameters:
+        - name: id
+          description: |
+            The publisher unique id.
+          in: "path"
+          required: true
+          schema:
+            type: string
+        - name: jwt
+          description: |
+            Authentication Key
+          in: "header"
+          required: true
+          example: "235456456ds7dfs786fdf7g68df6g"
+          schema:
+            type: string
+      requestBody:
+        description: The publisher's game information
+        content:
+          application/json:
             schema:
-              type: string
-          - name: jwt
-            description: |
-              Authentication Key
-            in: "header"
-            required: true
-            example: "235456456ds7dfs786fdf7g68df6g"
-            schema:
-              type: string
-        responses:
-          "200":
-            description: Request was successful!
-            content:
-              text/plain:
-                schema:
-                  type: string
-                  example: ok
-          "400":
-            description: Invalid requestBody!
-          "403":
-            description: Invalid credentials!
-          "500":
-            description: Server error! 
+              $ref: "#/components/schemas/edit_publisher"
+      responses:
+        "200":
+          description: Request was successful!
+
+        "400":
+          description: Invalid requestBody!
+        "403":
+          description: Invalid credentials!
+        "500":
+          description: Server error!
+    delete:
+      tags:
+        - "Admin"
+      summary: The admin deletes a publisher account
+      description: |
+        The admin deletes a publisher account
+      parameters:
+        - name: id
+          description: |
+            The publisher unique id.
+          in: "path"
+          required: true
+          schema:
+            type: string
+        - name: jwt
+          description: |
+            Authentication Key
+          in: "header"
+          required: true
+          example: "235456456ds7dfs786fdf7g68df6g"
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Request was successful!
+
+        "400":
+          description: Invalid requestBody!
+        "403":
+          description: Invalid credentials!
+        "500":
+          description: Server error!
   /publisher/{id}/game:
-      post:
-        tags: 
-          - "Publisher"
-        summary: The publisher add a game
-        description: |
-          The publisher adds a game
-        parameters:
-          - name: id
-            description: |
-              The publisher unique id.
-            in: "path"
-            required: true
+    post:
+      tags:
+        - "Publisher"
+      summary: The publisher add a game
+      description: |
+        The publisher adds a game
+      parameters:
+        - name: id
+          description: |
+            The publisher unique id.
+          in: "path"
+          required: true
+          schema:
+            type: string
+        - name: jwt
+          description: |
+            Authentication Key
+          in: "header"
+          required: true
+          example: "235456456ds7dfs786fdf7g68df6g"
+          schema:
+            type: string
+      requestBody:
+        description: The publisher's information
+        content:
+          application/json:
             schema:
-              type: string
-          - name: jwt
-            description: |
-              Authentication Key
-            in: "header"
-            required: true
-            example: "235456456ds7dfs786fdf7g68df6g"
+              $ref: "#/components/schemas/new_game"
+      responses:
+        "200":
+          description: Request was successful!
+        "400":
+          description: Invalid requestBody!
+        "403":
+          description: Invalid credentials!
+        "500":
+          description: Server error!
+    put:
+      tags:
+        - "Publisher"
+      summary: The publisher edit a game
+      description: |
+        The publisher edits a game
+      parameters:
+        - name: id
+          description: |
+            The game´s to delete unique id.
+          in: "path"
+          required: true
+          schema:
+            type: string
+        - name: jwt
+          description: |
+            Authentication Key
+          in: "header"
+          required: true
+          example: "235456456ds7dfs786fdf7g68df6g"
+          schema:
+            type: string
+      requestBody:
+        description: The publisher's game information to edit
+        content:
+          application/json:
             schema:
-              type: string
-        requestBody:
-          description: The publisher's information
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/new_game"
-        responses:
-          "200":
-              description: Request was successful!
-              content:
-                application/json:
-                  schema:
-                    type: object
-                    properties:
-                      game_id:
-                        type: string
-                        example: "1234"
-                      title:
-                        type: string
-                        example: "Noita"
-          "400":
-            description: Invalid requestBody!
-          "403":
-            description: Invalid credentials!
-          "500":
-            description: Server error!
-      put:
-        tags: 
-          - "Publisher"
-        summary: The publisher edit a game
-        description: |
-          The publisher edits a game
-        parameters:
-          - name: id
-            description: |
-              The game´s to delete unique id.
-            in: "path"
-            required: true
-            schema:
-              type: string
-          - name: jwt
-            description: |
-              Authentication Key
-            in: "header"
-            required: true
-            example: "235456456ds7dfs786fdf7g68df6g"
-            schema:
-              type: string
-        requestBody:
-          description: The publisher's game information to edit
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/new_game"
-        responses:
-          "200":
-            description: Request was successful!
-            content:
-              text/plain:
-                schema:
-                  type: string
-                  example: ok
-          "400":
-            description: Invalid requestBody!
-          "403":
-            description: Invalid credentials!
-          "500":
-            description: Server error!
-      delete:
-        tags: 
-          - "Publisher"
-        summary: The publisher deletes a game
-        description: |
-          The publisher deletes a game
-        parameters:
-          - name: id
-            description: |
-              The game´s to delete unique id.
-            in: "path"
-            required: true
-            schema:
-              type: string
-          - name: jwt
-            description: |
-              Authentication Key
-            in: "header"
-            required: true
-            example: "235456456ds7dfs786fdf7g68df6g"
-            schema:
-              type: string
-        responses:
-          "200":
-            description: Request was successful!
-            content:
-              text/plain:
-                schema:
-                  type: string
-                  example: ok
-          "400":
-            description: Invalid requestBody!
-          "403":
-            description: Invalid credentials!
-          "500":
-            description: Server error!
+              $ref: "#/components/schemas/new_game"
+      responses:
+        "200":
+          description: Request was successful!
+
+        "400":
+          description: Invalid requestBody!
+        "403":
+          description: Invalid credentials!
+        "500":
+          description: Server error!
+    delete:
+      tags:
+        - "Publisher"
+      summary: The publisher deletes a game
+      description: |
+        The publisher deletes a game
+      parameters:
+        - name: id
+          description: |
+            The game´s to delete unique id.
+          in: "path"
+          required: true
+          schema:
+            type: string
+        - name: jwt
+          description: |
+            Authentication Key
+          in: "header"
+          required: true
+          example: "235456456ds7dfs786fdf7g68df6g"
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Request was successful!
+
+        "400":
+          description: Invalid requestBody!
+        "403":
+          description: Invalid credentials!
+        "500":
+          description: Server error!
 components:
   schemas:
     login:
       type: object
-      required: 
+      required:
         - email
         - password
       properties:
@@ -895,7 +842,7 @@ components:
           type: string
     register:
       type: object
-      required: 
+      required:
         - username
         - alias
         - email
@@ -923,7 +870,7 @@ components:
           type: string
     home_page_game:
       type: array
-      required: 
+      required:
         - id
         - title
         - price
@@ -984,7 +931,7 @@ components:
 
     highlighted:
       type: object
-      required: 
+      required:
         - id
         - title
         - game_description
@@ -1046,7 +993,7 @@ components:
           type: string
     user_info:
       type: object
-      required: 
+      required:
         - username
         - alias
         - email
@@ -1080,7 +1027,7 @@ components:
           type: string
     library:
       type: object
-      required: 
+      required:
         - title
         - genre
         - id
@@ -1115,7 +1062,7 @@ components:
           type: string
     user_info_edit:
       type: object
-      required: 
+      required:
         - alias
         - email
         - id_country
@@ -1157,7 +1104,7 @@ components:
     latest:
       type: object
       required:
-        - id 
+        - id
         - title
         - price
         - game_description
@@ -1208,9 +1155,7 @@ components:
         - developer
         - players
         - release_date
-        - processor
-        - memory
-        - graphics
+        - requirements
         - color
         - highlighted
         - download_path
@@ -1233,7 +1178,7 @@ components:
           description: |
             The game's language
           type: array
-          items: 
+          items:
             type: string
             example: "Español"
         game_description:
@@ -1298,6 +1243,22 @@ components:
             The game's release date
           example: "2025-10-11T00:00:00.000+00:00"
           type: string
+        requirements:
+          type: array
+          items:
+            properties:
+              operating_system:
+                type: string
+                example: "Windows"
+              processor:
+                type: string
+                example: "Intel core i10"
+              memory:
+                type: string
+                example: "4GB RAM"
+              graphics:
+                type: string
+                example: "Geforce 690"
         processor:
           description: |
             The game's required processor
@@ -1403,53 +1364,49 @@ components:
             The game's banner
           example: "game/images/banner.jpg"
           type: string
-# Admin
+    # Admin
     add_publisher:
-        type: object
-        required: 
-          - username
-          - email
-          - paypal
-          - publisher
-          - country
-          - password
-          - repeat_password
-        properties:
-            username:
-              description: |
-                The user's username
-              example: "SeRgioPru4"
-              type: string  
-            email:
-              description: |
-                The user's email
-              example: "SeRgioPru4@gmail.com"
-              type: string 
-            paypal:
-              description: |
-                The user's paypalemail
-              example: "jojosConPlata@paypal.com"
-              type: string 
-            publisher:
-              description: |
-                The user's publisher name
-              example: "Rockstar"
-              type: string 
-            country:
-              description: |
-                The user's id country
-              example: 29
-              type: integer 
-            password:
-              description: |
-                The user's password
-              example: "elwashin123"
-              type: string 
-            repeat_password:
-              description: |
-                The user's password
-              example: "elwashin123repetido"
-              type: string 
+      type: object
+      required:
+        - username
+        - email
+        - paypal
+        - publisher
+        - country
+        - password
+
+      properties:
+        username:
+          description: |
+            The user's username
+          example: "SeRgioPru4"
+          type: string
+        email:
+          description: |
+            The user's email
+          example: "SeRgioPru4@gmail.com"
+          type: string
+        paypal:
+          description: |
+            The user's paypalemail
+          example: "jojosConPlata@paypal.com"
+          type: string
+        publisher:
+          description: |
+            The user's publisher name
+          example: "Rockstar"
+          type: string
+        country:
+          description: |
+            The user's id country
+          example: 29
+          type: integer
+        password:
+          description: |
+            The user's password
+          example: "elwashin123"
+          type: string
+
     publishers:
       type: array
       required:
@@ -1483,7 +1440,7 @@ components:
     publisher_game:
       type: object
       required:
-        - id 
+        - id
         - title
         - price
         - sale
@@ -1526,7 +1483,7 @@ components:
           type: string
     game_dashboard:
       type: object
-      required: 
+      required:
         - publisher
         - email
         - paypal
@@ -1636,43 +1593,43 @@ components:
                 example: 320.00
                 type: integer
     edit_publisher:
-        type: object
-        properties:
-            username:
-              description: |
-                The user's username
-              example: "SeRgioPru4"
-              type: string  
-            email:
-              description: |
-                The user's email
-              example: "SeRgioPru4@gmail.com"
-              type: string
-            paypal:
-              description: |
-                The user's paypal account email
-              example: "SeRgioPru4@gmail.com"
-              type: string
-            publisher:
-              description: |
-                The user's publisher name
-              example: "Rockstar"
-              type: string 
-            country:
-              description: |
-                The user's country
-              example: "USA"
-              type: string 
-            password:
-              description: |
-                The user's password
-              example: "elwashin123"
-              type: string 
-            repeat_password:
-              description: |
-                The user's repeated password
-              example: "elwashin123"
-              type: string 
+      type: object
+      properties:
+        username:
+          description: |
+            The user's username
+          example: "SeRgioPru4"
+          type: string
+        email:
+          description: |
+            The user's email
+          example: "SeRgioPru4@gmail.com"
+          type: string
+        paypal:
+          description: |
+            The user's paypal account email
+          example: "SeRgioPru4@gmail.com"
+          type: string
+        publisher:
+          description: |
+            The user's publisher name
+          example: "Rockstar"
+          type: string
+        country:
+          description: |
+            The user's country
+          example: "USA"
+          type: string
+        password:
+          description: |
+            The user's password
+          example: "elwashin123"
+          type: string
+        repeat_password:
+          description: |
+            The user's repeated password
+          example: "elwashin123"
+          type: string
     edit_game:
       type: object
       properties:
@@ -1685,9 +1642,9 @@ components:
           description: |
             The game's language
           type: array
-          items: 
+          items:
             type: string
-            example: "Arabic" 
+            example: "Arabic"
         game_description:
           description: |
             The game's description
@@ -1778,62 +1735,60 @@ components:
           example: "0"
           type: string
     publisher:
-        type: object
-        required: 
+      type: object
+      required:
         - username
         - email
         - paypal
         - publisher
         - country
         - password
-        properties:
-            username:
-              description: |
-                The user's username
-              example: "SeRgioPru4"
-              type: string  
-            email:
-              description: |
-                The user's email
-              example: "SeRgioPru4@gmail.com"
-              type: string
-            paypal:
-              description: |
-                The user's paypal account email
-              example: "SeRgioPru4@gmail.com"
-              type: string
-            publisher:
-              description: |
-                The user's publisher name
-              example: "Rockstar"
-              type: string 
-            country:
-              description: |
-                The user's country
-              example: "USA"
-              type: string 
-            password:
-              description: |
-                The user's password
-              example: "elwashin123"
-              type: string 
-            repeat_password:
-              description: |
-                The user's repeated password
-              example: "elwashin123"
-              type: string
+      properties:
+        username:
+          description: |
+            The user's username
+          example: "SeRgioPru4"
+          type: string
+        email:
+          description: |
+            The user's email
+          example: "SeRgioPru4@gmail.com"
+          type: string
+        paypal:
+          description: |
+            The user's paypal account email
+          example: "SeRgioPru4@gmail.com"
+          type: string
+        publisher:
+          description: |
+            The user's publisher name
+          example: "Rockstar"
+          type: string
+        country:
+          description: |
+            The user's country
+          example: "USA"
+          type: string
+        password:
+          description: |
+            The user's password
+          example: "elwashin123"
+          type: string
+        repeat_password:
+          description: |
+            The user's repeated password
+          example: "elwashin123"
+          type: string
     new_game:
       type: object
-      required: 
+      required:
         - idEsrb
         - title
         - game_description
         - size
         - players
-        - processor
+        - requirements
         - release_date
-        - memory
-        - graphics
         - color
         - highlighted
         - download_path
@@ -1906,11 +1861,28 @@ components:
             The game's download_path
           example: "www.download.games"
           type: string
+        requirements:
+          type: array
+          items:
+            properties:
+              operating_system:
+                type: string
+                example: "Windows"
+              processor:
+                type: string
+                example: "Intel core i10"
+              memory:
+                type: string
+                example: "4GB RAM"
+              graphics:
+                type: string
+                example: "Geforce 690"
+
         images:
           description: |
             The game's images download path
           type: array
-          items: 
+          items:
             type: string
             example: ["http//downloadimage/1","http//downloadimage/2"]
         developer:
@@ -1922,28 +1894,28 @@ components:
           description: |
             The game's directx required
           type: array
-          items: 
+          items:
             type: integer
             example: [1,2]
         operatingSystem:
           description: |
             The game's required operating system
           type: array
-          items: 
+          items:
             type: integer
             example: [1,2,3]
         languageGames:
           description: |
             The game's supported languages
           type: array
-          items: 
+          items:
             type: integer
             example: [1,2]
         genreGames:
           description: |
             The game's genres
           type: array
-          items: 
+          items:
             type: integer
             example: [1,2]
         price:
@@ -1968,7 +1940,7 @@ components:
           type: integer
     admin_home_page_game:
       type: array
-      required: 
+      required:
         - id
         - title
         - price
