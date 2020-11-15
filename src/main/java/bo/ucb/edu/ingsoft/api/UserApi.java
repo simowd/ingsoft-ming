@@ -5,6 +5,7 @@ import bo.ucb.edu.ingsoft.bl.TransactionBl;
 import bo.ucb.edu.ingsoft.bl.UserBl;
 import bo.ucb.edu.ingsoft.dto.*;
 import bo.ucb.edu.ingsoft.util.TransactionUtil;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -30,18 +31,18 @@ public class UserApi {
     /*
     POST (/users/signup) The user creates an account
     */
-    @RequestMapping(value = "/ming/users/signup", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/ming/v1/users/signup", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
-    public void userSignUp(@RequestBody UserRequest userRequest, HttpServletRequest request) {
+    public UserRequest userSignUp(@RequestBody UserRequest userRequest, HttpServletRequest request) {
         Transaction transaction = TransactionUtil.createTransaction(request);
         transactionBl.createTransaction(transaction);
-        userBl.userSignUp(userRequest, transaction);
+        return userBl.userSignUp(userRequest, transaction);
     }
 
     /*
     GET (/users/{id}) The user sees his profile info
     */
-    @RequestMapping(value = "/ming/users/{user}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/ming/v1/users/{user}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public UserRequest getUserProfileInfo(@PathVariable("user") Integer userId) {
         return userBl.userProfileInfo(userId);
     }
@@ -49,7 +50,7 @@ public class UserApi {
     /*
     PUT (/users/{id}) The user can edit his profile info
     */
-    @RequestMapping(value = "/ming/users/{user}/password", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/ming/v1/users/{user}/password", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
     public void updateUserPassword(@PathVariable("user") Integer userId, @RequestBody PasswordRequest passwordRequest, HttpServletRequest request) {
         Transaction transaction = TransactionUtil.createTransaction(request);
@@ -60,7 +61,7 @@ public class UserApi {
     /*
     PUT (/users/{id}/password) The user can edit his password
     */
-    @RequestMapping(value = "/ming/users/{user}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/ming/v1/users/{user}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
     public void updateUserInfo(@PathVariable("user") Integer userId, @RequestBody UserRequest userRequest, HttpServletRequest request) {
         Transaction transaction = TransactionUtil.createTransaction(request);
@@ -71,7 +72,7 @@ public class UserApi {
     /*
     GET (/users/{id}/library) The user sees his game library
     */
-    @RequestMapping(value = "ming/users/{user}/library", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "ming/v1/users/{user}/library", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<LibraryRequest> getUserLibrary(@PathVariable("user") Integer userId) {
         return userBl.getUserLibrary(userId);
     }

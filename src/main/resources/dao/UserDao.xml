@@ -94,10 +94,13 @@
                 alias as alias,
                 email as email,
                 id_country as idCountry,
-                photo_path as photoPath
+                photo_path as photoPath,
+                status as status
         FROM users
         WHERE
-            id_user=#{idUser};
+            id_user=#{idUser}
+        AND
+            status = 1
     </select>
 
     <select id="userInfo" resultType="bo.ucb.edu.ingsoft.models.User">

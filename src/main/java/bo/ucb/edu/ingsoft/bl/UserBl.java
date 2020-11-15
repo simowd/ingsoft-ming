@@ -43,8 +43,7 @@ public class UserBl {
     /*
     POST (/users/signup) The user creates an account
     */
-    public void userSignUp(UserRequest userRequest, Transaction transaction){
-
+    public UserRequest userSignUp(UserRequest userRequest, Transaction transaction){
         User user=new User();
 
         user.setUserName(userRequest.getUsername());
@@ -59,13 +58,22 @@ public class UserBl {
 
         Integer lastId=userDao.getLastInsertId();
         transactionDao.updateUserTransaction(lastId, transaction.getTxId(), transaction.getTxHost(), transaction.getTxUserId(), transaction.getTxDate());
+
+        UserRequest newUser = new UserRequest();
+        newUser.setId_user(userDao.getLastInsertId());
+        return newUser;
     }
 
     /*
     GET (/users/{id}) The user sees his profile info
     */
     public UserRequest userProfileInfo(Integer idUser) {
+        // Getting user information by user id
         User user = userDao.userProfileInfo(idUser);
+        if(user == null || user.getStatus() == 0){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
+        }
+
         Country country = countryDao.CountryName(user.getIdCountry());
         UserRequest userRequest = new UserRequest(user.getUserName(), user.getAlias(), user.getEmail(), country.getName(), user.getPhotoPath());
         return userRequest;

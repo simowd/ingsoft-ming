@@ -1,6 +1,10 @@
 package bo.ucb.edu.ingsoft.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserRequest {
+    private Integer id_user;
     private String username;
     private String name;
     private String lastname;
@@ -25,7 +29,8 @@ public class UserRequest {
     @Override
     public String toString() {
         return "UserRequest{" +
-                "username='" + username + '\'' +
+                "id_user=" + id_user +
+                ", username='" + username + '\'' +
                 ", name='" + name + '\'' +
                 ", lastname='" + lastname + '\'' +
                 ", alias='" + alias + '\'' +
@@ -107,5 +112,13 @@ public class UserRequest {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Integer getId_user() {
+        return id_user;
+    }
+
+    public void setId_user(Integer id_user) {
+        this.id_user = id_user;
     }
 }
