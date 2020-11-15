@@ -1,18 +1,13 @@
 package bo.ucb.edu.ingsoft.models;
 
-public class GameDirectx {
+public class GameDirectx extends Transactions {
     private Integer idGameDirectx;
     private Integer idGame;
     private Integer idDirectx;
+    private Integer status;
 
     public GameDirectx() {
 
-    }
-
-    public GameDirectx(Integer idGameDirectx, Integer idGame, Integer idDirectx) {
-        this.idGameDirectx = idGameDirectx;
-        this.idGame = idGame;
-        this.idDirectx = idDirectx;
     }
 
     @Override
@@ -21,6 +16,7 @@ public class GameDirectx {
                 "idGameDirectx=" + idGameDirectx +
                 ", idGame=" + idGame +
                 ", idDirectx=" + idDirectx +
+                ", status=" + status +
                 '}';
     }
 
@@ -46,6 +42,14 @@ public class GameDirectx {
 
     public void setIdDirectx(Integer idDirectx) {
         this.idDirectx = idDirectx;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }
 

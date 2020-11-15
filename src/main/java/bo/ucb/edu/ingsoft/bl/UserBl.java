@@ -46,6 +46,8 @@ public class UserBl {
     public UserRequest userSignUp(UserRequest userRequest, Transaction transaction){
         User user=new User();
 
+        user.setName(userRequest.getName());
+        user.setLastName(userRequest.getLastname());
         user.setUserName(userRequest.getUsername());
         user.setAlias(userRequest.getAlias());
         user.setEmail(userRequest.getEmail());
@@ -79,6 +81,7 @@ public class UserBl {
         if(country == null || country.getStatus() == 0){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
         }
+
         UserRequest userRequest = new UserRequest(user.getUserName(), user.getAlias(), user.getEmail(), country.getName(), user.getPhotoPath());
         return userRequest;
     }
@@ -92,16 +95,16 @@ public class UserBl {
         if(userInfo == null || userInfo.getStatus() == 0){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
         }
-
         User user = new User();
         user.setIdUser(userId);
+        user.setName(userRequest.getName());
+        user.setLastName(userRequest.getLastname());
         user.setAlias(userRequest.getAlias());
         user.setEmail(userRequest.getEmail());
         user.setIdCountry(userRequest.getId_country());
         user.setPhotoPath(userRequest.getPhoto_path());
 
         userDao.updateUserInfo(user);
-        //transactionDao.updateUserTransaction(userId, transaction.getTxId(), transaction.getTxHost(), transaction.getTxUserId(), transaction.getTxDate());
         String tableUsers = "users";
         transactionDao.updateTablesTransaction(tableUsers, userId, transaction.getTxId(), transaction.getTxHost(), transaction.getTxUserId(), transaction.getTxDate());
     }
@@ -118,9 +121,11 @@ public class UserBl {
 
         String currentPassword = userDao.userPassword(userId).getPassword();
         String oldPassword = passwordRequest.getOld_password();
+
         if (new String(oldPassword).equals(currentPassword)) {
             userDao.updateUserPassword(userId, passwordRequest.getNew_password());
-            transactionDao.updateUserTransaction(userId, transaction.getTxId(), transaction.getTxHost(), transaction.getTxUserId(), transaction.getTxDate());
+            String tableUsers = "users";
+            transactionDao.updateTablesTransaction(tableUsers, userId, transaction.getTxId(), transaction.getTxHost(), transaction.getTxUserId(), transaction.getTxDate());
         } else {
             throw new ResponseStatusException(
                     HttpStatus.UNAUTHORIZED, "Wrong Password");

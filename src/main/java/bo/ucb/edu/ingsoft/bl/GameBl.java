@@ -27,11 +27,12 @@ public class GameBl {
     private PhotoDao photoDao;
     private PriceDao priceDao;
     private UserDao userDao;
+    private PublisherDao publisherDao;
+    private GameRequirementDao gameRequirementDao;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GameBl.class);
-
     @Autowired
-    public GameBl(GameDao gameDao, TransactionDao transactionDao, DeveloperDao developerDao, EsrbDao esrbDao, GamesDirectxDao gamesDirectxDao, GamesLanguagesDao languagesDao, GamesOsDao gamesOsDao, GenreDao genreDao, PhotoDao photoDao, PriceDao priceDao, UserDao userDao) {
+    public GameBl(GameDao gameDao, TransactionDao transactionDao, DeveloperDao developerDao, EsrbDao esrbDao, GamesDirectxDao gamesDirectxDao, GamesLanguagesDao languagesDao, GamesOsDao gamesOsDao, GenreDao genreDao, PhotoDao photoDao, PriceDao priceDao, UserDao userDao, PublisherDao publisherDao, GameRequirementDao gameRequirementDao) {
         this.gameDao = gameDao;
         this.transactionDao = transactionDao;
         this.developerDao = developerDao;
@@ -43,8 +44,9 @@ public class GameBl {
         this.photoDao = photoDao;
         this.priceDao = priceDao;
         this.userDao = userDao;
+        this.publisherDao = publisherDao;
+        this.gameRequirementDao = gameRequirementDao;
     }
-
 
     /*
     POST (/publisher/{id}/game) The publisher create a new game
@@ -53,45 +55,41 @@ public class GameBl {
 
         Game game = new Game();
         Developer developer = new Developer();
-        Esrb esrb = new Esrb();
         GameDirectx gameDirectx = new GameDirectx();
         GameOS gameOS = new GameOS();
         LanguageGame languageGame = new LanguageGame();
         GenreGame genreGame = new GenreGame();
         Photo photo = new Photo();
         Price price = new Price();
+        GameRequirements gameRequirements =new GameRequirements();
 
-        String developerName = newGameRequest.getDeveloper();
-        Integer developerId = developerDao.findBydeveloperName(developerName);
+        Integer developerId = developerDao.findBydeveloperName(newGameRequest.getDeveloper());
 
-        Integer idDeveloper = null;
         if (developerId == null) {
-            developer.setDeveloper(newGameRequest.getDeveloper());
             developer.setIdPublisher(idPublisher);
+            developer.setDeveloper(newGameRequest.getDeveloper());
+            developer.setTxId(transaction.getTxId());
+            developer.setTxHost(transaction.getTxHost());
+            developer.setTxUserId(publisherDao.findUserIdByIdPublisher(idPublisher));
+            developer.setTxDate(transaction.getTxDate());
             developerDao.createDeveloper(developer);
 
-            idDeveloper = developerDao.getLastInsertId();
-        } else {
-            idDeveloper = developerId;
+            developerId = developerDao.getLastInsertId();
         }
 
-
         game.setIdEsrb(newGameRequest.getIdEsrb());
-        game.setIdDeveloper(idDeveloper);
+        game.setIdDeveloper(developerId);
         game.setName(newGameRequest.getTitle());
-        game.setHighlight(newGameRequest.getHighlighted());
         game.setDescription(newGameRequest.getGame_description());
         game.setSize(newGameRequest.getSize());
         game.setPlayers(newGameRequest.getPlayers());
         game.setReleaseDate(newGameRequest.getRelease_date());
-        game.setProcessor(newGameRequest.getProcessor());
-        game.setMemory(newGameRequest.getMemory());
-        game.setGraphics(newGameRequest.getGraphics());
         game.setColor(newGameRequest.getColor());
+        game.setHighlight(newGameRequest.getHighlighted());
         game.setDownloadPath(newGameRequest.getDownload_path());
         game.setTxId(transaction.getTxId());
         game.setTxHost(transaction.getTxHost());
-        game.setTxUserId(transaction.getTxUserId());
+        game.setTxUserId(publisherDao.findUserIdByIdPublisher(idPublisher));
         game.setTxDate(transaction.getTxDate());
         gameDao.createGame(game);
 
@@ -103,15 +101,24 @@ public class GameBl {
 
             gameDirectx.setIdDirectx(directIds.get(i));
             gameDirectx.setIdGame(idGame);
+            gameDirectx.setTxId(transaction.getTxId());
+            gameDirectx.setTxHost(transaction.getTxHost());
+            gameDirectx.setTxUserId(publisherDao.findUserIdByIdPublisher(idPublisher));
+            gameDirectx.setTxDate(transaction.getTxDate());
             gamesDirectxDao.createGameDirectx(gameDirectx);
         }
+
         List<Integer> operatingSystemIds = new ArrayList<Integer>();
         operatingSystemIds = newGameRequest.getOperatingSystem();
+
         for (int i = 0; i < operatingSystemIds.size(); i++) {
 
             gameOS.setIdOperatingSystem(operatingSystemIds.get(i));
-            ;
             gameOS.setIdGame(idGame);
+            gameOS.setTxId(transaction.getTxId());
+            gameOS.setTxHost(transaction.getTxHost());
+            gameOS.setTxUserId(publisherDao.findUserIdByIdPublisher(idPublisher));
+            gameOS.setTxDate(transaction.getTxDate());
             gamesOsDao.createGameOs(gameOS);
         }
 
@@ -120,8 +127,11 @@ public class GameBl {
         for (int i = 0; i < languagesIds.size(); i++) {
 
             languageGame.setIdLanguage(languagesIds.get(i));
-            ;
             languageGame.setIdGame(idGame);
+            languageGame.setTxId(transaction.getTxId());
+            languageGame.setTxHost(transaction.getTxHost());
+            languageGame.setTxUserId(publisherDao.findUserIdByIdPublisher(idPublisher));
+            languageGame.setTxDate(transaction.getTxDate());
             languagesDao.createLanguageGame(languageGame);
         }
 
@@ -132,6 +142,10 @@ public class GameBl {
 
             genreGame.setIdGenre(genreIds.get(i));
             genreGame.setIdGame(idGame);
+            genreGame.setTxId(transaction.getTxId());
+            genreGame.setTxHost(transaction.getTxHost());
+            genreGame.setTxUserId(publisherDao.findUserIdByIdPublisher(idPublisher));
+            genreGame.setTxDate(transaction.getTxDate());
             genreDao.createGenreGame(genreGame);
         }
 
@@ -143,14 +157,20 @@ public class GameBl {
             if (i == 0) {
                 photo.setIdGame(idGame);
                 photo.setPhotoPath(imagesPath.get(i));
-                photo.setStatus(1);
                 photo.setType(1);
+                photo.setTxId(transaction.getTxId());
+                photo.setTxHost(transaction.getTxHost());
+                photo.setTxUserId(publisherDao.findUserIdByIdPublisher(idPublisher));
+                photo.setTxDate(transaction.getTxDate());
                 photoDao.createPhotoBanner(photo);
             } else {
                 photo.setIdGame(idGame);
                 photo.setPhotoPath(imagesPath.get(i));
-                photo.setStatus(1);
                 photo.setType(2);
+                photo.setTxId(transaction.getTxId());
+                photo.setTxHost(transaction.getTxHost());
+                photo.setTxUserId(publisherDao.findUserIdByIdPublisher(idPublisher));
+                photo.setTxDate(transaction.getTxDate());
                 photoDao.createPhoto(photo);
             }
 
@@ -164,6 +184,23 @@ public class GameBl {
         price.setTxUserId(transaction.getTxUserId());
         price.setTxDate(transaction.getTxDate());
         priceDao.createPrice(price);
+
+        List<GameRequirements> gameRequirements1 = new ArrayList<GameRequirements>();
+        gameRequirements1 = newGameRequest.getRequirements();
+        for(GameRequirements requirements : gameRequirements1){
+
+            gameRequirements.setIdGame(idGame);
+            gameRequirements.setIdOperatingSystem(requirements.getIdOperatingSystem());
+            gameRequirements.setProcessor(requirements.getProcessor());
+            gameRequirements.setMemory(requirements.getMemory());
+            gameRequirements.setGraphics(requirements.getGraphics());
+            gameRequirements.setTxId(transaction.getTxId());
+            gameRequirements.setTxHost(transaction.getTxHost());
+            gameRequirements.setTxUserId(publisherDao.findUserIdByIdPublisher(idPublisher));
+            gameRequirements.setTxDate(transaction.getTxDate());
+            gameRequirementDao.createGameRequirement(gameRequirements);
+        }
+
     }
 
     /*
@@ -194,9 +231,6 @@ public class GameBl {
         game.setSize(newGameRequest.getSize());
         game.setPlayers(newGameRequest.getPlayers());
         game.setReleaseDate(newGameRequest.getRelease_date());
-        game.setProcessor(newGameRequest.getProcessor());
-        game.setMemory(newGameRequest.getMemory());
-        game.setGraphics(newGameRequest.getGraphics());
         game.setColor(newGameRequest.getColor());
         game.setDownloadPath(newGameRequest.getDownload_path());
         game.setTxId(transaction.getTxId());

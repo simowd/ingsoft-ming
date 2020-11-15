@@ -80,8 +80,8 @@
             #{email},
             0,
             null,
-            null,
-            null,
+            #{name},
+            #{lastName},
             #{alias},
             1,
             #{txId},
@@ -142,9 +142,13 @@
         SET  email=#{email},
             id_country=#{idCountry},
             alias=#{alias},
-            photo_path=#{photoPath}
+            photo_path=#{photoPath},
+            name=#{name},
+            lastname=#{lastName}
         WHERE
             id_user=#{idUser}
+        AND
+            status = 1
     </update>
 
     <update id="updateUserPassword">
@@ -152,6 +156,8 @@
         SET  password=#{newPassword}
         WHERE
             id_user=#{idUser}
+        AND
+            status = 1
     </update>
 
     <select id="getLastInsertId" resultType="java.lang.Integer">
