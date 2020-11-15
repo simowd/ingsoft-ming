@@ -59,6 +59,10 @@ paths:
       responses:
         "200":
           description: Request was successful!
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/user_id"
         "400":
           description: Invalid requestBody!
         "500":
@@ -173,7 +177,6 @@ paths:
       responses:
         "200":
           description: Request was successful!
-
         "400":
           description: Bad request!
         "404":
@@ -843,11 +846,23 @@ components:
     register:
       type: object
       required:
+        - name
+        - lastname
         - username
         - alias
         - email
         - password
       properties:
+        name:
+          description: |
+            The user's name
+          example: "Erica"
+          type: string
+        lastname:
+          description: |
+            The user's lastname
+          example: "Pruden"
+          type: string
         username:
           description: |
             The user's unique username
@@ -856,7 +871,7 @@ components:
         alias:
           description: |
             The user's nickname
-          example: "el wapo"
+          example: "el deigo"
           type: string
         email:
           description: |
@@ -1063,11 +1078,23 @@ components:
     user_info_edit:
       type: object
       required:
+        - name
+        - lastname
         - alias
         - email
         - id_country
         - photo_path
       properties:
+        name:
+          description: |
+            The user's name
+          example: "Erica"
+          type: string
+        lastname:
+          description: |
+            The user's lastname
+          example: "Butcher"
+          type: string
         alias:
           description: |
             The user's nickname
@@ -1978,4 +2005,14 @@ components:
             description: |
               The game's highlight status
             example: 1
+            type: integer
+    user_id:
+        type: object
+        required:
+          - id_user
+        properties:
+          id_user:
+            description: |
+              The user's id
+            example: 1234
             type: integer

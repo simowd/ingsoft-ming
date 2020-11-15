@@ -1,6 +1,6 @@
 package bo.ucb.edu.ingsoft.models;
 
-public class Library {
+public class Library extends Transactions {
     private Integer idLibrary;
     private Integer idUser;
     private Integer idGame;

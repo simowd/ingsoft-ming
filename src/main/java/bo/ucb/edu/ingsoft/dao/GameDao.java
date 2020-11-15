@@ -2,7 +2,6 @@ package bo.ucb.edu.ingsoft.dao;
 
 import bo.ucb.edu.ingsoft.models.Game;
 import bo.ucb.edu.ingsoft.models.GameHelper;
-import bo.ucb.edu.ingsoft.models.GameRequirements;
 import bo.ucb.edu.ingsoft.models.GameRequirementsHelper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

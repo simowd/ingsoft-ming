@@ -34,13 +34,15 @@
 
     <select id="gameGenre" resultType="java.lang.String">
         SELECT
-        genres.genre as genre
+        genres.genre as genre,
+        genres.status as status
         FROM genres inner join genres_games
         on
         genres.id_genre = genres_games.id_genre
         WHERE
         genres_games.id_game=#{idGame}
-        AND genres.status = 1
+        AND
+         genres.status = 1
     </select>
 
     <select id="findByIdGamesGenre" resultType="bo.ucb.edu.ingsoft.models.GenreGame">

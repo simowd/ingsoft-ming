@@ -136,21 +136,27 @@ public class UserBl {
     GET (/users/{id}/library) The user sees his game library
     */
     public List<LibraryRequest> getUserLibrary(Integer userId) {
+        // Getting library information by user id
+        User user = userDao.userProfileInfo(userId);
+        if(user == null || user.getStatus() == 0){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
+        }
+
         List<LibraryRequest> list = new ArrayList<LibraryRequest>();
         List<Integer> userIdGames = libraryDao.UserGames(userId);
-        List<Game> gameInfo = gameDao.findLibraryGames(userIdGames);
 
-        List<List<String>> genresList = new ArrayList<List<String>>();
-        for (int i = 0; i < userIdGames.size(); i++) {
-            List<String> gameGenre = genreDao.gameGenre(userIdGames.get(i));
-            genresList.add(gameGenre);
-        }
-        List<Photo> gameBanner = photoDao.findBannerbyId(userIdGames);
-
-        for (int i = 0; i < userIdGames.size(); i++) {
-
-            LibraryRequest libraryRequest = new LibraryRequest(userIdGames.get(i), gameInfo.get(i).getName(), genresList.get(i), gameBanner.get(i).getPhotoPath(), gameInfo.get(i).getDownloadPath());
-            list.add(libraryRequest);
+        if (!userIdGames.isEmpty()){
+            for (int i = 0; i < userIdGames.size(); i++){
+                Game game = gameDao.getGameInfo(userIdGames.get(i));
+                List<String> genre = genreDao.gameGenre(userIdGames.get(i));
+                Photo photo = photoDao.findBannerbyGame(userIdGames.get(i));
+                String photo_path = null;
+                if (photo != null){
+                    photo_path = photo.getPhotoPath();
+                }
+                LibraryRequest libraryRequest = new LibraryRequest(userIdGames.get(i), game.getName(), genre, photo_path, game.getDownloadPath());
+                list.add(libraryRequest);
+            }
         }
         return list;
     }
