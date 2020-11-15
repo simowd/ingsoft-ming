@@ -17,7 +17,7 @@ Accept: application/json
 
 ###
 #The user can edit his profile info
-PUT http://localhost:8080/ming/v1/users/1
+PUT http://localhost:8080/ming/v1/users/14
 Accept: application/json
 Content-Type: application/json
 

@@ -50,6 +50,17 @@ public class UserApi {
     /*
     PUT (/users/{id}) The user can edit his profile info
     */
+    @RequestMapping(value = "/ming/v1/users/{user}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(value = HttpStatus.OK)
+    public void updateUserInfo(@PathVariable("user") Integer userId, @RequestBody UserRequest userRequest, HttpServletRequest request) {
+        Transaction transaction = TransactionUtil.createTransaction(request);
+        transactionBl.createTransaction(transaction);
+        userBl.updateUserProfileInfo(userId, userRequest, transaction);
+    }
+
+    /*
+    PUT (/users/{id}/password) The user can edit his password
+    */
     @RequestMapping(value = "/ming/v1/users/{user}/password", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
     public void updateUserPassword(@PathVariable("user") Integer userId, @RequestBody PasswordRequest passwordRequest, HttpServletRequest request) {
@@ -58,16 +69,6 @@ public class UserApi {
         userBl.changeUserPassword(userId, passwordRequest, transaction);
     }
 
-    /*
-    PUT (/users/{id}/password) The user can edit his password
-    */
-    @RequestMapping(value = "/ming/v1/users/{user}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseStatus(value = HttpStatus.OK)
-    public void updateUserInfo(@PathVariable("user") Integer userId, @RequestBody UserRequest userRequest, HttpServletRequest request) {
-        Transaction transaction = TransactionUtil.createTransaction(request);
-        transactionBl.createTransaction(transaction);
-        userBl.updateUserProfileInfo(userId, userRequest, transaction);
-    }
 
     /*
     GET (/users/{id}/library) The user sees his game library
