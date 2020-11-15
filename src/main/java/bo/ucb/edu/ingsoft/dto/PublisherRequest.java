@@ -1,5 +1,8 @@
 package bo.ucb.edu.ingsoft.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class PublisherRequest {
     private Integer idUser;
     private String username;

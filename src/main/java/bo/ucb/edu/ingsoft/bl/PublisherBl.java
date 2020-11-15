@@ -71,10 +71,14 @@ public class PublisherBl {
     }
     /*
       GET (/publisher/{id}) shows publisher data
-   */
+    */
     public PublisherRequest findByPublisherId (Integer idUser){
+
         PublisherRequest publisherRequest=new PublisherRequest();
         User user= userDao.findByUserId(idUser);
+        if(user.getUserType() != 1 || user.getStatus()==0){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
+        }
         Publisher publisher=publisherDao.findByPublisherId(idUser);
 
         publisherRequest.setUsername(user.getUserName());
@@ -129,7 +133,10 @@ public class PublisherBl {
     public PublisherRequest updatePublisher(PublisherRequest publisherRequest, Transaction transaction, Integer userId){
         User user=new User();
         Publisher publisher=new Publisher();
-
+        User user1= userDao.findByUserId(userId);
+        if(user1.getUserType() != 1 || user1.getStatus()==0){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
+        }
         user.setIdUser(userId);
         user.setIdCountry(publisherRequest.getIdCountry());
         user.setUserName(publisherRequest.getUsername());

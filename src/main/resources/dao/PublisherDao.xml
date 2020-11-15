@@ -12,6 +12,8 @@
         FROM publishers
         WHERE
             id_user=#{idUser}
+        AND
+             status =1
     </select>
 
     <insert id="createPublisher" parameterType="bo.ucb.edu.ingsoft.models.Publisher">

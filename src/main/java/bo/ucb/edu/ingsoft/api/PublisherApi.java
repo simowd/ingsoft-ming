@@ -27,12 +27,10 @@ public class PublisherApi {
         this.transactionBl = transactionBl;
     }
 
-
-
     /*
        GET (/publisher/{id}) shows publisher data
     */
-    @RequestMapping(value = "/ming/publisher/{id}",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/ming/v1/publisher/{id}",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public PublisherRequest findById (@PathVariable("id") Integer userId) {
             return publisherBl.findByPublisherId(userId);
 
@@ -43,7 +41,7 @@ public class PublisherApi {
         PUT (/publisher/{id}) The publisher can update his account
     */
 
-    @RequestMapping(value = "/ming/publisher/{id}",method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/ming/v1/publisher/{id}",method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
     public  void updatePublisher(@PathVariable("id") Integer userId,@RequestBody PublisherRequest publisherRequest, HttpServletRequest request) {
 

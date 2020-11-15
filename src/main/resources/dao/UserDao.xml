@@ -9,10 +9,13 @@
                username as userName,
                email as email,
                password as password,
-               id_country as idCountry
+               id_country as idCountry,
+               user_type as userType,
+               status as status
         FROM users
         WHERE
-            id_user=#{idUser};
+            id_user=#{idUser}
+
     </select>
 
     <insert id="createPublisher" parameterType="bo.ucb.edu.ingsoft.models.User">
@@ -37,7 +40,7 @@
     </insert>
     <update id="updateUser" >
         UPDATE users
-        SET  id_country=#{idCountry},
+        SET id_country=#{idCountry},
             username=#{userName},
             password=#{password},
             email=#{email},
