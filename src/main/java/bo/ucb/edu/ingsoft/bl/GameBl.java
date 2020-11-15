@@ -381,12 +381,16 @@ public class GameBl {
         A Game object is created and sent to the gameDao to update the Highlight
     */
     public void updateHighlight(SetHighlightRequest setHighlightRequest, Transaction transaction, Integer gameId) {
+        Game game1 = gameDao.getGameInfo(gameId);
+        if(game1 == null){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
+        }
         Game game = new Game();
         game.setHighlight(setHighlightRequest.getHighlight());
         game.setTxId(transaction.getTxId());
         game.setTxDate(transaction.getTxDate());
         game.setTxHost(transaction.getTxHost());
-        game.setTxUserId(gameDao.getPublihserId(gameId));
+        game.setTxUserId(gameDao.getPublisherId(gameId));
         game.setIdGame(gameId);
         gameDao.updateHighlight(game);
     }

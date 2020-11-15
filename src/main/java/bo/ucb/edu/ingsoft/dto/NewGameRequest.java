@@ -1,9 +1,12 @@
 package bo.ucb.edu.ingsoft.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.ArrayList;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class NewGameRequest {
     private Integer id;
     private Integer idEsrb;

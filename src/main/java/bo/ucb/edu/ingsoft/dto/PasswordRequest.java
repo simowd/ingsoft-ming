@@ -1,5 +1,8 @@
 package bo.ucb.edu.ingsoft.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class PasswordRequest {
     private String old_password;
     private String new_password;

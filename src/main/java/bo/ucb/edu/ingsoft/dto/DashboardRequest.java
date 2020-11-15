@@ -3,9 +3,11 @@ package bo.ucb.edu.ingsoft.dto;
 import bo.ucb.edu.ingsoft.models.countryDashboard;
 import bo.ucb.edu.ingsoft.models.gameDashboard;
 import bo.ucb.edu.ingsoft.models.monthlyDashboard;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.util.List;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class DashboardRequest {
     private String publisher;
     private String email;
