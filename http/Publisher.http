@@ -68,31 +68,45 @@ Content-Type: application/json
 
 ###
 #The publisher edit a game
-PUT http://localhost:8080/ming/publisher/4/game
+PUT http://localhost:8080/ming/v1/publisher/4/game
 Accept: application/json
 Content-Type: application/json
 
 {
-  "idEsrb": 2,
-  "title": "RD3",
-  "game_description": "Lo mismo pero con caballos chinos",
-  "size": "1GB",
-  "players": 8,
-  "processor": "Intel 10",
-  "release_date": "2019-10-11T13:33:05.673",
-  "memory": "17GB RAM",
-  "graphics": "RTX 3080Ti",
-  "color": "#1111",
-  "highlighted":  1,
-  "download_path": "jaja.com",
-  "images": ["http//eljojos","http//eljojos1","http//eljojs3"],
-  "developer": "Santa Monica",
+  "idEsrb": 4,
+  "title": "GTA V",
+  "game_description": "Grand Theft Auto V es un videojuego de acción-aventura de mundo abierto desarrollado por el estudio Rockstar North y distribuido por Rockstar Games. ",
+  "size": "90GB",
+  "players": 2,
+  "requirements": [
+    {
+      "idOperatingSystem": 1,
+      "processor": "Intel 11",
+      "memory": "12GB RAM",
+      "graphics": "GeForce 2800 ti"
+
+    },
+    {
+      "idOperatingSystem": 3,
+      "processor": "Intel i9",
+      "memory": "16GB RAM",
+      "graphics": "GeForce 3800 ti"
+
+    }
+  ],
+  "release_date": "2014-12-10T13:33:05.673",
+  "color": "#ffffff",
+  "highlighted":  0,
+  "download_path": "gta/download.com",
+  "images": ["http//111","http//222","http//333"],
+  "developer": "Rockstar North",
   "directx": [1,2],
-  "operatingSystem": [1],
-  "languageGames": [1,2,3],
-  "genreGames" : [1,2,3],
-  "price": 50,
-  "sale": 60
+  "operatingSystem": [1,3],
+  "languageGames": [1,2],
+  "genreGames" : [1,2],
+  "price": 60.99,
+  "sale": 10
+
 }
 ###
 #The publisher deletes a game

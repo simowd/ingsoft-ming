@@ -15,9 +15,11 @@ public interface GamesDirectxDao {
 
 
    //finds the direct x versions used by a game
-   public List<Integer>  findByIdDirectxGame(Integer idGame);
+   public List<GameDirectx>  findByIdDirectxGame(Integer idGame);
 
 
    //updates directx per game
    public void deleteOldsDirectx(List<Integer> idGameDirectx);
+
+   public void changeStatus(Integer idGameDirectx);
 }

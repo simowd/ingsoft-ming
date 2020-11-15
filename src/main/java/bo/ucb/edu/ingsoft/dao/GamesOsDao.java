@@ -21,9 +21,11 @@ public interface GamesOsDao {
    public List<Integer> findByGame(Integer gameId);
 
    //Gets a list of os ids per game
-   public List<Integer>  findByIdGamesOs(Integer idGame);
+   public List<GameOS>  findByIdGamesOs(Integer idGame);
 
    //Updates OSs for a game.
    public void deleteOldsOs(List<Integer> idGameOs);
+
+   public void changeStatus(Integer idGameDirectx);
 
 }

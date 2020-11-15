@@ -19,4 +19,35 @@
              #{txDate}
         )
     </insert>
+
+    <select id="findByIdGamesRequirements" resultType="bo.ucb.edu.ingsoft.models.GameRequirements">
+        SELECT
+            id_game_requirement as idGameRequirement,
+            id_operating_system as idOperatingSystem
+        FROM game_requirements
+        WHERE
+            id_game=#{idGame}
+    </select>
+
+    <update id="deleteOldsRequirements">
+        UPDATE game_requirements
+        SET
+        status=0
+        WHERE
+        id_game_requirement in
+        <foreach collection="list" item="item" index="index"
+                 open="(" separator="," close = ")">
+            #{item}
+        </foreach>
+    </update>
+
+    <update id="changeStatus">
+        UPDATE game_requirements
+        SET
+            status=1
+        WHERE
+         id_game_requirement=#{idGameRequirement}
+
+    </update>
+
 </mapper>

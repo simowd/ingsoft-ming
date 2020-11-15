@@ -31,27 +31,41 @@
         </foreach>
     </select>
     <select id="findByGame" resultType="java.lang.Integer">
-        SELECT id_operating_system
+        SELECT
+            id_operating_system
         FROM games_os
-        WHERE id_game = #{gameId}
-        AND status = 1
+        WHERE
+            id_game = #{gameId}
+        AND
+            status = 1
     </select>
 
-    <select id="findByIdGamesOs" resultType="java.lang.Integer">
+    <select id="findByIdGamesOs" resultType="bo.ucb.edu.ingsoft.models.GameOS">
         SELECT
-            id_games_os as idGameOs
+            id_games_os as idGameOs,
+            id_operating_system as idOperatingSystem
         FROM games_os
         WHERE
             id_game=#{idGame}
     </select>
-    <delete id="deleteOldsOs">
-        DELETE
-        FROM games_os
+    <update id="deleteOldsOs">
+        UPDATE games_os
+        SET
+            status=0
         WHERE
         id_games_os in
         <foreach collection="list" item="item" index="index"
                  open="(" separator="," close = ")">
             #{item}
         </foreach>
-    </delete>
+    </update>
+
+    <update id="changeStatus">
+        UPDATE games_os
+        SET
+            status=1
+        WHERE
+        id_games_os=#{idGameOs}
+
+    </update>
 </mapper>

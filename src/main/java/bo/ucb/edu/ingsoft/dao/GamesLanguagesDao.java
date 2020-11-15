@@ -21,8 +21,10 @@ public interface GamesLanguagesDao {
    public List <Integer> findGameLanguages(Integer gameId);
 
    //Return a list of ids based on a game id
-   public List<Integer>  findByIdGamesLanguages(Integer idGame);
+   public List<LanguageGame>  findByIdGamesLanguages(Integer idGame);
 
    //Updates languages of a game.
    public void deleteOldsLanguages(List<Integer> idGameLanguages);
+
+   public void changeStatus(Integer idLanguageGame);
 }

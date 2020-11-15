@@ -42,23 +42,34 @@
             id_game=#{idGame}
     </update>
 
-    <select id="findByIdDirectxGame" resultType="java.lang.Integer">
+    <select id="findByIdDirectxGame" resultType="bo.ucb.edu.ingsoft.models.GameDirectx">
         SELECT
-            id_games_direct_x as idGameDirectx
+            id_games_direct_x as idGameDirectx,
+            id_directx as idDirectx
         FROM games_directx
         WHERE
             id_game=#{idGame}
     </select>
-    <delete id="deleteOldsDirectx">
-        DELETE
-        FROM games_directx
+    <update id="deleteOldsDirectx">
+        UPDATE games_directx
+        SET
+            status=0
         WHERE
         id_games_direct_x in
         <foreach collection="list" item="item" index="index"
                  open="(" separator="," close = ")">
             #{item}
         </foreach>
-    </delete>
+    </update>
+
+    <update id="changeStatus">
+        UPDATE games_directx
+        SET
+            status=1
+        WHERE
+        id_games_direct_x=#{idGameDirectx}
+
+    </update>
 
 
 </mapper>

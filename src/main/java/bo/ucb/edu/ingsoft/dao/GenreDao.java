@@ -18,10 +18,12 @@ public interface GenreDao {
     public List<String> gameGenre (Integer idGame);
 
     //Find name of genre by Id
-    public List<Integer>  findByIdGamesGenre(Integer idGame);
+    public List<GenreGame>  findByIdGamesGenre(Integer idGame);
 
     //Delete genres in a game
     public void deleteOldsGenreDao(List<Integer> idGameGenre);
+
+    public void changeStatus(Integer idGenreGame);
 
 
 

@@ -43,21 +43,32 @@
         AND genres.status = 1
     </select>
 
-    <select id="findByIdGamesGenre" resultType="java.lang.Integer">
+    <select id="findByIdGamesGenre" resultType="bo.ucb.edu.ingsoft.models.GenreGame">
         SELECT
-            id_genre_game as idGenreGame
+            id_genre_game as idGenreGame,
+            id_genre as idGenre
         FROM genres_games
         WHERE
             id_game=#{idGame}
     </select>
-    <delete id="deleteOldsGenreDao">
-        DELETE
-        FROM genres_games
+    <update id="deleteOldsGenreDao">
+        UPDATE genres_games
+        SET
+            status=0
         WHERE
         id_genre_game in
         <foreach collection="list" item="item" index="index"
                  open="(" separator="," close = ")">
             #{item}
         </foreach>
-    </delete>
+    </update>
+
+    <update id="changeStatus">
+        UPDATE genres_games
+        SET
+            status=1
+        WHERE
+        id_genre_game=#{idGenreGame}
+
+    </update>
 </mapper>

@@ -37,21 +37,32 @@
         AND status = 1
     </select>
 
-    <select id="findByIdGamesLanguages" resultType="java.lang.Integer">
+    <select id="findByIdGamesLanguages" resultType="bo.ucb.edu.ingsoft.models.LanguageGame">
         SELECT
-            id_languages_games as idLanguageGame
+            id_languages_games as idLanguageGame,
+            id_language as idLanguage
         FROM languages_games
         WHERE
             id_game=#{idGame}
     </select>
-    <delete id="deleteOldsLanguages">
-        DELETE
-        FROM languages_games
+    <update id="deleteOldsLanguages">
+        UPDATE languages_games
+        SET
+        status=0
         WHERE
         id_languages_games in
         <foreach collection="list" item="item" index="index"
                  open="(" separator="," close = ")">
             #{item}
         </foreach>
-    </delete>
+    </update>
+
+    <update id="changeStatus">
+        UPDATE languages_games
+        SET
+            status=1
+        WHERE
+        id_languages_games=#{idLanguageGame}
+
+    </update>
 </mapper>

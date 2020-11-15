@@ -43,7 +43,7 @@ public class GameApi {
     /*
        PUT (/publisher/{id}/game) The publisher can update a game
     */
-    @RequestMapping(value = "/ming/publisher/{id}/game",method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/ming/v1/publisher/{id}/game",method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
     public void updatePublisher(@PathVariable("id") Integer gameId,@RequestBody NewGameRequest newGameRequest, HttpServletRequest request) {
 

@@ -205,97 +205,194 @@ public class GameBl {
 
     /*
           PUT (/publisher/{id}/game) The publisher can update a game
-       */
-    public NewGameRequest updateGame(NewGameRequest newGameRequest, Transaction transaction, Integer idGame) {
+    */
+    public void updateGame(NewGameRequest newGameRequest, Transaction transaction, Integer idGame) {
         Game game = new Game();
+        Developer developer1 = new Developer();
         Developer developer = new Developer();
-        Esrb esrb = new Esrb();
         GameDirectx gameDirectx = new GameDirectx();
         GameOS gameOS = new GameOS();
         LanguageGame languageGame = new LanguageGame();
         GenreGame genreGame = new GenreGame();
         Photo photo = new Photo();
         Price price = new Price();
+        GameRequirements gameRequirements = new GameRequirements();
+
+        String developers = "developers";
 
         Integer idDeveloper = gameDao.findByDeveloperGame(idGame);
-        developer.setIdDeveloper(idDeveloper);
-        developer.setDeveloper(newGameRequest.getDeveloper());
-        developerDao.updateDeveloper(developer);
+        developer1=developerDao.findByIdDeveloper(idDeveloper);
 
+        Integer idUser= publisherDao.findUserIdByIdPublisher(developer1.getIdPublisher());
+
+
+        //Update developer
+        if(developer1.getDeveloper().compareTo(newGameRequest.getDeveloper()) != 0){
+            developer.setIdPublisher(developer1.getIdPublisher());
+            developer.setDeveloper(newGameRequest.getDeveloper());
+            developer.setTxId(transaction.getTxId());
+            developer.setTxHost(transaction.getTxHost());
+            developer.setTxUserId(publisherDao.findUserIdByIdPublisher(developer1.getIdPublisher()));
+            developer.setTxDate(transaction.getTxDate());
+            developerDao.createDeveloper(developer);
+        }
+        //Update game
         game.setIdGame(idGame);
         game.setIdEsrb(newGameRequest.getIdEsrb());
         game.setIdDeveloper(idDeveloper);
         game.setName(newGameRequest.getTitle());
-        game.setHighlight(newGameRequest.getHighlighted());
         game.setDescription(newGameRequest.getGame_description());
         game.setSize(newGameRequest.getSize());
         game.setPlayers(newGameRequest.getPlayers());
         game.setReleaseDate(newGameRequest.getRelease_date());
         game.setColor(newGameRequest.getColor());
+        game.setHighlight(newGameRequest.getHighlighted());
         game.setDownloadPath(newGameRequest.getDownload_path());
         game.setTxId(transaction.getTxId());
         game.setTxHost(transaction.getTxHost());
-        game.setTxUserId(transaction.getTxUserId());
+        game.setTxUserId(publisherDao.findUserIdByIdPublisher(developer1.getIdPublisher()));
         game.setTxDate(transaction.getTxDate());
         gameDao.updateGame(game);
+
+        //Update game_directx
+        List<GameDirectx> gameDirectx1 = gamesDirectxDao.findByIdDirectxGame(idGame);
+
+        List<Integer> ids = new ArrayList<Integer>();
+        for(GameDirectx idGameDirectx2 : gameDirectx1){
+            ids.add(idGameDirectx2.getIdGameDirectx());
+        }
+        List<Integer> idDirectx = new ArrayList<Integer>();
+        for(GameDirectx idGameDirectx2 : gameDirectx1){
+            idDirectx.add(idGameDirectx2.getIdDirectx());
+        }
+        gamesDirectxDao.deleteOldsDirectx(ids);
+
 
         List<Integer> directIds = new ArrayList<Integer>();
         directIds = newGameRequest.getDirectx();
 
-        List<Integer> idGameDirectx = gamesDirectxDao.findByIdDirectxGame(idGame);
-        gamesDirectxDao.deleteOldsDirectx(idGameDirectx);
-
-
         for (int i = 0; i < directIds.size(); i++) {
+            Integer flag=0;
+            for (int j=0;j<ids.size();j++){
 
-            gameDirectx.setIdDirectx(directIds.get(i));
-            gameDirectx.setIdGame(idGame);
-            gamesDirectxDao.createGameDirectx(gameDirectx);
+                if(directIds.get(i)==idDirectx.get(j)){
+                    flag=1;
+                    gamesDirectxDao.changeStatus(ids.get(j));
+                }
+            }
+            if(flag==0){
+                gameDirectx.setIdDirectx(directIds.get(i));
+                gameDirectx.setIdGame(idGame);
+                gameDirectx.setTxId(transaction.getTxId());
+                gameDirectx.setTxHost(transaction.getTxHost());
+                gameDirectx.setTxUserId(publisherDao.findUserIdByIdPublisher(developer1.getIdPublisher()));
+                gameDirectx.setTxDate(transaction.getTxDate());
+                gamesDirectxDao.createGameDirectx(gameDirectx);
+            }
         }
+        //Update game_os
+        List<GameOS> gameOs = gamesOsDao.findByIdGamesOs(idGame);
+
+        List<Integer> idsGameOS = new ArrayList<Integer>();
+        for(GameOS idGameOS2 : gameOs){
+            idsGameOS.add(idGameOS2.getIdGameOs());
+        }
+        List<Integer> idsOperatingSystem = new ArrayList<Integer>();
+        for(GameOS idGameOS2 : gameOs){
+            idsOperatingSystem.add(idGameOS2.getIdOperatingSystem());
+        }
+        gamesOsDao.deleteOldsOs(idsGameOS);
 
         List<Integer> operatingSystemIds = new ArrayList<Integer>();
         operatingSystemIds = newGameRequest.getOperatingSystem();
-
-        List<Integer> idGameOs = gamesOsDao.findByIdGamesOs(idGame);
-
-        gamesOsDao.deleteOldsOs(idGameOs);
         for (int i = 0; i < operatingSystemIds.size(); i++) {
+            Integer flag=0;
+            for (int j=0;j<idsGameOS.size();j++){
 
-            gameOS.setIdOperatingSystem(operatingSystemIds.get(i));
-            ;
-            gameOS.setIdGame(idGame);
-            gamesOsDao.createGameOs(gameOS);
+                if(operatingSystemIds.get(i)==idsOperatingSystem.get(j)){
+                    flag=1;
+                    gamesOsDao.changeStatus(idsGameOS.get(j));
+                }
+            }
+            if(flag==0){
+                gameOS.setIdOperatingSystem(operatingSystemIds.get(i));
+                gameOS.setIdGame(idGame);
+                gameOS.setTxId(transaction.getTxId());
+                gameOS.setTxHost(transaction.getTxHost());
+                gameOS.setTxUserId(publisherDao.findUserIdByIdPublisher(developer1.getIdPublisher()));
+                gameOS.setTxDate(transaction.getTxDate());
+                gamesOsDao.createGameOs(gameOS);
+            }
         }
+        //Update game languges
+        List<LanguageGame> gameLanguages = languagesDao.findByIdGamesLanguages(idGame);
+
+        List<Integer> idsLanguagesGames = new ArrayList<Integer>();
+        for(LanguageGame idsLanguagesGames1:gameLanguages ){
+            idsLanguagesGames.add(idsLanguagesGames1.getIdLanguageGame());
+        }
+        List<Integer> idsLanguages = new ArrayList<Integer>();
+        for(LanguageGame idsLanguagesGames1 : gameLanguages){
+            idsLanguages.add(idsLanguagesGames1.getIdLanguage());
+        }
+        languagesDao.deleteOldsLanguages(idsLanguagesGames);
 
         List<Integer> languagesIds = new ArrayList<Integer>();
         languagesIds = newGameRequest.getLanguageGames();
-
-        List<Integer> idGameLanguages = languagesDao.findByIdGamesLanguages(idGame);
-        languagesDao.deleteOldsLanguages(idGameLanguages);
-
         for (int i = 0; i < languagesIds.size(); i++) {
+            Integer flag=0;
+            for (int j=0;j<idsLanguagesGames.size();j++){
 
-            languageGame.setIdLanguage(languagesIds.get(i));
-            ;
-            languageGame.setIdGame(idGame);
-            languagesDao.createLanguageGame(languageGame);
+                if(languagesIds.get(i)==idsLanguages.get(j)){
+                    flag=1;
+                    languagesDao.changeStatus(idsLanguagesGames.get(j));
+                }
+            }
+            if(flag==0){
+                languageGame.setIdLanguage(languagesIds.get(i));
+                languageGame.setIdGame(idGame);
+                languageGame.setTxId(transaction.getTxId());
+                languageGame.setTxHost(transaction.getTxHost());
+                languageGame.setTxUserId(publisherDao.findUserIdByIdPublisher(developer1.getIdPublisher()));
+                languageGame.setTxDate(transaction.getTxDate());
+                languagesDao.createLanguageGame(languageGame);
+            }
         }
+        // Update genre games
 
+        List<GenreGame> idGameGenreId = genreDao.findByIdGamesGenre(idGame);
 
+        List<Integer> idsGenreGames = new ArrayList<Integer>();
+        for(GenreGame idsGenreGames1:idGameGenreId ){
+            idsGenreGames.add(idsGenreGames1.getIdGenreGame());
+        }
+        List<Integer> idsGenre = new ArrayList<Integer>();
+        for(GenreGame idsGenreGames1 : idGameGenreId){
+            idsGenre.add(idsGenreGames1.getIdGenre());
+        }
+        genreDao.deleteOldsGenreDao(idsGenreGames);
         List<Integer> genreIds = new ArrayList<Integer>();
         genreIds = newGameRequest.getGenreGames();
-
-        List<Integer> idGameGenreId = genreDao.findByIdGamesGenre(idGame);
-        genreDao.deleteOldsGenreDao(idGameGenreId);
-
         for (int i = 0; i < genreIds.size(); i++) {
+            Integer flag=0;
+            for (int j=0;j<idsGenreGames.size();j++){
 
-            genreGame.setIdGenre(genreIds.get(i));
-            ;
-            genreGame.setIdGame(idGame);
-            genreDao.createGenreGame(genreGame);
+                if(genreIds.get(i)==idsGenre.get(j)){
+                    flag=1;
+                    genreDao.changeStatus(idsGenreGames.get(j));
+                }
+            }
+            if(flag==0){
+                genreGame.setIdGenre(genreIds.get(i));
+                genreGame.setIdGame(idGame);
+                genreGame.setTxId(transaction.getTxId());
+                genreGame.setTxHost(transaction.getTxHost());
+                genreGame.setTxUserId(publisherDao.findUserIdByIdPublisher(developer1.getIdPublisher()));
+                genreGame.setTxDate(transaction.getTxDate());
+                genreDao.createGenreGame(genreGame);
+            }
         }
-
+        // Update photos
         List<String> imagesPath = new ArrayList<String>();
         imagesPath = newGameRequest.getImages();
 
@@ -317,16 +414,57 @@ public class GameBl {
             }
 
         }
-
+        //Update price
         price.setIdGame(idGame);
         price.setPrice(newGameRequest.getPrice());
         price.setSale(newGameRequest.getSale());
         price.setTxId(transaction.getTxId());
         price.setTxHost(transaction.getTxHost());
-        price.setTxUserId(transaction.getTxUserId());
+        price.setTxUserId(publisherDao.findUserIdByIdPublisher(developer1.getIdPublisher()));
         price.setTxDate(transaction.getTxDate());
         priceDao.updatePrice(price);
-        return newGameRequest;
+
+        //Update requirements
+        List<GameRequirements> requirements = gameRequirementDao.findByIdGamesRequirements(idGame);
+
+        List<Integer> idsGameRequirements = new ArrayList<Integer>();
+        for(GameRequirements idsGenreGames1: requirements){
+            idsGameRequirements.add(idsGenreGames1.getIdGameRequirement());
+        }
+        List<Integer> idsOperatingSystemRequirements = new ArrayList<Integer>();
+        for(GameRequirements idsGenreGames1 : requirements){
+            idsOperatingSystemRequirements.add(idsGenreGames1.getIdOperatingSystem());
+        }
+        gameRequirementDao.deleteOldsRequirements(idsGenreGames);
+
+        List<GameRequirements> gameRequirements1 = new ArrayList<GameRequirements>();
+        gameRequirements1 = newGameRequest.getRequirements();
+
+
+
+        for (GameRequirements requirements2 : gameRequirements1) {
+            Integer flag=0;
+
+            for (int j=0;j<idsGameRequirements.size();j++){
+
+                if(requirements2.getIdOperatingSystem()==idsOperatingSystemRequirements.get(j)){
+                    flag=1;
+                    gameRequirementDao.changeStatus(idsGameRequirements.get(j));
+                }
+            }
+            if(flag==0){
+                gameRequirements.setIdGame(idGame);
+                gameRequirements.setIdOperatingSystem(requirements2.getIdOperatingSystem());
+                gameRequirements.setProcessor(requirements2.getProcessor());
+                gameRequirements.setMemory(requirements2.getMemory());
+                gameRequirements.setGraphics(requirements2.getGraphics());
+                gameRequirements.setTxId(transaction.getTxId());
+                gameRequirements.setTxHost(transaction.getTxHost());
+                gameRequirements.setTxUserId(publisherDao.findUserIdByIdPublisher(developer1.getIdPublisher()));
+                gameRequirements.setTxDate(transaction.getTxDate());
+                gameRequirementDao.createGameRequirement(gameRequirements);
+            }
+        }
     }
 
     // Returns Game details by id

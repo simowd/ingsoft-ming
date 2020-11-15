@@ -51,7 +51,7 @@
     <select id="findByIdDeveloper" resultType="bo.ucb.edu.ingsoft.models.Developer">
         SELECT
                id_developer as idDeveloper,
-               id_publisher as idPubliser,
+               id_publisher as idPublisher,
                developer as developer
         FROM developers
         WHERE
