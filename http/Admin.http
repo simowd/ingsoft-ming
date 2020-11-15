@@ -5,7 +5,7 @@ Content-Type: application/json
 
 {
   "username": "Admin",
-  "email": "elecgronic.arts@ea.com",
+  "email": "electronic.arts@ea.com",
   "paypal": "eabusiness@gmail.com",
   "publisher": "Electronic Arts",
   "idCountry": 8,
@@ -19,7 +19,7 @@ Accept: application/json
 
 ###
 #The admin deletes a publisher account
-DELETE http://localhost:8080/ming/v1/publisher/9
+DELETE http://localhost:8080/ming/v1/publisher/7
 Accept: application/json
 ###
 

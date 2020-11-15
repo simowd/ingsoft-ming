@@ -9,7 +9,7 @@ Accept: application/json
 
 ###
 #The publisher can edit his account
-PUT http://localhost:8080/ming/v1/publisher/1
+PUT http://localhost:8080/ming/v1/publisher/7
 Accept: application/json
 Content-Type: application/json
 
@@ -18,32 +18,32 @@ Content-Type: application/json
   "email": "ElectronicArts@gmail.com",
   "paypal": "ElectronicArtsBusiness@gmail.com",
   "publisher": "Electronic Arts",
-  "idCountry": 18,
+  "idCountry": 5,
   "password": "Treyarch",
   "repeat_password": "Treyarch"
 }
 
 ###
 #The publisher add a game
-POST http://localhost:8080/ming/publisher/3/game
+POST http://localhost:8080/ming/v1/publisher/3/game
 Accept: application/json
 Content-Type: application/json
 
 {
-  "idEsrb": 1,
-  "title": "Battlefront 2",
-  "game_description": "Un juego de guerritas",
-  "size": "200GB",
+  "idEsrb": 4,
+  "title": "Grand Theft Auto V",
+  "game_description": "Grand Theft Auto V es un videojuego de acción-aventura de mundo abierto desarrollado por el estudio Rockstar North y distribuido por Rockstar Games. ",
+  "size": "85GB",
   "players": 1,
-  "processor": "Intel 7",
+  "processor": "Intel 9",
   "release_date": "2014-12-10T13:33:05.673",
   "memory": "8GB RAM",
   "graphics": "GeForce 2800 ti",
   "color": "#1111111",
   "highlighted":  0,
-  "download_path": "brawl/download.com",
+  "download_path": "gta/download.com",
   "images": ["http//11","http//22","http//33"],
-  "developer": "RockStar North",
+  "developer": "Rockstar North",
   "directx": [1,2,3],
   "operatingSystem": [1,2],
   "languageGames": [1,2],
