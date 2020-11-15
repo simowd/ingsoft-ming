@@ -165,7 +165,9 @@ public class PublisherBl {
             throw new ResponseStatusException(
                     HttpStatus.UNAUTHORIZED, "Wrong Password");
         }
-
+        String users = "users", publishers="publishers";
+        transactionDao.updateTablesTransaction(users,userId, transactionDao.getLastInsertId(), transaction.getTxHost(), transaction.getTxUserId(), transaction.getTxDate());
+        transactionDao.updateTablesTransaction(publishers,userId, transactionDao.getLastInsertId(), transaction.getTxHost(), transaction.getTxUserId(), transaction.getTxDate());
         return publisherRequest;
 
     }

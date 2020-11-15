@@ -75,6 +75,9 @@ public class UserBl {
         }
 
         Country country = countryDao.CountryName(user.getIdCountry());
+        if(country == null || country.getStatus() == 0){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
+        }
         UserRequest userRequest = new UserRequest(user.getUserName(), user.getAlias(), user.getEmail(), country.getName(), user.getPhotoPath());
         return userRequest;
     }
