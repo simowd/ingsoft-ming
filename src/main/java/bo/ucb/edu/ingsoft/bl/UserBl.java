@@ -57,7 +57,8 @@ public class UserBl {
         userDao.userSignUp(user);
 
         Integer lastId=userDao.getLastInsertId();
-        transactionDao.updateUserTransaction(lastId, transaction.getTxId(), transaction.getTxHost(), transaction.getTxUserId(), transaction.getTxDate());
+        String tableUsers = "users";
+        transactionDao.updateTablesTransaction(tableUsers, lastId, transaction.getTxId(), transaction.getTxHost(), transaction.getTxUserId(), transaction.getTxDate());
 
         UserRequest newUser = new UserRequest();
         newUser.setId_user(userDao.getLastInsertId());
