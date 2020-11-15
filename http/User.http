@@ -4,6 +4,8 @@ Accept: application/json
 Content-Type: application/json
 
 {
+  "name": "Erica",
+  "lastname": "Butcher",
   "username": "Crash Bandicoot",
   "alias": "Crash",
   "email": "contra@gmail.com",
@@ -22,6 +24,8 @@ Accept: application/json
 Content-Type: application/json
 
 {
+  "name": "No Erica",
+  "lastname": "No Butcher",
   "alias": "Natham Drake",
   "email": "Drake@yopmail.com",
   "id_country": 27,
@@ -30,12 +34,12 @@ Content-Type: application/json
 
 ###
 #The user can edit his password
-PUT http://localhost:8080/ming/v1/users/1/password
+PUT http://localhost:8080/ming/v1/users/15/password
 Accept: application/json
 Content-Type: application/json
 
 {
-  "old_password": "contra123",
+  "old_password": "contra707",
   "new_password": "new"
 }
 
