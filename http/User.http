@@ -14,12 +14,12 @@ Content-Type: application/json
 
 ###
 #The user sees his profile info
-GET http://localhost:8080/ming/v1/users/13
+GET http://localhost:8080/ming/v1/users/18
 Accept: application/json
 
 ###
 #The user can edit his profile info
-PUT http://localhost:8080/ming/v1/users/14
+PUT http://localhost:8080/ming/v1/users/20
 Accept: application/json
 Content-Type: application/json
 
@@ -34,7 +34,7 @@ Content-Type: application/json
 
 ###
 #The user can edit his password
-PUT http://localhost:8080/ming/v1/users/15/password
+PUT http://localhost:8080/ming/v1/users/20/password
 Accept: application/json
 Content-Type: application/json
 
@@ -45,7 +45,7 @@ Content-Type: application/json
 
 ###
 #The user sees his game library
-GET http://localhost:8080/ming/v1/users/2/library
+GET http://localhost:8080/ming/v1/users/20/library
 Accept: application/json
 
 ###
