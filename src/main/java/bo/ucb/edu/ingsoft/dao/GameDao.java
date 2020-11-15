@@ -2,6 +2,8 @@ package bo.ucb.edu.ingsoft.dao;
 
 import bo.ucb.edu.ingsoft.models.Game;
 import bo.ucb.edu.ingsoft.models.GameHelper;
+import bo.ucb.edu.ingsoft.models.GameRequirements;
+import bo.ucb.edu.ingsoft.models.GameRequirementsHelper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -52,5 +54,8 @@ public interface GameDao {
 
     //Get publisher id
     public Integer getPublisherId(Integer gameId);
+
+    //Get a game Requirements
+    public List<GameRequirementsHelper> getRequirements(Integer gameId);
 
 }

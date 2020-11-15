@@ -135,9 +135,6 @@
              size as size,
              players as players,
              release_date as releaseDate,
-             processor as processor,
-             memory as memory,
-             graphics as graphics,
              color as color,
              highlight as highlight,
              download_path as downloadPath,
@@ -250,5 +247,21 @@
         INNER JOIN games ON games.id_developer = developers.id_developer
         INNER JOIN users ON users.id_user = publishers.id_user
         WHERE games.id_game = #{gameId}
+    </select>
+    <select id="getRequirements" resultType="bo.ucb.edu.ingsoft.models.GameRequirementsHelper">
+        SELECT
+            operating_system.operating_system as operatingSystem,
+            game_requirements.processor as processor,
+            game_requirements.graphics as graphics,
+            game_requirements.memory as memory
+        FROM
+            game_requirements
+        INNER JOIN
+            games ON games.id_game = game_requirements.id_game
+        INNER JOIN
+            operating_system on operating_system.id_operating_system = game_requirements.id_operating_system
+        WHERE
+            game_requirements.status = 1
+        AND game_requirements.id_game = #{gameId}
     </select>
 </mapper>

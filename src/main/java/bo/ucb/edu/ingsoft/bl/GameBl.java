@@ -338,6 +338,8 @@ public class GameBl {
         // Getting genres by game id
         List<String> genres = genreDao.gameGenre(game.getIdGame());
 
+        List<GameRequirementsHelper> gameRequirements = gameDao.getRequirements(gameId);
+
         // Loading data into GameDetailsRequest
         GameDetailsRequest gameDetailsRequest = new GameDetailsRequest();
         gameDetailsRequest.setId(gameId);
@@ -350,9 +352,7 @@ public class GameBl {
         gameDetailsRequest.setDeveloper(developer.getDeveloper());
         gameDetailsRequest.setPlayers(game.getPlayers());
         gameDetailsRequest.setReleaseDate(game.getReleaseDate());
-        gameDetailsRequest.setProcessor(game.getProcessor());
-        gameDetailsRequest.setMemory(game.getMemory());
-        gameDetailsRequest.setGraphics(game.getGraphics());
+        gameDetailsRequest.setGameRequirements(gameRequirements);
         gameDetailsRequest.setColor(game.getColor());
         gameDetailsRequest.setHighlighted(game.getHighlight());
         gameDetailsRequest.setDownload_path(game.getDownloadPath());
