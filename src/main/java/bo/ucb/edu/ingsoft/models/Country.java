@@ -3,13 +3,15 @@ package bo.ucb.edu.ingsoft.models;
 public class Country {
     private Integer idCountry;
     private String name;
+    private int status;
 
     public Country() {
     }
 
-    public Country(Integer idCountry, String name) {
+    public Country(Integer idCountry, String name, int status) {
         this.idCountry = idCountry;
         this.name = name;
+        this.status = status;
     }
 
     @Override
@@ -17,6 +19,7 @@ public class Country {
         return "Country{" +
                 "idCountry=" + idCountry +
                 ", name='" + name + '\'' +
+                ", status=" + status +
                 '}';
     }
 
@@ -36,4 +39,11 @@ public class Country {
         this.name = name;
     }
 
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
 }
