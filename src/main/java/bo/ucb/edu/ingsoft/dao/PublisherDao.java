@@ -22,4 +22,7 @@ public interface PublisherDao {
     //delete  publisher
     public void deletePublisher(Integer idUser);
 
+    //get userId
+    public Integer findUserIdByIdPublisher(Integer idPublisher);
+
 }

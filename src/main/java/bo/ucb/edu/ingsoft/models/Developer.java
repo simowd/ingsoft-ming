@@ -1,26 +1,22 @@
 package bo.ucb.edu.ingsoft.models;
 
-public class Developer {
+public class Developer extends Transactions {
     private Integer idDeveloper;
     private Integer idPublisher;
     private String developer;
+    private Integer status;
 
     public Developer() {
 
     }
 
-    public Developer(Integer idDeveloper, Integer idPublisher, String developer) {
-        this.idDeveloper = idDeveloper;
-        this.idPublisher = idPublisher;
-        this.developer = developer;
-    }
-
     @Override
     public String toString() {
-        return "Developers{" +
+        return "Developer{" +
                 "idDeveloper=" + idDeveloper +
                 ", idPublisher=" + idPublisher +
                 ", developer='" + developer + '\'' +
+                ", status=" + status +
                 '}';
     }
 
@@ -46,5 +42,13 @@ public class Developer {
 
     public void setDeveloper(String developer) {
         this.developer = developer;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }

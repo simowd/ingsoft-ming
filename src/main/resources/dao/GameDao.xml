@@ -103,7 +103,7 @@
         AND highlight = 1
     </select>
     <insert id="createGame" parameterType="bo.ucb.edu.ingsoft.models.Game">
-      INSERT INTO games (id_game,id_esrb,id_developer,name,description,size,players,release_date,processor,memory,graphics,color,highlight,download_path,status,tx_id,tx_host,tx_user_id,tx_date)
+      INSERT INTO games (id_game,id_esrb,id_developer,name,description,size,players,release_date,color,highlight,download_path,status,tx_id,tx_host,tx_user_id,tx_date)
         VALUES (
              null,
              #{idEsrb},
@@ -113,9 +113,6 @@
              #{size},
              #{players},
              #{releaseDate},
-             #{processor},
-             #{memory},
-             #{graphics},
              #{color},
              #{highlight},
              #{downloadPath},
@@ -146,6 +143,8 @@
       FROM games
       WHERE
             id_game=#{idGame}
+      AND
+            status = 1
     </select>
 
     <select id="findLibraryGames" resultType="bo.ucb.edu.ingsoft.models.Game">

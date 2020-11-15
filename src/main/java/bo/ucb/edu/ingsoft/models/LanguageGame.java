@@ -1,9 +1,10 @@
 package bo.ucb.edu.ingsoft.models;
 
-public class LanguageGame {
+public class LanguageGame extends Transactions{
     private Integer idLanguageGame;
     private Integer idGame;
     private Integer idLanguage;
+    private Integer status;
 
     public LanguageGame() {
     }
@@ -14,6 +15,7 @@ public class LanguageGame {
                 "idLanguageGame=" + idLanguageGame +
                 ", idGame=" + idGame +
                 ", idLanguage=" + idLanguage +
+                ", status=" + status +
                 '}';
     }
 
@@ -39,5 +41,13 @@ public class LanguageGame {
 
     public void setIdLanguage(Integer idLanguage) {
         this.idLanguage = idLanguage;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }

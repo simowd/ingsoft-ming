@@ -4,11 +4,16 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bo.ucb.edu.ingsoft.dao.DeveloperDao">
     <insert id="createDeveloper" parameterType="bo.ucb.edu.ingsoft.models.Developer">
-      INSERT INTO developers
+      INSERT INTO developers (id_developer,id_publisher,developer,status,tx_id,tx_host,tx_user_id,tx_date)
         VALUES (
              null,
              #{idPublisher},
-             #{developer}
+             #{developer},
+             1,
+             #{txId},
+             #{txHost},
+             #{txUserId},
+             #{txDate}
         )
     </insert>
 
@@ -51,11 +56,12 @@
         FROM developers
         WHERE
             id_developer = #{idDeveloper}
+        AND status = 1
     </select>
 
     <select id="findBydeveloperName" resultType="java.lang.Integer">
         SELECT
-               id_developer as idDeveloper
+            id_developer as idDeveloper
         FROM developers
         WHERE
             developer = #{developer}

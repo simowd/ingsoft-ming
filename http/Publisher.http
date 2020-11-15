@@ -37,14 +37,14 @@ Content-Type: application/json
   "players": 1,
   "requirements": [
     {
-      "idOPeratingSystem": 1,
+      "idOperatingSystem": 1,
       "processor": "Intel 9",
       "memory": "8GB RAM",
       "graphics": "GeForce 2800 ti"
 
     },
     {
-      "idOPeratingSystem": 2,
+      "idOperatingSystem": 2,
       "processor": "Intel 10",
       "memory": "6GB RAM",
       "graphics": "GeForce 3800 ti"

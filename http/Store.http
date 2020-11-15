@@ -19,7 +19,7 @@ Accept: application/json
 
 ###
 #Game Page
-GET http://localhost:8080//ming/store/games/3
+GET http://localhost:8080//ming/store/games/2
 Accept: application/json
 
 ###

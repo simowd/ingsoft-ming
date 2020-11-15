@@ -11,5 +11,6 @@
         FROM esrb
         WHERE
             id_esrb=#{idEsrb}
+        AND status = 1
     </select>
 </mapper>

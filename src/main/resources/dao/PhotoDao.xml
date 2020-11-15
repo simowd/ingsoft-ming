@@ -40,30 +40,39 @@
         AND status = 1
     </select>
     <insert id="createPhotoBanner" parameterType="bo.ucb.edu.ingsoft.models.Photo">
-      INSERT INTO photos (id_photos,id_game,photo_path,type,status)
+      INSERT INTO photos (id_photos,id_game,photo_path,type,status,tx_id,tx_host,tx_user_id,tx_date)
         VALUES (
              null,
              #{idGame},
              #{photoPath},
              1,
-             1
+             1,
+             #{txId},
+             #{txHost},
+             #{txUserId},
+             #{txDate}
         )
 
     </insert>
     <insert id="createPhoto" parameterType="bo.ucb.edu.ingsoft.models.Photo">
-      INSERT INTO photos (id_photos,id_game,photo_path,type,status)
+      INSERT INTO photos (id_photos,id_game,photo_path,type,status,tx_id,tx_host,tx_user_id,tx_date)
         VALUES (
              null,
              #{idGame},
              #{photoPath},
              2,
-             1
+             1,
+             #{txId},
+             #{txHost},
+             #{txUserId},
+             #{txDate}
         )
     </insert>
     <select id="findPhotosByGameId" resultType="bo.ucb.edu.ingsoft.models.Photo">
         SELECT photo_path as photoPath
         FROM photos
         WHERE id_game = #{idGame}
+        AND status = 1
     </select>
 
     <update id="updatePhotoBanner" parameterType="bo.ucb.edu.ingsoft.models.Photo">

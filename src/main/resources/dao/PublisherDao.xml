@@ -63,4 +63,13 @@
         WHERE
             id_user=#{idUser}
     </update>
+
+    <select id="findUserIdByIdPublisher" resultType="java.lang.Integer">
+        SELECT
+                id_user as idUser
+        FROM publishers
+        WHERE
+            id_publisher=#{idPublisher}
+
+    </select>
 </mapper>

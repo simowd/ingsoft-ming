@@ -1,9 +1,10 @@
 package bo.ucb.edu.ingsoft.models;
 
-public class GameOS {
+public class GameOS extends Transactions{
     private Integer idGameOs;
     private Integer idGame;
     private Integer idOperatingSystem;
+    private Integer status;
 
     public GameOS() {
     }
@@ -14,6 +15,7 @@ public class GameOS {
                 "idGameOs=" + idGameOs +
                 ", idGame=" + idGame +
                 ", idOperatingSystem=" + idOperatingSystem +
+                ", status=" + status +
                 '}';
     }
 
@@ -39,5 +41,11 @@ public class GameOS {
 
     public void setIdOperatingSystem(Integer idOperatingSystem) {
         this.idOperatingSystem = idOperatingSystem;
+    }
+    public Integer getStatus() {
+        return status;
+    }
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }

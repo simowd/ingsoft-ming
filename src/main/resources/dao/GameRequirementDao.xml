@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bo.ucb.edu.ingsoft.dao.GameRequirementDao">
+    <insert id="createGameRequirement" parameterType="bo.ucb.edu.ingsoft.models.GameRequirements">
+      INSERT INTO game_requirements (id_game_requirement,id_game,id_operating_system,processor,memory,graphics,status,tx_id,tx_host,tx_user_id,tx_date)
+        VALUES (
+             null,
+             #{idGame},
+             #{idOperatingSystem},
+             #{processor},
+             #{memory},
+             #{graphics},
+             1,
+             #{txId},
+             #{txHost},
+             #{txUserId},
+             #{txDate}
+        )
+    </insert>
+</mapper>

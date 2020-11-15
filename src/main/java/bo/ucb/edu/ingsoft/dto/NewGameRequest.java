@@ -1,10 +1,12 @@
 package bo.ucb.edu.ingsoft.dto;
 
+import bo.ucb.edu.ingsoft.models.GameRequirements;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.ArrayList;
+import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class NewGameRequest {
@@ -15,23 +17,19 @@ public class NewGameRequest {
     private String size;
     private Integer players;
     private Timestamp release_date;
-    private String processor;
-    private String memory;
-    private String graphics;
+    private List<GameRequirements> requirements;
     private String color;
     private Integer highlighted;
     private String download_path;
     private ArrayList<String> language;
     private ArrayList<String> images;
-    private String esrb;
-    private String developer;
     private ArrayList<Integer> directx;
     private ArrayList<Integer> operatingSystem;
     private ArrayList<Integer> languageGames;
     private ArrayList<Integer> genreGames;
-    private Integer status;
     private Double sale;
     private Double price;
+    private String developer;
 
     public NewGameRequest() {
 
@@ -47,23 +45,19 @@ public class NewGameRequest {
                 ", size='" + size + '\'' +
                 ", players=" + players +
                 ", release_date=" + release_date +
-                ", processor='" + processor + '\'' +
-                ", memory='" + memory + '\'' +
-                ", graphics='" + graphics + '\'' +
+                ", requirements=" + requirements +
                 ", color='" + color + '\'' +
                 ", highlighted=" + highlighted +
                 ", download_path='" + download_path + '\'' +
                 ", language=" + language +
                 ", images=" + images +
-                ", esrb='" + esrb + '\'' +
-                ", developer='" + developer + '\'' +
                 ", directx=" + directx +
                 ", operatingSystem=" + operatingSystem +
                 ", languageGames=" + languageGames +
                 ", genreGames=" + genreGames +
-                ", status=" + status +
                 ", sale=" + sale +
                 ", price=" + price +
+                ", developer='" + developer + '\'' +
                 '}';
     }
 
@@ -123,28 +117,12 @@ public class NewGameRequest {
         this.release_date = release_date;
     }
 
-    public String getProcessor() {
-        return processor;
+    public List<GameRequirements> getRequirements() {
+        return requirements;
     }
 
-    public void setProcessor(String processor) {
-        this.processor = processor;
-    }
-
-    public String getMemory() {
-        return memory;
-    }
-
-    public void setMemory(String memory) {
-        this.memory = memory;
-    }
-
-    public String getGraphics() {
-        return graphics;
-    }
-
-    public void setGraphics(String graphics) {
-        this.graphics = graphics;
+    public void setRequirements(List<GameRequirements> requirements) {
+        this.requirements = requirements;
     }
 
     public String getColor() {
@@ -179,14 +157,6 @@ public class NewGameRequest {
         this.language = language;
     }
 
-    public String getEsrb() {
-        return esrb;
-    }
-
-    public void setEsrb(String esrb) {
-        this.esrb = esrb;
-    }
-
     public ArrayList<String> getImages() {
         return images;
     }
@@ -195,36 +165,12 @@ public class NewGameRequest {
         this.images = images;
     }
 
-    public String getDeveloper() {
-        return developer;
-    }
-
-    public void setDeveloper(String developer) {
-        this.developer = developer;
-    }
-
     public ArrayList<Integer> getDirectx() {
         return directx;
     }
 
     public void setDirectx(ArrayList<Integer> directx) {
         this.directx = directx;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public Double getSale() {
-        return sale;
-    }
-
-    public void setSale(Double sale) {
-        this.sale = sale;
     }
 
     public ArrayList<Integer> getOperatingSystem() {
@@ -251,11 +197,27 @@ public class NewGameRequest {
         this.genreGames = genreGames;
     }
 
+    public Double getSale() {
+        return sale;
+    }
+
+    public void setSale(Double sale) {
+        this.sale = sale;
+    }
+
     public Double getPrice() {
         return price;
     }
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public String getDeveloper() {
+        return developer;
+    }
+
+    public void setDeveloper(String developer) {
+        this.developer = developer;
     }
 }

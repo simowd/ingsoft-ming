@@ -35,6 +35,7 @@ public interface GameDao {
     //Update game
     public void updateGame(Game game);
 
+
     public Integer findByDeveloperGame(Integer gameId);
 
     //delete  game

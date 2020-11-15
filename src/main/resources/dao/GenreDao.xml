@@ -19,11 +19,16 @@
     </select>
 
     <insert id="createGenreGame" parameterType="bo.ucb.edu.ingsoft.models.Genre">
-      INSERT INTO genres_games (id_genre_game,id_game,id_genre)
+      INSERT INTO genres_games (id_genre_game,id_game,id_genre,status,tx_id,tx_host,tx_user_id,tx_date)
         VALUES (
              null,
              #{idGame},
-             #{idGenre}
+             #{idGenre},
+            1,
+            #{txId},
+            #{txHost},
+            #{txUserId},
+            #{txDate}
         )
     </insert>
 
