@@ -113,12 +113,14 @@ public class PublisherBl {
         return publisherListRequests;
     }
     /*
-        DELETE (/admin/publisher/{id}) The admin delete a publisher account
-   */
+        DELETE (/publisher/{id}) The admin delete a publisher account
+    */
     public void deletePublisher (Integer idUser, Transaction transaction){
       userDao.deleteUserPublisher(idUser);
       publisherDao.deletePublisher(idUser);
-      transactionDao.updateUserTransaction(idUser, transaction.getTxId(), transaction.getTxHost(), transaction.getTxUserId(), transaction.getTxDate());
+      String users = "users", publishers="publishers";
+      transactionDao.updateTablesTransaction(users,idUser, transactionDao.getLastInsertId(), transaction.getTxHost(), transaction.getTxUserId(), transaction.getTxDate());
+      transactionDao.updateTablesTransaction(publishers,idUser, transactionDao.getLastInsertId(), transaction.getTxHost(), transaction.getTxUserId(), transaction.getTxDate());
     }
 
     /*

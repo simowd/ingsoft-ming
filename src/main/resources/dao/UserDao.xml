@@ -154,7 +154,7 @@
 
     <update id="deleteUserPublisher">
         UPDATE users
-        SET  status=0
+            SET  status=0
         WHERE
             id_user=#{idUser}
     </update>

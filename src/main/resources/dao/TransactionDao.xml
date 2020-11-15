@@ -26,4 +26,15 @@
         WHERE
             id_user=#{idUser}
     </update>
+
+    <update id="updateTablesTransaction">
+        UPDATE ${tableName}
+        SET tx_id=#{txId},
+            tx_host=#{txHost},
+            tx_user_id=#{txUserId},
+            tx_date=#{txDate}
+        WHERE
+            id_user=#{idUser}
+    </update>
+
 </mapper>

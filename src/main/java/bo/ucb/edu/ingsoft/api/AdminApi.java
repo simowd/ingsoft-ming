@@ -48,16 +48,14 @@ public class AdminApi {
     }
 
     /*
-        DELETE (/admin/publisher/{id}) The admin delete a publisher account
+        DELETE (/publisher/{id}) The admin delete a publisher account
     */
-    @RequestMapping(value = "/ming/admin/publisher/{id}",method = RequestMethod.DELETE)
+    @RequestMapping(value = "/ming/v1/publisher/{id}",method = RequestMethod.DELETE)
     @ResponseStatus(value = HttpStatus.OK)
     public void deletePublisher(@PathVariable("id") Integer userId, HttpServletRequest request) {
-
             Transaction transaction = TransactionUtil.createTransaction(request);
             transactionBl.createTransaction(transaction);
             publisherBl.deletePublisher(userId,transaction);
-
     }
 
     /*

@@ -16,4 +16,7 @@ public interface TransactionDao {
 
     //Update de user's transaction
     public void updateUserTransaction(@Param("idUser") Integer idUser, @Param("txId") Integer txId, @Param("txHost") String txHost, @Param("txUserId") Integer txUserId, @Param("txDate") Date txDate);
+
+    //Update table transaction
+    public void updateTablesTransaction(@Param("tableName") String tableName, @Param("idUser") Integer idUser, @Param("txId") Integer txId, @Param("txHost") String txHost, @Param("txUserId") Integer txUserId, @Param("txDate") Date txDate);
 }

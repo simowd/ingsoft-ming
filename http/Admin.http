@@ -19,7 +19,7 @@ Accept: application/json
 
 ###
 #The admin deletes a publisher account
-DELETE http://localhost:8080/ming/admin/publisher/7
+DELETE http://localhost:8080/ming/v1/publisher/9
 Accept: application/json
 ###
 
