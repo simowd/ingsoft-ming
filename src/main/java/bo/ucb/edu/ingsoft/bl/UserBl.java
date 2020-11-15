@@ -136,19 +136,30 @@ public class UserBl {
     GET (/users/{id}/library) The user sees his game library
     */
     public List<LibraryRequest> getUserLibrary(Integer userId) {
+        // Getting user information by user id
+        User user = userDao.userProfileInfo(userId);
+        if(user == null || user.getStatus() == 0){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
+        }
+
         List<LibraryRequest> list = new ArrayList<LibraryRequest>();
         List<Integer> userIdGames = libraryDao.UserGames(userId);
         List<Game> gameInfo = gameDao.findLibraryGames(userIdGames);
 
+        int idGamesSize = userIdGames.size();
+        int idGameInfo = gameInfo.size();
+        int arraySize = idGamesSize;
+        if (idGamesSize>idGameInfo){
+            arraySize = idGameInfo;
+        }
+
         List<List<String>> genresList = new ArrayList<List<String>>();
-        for (int i = 0; i < userIdGames.size(); i++) {
+        for (int i = 0; i < arraySize; i++) {
             List<String> gameGenre = genreDao.gameGenre(userIdGames.get(i));
             genresList.add(gameGenre);
         }
         List<Photo> gameBanner = photoDao.findBannerbyId(userIdGames);
-
-        for (int i = 0; i < userIdGames.size(); i++) {
-
+        for (int i = 0; i < gameBanner.size(); i++) {
             LibraryRequest libraryRequest = new LibraryRequest(userIdGames.get(i), gameInfo.get(i).getName(), genresList.get(i), gameBanner.get(i).getPhotoPath(), gameInfo.get(i).getDownloadPath());
             list.add(libraryRequest);
         }

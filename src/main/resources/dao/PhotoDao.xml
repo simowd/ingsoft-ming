@@ -16,9 +16,11 @@
             id_photos as idPhoto,
             id_game as idGame,
             photo_path as photoPath,
-            type as type
+            type as type,
+            status as status
         FROM photos
-        WHERE id_game IN
+        WHERE
+        id_game IN
         <foreach collection="list" item="item" index="index"
             open="(" separator="," close = ")">
          #{item}

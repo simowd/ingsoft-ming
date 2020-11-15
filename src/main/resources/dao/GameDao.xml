@@ -151,9 +151,12 @@
     <select id="findLibraryGames" resultType="bo.ucb.edu.ingsoft.models.Game">
         SELECT
         name as name,
-        download_path as downloadPath
+        download_path as downloadPath,
+        status as status
         FROM games
         WHERE
+        status = 1
+        AND
         id_game in
         <foreach collection="list" item="item" index="index"
                  open="(" separator="," close=")">

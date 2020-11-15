@@ -6,9 +6,12 @@
 
     <select id="UserGames" resultType="Integer">
         SELECT
-               id_game as idGame
+               id_game as idGame,
+               status as status
         FROM library
         WHERE
             id_user = #{idUser}
+        AND
+            status = 1
     </select>
 </mapper>
