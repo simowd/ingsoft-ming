@@ -40,14 +40,15 @@ public class PublisherBl {
 
 
     /*
-       POST (/admin/publisher) The admin create a new publisher
+        POST (/publisher) The admin create a new publisher
     */
-    public PublisherRequest createPublisher(PublisherRequest publisherRequest, Transaction transaction){
+    public void createPublisher(PublisherRequest publisherRequest, Transaction transaction){
 
         User user=new User();
         Publisher publisher=new Publisher();
 
-        user.setIdCountry(publisherRequest.getCountry());
+        // Insert data in user table
+        user.setIdCountry(publisherRequest.getIdCountry());
         user.setUserName(publisherRequest.getUsername());
         user.setPassword(publisherRequest.getPassword());
         user.setEmail(publisherRequest.getEmail());
@@ -57,6 +58,7 @@ public class PublisherBl {
         user.setTxDate(transaction.getTxDate());
         userDao.createPublisher(user);
 
+        // Insert data in publisher table
         Integer lastId=userDao.getLastInsertId();
         publisher.setIdUser(lastId);
         publisher.setPaypalMail(publisherRequest.getPaypal());
@@ -65,10 +67,7 @@ public class PublisherBl {
         publisher.setTxHost(transaction.getTxHost());
         publisher.setTxUserId(transaction.getTxUserId());
         publisher.setTxDate(transaction.getTxDate());
-
         publisherDao.createPublisher(publisher);
-
-        return publisherRequest;
     }
     /*
       GET (/publisher/{id}) shows publisher data
@@ -82,17 +81,17 @@ public class PublisherBl {
         publisherRequest.setEmail(user.getEmail());
         publisherRequest.setPaypal(publisher.getPaypalMail());
         publisherRequest.setPublisher(publisher.getPublisher());
-        publisherRequest.setCountry(user.getIdCountry());
+        publisherRequest.setIdCountry(user.getIdCountry());
         publisherRequest.setPassword(user.getPassword());
         publisherRequest.setRepeat_password(user.getPassword());
 
         return publisherRequest;
     }
     /*
-        GET (/admin/publisher) The admin sees a publisher list
+       GET (/publisher) The admin sees a publisher list
     */
-    public List<PublisherRequest> getPublisherList(){
-        List<PublisherRequest> publisherRequest =new ArrayList<PublisherRequest>();
+    public List<PublisherListRequest> getPublisherList(){
+        List<PublisherListRequest> publisherListRequests =new ArrayList<PublisherListRequest>();
         List<User> user=userDao.listUserMails();
 
         List<Integer> ids = new ArrayList<Integer>();
@@ -102,17 +101,16 @@ public class PublisherBl {
 
         List<Publisher> publisher=publisherDao.listPublisher(ids);
         for(int i=0;i< user.size();i++){
-            PublisherRequest publisherRequest1=new PublisherRequest();
+            PublisherListRequest publisherListRequest=new PublisherListRequest();
 
-            publisherRequest1.setIdUser(user.get(i).getIdUser());
-            publisherRequest1.setEmail(user.get(i).getEmail());
-            publisherRequest1.setPaypal(publisher.get(i).getPaypalMail());
-            publisherRequest1.setPublisher(publisher.get(i).getPublisher());
+            publisherListRequest.setIdUser(user.get(i).getIdUser());
+            publisherListRequest.setEmail(user.get(i).getEmail());
+            publisherListRequest.setPaypal(publisher.get(i).getPaypalMail());
+            publisherListRequest.setPublisher(publisher.get(i).getPublisher());
 
-            publisherRequest.add(publisherRequest1);
+            publisherListRequests.add(publisherListRequest);
         }
-
-        return publisherRequest;
+        return publisherListRequests;
     }
     /*
         DELETE (/admin/publisher/{id}) The admin delete a publisher account
@@ -131,7 +129,7 @@ public class PublisherBl {
         Publisher publisher=new Publisher();
 
         user.setIdUser(userId);
-        user.setIdCountry(publisherRequest.getCountry());
+        user.setIdCountry(publisherRequest.getIdCountry());
         user.setUserName(publisherRequest.getUsername());
         user.setPassword(publisherRequest.getPassword());
         user.setEmail(publisherRequest.getEmail());

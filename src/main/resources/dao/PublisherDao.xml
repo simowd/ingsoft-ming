@@ -47,10 +47,12 @@
         FROM publishers
         WHERE
         id_user in
-        <foreach collection="list" item="item" index="index"
-                 open="(" separator="," close = ")">
-            #{item}
-        </foreach>
+            <foreach collection="list" item="item" index="index"
+                     open="(" separator="," close = ")">
+                #{item}
+            </foreach>
+        AND
+            status=1
     </select>
 
     <update id="deletePublisher" >

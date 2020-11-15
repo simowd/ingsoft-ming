@@ -9,7 +9,7 @@ import java.util.List;
 
 @Mapper
 public interface UserDao {
-    //Create new publisher admi;
+    //Create new publisher;
     public void createPublisher(User user);
 
     //Get publisher data

@@ -6,7 +6,7 @@ public class PublisherRequest {
     private String email;
     private String paypal;
     private String publisher;
-    private Integer country;
+    private Integer idCountry;
     private String password;
     private String repeat_password;
 
@@ -17,15 +17,23 @@ public class PublisherRequest {
     @Override
     public String toString() {
         return "PublisherRequest{" +
-                "username='" + username + '\'' +
+                "idUser=" + idUser +
+                ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
                 ", paypal='" + paypal + '\'' +
                 ", publisher='" + publisher + '\'' +
-                ", country=" + country +
+                ", idCountry=" + idCountry +
                 ", password='" + password + '\'' +
                 ", repeat_password='" + repeat_password + '\'' +
-                ", idUser=" + idUser +
                 '}';
+    }
+
+    public Integer getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(Integer idUser) {
+        this.idUser = idUser;
     }
 
     public String getUsername() {
@@ -60,6 +68,13 @@ public class PublisherRequest {
         this.publisher = publisher;
     }
 
+    public Integer getIdCountry() {
+        return idCountry;
+    }
+
+    public void setIdCountry(Integer idCountry) {
+        this.idCountry = idCountry;
+    }
 
     public String getPassword() {
         return password;
@@ -75,21 +90,5 @@ public class PublisherRequest {
 
     public void setRepeat_password(String repeat_password) {
         this.repeat_password = repeat_password;
-    }
-
-    public Integer getCountry() {
-        return country;
-    }
-
-    public void setCountry(Integer country) {
-        this.country = country;
-    }
-
-    public Integer getIdUser() {
-        return idUser;
-    }
-
-    public void setIdUser(Integer idUser) {
-        this.idUser = idUser;
     }
 }

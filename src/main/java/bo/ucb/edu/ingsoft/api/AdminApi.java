@@ -28,31 +28,28 @@ public class AdminApi {
     }
 
     /*
-       POST (/admin/publisher) The admin create a new publisher
+       POST (/publisher) The admin create a new publisher
     */
     @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE,
-            consumes = MediaType.APPLICATION_JSON_VALUE,value = "/ming/admin/publisher")
-
-    public PublisherRequest createPublisher(@RequestBody PublisherRequest publisherRequest, HttpServletRequest request){
+            consumes = MediaType.APPLICATION_JSON_VALUE,value = "/ming/v1/publisher")
+    @ResponseStatus(value = HttpStatus.OK)
+    public void createPublisher(@RequestBody PublisherRequest publisherRequest, HttpServletRequest request){
         Transaction transaction = TransactionUtil.createTransaction(request);
         transactionBl.createTransaction(transaction);
-        PublisherRequest publisherResponse = publisherBl.createPublisher(publisherRequest, transaction);
-        return publisherResponse;
+        publisherBl.createPublisher(publisherRequest, transaction);
     }
 
     /*
-        GET (/admin/publisher) The admin sees a publisher list
+        GET (/publisher) The admin sees a publisher list
     */
-    @RequestMapping(value = "/ming/admin/publisher",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<PublisherRequest> publisherList() {
+    @RequestMapping(value = "/ming/v1/publisher",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<PublisherListRequest> publisherList() {
             return publisherBl.getPublisherList();
-
     }
 
-
     /*
-          DELETE (/admin/publisher/{id}) The admin delete a publisher account
-     */
+        DELETE (/admin/publisher/{id}) The admin delete a publisher account
+    */
     @RequestMapping(value = "/ming/admin/publisher/{id}",method = RequestMethod.DELETE)
     @ResponseStatus(value = HttpStatus.OK)
     public void deletePublisher(@PathVariable("id") Integer userId, HttpServletRequest request) {

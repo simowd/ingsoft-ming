@@ -1,29 +1,32 @@
 package bo.ucb.edu.ingsoft.dto;
 
 public class PublisherListRequest {
-    private String publisher;
+    private Integer idUser;
     private String email;
-    private Integer id;
+    private String paypal;
+    private String publisher;
+
+
 
     public PublisherListRequest() {
-
     }
 
     @Override
     public String toString() {
         return "PublisherListRequest{" +
-                "publisher='" + publisher + '\'' +
+                "idUser=" + idUser +
                 ", email='" + email + '\'' +
-                ", id=" + id +
+                ", paypal='" + paypal + '\'' +
+                ", publisher='" + publisher + '\'' +
                 '}';
     }
 
-    public String getPublisher() {
-        return publisher;
+    public Integer getIdUser() {
+        return idUser;
     }
 
-    public void setPublisher(String publisher) {
-        this.publisher = publisher;
+    public void setIdUser(Integer idUser) {
+        this.idUser = idUser;
     }
 
     public String getEmail() {
@@ -34,12 +37,19 @@ public class PublisherListRequest {
         this.email = email;
     }
 
-    public Integer getId() {
-        return id;
+    public String getPaypal() {
+        return paypal;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setPaypal(String paypal) {
+        this.paypal = paypal;
     }
 
+    public String getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
 }

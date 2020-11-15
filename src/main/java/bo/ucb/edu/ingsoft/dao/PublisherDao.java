@@ -7,9 +7,8 @@ import java.util.List;
 @Mapper
 public interface PublisherDao {
 
-    //Create new publisher admi;
+    //Create new publisher;
     public void createPublisher(Publisher publisher);
-
 
     //Get publisher data
     public Publisher findByPublisherId(Integer idUser);

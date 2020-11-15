@@ -1,21 +1,20 @@
 #The admin creates a publisher account
-POST http://localhost:8080/ming/admin/publisher
+POST http://localhost:8080/ming/v1/publisher
 Accept: application/json
 Content-Type: application/json
 
 {
   "username": "Admin",
-  "email": "admin@ea.com",
-  "paypal": "eamoney@gmail.com",
+  "email": "elecgronic.arts@ea.com",
+  "paypal": "eabusiness@gmail.com",
   "publisher": "Electronic Arts",
-  "country": 8,
-  "password": "qwerty",
-  "repeat_password": "qwerty"
+  "idCountry": 8,
+  "password": "qwertyuiop"
 }
 
 ###
 #The admin sees a publisher list
-GET http://localhost:8080/ming/admin/publisher
+GET http://localhost:8080/ming/v1/publisher
 Accept: application/json
 
 ###
