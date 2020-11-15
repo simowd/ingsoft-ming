@@ -4,11 +4,16 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bo.ucb.edu.ingsoft.dao.GamesDirectxDao">
     <insert id="createGameDirectx" parameterType="bo.ucb.edu.ingsoft.models.GameDirectx">
-      INSERT INTO games_directx (id_games_direct_x,id_game,id_directx)
+      INSERT INTO games_directx (id_games_direct_x,id_game,id_directx,status,tx_id,tx_host,tx_user_id,tx_date)
         VALUES (
              null,
              #{idGame},
-             #{idDirectx}
+             #{idDirectx},
+             1,
+             #{txId},
+             #{txHost},
+             #{txUserId},
+             #{txDate}
         )
     </insert>
     <select id="findByIdDirectx" resultType="bo.ucb.edu.ingsoft.models.Directx">
