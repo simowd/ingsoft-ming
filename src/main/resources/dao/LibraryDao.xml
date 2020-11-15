@@ -6,6 +6,21 @@
 
     <select id="UserGames" resultType="Integer">
         SELECT
+               library.id_game as idGame,
+               library.status as status
+        FROM library INNER JOIN games
+        ON
+            library.id_game = games.id_game
+        WHERE
+            id_user = #{idUser}
+        AND
+            library.status = 1
+        AND
+            games.status = 1
+    </select>
+
+    <select id="getLibraryGames" resultType="bo.ucb.edu.ingsoft.models.Library">
+        SELECT
                id_game as idGame,
                status as status
         FROM library
