@@ -4,21 +4,21 @@ Accept: application/json
 
 ###
 #Shows a publisher data
-GET http://localhost:8080/ming/publisher/4
+GET http://localhost:8080/ming/v1/publisher/7
 Accept: application/json
 
 ###
 #The publisher can edit his account
-PUT http://localhost:8080/ming/publisher/4
+PUT http://localhost:8080/ming/v1/publisher/1
 Accept: application/json
 Content-Type: application/json
 
 {
-  "username": "Sasuke",
-  "email": "SasukeNoHokage@gmail.com",
-  "paypal": "shinobiconplata@gmail.com",
-  "publisher": "Treyarch",
-  "country": 18,
+  "username": "Admin EA",
+  "email": "ElectronicArts@gmail.com",
+  "paypal": "ElectronicArtsBusiness@gmail.com",
+  "publisher": "Electronic Arts",
+  "idCountry": 18,
   "password": "Treyarch",
   "repeat_password": "Treyarch"
 }
