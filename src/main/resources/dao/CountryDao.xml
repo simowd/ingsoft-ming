@@ -5,10 +5,13 @@
 <mapper namespace="bo.ucb.edu.ingsoft.dao.CountryDao">
     <select id="CountryName" resultType="bo.ucb.edu.ingsoft.models.Country">
         SELECT
-               name as name
+               name as name,
+               status as status
         FROM countries
         WHERE
             id_country = #{idCountry}
+        AND
+            status = 1
     </select>
 
     <select id="CountryNameList" resultType="java.lang.String">
