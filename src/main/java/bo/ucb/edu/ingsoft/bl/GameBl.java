@@ -386,7 +386,7 @@ public class GameBl {
         game.setTxId(transaction.getTxId());
         game.setTxDate(transaction.getTxDate());
         game.setTxHost(transaction.getTxHost());
-        game.setTxUserId(transaction.getTxUserId());
+        game.setTxUserId(gameDao.getPublihserId(gameId));
         game.setIdGame(gameId);
         gameDao.updateHighlight(game);
     }

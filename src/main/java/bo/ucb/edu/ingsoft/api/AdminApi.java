@@ -59,10 +59,10 @@ public class AdminApi {
     }
 
     /*
-    PUT (/admin/homepage/{gameId}) The selected game changes its highlight status
+    PUT (/highlight/{gameId}) The selected game changes its highlight status
     */
     @ResponseStatus(value = HttpStatus.OK)
-    @RequestMapping(value = "/ming/admin/homepage/{id}",method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/ming/v1/highlight/{id}",method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody void updatePublisher(@PathVariable("id") Integer gameId, @RequestBody SetHighlightRequest setHighlightRequest, HttpServletRequest request) {
             Transaction transaction = TransactionUtil.createTransaction(request);
             transactionBl.createTransaction(transaction);
