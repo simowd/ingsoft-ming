@@ -1,6 +1,8 @@
 package bo.ucb.edu.ingsoft.dto;
 
 import bo.ucb.edu.ingsoft.models.Esrb;
+import bo.ucb.edu.ingsoft.models.GameRequirements;
+import bo.ucb.edu.ingsoft.models.GameRequirementsHelper;
 import bo.ucb.edu.ingsoft.models.OperatingSystem;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -21,9 +23,7 @@ public class GameDetailsRequest {
     private String developer;
     private Integer players;
     private Date releaseDate;
-    private String processor;
-    private String memory;
-    private String graphics;
+    private List<GameRequirementsHelper> gameRequirements;
     private String color;
     private Integer highlighted;
     private String download_path;
@@ -31,33 +31,6 @@ public class GameDetailsRequest {
     private List<OperatingSystem> operating_systems;
     private Double sale;
     private Double price;
-
-    public GameDetailsRequest() {
-    }
-
-    public GameDetailsRequest(Integer id, String title, ArrayList<String> language, String game_description, String size, Esrb esrb, List<String> images, List<String> genres, String developer, Integer players, Date releaseDate, String processor, String memory, String graphics, String color, Integer highlighted, String download_path, Integer status, List<OperatingSystem> operating_systems, Double sale, Double price) {
-        this.id = id;
-        this.title = title;
-        this.language = language;
-        this.game_description = game_description;
-        this.size = size;
-        this.esrb = esrb;
-        this.images = images;
-        this.genres = genres;
-        this.developer = developer;
-        this.players = players;
-        this.releaseDate = releaseDate;
-        this.processor = processor;
-        this.memory = memory;
-        this.graphics = graphics;
-        this.color = color;
-        this.highlighted = highlighted;
-        this.download_path = download_path;
-        this.status = status;
-        this.operating_systems = operating_systems;
-        this.sale = sale;
-        this.price = price;
-    }
 
     @Override
     public String toString() {
@@ -72,10 +45,8 @@ public class GameDetailsRequest {
                 ", genres=" + genres +
                 ", developer='" + developer + '\'' +
                 ", players=" + players +
-                ", release_date=" + releaseDate +
-                ", processor='" + processor + '\'' +
-                ", memory='" + memory + '\'' +
-                ", graphics='" + graphics + '\'' +
+                ", releaseDate=" + releaseDate +
+                ", gameRequirements=" + gameRequirements +
                 ", color='" + color + '\'' +
                 ", highlighted=" + highlighted +
                 ", download_path='" + download_path + '\'' +
@@ -86,20 +57,29 @@ public class GameDetailsRequest {
                 '}';
     }
 
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
+    public GameDetailsRequest(Integer id, String title, ArrayList<String> language, String game_description, String size, Esrb esrb, List<String> images, List<String> genres, String developer, Integer players, Date releaseDate, List<GameRequirementsHelper> gameRequirements, String color, Integer highlighted, String download_path, Integer status, List<OperatingSystem> operating_systems, Double sale, Double price) {
+        this.id = id;
+        this.title = title;
+        this.language = language;
+        this.game_description = game_description;
+        this.size = size;
+        this.esrb = esrb;
+        this.images = images;
+        this.genres = genres;
+        this.developer = developer;
+        this.players = players;
+        this.releaseDate = releaseDate;
+        this.gameRequirements = gameRequirements;
+        this.color = color;
+        this.highlighted = highlighted;
+        this.download_path = download_path;
+        this.status = status;
+        this.operating_systems = operating_systems;
+        this.sale = sale;
         this.price = price;
     }
 
-    public List<String> getGenres() {
-        return genres;
-    }
-
-    public void setGenres(List<String> genres) {
-        this.genres = genres;
+    public GameDetailsRequest() {
     }
 
     public Integer getId() {
@@ -158,6 +138,14 @@ public class GameDetailsRequest {
         this.images = images;
     }
 
+    public List<String> getGenres() {
+        return genres;
+    }
+
+    public void setGenres(List<String> genres) {
+        this.genres = genres;
+    }
+
     public String getDeveloper() {
         return developer;
     }
@@ -182,28 +170,12 @@ public class GameDetailsRequest {
         this.releaseDate = releaseDate;
     }
 
-    public String getProcessor() {
-        return processor;
+    public List<GameRequirementsHelper> getGameRequirements() {
+        return gameRequirements;
     }
 
-    public void setProcessor(String processor) {
-        this.processor = processor;
-    }
-
-    public String getMemory() {
-        return memory;
-    }
-
-    public void setMemory(String memory) {
-        this.memory = memory;
-    }
-
-    public String getGraphics() {
-        return graphics;
-    }
-
-    public void setGraphics(String graphics) {
-        this.graphics = graphics;
+    public void setGameRequirements(List<GameRequirementsHelper> gameRequirements) {
+        this.gameRequirements = gameRequirements;
     }
 
     public String getColor() {
@@ -252,5 +224,13 @@ public class GameDetailsRequest {
 
     public void setSale(Double sale) {
         this.sale = sale;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 }

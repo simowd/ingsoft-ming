@@ -4,6 +4,8 @@ Accept: application/json
 Content-Type: application/json
 
 {
+  "name": "Erica",
+  "lastname": "Butcher",
   "username": "Crash Bandicoot",
   "alias": "Crash",
   "email": "contra@gmail.com",
@@ -12,16 +14,18 @@ Content-Type: application/json
 
 ###
 #The user sees his profile info
-GET http://localhost:8080/ming/v1/users/13
+GET http://localhost:8080/ming/v1/users/18
 Accept: application/json
 
 ###
 #The user can edit his profile info
-PUT http://localhost:8080/ming/v1/users/1
+PUT http://localhost:8080/ming/v1/users/20
 Accept: application/json
 Content-Type: application/json
 
 {
+  "name": "No Erica",
+  "lastname": "No Butcher",
   "alias": "Natham Drake",
   "email": "Drake@yopmail.com",
   "id_country": 27,
@@ -30,18 +34,18 @@ Content-Type: application/json
 
 ###
 #The user can edit his password
-PUT http://localhost:8080/ming/v1/users/1/password
+PUT http://localhost:8080/ming/v1/users/20/password
 Accept: application/json
 Content-Type: application/json
 
 {
-  "old_password": "contra123",
+  "old_password": "contra707",
   "new_password": "new"
 }
 
 ###
 #The user sees his game library
-GET http://localhost:8080/ming/v1/users/2/library
+GET http://localhost:8080/ming/v1/users/20/library
 Accept: application/json
 
 ###
