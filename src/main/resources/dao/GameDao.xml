@@ -243,4 +243,11 @@
         WHERE
             id_game=#{idGame}
     </update>
+    <select id="getPublihserId" resultType="java.lang.Integer">
+        SELECT publishers.id_publisher
+        FROM publishers
+        INNER JOIN developers on publishers.id_publisher = developers.id_publisher
+        INNER JOIN games ON games.id_developer = developers.id_developer
+        WHERE games.id_game = #{gameId}
+    </select>
 </mapper>

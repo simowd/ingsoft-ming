@@ -30,7 +30,7 @@ Accept: application/json
 
 ###
 #The admin edit game highlight
-PUT http://localhost:8080/ming/admin/homepage/3
+PUT http://localhost:8080/ming/v1/highlight/1
 Accept: application/json
 Content-Type: application/json
 

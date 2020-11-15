@@ -50,4 +50,7 @@ public interface GameDao {
     //Update Highlight
     public void updateHighlight(Game game);
 
+    //Get publisher id
+    public Integer getPublihserId(Integer gameId);
+
 }
