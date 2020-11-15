@@ -33,12 +33,11 @@ public class GameApi {
        POST (/publisher/{id}/game) The publisher create a new game
     */
     @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE,
-            consumes = MediaType.APPLICATION_JSON_VALUE, value = "ming/publisher/{id}/game")
-    public NewGameRequest createGame(@PathVariable("id") Integer idPublisher, @RequestBody NewGameRequest newGameRequest, HttpServletRequest request) {
+            consumes = MediaType.APPLICATION_JSON_VALUE, value = "ming/v1/publisher/{id}/game")
+    public void createGame(@PathVariable("id") Integer idPublisher, @RequestBody NewGameRequest newGameRequest, HttpServletRequest request) {
         Transaction transaction = TransactionUtil.createTransaction(request);
         transactionBl.createTransaction(transaction);
-        NewGameRequest newGameResponse = gameBl.createGame(newGameRequest, transaction, idPublisher);
-        return newGameResponse;
+        gameBl.createGame(newGameRequest, transaction, idPublisher);
     }
 
     /*

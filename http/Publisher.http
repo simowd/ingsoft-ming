@@ -35,10 +35,23 @@ Content-Type: application/json
   "game_description": "Grand Theft Auto V es un videojuego de acción-aventura de mundo abierto desarrollado por el estudio Rockstar North y distribuido por Rockstar Games. ",
   "size": "85GB",
   "players": 1,
-  "processor": "Intel 9",
+  "requirements": [
+    {
+      "idOPeratingSystem": 1,
+      "processor": "Intel 9",
+      "memory": "8GB RAM",
+      "graphics": "GeForce 2800 ti"
+
+    },
+    {
+      "idOPeratingSystem": 2,
+      "processor": "Intel 10",
+      "memory": "6GB RAM",
+      "graphics": "GeForce 3800 ti"
+
+    }
+  ],
   "release_date": "2014-12-10T13:33:05.673",
-  "memory": "8GB RAM",
-  "graphics": "GeForce 2800 ti",
   "color": "#1111111",
   "highlighted":  0,
   "download_path": "gta/download.com",

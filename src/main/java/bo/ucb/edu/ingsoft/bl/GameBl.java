@@ -48,8 +48,8 @@ public class GameBl {
 
     /*
     POST (/publisher/{id}/game) The publisher create a new game
- */
-    public NewGameRequest createGame(NewGameRequest newGameRequest, Transaction transaction, Integer idPublisher) {
+    */
+    public void createGame(NewGameRequest newGameRequest, Transaction transaction, Integer idPublisher) {
 
         Game game = new Game();
         Developer developer = new Developer();
@@ -164,9 +164,6 @@ public class GameBl {
         price.setTxUserId(transaction.getTxUserId());
         price.setTxDate(transaction.getTxDate());
         priceDao.createPrice(price);
-
-
-        return newGameRequest;
     }
 
     /*
