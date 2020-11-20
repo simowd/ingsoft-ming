@@ -265,7 +265,7 @@ INSERT INTO languages (language,status,tx_id,tx_host,tx_user_id,tx_date)  VALUES
 INSERT INTO languages (language,status,tx_id,tx_host,tx_user_id,tx_date)  VALUES('English',1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
 INSERT INTO languages (language,status,tx_id,tx_host,tx_user_id,tx_date)   VALUES('Deutsch',1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
 INSERT INTO languages (language,status,tx_id,tx_host,tx_user_id,tx_date)   VALUES('Português',1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
-INSERT INTO languages (language,status,tx_id,tx_host,tx_user_id,tx_date)   VALUES('Fraçais',1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO languages (language,status,tx_id,tx_host,tx_user_id,tx_date)   VALUES('Français',1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
 INSERT INTO languages (language,status,tx_id,tx_host,tx_user_id,tx_date)   VALUES('Italiano',1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
 INSERT INTO languages (language,status,tx_id,tx_host,tx_user_id,tx_date)   VALUES('日本語',1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
 INSERT INTO languages (language,status,tx_id,tx_host,tx_user_id,tx_date)   VALUES('한국어',1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
@@ -336,6 +336,14 @@ INSERT INTO transactions VALUES (null, '192.168.2.3', 6, now());
 SELECT LAST_INSERT_ID();
 INSERT INTO users (id_country,username,password,email,user_type,photo_path,name,lastname,alias,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (1,'Tiburoncin45','qwerty12345','makoAgua@gmail.com',1,'https://i.pinimg.com/564x/93/ac/06/93ac06f07613955584a1cc22205c2094.jpg','Kilos','Mortales','KilosLocos',1,LAST_INSERT_ID(),'192.168.2.3',6,NOW());
 
+INSERT INTO transactions VALUES (null, '192.168.2.3', 7, now());
+SELECT LAST_INSERT_ID();
+INSERT INTO users (id_country,username,password,email,user_type,photo_path,name,lastname,alias,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (1,'QueenNai25','qwerty12345','eljojos@gmail.com',1,'https://i.pinimg.com/564x/93/ac/06/93ac06f07613955584a1cc22205c2094.jpg','Diego','BombasLocas','Dodgeeee',1,LAST_INSERT_ID(),'192.168.2.3',6,NOW());
+
+INSERT INTO transactions VALUES (null, '192.168.2.3', 7, now());
+SELECT LAST_INSERT_ID();
+INSERT INTO users (id_country,username,password,email,user_type,photo_path,name,lastname,alias,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (1,'WachoDog69','qwerty12345','bugisoft@gmail.com',1,'https://i.pinimg.com/564x/93/ac/06/93ac06f07613955584a1cc22205c2094.jpg','Diego','BombasLocas','washin',1,LAST_INSERT_ID(),'192.168.2.3',6,NOW());
+
 -- Table publishers
 
 INSERT INTO transactions VALUES (null, '192.168.1.10', 1, now());
@@ -350,6 +358,14 @@ INSERT INTO transactions VALUES (null, '192.168.1.10', 1, now());
 SELECT LAST_INSERT_ID();
 INSERT INTO publishers (id_user, publisher, paypal_mail, status, tx_id, tx_host, tx_user_id, tx_date) VALUES (6,'Rockstar','press@rockstar.com',1,LAST_INSERT_ID(),'192.168.1.10',1,NOW());
 
+INSERT INTO transactions VALUES (null, '192.168.1.10', 1, now());
+SELECT LAST_INSERT_ID();
+INSERT INTO publishers (id_user, publisher, paypal_mail, status, tx_id, tx_host, tx_user_id, tx_date) VALUES (7,'Humble Bundle Publishing','choquito@humblebundle.com',1,LAST_INSERT_ID(),'192.168.1.10',1,NOW());
+
+INSERT INTO transactions VALUES (null, '192.168.1.10', 1, now());
+SELECT LAST_INSERT_ID();
+INSERT INTO publishers (id_user, publisher, paypal_mail, status, tx_id, tx_host, tx_user_id, tx_date) VALUES (8,'Ubisoft','bugs@ubisoft.com',1,LAST_INSERT_ID(),'192.168.1.10',1,NOW());
+
 -- Table publisher_earnings
 
 INSERT INTO transactions VALUES (null, '192.168.1.10', 1, now());
@@ -361,6 +377,14 @@ INSERT INTO publisher_earnings (id_publisher,amount,expenditure_date,card,status
 INSERT INTO developers(id_publisher, developer,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (1,'Nomada Studio',1,LAST_INSERT_ID(),'192.168.1.10', 1, now());
 INSERT INTO developers(id_publisher, developer,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (1,'Mediatonic',1,LAST_INSERT_ID(),'192.168.1.10', 1, now());
 INSERT INTO developers(id_publisher, developer,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (2,'Ghost Town Games',1,LAST_INSERT_ID(),'192.168.1.10', 1, now());
+INSERT INTO developers(id_publisher, developer,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (1,'Dennaton Games',1,LAST_INSERT_ID(),'192.168.1.10', 1, now());
+INSERT INTO developers(id_publisher, developer,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (1,'Dodge Roll',1,LAST_INSERT_ID(),'192.168.1.10', 1, now());
+INSERT INTO developers(id_publisher, developer,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (2,'Playtonic Games',1,LAST_INSERT_ID(),'192.168.1.10', 1, now());
+INSERT INTO developers(id_publisher, developer,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (1,'Askiisoft',1,LAST_INSERT_ID(),'192.168.1.10', 1, now());
+INSERT INTO developers(id_publisher, developer,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (4,'Gears for Breakfast',1,LAST_INSERT_ID(),'192.168.1.10', 1, now());
+INSERT INTO developers(id_publisher, developer,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (5,'Blue Mammoth Games',1,LAST_INSERT_ID(),'192.168.1.10', 1, now());
+INSERT INTO developers(id_publisher, developer,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (4,'HopFrog',1,LAST_INSERT_ID(),'192.168.1.10', 1, now());
+INSERT INTO developers(id_publisher, developer,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (4,'Crema',1,LAST_INSERT_ID(),'192.168.1.10', 1, now());
 
 -- Table games
 
@@ -378,17 +402,99 @@ SELECT LAST_INSERT_ID();
 INSERT INTO games (id_esrb,id_developer,name,description,size,players,release_date,color,highlight,download_path,status,tx_id, tx_host, tx_user_id, tx_date
 ) VALUES (1,3,'Overcooked','Overcooked is a chaotic couch co-op cooking game for one to four players. Working as a team, you and your fellow chefs must prepare, cook and serve up a variety of tasty orders before the baying customers storm out in a huff.','1GB',1,NOW(), '#CB4B3B', 0,'https://www.gog.com/game/overcooked_gourmet_edition',1,LAST_INSERT_ID(), '192.168.6.100', 6, NOW());
 
+INSERT INTO transactions VALUES (null, '192.168.6.100', 6, now());
+SELECT LAST_INSERT_ID();
+INSERT INTO games (id_esrb,id_developer,name,description,size,players,release_date,color,highlight,download_path,status,tx_id, tx_host, tx_user_id, tx_date
+) VALUES (4,4,'Hotline Miami','Hotline Miami is a high-octane action game overflowing with raw brutality, hard-boiled gunplay and skull crushing close combat. Set in an alternative 1989 Miami, you will assume the role of a mysterious antihero on a murderous rampage against the shady underworld at the behest of voices on your answering machine. Soon you\'ll find yourself struggling to get a grip of what is going on and why you are prone to these acts of violence.','1GB',1,NOW(), '#f746b8', 1,'https://www.gog.com/game/overcooked_gourmet_edition',1,LAST_INSERT_ID(), '192.168.6.100', 6, NOW());
+
+INSERT INTO transactions VALUES (null, '192.168.6.100', 6, now());
+SELECT LAST_INSERT_ID();
+INSERT INTO games (id_esrb,id_developer,name,description,size,players,release_date,color,highlight,download_path,status,tx_id, tx_host, tx_user_id, tx_date
+) VALUES (3,5,'Enter the Gungeon','Enter the Gungeon is a bullet hell dungeon crawler following a band of misfits seeking to shoot, loot, dodge roll and table-flip their way to personal absolution by reaching the legendary Gungeon’s ultimate treasure: the gun that can kill the past. Select a hero [or team up in co-op] and battle your way to the bottom of the Gungeon by surviving a challenging and evolving series of floors filled with the dangerously adorable Gundead and fearsome Gungeon bosses armed to the teeth. Gather precious loot, discover hidden secrets, and chat with opportunistic merchants and shopkeepers to purchase powerful items to gain an edge.','5GB',1,NOW(), '#1a0a49', 1,'https://www.gog.com/game/overcooked_gourmet_edition',1,LAST_INSERT_ID(), '192.168.6.100', 6, NOW());
+
+INSERT INTO transactions VALUES (null, '192.168.6.100', 6, now());
+SELECT LAST_INSERT_ID();
+INSERT INTO games (id_esrb,id_developer,name,description,size,players,release_date,color,highlight,download_path,status,tx_id, tx_host, tx_user_id, tx_date
+) VALUES (2,6,'Yooka Laylee','Yooka-Laylee is an all-new open-world platformer from genre veterans Playtonic! Explore huge, beautiful worlds, meet (and beat) an unforgettable cast of characters and horde a vault-load of shiny collectibles as buddy-duo Yooka (the green one) and Laylee (the wisecracking bat with the big nose) embark on an epic adventure to thwart corporate creep Capital B and his devious scheme to absorb all the world’s books… and convert them into pure profit!','9GB',1,NOW(), '#319517', 1,'https://www.gog.com/game/overcooked_gourmet_edition',1,LAST_INSERT_ID(), '192.168.6.100', 6, NOW());
+
+INSERT INTO transactions VALUES (null, '192.168.6.100', 6, now());
+SELECT LAST_INSERT_ID();
+INSERT INTO games (id_esrb,id_developer,name,description,size,players,release_date,color,highlight,download_path,status,tx_id, tx_host, tx_user_id, tx_date
+) VALUES (4,7,'Katana ZERO','Katana ZERO is a stylish neo-noir, action-platformer featuring breakneck action and instant-death combat. Slash, dash, and manipulate time to unravel your past in a beautifully brutal acrobatic display.','200MB',1,NOW(), '#2bd8ec', 1,'https://www.gog.com/game/overcooked_gourmet_edition',1,LAST_INSERT_ID(), '192.168.6.100', 6, NOW());
+
+INSERT INTO transactions VALUES (null, '192.168.6.100', 6, now());
+SELECT LAST_INSERT_ID();
+INSERT INTO games (id_esrb,id_developer,name,description,size,players,release_date,color,highlight,download_path,status,tx_id, tx_host, tx_user_id, tx_date
+) VALUES (2,8,'A Hat in Time','In A Hat in Time you play as a tiny space-travelling girl with a big tophat. Her adventure is halted when all her fuel, the Time Pieces, is lost and scattered across a nearby planet. Hat Kid must now jump, fight and stitch new hats to make her way into every nook and cranny of this new world in order to restore her fuel and resume her journey. On her way, she\'ll bump into the menacing Mafia of Cooks, the goofy birds of Dead Bird Studio, the spooky shadows of Subcon Forest, and more!','8GB',1,NOW(), '#221350', 1,'https://www.gog.com/game/overcooked_gourmet_edition',1,LAST_INSERT_ID(), '192.168.6.100', 6, NOW());
+
+INSERT INTO transactions VALUES (null, '192.168.6.100', 6, now());
+SELECT LAST_INSERT_ID();
+INSERT INTO games (id_esrb,id_developer,name,description,size,players,release_date,color,highlight,download_path,status,tx_id, tx_host, tx_user_id, tx_date
+) VALUES (1,9,'Brawlhalla','History\'s greatest warriors brawl to prove who\'s the best in an epic test of strength and skill. These slugfests are salted with powerful weapons and gadgets. Every weapon you pick up changes your style of play. Brawlhalla is a free 2D platform fighting game that supports up to 8 local or online players with full cross-play for PC, Xbox One, PS4, Nintendo Switch, iOS, and Android!','350MB',1,NOW(), '#fecc29', 1,'https://www.gog.com/game/overcooked_gourmet_edition',1,LAST_INSERT_ID(), '192.168.6.100', 6, NOW());
+
+INSERT INTO transactions VALUES (null, '192.168.6.100', 6, now());
+SELECT LAST_INSERT_ID();
+INSERT INTO games (id_esrb,id_developer,name,description,size,players,release_date,color,highlight,download_path,status,tx_id, tx_host, tx_user_id, tx_date
+) VALUES (1,10,'Forager','The highly popular and quirky "idle game that you want to actively keep playing". Explore, craft, gather & manage resources, find secrets and build your base out of nothing! Buy land to explore and expand! Originally made for a jam (in which Forager won second place!), over 200,000 players tried and LOVED the prototype! You were all asking for MORE FORAGER, so here it goes! A full 15+ hour experience for everyone on Steam!','250MB',1,NOW(), '#fe9768', 1,'https://www.gog.com/game/overcooked_gourmet_edition',1,LAST_INSERT_ID(), '192.168.6.100', 6, NOW());
+
+INSERT INTO transactions VALUES (null, '192.168.6.100', 6, now());
+SELECT LAST_INSERT_ID();
+INSERT INTO games (id_esrb,id_developer,name,description,size,players,release_date,color,highlight,download_path,status,tx_id, tx_host, tx_user_id, tx_date
+) VALUES (3,5,'Exit the Gungeon','Exit the Gungeon is a small, arcade-style, spin-off \'dungeon climber\' that immediately follows the adventures of the misfit Gungeoneers attempting to survive a series of increasingly dangerous elevators and countless waves of enemies. The Gungeon has become a paradox and is collapsing! Blessed by the magic of the Sorceress, your gun will change rapidly as you ascend the Gungeon. The better you play, and the higher your combo, the more powerful the form your gun will take.','5GB',1,NOW(), '#1a0a49', 1,'https://www.gog.com/game/overcooked_gourmet_edition',1,LAST_INSERT_ID(), '192.168.6.100', 6, NOW());
+
+INSERT INTO transactions VALUES (null, '192.168.6.100', 6, now());
+SELECT LAST_INSERT_ID();
+INSERT INTO games (id_esrb,id_developer,name,description,size,players,release_date,color,highlight,download_path,status,tx_id, tx_host, tx_user_id, tx_date
+) VALUES (3,11,'Temtem','Temtem is a massively multiplayer creature-collection adventure. Seek adventure in the lovely Airborne Archipelago alongside your Temtem squad. Catch every Temtem, battle other tamers, customize your house, join a friend\'s adventure or explore the dynamic online world.','5GB',1,NOW(), '#edbf6c', 1,'https://www.gog.com/game/overcooked_gourmet_edition',1,LAST_INSERT_ID(), '192.168.6.100', 6, NOW());
+
 -- Table genres_games
 
 INSERT INTO genres_games (id_game,id_genre,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (1,1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+
 INSERT INTO genres_games (id_game,id_genre,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (2,5,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+
 INSERT INTO genres_games (id_game,id_genre,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (3,4,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+
+INSERT INTO genres_games (id_game,id_genre,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (4,1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO genres_games (id_game,id_genre,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (4,2,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+
+INSERT INTO genres_games (id_game,id_genre,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (5,1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO genres_games (id_game,id_genre,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (5,2,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+
+INSERT INTO genres_games (id_game,id_genre,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (6,1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO genres_games (id_game,id_genre,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (6,7,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+
+INSERT INTO genres_games (id_game,id_genre,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (7,1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO genres_games (id_game,id_genre,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (7,7,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+
+INSERT INTO genres_games (id_game,id_genre,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (8,1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO genres_games (id_game,id_genre,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (8,7,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+
+INSERT INTO genres_games (id_game,id_genre,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (9,5,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+
+INSERT INTO genres_games (id_game,id_genre,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (10,4,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO genres_games (id_game,id_genre,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (10,8,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+
+INSERT INTO genres_games (id_game,id_genre,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (11,1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO genres_games (id_game,id_genre,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (11,2,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+
+INSERT INTO genres_games (id_game,id_genre,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (12,1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO genres_games (id_game,id_genre,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (12,8,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
 
 -- Table games_directx
 
 INSERT INTO games_directx (id_game,id_directx,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (1,7,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
 INSERT INTO games_directx (id_game,id_directx,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (2,7,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
 INSERT INTO games_directx (id_game,id_directx,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (3,7,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO games_directx (id_game,id_directx,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (4,7,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO games_directx (id_game,id_directx,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (5,7,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO games_directx (id_game,id_directx,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (6,7,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO games_directx (id_game,id_directx,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (7,7,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO games_directx (id_game,id_directx,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (8,7,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO games_directx (id_game,id_directx,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (9,7,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO games_directx (id_game,id_directx,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (10,7,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO games_directx (id_game,id_directx,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (11,7,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO games_directx (id_game,id_directx,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (12,7,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
 
 -- Table games_os
 
@@ -401,6 +507,32 @@ INSERT INTO games_os (id_game,id_operating_system,status,tx_id,tx_host,tx_user_i
 INSERT INTO games_os (id_game,id_operating_system,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (3,1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
 INSERT INTO games_os (id_game,id_operating_system,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (3,2,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
 INSERT INTO games_os (id_game,id_operating_system,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (3,3,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+
+INSERT INTO games_os (id_game,id_operating_system,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (4,1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO games_os (id_game,id_operating_system,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (4,2,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO games_os (id_game,id_operating_system,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (4,3,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+
+INSERT INTO games_os (id_game,id_operating_system,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (5,1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO games_os (id_game,id_operating_system,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (5,2,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+
+INSERT INTO games_os (id_game,id_operating_system,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (6,1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+
+INSERT INTO games_os (id_game,id_operating_system,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (7,1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO games_os (id_game,id_operating_system,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (7,2,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO games_os (id_game,id_operating_system,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (7,3,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+
+INSERT INTO games_os (id_game,id_operating_system,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (8,1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO games_os (id_game,id_operating_system,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (8,2,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+
+INSERT INTO games_os (id_game,id_operating_system,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (9,1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO games_os (id_game,id_operating_system,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (9,2,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+
+INSERT INTO games_os (id_game,id_operating_system,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (10,1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+
+INSERT INTO games_os (id_game,id_operating_system,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (11,1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+
+INSERT INTO games_os (id_game,id_operating_system,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (12,1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+
 
 -- Table languages_games
 
@@ -417,17 +549,100 @@ INSERT INTO languages_games (id_game,id_language,status,tx_id,tx_host,tx_user_id
 INSERT INTO languages_games (id_game,id_language,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (3,3,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
 INSERT INTO languages_games (id_game,id_language,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (3,4,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
 
+INSERT INTO languages_games (id_game,id_language,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (4,1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO languages_games (id_game,id_language,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (4,2,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO languages_games (id_game,id_language,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (4,4,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+
+INSERT INTO languages_games (id_game,id_language,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (5,1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO languages_games (id_game,id_language,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (5,2,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO languages_games (id_game,id_language,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (5,4,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+
+INSERT INTO languages_games (id_game,id_language,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (6,1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO languages_games (id_game,id_language,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (6,2,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO languages_games (id_game,id_language,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (6,4,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+
+INSERT INTO languages_games (id_game,id_language,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (7,1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO languages_games (id_game,id_language,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (7,2,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO languages_games (id_game,id_language,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (7,4,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO languages_games (id_game,id_language,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (7,5,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO languages_games (id_game,id_language,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (7,6,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO languages_games (id_game,id_language,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (7,3,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+
+INSERT INTO languages_games (id_game,id_language,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (8,1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO languages_games (id_game,id_language,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (8,2,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO languages_games (id_game,id_language,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (8,4,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+
+INSERT INTO languages_games (id_game,id_language,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (9,1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO languages_games (id_game,id_language,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (9,2,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO languages_games (id_game,id_language,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (9,4,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO languages_games (id_game,id_language,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (9,5,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO languages_games (id_game,id_language,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (9,6,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO languages_games (id_game,id_language,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (9,3,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+
+INSERT INTO languages_games (id_game,id_language,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (10,1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO languages_games (id_game,id_language,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (10,2,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO languages_games (id_game,id_language,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (10,4,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+
+INSERT INTO languages_games (id_game,id_language,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (11,1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO languages_games (id_game,id_language,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (11,2,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO languages_games (id_game,id_language,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (11,4,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+
+INSERT INTO languages_games (id_game,id_language,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (12,1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO languages_games (id_game,id_language,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (12,2,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO languages_games (id_game,id_language,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (12,4,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO languages_games (id_game,id_language,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (12,5,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO languages_games (id_game,id_language,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (12,6,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO languages_games (id_game,id_language,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (12,3,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+
 -- Table game_requirements
 
 INSERT INTO transactions VALUES (null, '192.168.6.100', 1, now());
 SELECT LAST_INSERT_ID();
 INSERT INTO game_requirements (id_game,id_operating_system,processor,memory,graphics,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (1,1,'Intel Core i7','12 GB','Geforce 940mx',1,LAST_INSERT_ID(),'192.168.6.100',1,NOW());
+
 INSERT INTO transactions VALUES (null, '192.168.6.101', 2, now());
 SELECT LAST_INSERT_ID();
 INSERT INTO game_requirements (id_game,id_operating_system,processor,memory,graphics,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (2,1,'Intel Core i9','8 GB','Geforce 3070i',1,LAST_INSERT_ID(),'192.168.6.101',2,NOW());
+
 INSERT INTO transactions VALUES (null, '192.168.6.103', 3, now());
 SELECT LAST_INSERT_ID();
 INSERT INTO game_requirements (id_game,id_operating_system,processor,memory,graphics,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (3,1,'Intel Core i5','16 GB','Geforce 1040i',1,LAST_INSERT_ID(),'192.168.6.102',3,NOW());
+
+INSERT INTO transactions VALUES (null, '192.168.6.103', 3, now());
+SELECT LAST_INSERT_ID();
+INSERT INTO game_requirements (id_game,id_operating_system,processor,memory,graphics,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (4,1,'Intel Core i5','16 GB','Geforce 1040i',1,LAST_INSERT_ID(),'192.168.6.102',3,NOW());
+
+INSERT INTO transactions VALUES (null, '192.168.6.103', 3, now());
+SELECT LAST_INSERT_ID();
+INSERT INTO game_requirements (id_game,id_operating_system,processor,memory,graphics,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (5,1,'Intel Core i5','16 GB','Geforce 1040i',1,LAST_INSERT_ID(),'192.168.6.102',3,NOW());
+
+INSERT INTO transactions VALUES (null, '192.168.6.103', 3, now());
+SELECT LAST_INSERT_ID();
+INSERT INTO game_requirements (id_game,id_operating_system,processor,memory,graphics,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (6,1,'Intel Core i3','4 GB','Geforce 104i',1,LAST_INSERT_ID(),'192.168.6.102',3,NOW());
+
+INSERT INTO transactions VALUES (null, '192.168.6.103', 3, now());
+SELECT LAST_INSERT_ID();
+INSERT INTO game_requirements (id_game,id_operating_system,processor,memory,graphics,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (7,1,'Intel Patito','1 GB','Geforce 104i',1,LAST_INSERT_ID(),'192.168.6.102',3,NOW());
+
+INSERT INTO transactions VALUES (null, '192.168.6.103', 3, now());
+SELECT LAST_INSERT_ID();
+INSERT INTO game_requirements (id_game,id_operating_system,processor,memory,graphics,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (8,1,'Intel Core i5','16 GB','Geforce 1040i',1,LAST_INSERT_ID(),'192.168.6.102',3,NOW());
+
+INSERT INTO transactions VALUES (null, '192.168.6.103', 3, now());
+SELECT LAST_INSERT_ID();
+INSERT INTO game_requirements (id_game,id_operating_system,processor,memory,graphics,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (9,1,'Intel Core i5','16 GB','Geforce 1040i',1,LAST_INSERT_ID(),'192.168.6.102',3,NOW());
+
+INSERT INTO transactions VALUES (null, '192.168.6.103', 3, now());
+SELECT LAST_INSERT_ID();
+INSERT INTO game_requirements (id_game,id_operating_system,processor,memory,graphics,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (10,1,'Intel Core i5','16 GB','Geforce 1040i',1,LAST_INSERT_ID(),'192.168.6.102',3,NOW());
+
+INSERT INTO transactions VALUES (null, '192.168.6.103', 3, now());
+SELECT LAST_INSERT_ID();
+INSERT INTO game_requirements (id_game,id_operating_system,processor,memory,graphics,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (11,1,'Intel Core i5','16 GB','Geforce 1040i',1,LAST_INSERT_ID(),'192.168.6.102',3,NOW());
+
+INSERT INTO transactions VALUES (null, '192.168.6.103', 3, now());
+SELECT LAST_INSERT_ID();
+INSERT INTO game_requirements (id_game,id_operating_system,processor,memory,graphics,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (12,1,'Intel Core i5','16 GB','Geforce 1040i',1,LAST_INSERT_ID(),'192.168.6.102',3,NOW());
 
 -- Table price
 INSERT INTO transactions VALUES (null, '192.192.1.2', 2, now());
@@ -442,19 +657,91 @@ INSERT INTO transactions VALUES (null, '192.192.1.2', 2, now());
 SELECT LAST_INSERT_ID();
 INSERT INTO price (id_game,price,date,sale,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (3,19.99,NOW(),0,1,LAST_INSERT_ID(),'192.192.1.2',1,NOW());
 
+INSERT INTO transactions VALUES (null, '192.192.1.2', 2, now());
+SELECT LAST_INSERT_ID();
+INSERT INTO price (id_game,price,date,sale,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (4,9.99,NOW(),50,1,LAST_INSERT_ID(),'192.192.1.2',1,NOW());
+
+INSERT INTO transactions VALUES (null, '192.192.1.2', 2, now());
+SELECT LAST_INSERT_ID();
+INSERT INTO price (id_game,price,date,sale,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (5,14.99,NOW(),0,1,LAST_INSERT_ID(),'192.192.1.2',1,NOW());
+
+INSERT INTO transactions VALUES (null, '192.192.1.2', 2, now());
+SELECT LAST_INSERT_ID();
+INSERT INTO price (id_game,price,date,sale,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (6,24.99,NOW(),25,1,LAST_INSERT_ID(),'192.192.1.2',1,NOW());
+
+INSERT INTO transactions VALUES (null, '192.192.1.2', 2, now());
+SELECT LAST_INSERT_ID();
+INSERT INTO price (id_game,price,date,sale,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (7,19.99,NOW(),0,1,LAST_INSERT_ID(),'192.192.1.2',1,NOW());
+
+INSERT INTO transactions VALUES (null, '192.192.1.2', 2, now());
+SELECT LAST_INSERT_ID();
+INSERT INTO price (id_game,price,date,sale,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (8,14.99,NOW(),0,1,LAST_INSERT_ID(),'192.192.1.2',1,NOW());
+
+INSERT INTO transactions VALUES (null, '192.192.1.2', 2, now());
+SELECT LAST_INSERT_ID();
+INSERT INTO price (id_game,price,date,sale,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (9,0,NOW(),0,1,LAST_INSERT_ID(),'192.192.1.2',1,NOW());
+
+INSERT INTO transactions VALUES (null, '192.192.1.2', 2, now());
+SELECT LAST_INSERT_ID();
+INSERT INTO price (id_game,price,date,sale,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (10,19.99,NOW(),0,1,LAST_INSERT_ID(),'192.192.1.2',1,NOW());
+
+INSERT INTO transactions VALUES (null, '192.192.1.2', 2, now());
+SELECT LAST_INSERT_ID();
+INSERT INTO price (id_game,price,date,sale,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (11,14.99,NOW(),0,1,LAST_INSERT_ID(),'192.192.1.2',1,NOW());
+
+INSERT INTO transactions VALUES (null, '192.192.1.2', 2, now());
+SELECT LAST_INSERT_ID();
+INSERT INTO price (id_game,price,date,sale,status,tx_id,tx_host,tx_user_id,tx_date) VALUES (12,39.99,NOW(),0,1,LAST_INSERT_ID(),'192.192.1.2',1,NOW());
+
 -- Table photos
 
-INSERT INTO photos (id_game, photo_path, type, status,tx_id,tx_host,tx_user_id,tx_date) VALUES (1,'https://cdn.cloudflare.steamstatic.com/steam/apps/683320/ss_4fa618f5a2141d48a05716d43598a260235b0aaa.600x338.jpg?t=1574359986',1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO photos (id_game, photo_path, type, status,tx_id,tx_host,tx_user_id,tx_date) VALUES (1,'https://images.hdqwalls.com/wallpapers/gris-zy.jpg',1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
 INSERT INTO photos (id_game, photo_path, type, status,tx_id,tx_host,tx_user_id,tx_date) VALUES (1,'https://cdn.cloudflare.steamstatic.com/steam/apps/683320/ss_a155ad5423e11e3e764a1a270dcf4f30323f0a35.600x338.jpg?t=1574359986',2,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
 INSERT INTO photos (id_game, photo_path, type, status,tx_id,tx_host,tx_user_id,tx_date) VALUES (1,'https://cdn.cloudflare.steamstatic.com/steam/apps/683320/ss_973175ba1865c5716c5f37588d00ac135b7d34ba.600x338.jpg?t=1574359986',2,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
 
-INSERT INTO photos (id_game, photo_path, type, status,tx_id,tx_host,tx_user_id,tx_date) VALUES (2,'https://cdn.cloudflare.steamstatic.com/steam/apps/1097150/ss_242e6f5aa36e166864002ed976ed0293dfe49011.600x338.jpg?t=1603922857',1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO photos (id_game, photo_path, type, status,tx_id,tx_host,tx_user_id,tx_date) VALUES (2,'https://wallpapercave.com/wp/wp7048889.jpg',1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
 INSERT INTO photos (id_game, photo_path, type, status,tx_id,tx_host,tx_user_id,tx_date) VALUES (2,'https://cdn.cloudflare.steamstatic.com/steam/apps/1097150/ss_b2b6b170330b8af1f50d0e90efad984adafeb281.600x338.jpg?t=1603922857',2,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
 INSERT INTO photos (id_game, photo_path, type, status,tx_id,tx_host,tx_user_id,tx_date) VALUES (2,'https://cdn.cloudflare.steamstatic.com/steam/apps/1097150/ss_df2d12f278d6c0203e11fece84fc50226ff077d6.600x338.jpg?t=1603922857',2,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
 
-INSERT INTO photos (id_game, photo_path, type, status,tx_id,tx_host,tx_user_id,tx_date) VALUES (3,'https://cdn.cloudflare.steamstatic.com/steam/apps/448510/ss_2a35c15c78f06dd4f23dab8a1e1917a835d0062d.600x338.jpg?t=1594197612',1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO photos (id_game, photo_path, type, status,tx_id,tx_host,tx_user_id,tx_date) VALUES (3,'https://images.pushsquare.com/a8e84bb43f1f0/overcooked-online-multiplayer-guide-ps4-playstation-4.original.jpg',1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
 INSERT INTO photos (id_game, photo_path, type, status,tx_id,tx_host,tx_user_id,tx_date) VALUES (3,'https://cdn.cloudflare.steamstatic.com/steam/apps/448510/ss_c307c59c18be77c920050a2d70d76929a2295879.600x338.jpg?t=1594197612',2,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
 INSERT INTO photos (id_game, photo_path, type, status,tx_id,tx_host,tx_user_id,tx_date) VALUES (3,'https://cdn.cloudflare.steamstatic.com/steam/apps/448510/ss_65929fedb7284c22e6a3d78e84fd4e85ca174d2a.600x338.jpg?t=1594197612',2,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+
+INSERT INTO photos (id_game, photo_path, type, status,tx_id,tx_host,tx_user_id,tx_date) VALUES (4,'https://external-preview.redd.it/pZWzjtkaQFP_hmlvAFNj7lhsq15MESv7mf5rP9G6C3E.jpg?auto=webp&s=cb7f2edd091336e4ccef180522469ba3be862c8f',1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO photos (id_game, photo_path, type, status,tx_id,tx_host,tx_user_id,tx_date) VALUES (4,'https://steamcdn-a.akamaihd.net/steam/apps/219150/ss_263387d83df0626c58a484baa8f78f9394074b76.600x338.jpg?t=1603501662',2,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO photos (id_game, photo_path, type, status,tx_id,tx_host,tx_user_id,tx_date) VALUES (4,'https://steamcdn-a.akamaihd.net/steam/apps/219150/ss_75386edf15a48d844dc28ffdc61eb5c458d68533.600x338.jpg?t=1603501662',2,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+
+INSERT INTO photos (id_game, photo_path, type, status,tx_id,tx_host,tx_user_id,tx_date) VALUES (5,'https://vistapointe.net/images/enter-the-gungeon-wallpaper-19.jpg',1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO photos (id_game, photo_path, type, status,tx_id,tx_host,tx_user_id,tx_date) VALUES (5,'https://steamcdn-a.akamaihd.net/steam/apps/311690/ss_bca0036bc452b872a7d9ee3de9e0c9548e8cd4f5.116x65.jpg?t=1598923827',2,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO photos (id_game, photo_path, type, status,tx_id,tx_host,tx_user_id,tx_date) VALUES (5,'https://steamcdn-a.akamaihd.net/steam/apps/311690/ss_ecdf8986898c7d866d419943eb7c7cbef42754bd.600x338.jpg?t=1598923827',2,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+
+INSERT INTO photos (id_game, photo_path, type, status,tx_id,tx_host,tx_user_id,tx_date) VALUES (6,'https://cdn02.nintendo-europe.com/media/images/10_share_images/games_15/nintendo_switch_4/H2x1_NSwitch_YookaLaylee.jpg',1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO photos (id_game, photo_path, type, status,tx_id,tx_host,tx_user_id,tx_date) VALUES (6,'https://steamcdn-a.akamaihd.net/steam/apps/360830/ss_f2162c85edbdaaeb768abaa6730588b049eda216.600x338.jpg?t=1596099819',2,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO photos (id_game, photo_path, type, status,tx_id,tx_host,tx_user_id,tx_date) VALUES (6,'https://steamcdn-a.akamaihd.net/steam/apps/360830/ss_bf7ac867228bd41375c3c58aa6af48e91b341326.600x338.jpg?t=1596099819',2,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+
+INSERT INTO photos (id_game, photo_path, type, status,tx_id,tx_host,tx_user_id,tx_date) VALUES (7,'https://images4.alphacoders.com/106/thumb-1920-1063600.jpg',1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO photos (id_game, photo_path, type, status,tx_id,tx_host,tx_user_id,tx_date) VALUES (7,'https://steamcdn-a.akamaihd.net/steam/apps/460950/ss_9c5b43f5a2ab00b35857b8ccb0c4a24a9755091f.600x338.jpg?t=1593451079',2,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO photos (id_game, photo_path, type, status,tx_id,tx_host,tx_user_id,tx_date) VALUES (7,'https://steamcdn-a.akamaihd.net/steam/apps/460950/ss_b33ce3a83dfa206b0927f50076f6092d6e478736.600x338.jpg?t=1593451079',2,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+
+INSERT INTO photos (id_game, photo_path, type, status,tx_id,tx_host,tx_user_id,tx_date) VALUES (8,'https://images8.alphacoders.com/888/thumb-1920-888084.jpg',1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO photos (id_game, photo_path, type, status,tx_id,tx_host,tx_user_id,tx_date) VALUES (8,'https://steamcdn-a.akamaihd.net/steam/apps/253230/ss_eb442a7301b8a0d8e94c4064575ebe68d77deb12.600x338.jpg?t=1589582654',2,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO photos (id_game, photo_path, type, status,tx_id,tx_host,tx_user_id,tx_date) VALUES (8,'https://steamcdn-a.akamaihd.net/steam/apps/253230/ss_6c4cd183a85ba42f93eb4d39743ed0e43c164351.600x338.jpg?t=1589582654',2,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+
+INSERT INTO photos (id_game, photo_path, type, status,tx_id,tx_host,tx_user_id,tx_date) VALUES (9,'https://www.f2p.com/wp-content/uploads/2017/05/Brawlhalla-wallpaper-4.jpg',1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO photos (id_game, photo_path, type, status,tx_id,tx_host,tx_user_id,tx_date) VALUES (9,'https://steamcdn-a.akamaihd.net/steam/apps/291550/ss_47bfee537422508aa0e0f9d8aad5c0646fa5d9f5.600x338.jpg?t=1604429982',2,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO photos (id_game, photo_path, type, status,tx_id,tx_host,tx_user_id,tx_date) VALUES (9,'https://steamcdn-a.akamaihd.net/steam/apps/291550/ss_166e9fe5e40992872500387d201b23070688a29d.600x338.jpg?t=1604429982',2,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+
+INSERT INTO photos (id_game, photo_path, type, status,tx_id,tx_host,tx_user_id,tx_date) VALUES (10,'https://geekisphere.com/wp-content/uploads/2019/05/Forager-cover.png',1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO photos (id_game, photo_path, type, status,tx_id,tx_host,tx_user_id,tx_date) VALUES (10,'https://steamcdn-a.akamaihd.net/steam/apps/751780/ss_d88521fbcbf66e7e8ca9b920c379ec5356c85d5d.600x338.jpg?t=1593722880',2,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO photos (id_game, photo_path, type, status,tx_id,tx_host,tx_user_id,tx_date) VALUES (10,'https://steamcdn-a.akamaihd.net/steam/apps/751780/ss_3d02565e1349a3231828ca6a941dec2dda3c087a.600x338.jpg?t=1593722880',2,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+
+INSERT INTO photos (id_game, photo_path, type, status,tx_id,tx_host,tx_user_id,tx_date) VALUES (11,'https://images8.alphacoders.com/108/thumb-1920-1083986.png',1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO photos (id_game, photo_path, type, status,tx_id,tx_host,tx_user_id,tx_date) VALUES (11,'https://steamcdn-a.akamaihd.net/steam/apps/1209490/ss_d29f4e82049e03484c80670a462d3cc1e244b5d3.600x338.jpg?t=1605291478',2,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO photos (id_game, photo_path, type, status,tx_id,tx_host,tx_user_id,tx_date) VALUES (11,'https://steamcdn-a.akamaihd.net/steam/apps/1209490/ss_56464b752a3f5b1d972c3ebb4030abe758185006.600x338.jpg?t=1605291478',2,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+
+INSERT INTO photos (id_game, photo_path, type, status,tx_id,tx_host,tx_user_id,tx_date) VALUES (12,'https://static.giga.de/wp-content/uploads/2020/02/temtem.jpg',1,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO photos (id_game, photo_path, type, status,tx_id,tx_host,tx_user_id,tx_date) VALUES (12,'https://steamcdn-a.akamaihd.net/steam/apps/745920/ss_053909ef657ef86e75beafa86519d453ff6140ed.600x338.jpg?t=1595383096',2,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
+INSERT INTO photos (id_game, photo_path, type, status,tx_id,tx_host,tx_user_id,tx_date) VALUES (12,'https://steamcdn-a.akamaihd.net/steam/apps/745920/ss_c85267d255c8861e47744771593de5dc8aa6c1b1.600x338.jpg?t=1595383096',2,1,LAST_INSERT_ID(),'127.0.0.0',1,NOW());
 
 -- Table library
 
