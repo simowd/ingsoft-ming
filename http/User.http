@@ -49,6 +49,11 @@ GET http://localhost:8080/ming/v1/users/1/library
 Accept: application/json
 
 ###
+#Get countries id and name
+GET http://localhost:8080/ming/v1/countries
+Accept: application/json
+
+###
 #The user sees his purchase cart
 GET http://localhost:8080/ming/users/1/cart
 Accept: application/json

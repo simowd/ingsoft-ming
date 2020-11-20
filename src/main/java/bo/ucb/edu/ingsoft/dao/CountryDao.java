@@ -11,5 +11,5 @@ public interface CountryDao {
     public Country CountryName (Integer idCountry);
 
     //Get a list of countries
-    public List<String> CountryNameList(List<Integer> idCountry);
+    public List<Country> CountriesList();
 }

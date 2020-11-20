@@ -161,6 +161,20 @@ public class UserBl {
         return list;
     }
 
+    /*
+    GET (/users/{id}) The user sees a combobox with countries ids and names.
+    */
+    public List<CountryRequest> getCountries() {
+        List<Country> country = countryDao.CountriesList();
+        List<CountryRequest> list = new ArrayList<CountryRequest>();
+        for (int i = 0; i < country.size(); i++){
+            CountryRequest countryRequest = new CountryRequest(country.get(i).getIdCountry(),country.get(i).getName());
+            list.add(countryRequest);
+        }
+
+        return list;
+    }
+
     public List<GameDetailsRequest> getCartByUser(Integer userId) {
         // Getting games from cart by user id
         List<GameDetailsRequest> detailsRequests = orderDao.getCartUser(userId);

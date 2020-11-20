@@ -78,6 +78,15 @@ public class UserApi {
         return userBl.getUserLibrary(userId);
     }
 
+    /*
+    GET (/countries) The user sees a combobox with countries ids and names.
+    */
+    @RequestMapping(value = "ming/v1/countries", method = RequestMethod.GET)
+    public List<CountryRequest> getCountries () {
+        return userBl.getCountries();
+    }
+
+
     //    /users/{id}/cart show user's cart GET
     @RequestMapping(value = "/ming/users/{id}/cart", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<GameDetailsRequest> getCart(@PathVariable("id") Integer userId) {

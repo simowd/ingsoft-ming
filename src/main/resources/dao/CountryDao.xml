@@ -14,15 +14,12 @@
             status = 1
     </select>
 
-    <select id="CountryNameList" resultType="java.lang.String">
+    <select id="CountriesList" resultType="bo.ucb.edu.ingsoft.models.Country">
         SELECT
+               id_country as idCountry,
                name as name
         FROM countries
         WHERE
-            id_country in
-            <foreach collection="list" item="item" index="index"
-                                open="(" separator="," close = ")">
-        #{item}
-    </foreach>
+            status = 1
     </select>
 </mapper>
