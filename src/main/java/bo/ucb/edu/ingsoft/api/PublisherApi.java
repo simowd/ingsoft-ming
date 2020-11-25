@@ -75,4 +75,12 @@ public class PublisherApi {
     public List<GenresRequest> getGenres () {
         return publisherBl.getGenres();
     }
+
+    /*
+    GET (/esrb) The user sees a combobox with esrb ids and names.
+    */
+    @RequestMapping(value = "ming/v1/esrb", method = RequestMethod.GET)
+    public List<EsrbRequest> getEsrb () {
+        return publisherBl.getEsrb();
+    }
 }

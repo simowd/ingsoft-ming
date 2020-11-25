@@ -13,4 +13,13 @@
             id_esrb=#{idEsrb}
         AND status = 1
     </select>
+
+    <select id="EsrbList" resultType="bo.ucb.edu.ingsoft.models.Esrb">
+        SELECT
+               id_esrb as idEsrb,
+               esrb as esrb
+        FROM esrb
+        WHERE
+            status = 1
+    </select>
 </mapper>

@@ -26,9 +26,10 @@ public class PublisherBl {
     private CountryDao countryDao;
     private LanguageDao languageDao;
     private GenreDao genreDao;
+    private EsrbDao esrbDao;
 
     @Autowired
-    public PublisherBl(PublisherDao publisherDao, UserDao userDao, TransactionDao transactionDao, OrderDao orderDao, GameDao gameDao, DeveloperDao developerDao, PriceDao priceDao, PhotoDao photoDao, CountryDao countryDao, LanguageDao languageDao, GenreDao genreDao) {
+    public PublisherBl(PublisherDao publisherDao, UserDao userDao, TransactionDao transactionDao, OrderDao orderDao, GameDao gameDao, DeveloperDao developerDao, PriceDao priceDao, PhotoDao photoDao, CountryDao countryDao, LanguageDao languageDao, GenreDao genreDao, EsrbDao esrbDao) {
         this.publisherDao = publisherDao;
         this.userDao = userDao;
         this.transactionDao = transactionDao;
@@ -40,6 +41,7 @@ public class PublisherBl {
         this.countryDao = countryDao;
         this.languageDao = languageDao;
         this.genreDao = genreDao;
+        this.esrbDao = esrbDao;
     }
 
     /*
@@ -243,6 +245,20 @@ public class PublisherBl {
         for (int i = 0; i < genre.size(); i++){
             GenresRequest genreRequest = new GenresRequest(genre.get(i).getIdGenre(),genre.get(i).getGenre());
             list.add(genreRequest);
+        }
+        return list;
+    }
+
+    /*
+    GET (/esrb) The user sees a combobox with esrb ids and names.
+    */
+    public List<EsrbRequest> getEsrb() {
+        List<Esrb> esrb = esrbDao.EsrbList();
+
+        List<EsrbRequest> list = new ArrayList<EsrbRequest>();
+        for (int i = 0; i < esrb.size(); i++){
+            EsrbRequest esrbRequest = new EsrbRequest(esrb.get(i).getIdEsrb(),esrb.get(i).getEsrb());
+            list.add(esrbRequest);
         }
         return list;
     }
