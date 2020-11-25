@@ -73,4 +73,13 @@
         id_genre_game=#{idGenreGame}
 
     </update>
+
+    <select id="GenresList" resultType="bo.ucb.edu.ingsoft.models.Genre">
+        SELECT
+               id_genre as idGenre,
+               genre as genre
+        FROM genres
+        WHERE
+            status = 1
+    </select>
 </mapper>

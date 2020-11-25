@@ -43,8 +43,8 @@ public class AdminApi {
         GET (/publisher) The admin sees a publisher list
     */
     @RequestMapping(value = "/ming/v1/publisher",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<PublisherListRequest> publisherList() {
-            return publisherBl.getPublisherList();
+    public List<PublisherListRequest> publisherList(@RequestParam Integer page, @RequestParam(required = false) String query) {
+            return publisherBl.getPublisherList(page ,query);
     }
 
     /*

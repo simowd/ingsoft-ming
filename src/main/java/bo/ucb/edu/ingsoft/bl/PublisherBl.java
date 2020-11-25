@@ -24,9 +24,12 @@ public class PublisherBl {
     private PriceDao priceDao;
     private PhotoDao photoDao;
     private CountryDao countryDao;
+    private LanguageDao languageDao;
+    private GenreDao genreDao;
+    private EsrbDao esrbDao;
 
     @Autowired
-    public PublisherBl(PublisherDao publisherDao, UserDao userDao, TransactionDao transactionDao, OrderDao orderDao, GameDao gameDao, DeveloperDao developerDao, PriceDao priceDao, PhotoDao photoDao, CountryDao countryDao) {
+    public PublisherBl(PublisherDao publisherDao, UserDao userDao, TransactionDao transactionDao, OrderDao orderDao, GameDao gameDao, DeveloperDao developerDao, PriceDao priceDao, PhotoDao photoDao, CountryDao countryDao, LanguageDao languageDao, GenreDao genreDao, EsrbDao esrbDao) {
         this.publisherDao = publisherDao;
         this.userDao = userDao;
         this.transactionDao = transactionDao;
@@ -36,8 +39,10 @@ public class PublisherBl {
         this.priceDao = priceDao;
         this.photoDao = photoDao;
         this.countryDao = countryDao;
+        this.languageDao = languageDao;
+        this.genreDao = genreDao;
+        this.esrbDao = esrbDao;
     }
-
 
     /*
         POST (/publisher) The admin create a new publisher
@@ -94,7 +99,15 @@ public class PublisherBl {
     /*
        GET (/publisher) The admin sees a publisher list
     */
-    public List<PublisherListRequest> getPublisherList(){
+    public List<PublisherListRequest> getPublisherList(Integer page, String query){
+
+        Integer recordsPerPage = 2;
+        Integer offsetValue = (page - 1) * recordsPerPage;
+
+        if(query != null){
+            query = "%" + query.toLowerCase()+ "%";
+        }
+
         List<PublisherListRequest> publisherListRequests =new ArrayList<PublisherListRequest>();
         List<User> user=userDao.listUserMails();
 
@@ -103,7 +116,7 @@ public class PublisherBl {
             ids.add(users.getIdUser());
         }
 
-        List<Publisher> publisher=publisherDao.listPublisher(ids);
+        List<Publisher> publisher=publisherDao.listPublisher(recordsPerPage,query,ids,offsetValue);
         for(int i=0;i< user.size();i++){
             PublisherListRequest publisherListRequest=new PublisherListRequest();
 
@@ -214,6 +227,48 @@ public class PublisherBl {
         // Return object dashboardrequest for the method
         return dashboardRequest;
 
+    }
+
+    /*
+    GET (/languages) The user sees a combobox with languages ids and names.
+    */
+    public List<LanguagesRequest> getLanguages() {
+        List<Language> language = languageDao.LanguagesList();
+
+        List<LanguagesRequest> list = new ArrayList<LanguagesRequest>();
+        for (int i = 0; i < language.size(); i++){
+            LanguagesRequest languageRequest = new LanguagesRequest(language.get(i).getIdLanguage(),language.get(i).getLanguage());
+            list.add(languageRequest);
+        }
+        return list;
+    }
+
+    /*
+    GET (/genres) The user sees a combobox with genres ids and names.
+    */
+    public List<GenresRequest> getGenres() {
+        List<Genre> genre = genreDao.GenresList();
+
+        List<GenresRequest> list = new ArrayList<GenresRequest>();
+        for (int i = 0; i < genre.size(); i++){
+            GenresRequest genreRequest = new GenresRequest(genre.get(i).getIdGenre(),genre.get(i).getGenre());
+            list.add(genreRequest);
+        }
+        return list;
+    }
+
+    /*
+    GET (/esrb) The user sees a combobox with esrb ids and names.
+    */
+    public List<EsrbRequest> getEsrb() {
+        List<Esrb> esrb = esrbDao.EsrbList();
+
+        List<EsrbRequest> list = new ArrayList<EsrbRequest>();
+        for (int i = 0; i < esrb.size(); i++){
+            EsrbRequest esrbRequest = new EsrbRequest(esrb.get(i).getIdEsrb(),esrb.get(i).getEsrb());
+            list.add(esrbRequest);
+        }
+        return list;
     }
 
 }
