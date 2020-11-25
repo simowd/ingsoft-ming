@@ -101,7 +101,15 @@ public class PublisherBl {
     /*
        GET (/publisher) The admin sees a publisher list
     */
-    public List<PublisherListRequest> getPublisherList(){
+    public List<PublisherListRequest> getPublisherList(Integer page, String query){
+
+        Integer recordsPerPage = 2;
+        Integer offsetValue = (page - 1) * recordsPerPage;
+
+        if(query != null){
+            query = "%" + query.toLowerCase()+ "%";
+        }
+
         List<PublisherListRequest> publisherListRequests =new ArrayList<PublisherListRequest>();
         List<User> user=userDao.listUserMails();
 
@@ -110,7 +118,7 @@ public class PublisherBl {
             ids.add(users.getIdUser());
         }
 
-        List<Publisher> publisher=publisherDao.listPublisher(ids);
+        List<Publisher> publisher=publisherDao.listPublisher(recordsPerPage,query,ids,offsetValue);
         for(int i=0;i< user.size();i++){
             PublisherListRequest publisherListRequest=new PublisherListRequest();
 
