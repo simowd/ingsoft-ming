@@ -67,4 +67,20 @@ public class PublisherApi {
     public List<LanguagesRequest> getLanguages () {
         return publisherBl.getLanguages();
     }
+
+    /*
+    GET (/languages) The user sees a combobox with languages ids and names.
+    */
+    @RequestMapping(value = "ming/v1/genres", method = RequestMethod.GET)
+    public List<GenresRequest> getGenres () {
+        return publisherBl.getGenres();
+    }
+
+    /*
+    GET (/esrb) The user sees a combobox with esrb ids and names.
+    */
+    @RequestMapping(value = "ming/v1/esrb", method = RequestMethod.GET)
+    public List<EsrbRequest> getEsrb () {
+        return publisherBl.getEsrb();
+    }
 }
