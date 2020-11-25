@@ -3,6 +3,8 @@ package bo.ucb.edu.ingsoft.bl;
 import bo.ucb.edu.ingsoft.dao.*;
 import bo.ucb.edu.ingsoft.dto.*;
 import bo.ucb.edu.ingsoft.models.*;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,31 +16,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@AllArgsConstructor(onConstructor = @__({@Autowired}))
+@Slf4j
 public class UserBl {
-    private UserDao userDao;
-    private CountryDao countryDao;
-    private TransactionDao transactionDao;
-    private GameDao gameDao;
-    private LibraryDao libraryDao;
-    private GenreDao genreDao;
-    private PhotoDao photoDao;
-    private OrderDao orderDao;
-    private PriceDao priceDao;
+    private final  UserDao userDao;
+    private final CountryDao countryDao;
+    private final TransactionDao transactionDao;
+    private final GameDao gameDao;
+    private final LibraryDao libraryDao;
+    private final GenreDao genreDao;
+    private final PhotoDao photoDao;
+    private final OrderDao orderDao;
+    private final PriceDao priceDao;
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(UserBl.class);
-
-    @Autowired
-    public UserBl(UserDao userDao, CountryDao countryDao, TransactionDao transactionDao, GameDao gameDao, LibraryDao libraryDao, GenreDao genreDao, PhotoDao photoDao, OrderDao orderDao, PriceDao priceDao) {
-        this.userDao = userDao;
-        this.countryDao = countryDao;
-        this.transactionDao = transactionDao;
-        this.gameDao = gameDao;
-        this.libraryDao = libraryDao;
-        this.genreDao = genreDao;
-        this.photoDao = photoDao;
-        this.orderDao = orderDao;
-        this.priceDao = priceDao;
-    }
 
     /*
     POST (/users/signup) The user creates an account
@@ -180,7 +170,7 @@ public class UserBl {
         List<GameDetailsRequest> detailsRequests = orderDao.getCartUser(userId);
 
         // Print cart details information
-        LOGGER.info(detailsRequests.toString());
+        log.info(detailsRequests.toString());
 
         if (detailsRequests.size() > 0)
             return detailsRequests;
@@ -199,7 +189,7 @@ public class UserBl {
         Price price = priceDao.findById(game.getIdGame());
 
         // Print game details information
-        LOGGER.info(game.toString());
+        log.info(game.toString());
 
         // Loading data from user and transaction into Order
         Orders order = new Orders();
@@ -220,7 +210,7 @@ public class UserBl {
         order.setIdOrder(orderDao.getLastInsertId());
 
         // Print order information
-        LOGGER.info(order.toString());
+        log.info(order.toString());
 
         // Loading data from game, order and price into order details
         OrderDetails orderDetail = new OrderDetails();
@@ -239,7 +229,7 @@ public class UserBl {
         orderDao.createOrderDetails(orderDetail);
 
         // Print orderDetails information
-        LOGGER.info(orderDetail.toString());
+        log.info(orderDetail.toString());
 
         // Setting data from game and price to return the result
         GameDetailsRequest gameDetailsRequest = new GameDetailsRequest();
@@ -262,10 +252,10 @@ public class UserBl {
             integerList.forEach(integer -> orderDao.updateOrder(2, integer));
 
             // Print if the game is deleted from cart
-            LOGGER.info("Games deleted from cart");
+            log.info("Games deleted from cart");
         } else {
             // Print if the game is not deleted from cart
-            LOGGER.info("Games is not found. Game wasn't deleted");
+            log.info("Games is not found. Game wasn't deleted");
         }
 
 
@@ -276,7 +266,7 @@ public class UserBl {
         List<GameDetailsRequest> detailsRequests = orderDao.getCartUser(userId);
 
         // Warn what games are in there
-        LOGGER.warn(detailsRequests.toString());
+        log.warn(detailsRequests.toString());
 
         // Gets rows from order details
         List<Integer> integerList = orderDao.getOrderDetailByUser(userId);
