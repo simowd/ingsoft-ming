@@ -1,43 +1,17 @@
 package bo.ucb.edu.ingsoft.models;
 
-public class Esrb {
-    private Integer idEsrb;
-    private String esrb;
-    private String logoPath;
+import lombok.*;
 
-    public Esrb() {
-    }
+import java.io.Serializable;
 
-    @Override
-    public String toString() {
-        return "Esrb{" +
-                "idEsrb=" + idEsrb +
-                ", esrb='" + esrb + '\'' +
-                ", logoPath='" + logoPath + '\'' +
-                '}';
-    }
-
-    public Integer getIdEsrb() {
-        return idEsrb;
-    }
-
-    public void setIdEsrb(Integer idEsrb) {
-        this.idEsrb = idEsrb;
-    }
-
-    public String getEsrb() {
-        return esrb;
-    }
-
-    public void setEsrb(String esrb) {
-        this.esrb = esrb;
-    }
-
-    public String getLogoPath() {
-        return logoPath;
-    }
-
-    public void setLogoPath(String logoPath) {
-        this.logoPath = logoPath;
-    }
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+public class Esrb implements Serializable {
+  private Integer idEsrb;
+  private String esrb;
+  private String logoPath;
 }
