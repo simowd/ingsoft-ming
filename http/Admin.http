@@ -14,7 +14,7 @@ Content-Type: application/json
 
 ###
 #The admin sees a publisher list
-GET http://localhost:8080/ming/v1/publihser?page=2
+GET http://localhost:8080/ming/v1/publisher?page=1
 Accept: application/json
 
 ###

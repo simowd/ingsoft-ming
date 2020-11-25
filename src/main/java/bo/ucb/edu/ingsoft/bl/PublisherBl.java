@@ -101,7 +101,7 @@ public class PublisherBl {
     */
     public List<PublisherListRequest> getPublisherList(Integer page, String query){
 
-        Integer recordsPerPage = 2;
+        Integer recordsPerPage = 10;
         Integer offsetValue = (page - 1) * recordsPerPage;
 
         if(query != null){
@@ -117,11 +117,22 @@ public class PublisherBl {
         }
 
         List<Publisher> publisher=publisherDao.listPublisher(recordsPerPage,query,ids,offsetValue);
-        for(int i=0;i< user.size();i++){
+
+        List<Integer> ids1 = new ArrayList<Integer>();
+        for(Publisher publishers : publisher){
+            ids1.add(publishers.getIdUser());
+        }
+
+
+
+        System.out.println(publisher);
+        System.out.println(ids1);
+        for(int i=0;i< ids1.size();i++){
+            User mails=userDao.publisherMail(ids1.get(i));
             PublisherListRequest publisherListRequest=new PublisherListRequest();
 
-            publisherListRequest.setIdUser(user.get(i).getIdUser());
-            publisherListRequest.setEmail(user.get(i).getEmail());
+            publisherListRequest.setIdUser(publisher.get(i).getIdUser());
+            publisherListRequest.setEmail(mails.getEmail());
             publisherListRequest.setPaypal(publisher.get(i).getPaypalMail());
             publisherListRequest.setPublisher(publisher.get(i).getPublisher());
 
