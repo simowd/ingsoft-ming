@@ -47,14 +47,23 @@
                 paypal_mail as paypalMail,
                 publisher as publisher
         FROM publishers
-        WHERE
+        <where>
         id_user in
-            <foreach collection="list" item="item" index="index"
+            <foreach collection="c" item="item" index="index"
                      open="(" separator="," close = ")">
                 #{item}
             </foreach>
-        AND
+            <if test="query != null">
+                AND LOWER(games.name) LIKE #{b}
+            </if>
+
+            <if test="limit != null and offset != null">
+                LIMIT #{a} OFFSET #{d}
+            </if>
+            AND
             status=1
+        </where>
+
     </select>
 
     <update id="deletePublisher" >
