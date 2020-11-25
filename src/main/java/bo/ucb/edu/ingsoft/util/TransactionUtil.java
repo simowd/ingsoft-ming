@@ -7,7 +7,7 @@ import java.util.Date;
 
 public class TransactionUtil {
 
-    public static Transaction createTransaction(HttpServletRequest request) {
+    public static Transaction createTransaction(final HttpServletRequest request) {
         Transaction transaction = new Transaction();
         transaction.setTxDate(new Date());
         transaction.setTxHost(request.getRemoteHost());

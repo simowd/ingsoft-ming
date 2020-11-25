@@ -1,36 +1,17 @@
 package bo.ucb.edu.ingsoft.models;
 
-public class Directx {
+import lombok.*;
 
-    private Integer idDirectx;
-    private String version;
+import java.io.Serializable;
 
-    public Directx(Integer idDirectx, String version) {
-        this.idDirectx = idDirectx;
-        this.version = version;
-    }
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+public class Directx implements Serializable {
 
-    @Override
-    public String toString() {
-        return "Directx{" +
-                "idDirectx=" + idDirectx +
-                ", version='" + version + '\'' +
-                '}';
-    }
-
-    public Integer getIdDirectx() {
-        return idDirectx;
-    }
-
-    public void setIdDirectx(Integer idDirectx) {
-        this.idDirectx = idDirectx;
-    }
-
-    public String getVersion() {
-        return version;
-    }
-
-    public void setVersion(String version) {
-        this.version = version;
-    }
+  private Integer idDirectx;
+  private String version;
 }

@@ -3,6 +3,7 @@ package bo.ucb.edu.ingsoft.bl;
 import bo.ucb.edu.ingsoft.dao.*;
 import bo.ucb.edu.ingsoft.dto.*;
 import bo.ucb.edu.ingsoft.models.*;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -13,36 +14,21 @@ import java.util.List;
 
 
 @Service
+@AllArgsConstructor(onConstructor = @__({@Autowired}))
 public class PublisherBl {
 
-    private PublisherDao publisherDao;
-    private UserDao userDao;
-    private TransactionDao transactionDao;
-    private OrderDao orderDao;
-    private GameDao gameDao;
-    private DeveloperDao developerDao;
-    private PriceDao priceDao;
-    private PhotoDao photoDao;
-    private CountryDao countryDao;
-    private LanguageDao languageDao;
-    private GenreDao genreDao;
-    private EsrbDao esrbDao;
-
-    @Autowired
-    public PublisherBl(PublisherDao publisherDao, UserDao userDao, TransactionDao transactionDao, OrderDao orderDao, GameDao gameDao, DeveloperDao developerDao, PriceDao priceDao, PhotoDao photoDao, CountryDao countryDao, LanguageDao languageDao, GenreDao genreDao, EsrbDao esrbDao) {
-        this.publisherDao = publisherDao;
-        this.userDao = userDao;
-        this.transactionDao = transactionDao;
-        this.orderDao = orderDao;
-        this.gameDao = gameDao;
-        this.developerDao = developerDao;
-        this.priceDao = priceDao;
-        this.photoDao = photoDao;
-        this.countryDao = countryDao;
-        this.languageDao = languageDao;
-        this.genreDao = genreDao;
-        this.esrbDao = esrbDao;
-    }
+    private final PublisherDao publisherDao;
+    private final UserDao userDao;
+    private final  TransactionDao transactionDao;
+    private final OrderDao orderDao;
+    private final  GameDao gameDao;
+    private final  DeveloperDao developerDao;
+    private final PriceDao priceDao;
+    private final PhotoDao photoDao;
+    private final CountryDao countryDao;
+    private final LanguageDao languageDao;
+    private final GenreDao genreDao;
+    private final EsrbDao esrbDao;
 
     /*
         POST (/publisher) The admin create a new publisher

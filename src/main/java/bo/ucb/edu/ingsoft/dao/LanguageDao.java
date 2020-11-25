@@ -8,5 +8,5 @@ import java.util.List;
 @Mapper
 public interface LanguageDao {
     //Get a list of languages
-    public List<Language> LanguagesList();
+     List<Language> LanguagesList();
 }

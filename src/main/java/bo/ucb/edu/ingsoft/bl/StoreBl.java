@@ -3,6 +3,8 @@ package bo.ucb.edu.ingsoft.bl;
 import bo.ucb.edu.ingsoft.dao.*;
 import bo.ucb.edu.ingsoft.dto.*;
 import bo.ucb.edu.ingsoft.models.*;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,32 +14,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@AllArgsConstructor(onConstructor = @__({@Autowired}))
+@Slf4j
 public class StoreBl {
-    private GameDao gameDao;
-    private PriceDao priceDao;
-    private PhotoDao photoDao;
-    private UserDao userDao;
-    private OrderDao orderDao;
-    private DeveloperDao developerDao;
+    private final GameDao gameDao;
+    private final PriceDao priceDao;
+    private final PhotoDao photoDao;
+    private final UserDao userDao;
+    private final OrderDao orderDao;
+    private final DeveloperDao developerDao;
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(StoreBl.class);
 
-    @Autowired
-    public StoreBl(GameDao gameDao, PriceDao priceDao, PhotoDao photoDao, UserDao userDao, OrderDao orderDao, DeveloperDao developerDao) {
-        this.gameDao = gameDao;
-        this.priceDao = priceDao;
-        this.photoDao = photoDao;
-        this.userDao = userDao;
-        this.orderDao = orderDao;
-        this.developerDao = developerDao;
-    }
 
     /*
     The user gets a paginated view of the homepage
      */
     public List<GamesRequest> getGames(Integer page, String query, Boolean highlight, Boolean latest, Boolean sale, String publisher) {
         List<GamesRequest> list = new ArrayList<GamesRequest>();
-        LOGGER.info(query);
+        log.info(query);
         //Setup the query's page limit fir the SQL query
         Integer recordsPerPage = 10;
         Integer offsetValue = (page - 1) * recordsPerPage;
@@ -47,7 +41,7 @@ public class StoreBl {
         }
         GameHelper gameHelper = new GameHelper(recordsPerPage, offsetValue, query, highlight, latest, sale, publisher);
         List<Game> games = gameDao.findPage(gameHelper);
-        LOGGER.info(games.toString());
+        log.info(games.toString());
         //Verifying the existance of the games.
         if (!games.isEmpty()) {
             List<Integer> ids = new ArrayList<Integer>();
@@ -70,25 +64,25 @@ public class StoreBl {
 
     public PaymentRequest getGamePayment(PaymentRequest paymentRequest, Transaction transaction) {
         // Print transaction information
-        LOGGER.info(transaction.toString());
+        log.info(transaction.toString());
 
         // Getting game information by game id
         Game game = gameDao.getGameInfo(paymentRequest.getIdGame());
 
         // Print game information
-        LOGGER.info(game.toString());
+        log.info(game.toString());
 
         // Getting user information by user id from paymentRequest
         User user = userDao.findByUserId(paymentRequest.getIdUser());
 
         // Print user information
-        LOGGER.info(user.toString());
+        log.info(user.toString());
 
         // Getting price information by game id
         Price price = priceDao.findById(game.getIdGame());
 
         // Print price information
-        LOGGER.info(price.toString());
+        log.info(price.toString());
 
         // Loading data from user and transaction into Order
         Orders orders = new Orders();
@@ -109,7 +103,7 @@ public class StoreBl {
         orders.setIdOrder(orderDao.getLastInsertId());
 
         // Print orders information
-        LOGGER.info(orders.toString());
+        log.info(orders.toString());
 
         // Loading data from game, orders and price into order details
         OrderDetails orderDetails = new OrderDetails();
@@ -128,7 +122,7 @@ public class StoreBl {
         orderDao.createOrderDetails(orderDetails);
 
         // Print orderDetails information
-        LOGGER.info(orderDetails.toString());
+        log.info(orderDetails.toString());
 
         // Setting data from game, price and user to return the result
         paymentRequest.setTitle(game.getName());

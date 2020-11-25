@@ -3,8 +3,8 @@ package bo.ucb.edu.ingsoft.bl;
 import bo.ucb.edu.ingsoft.dao.*;
 import bo.ucb.edu.ingsoft.dto.*;
 import bo.ucb.edu.ingsoft.models.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -14,39 +14,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Slf4j
+@AllArgsConstructor(onConstructor = @__({@Autowired}))
 public class GameBl {
 
-    private GameDao gameDao;
-    private TransactionDao transactionDao;
-    private DeveloperDao developerDao;
-    private EsrbDao esrbDao;
-    private GamesDirectxDao gamesDirectxDao;
-    private GamesLanguagesDao languagesDao;
-    private GamesOsDao gamesOsDao;
-    private GenreDao genreDao;
-    private PhotoDao photoDao;
-    private PriceDao priceDao;
-    private UserDao userDao;
-    private PublisherDao publisherDao;
-    private GameRequirementDao gameRequirementDao;
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(GameBl.class);
-    @Autowired
-    public GameBl(GameDao gameDao, TransactionDao transactionDao, DeveloperDao developerDao, EsrbDao esrbDao, GamesDirectxDao gamesDirectxDao, GamesLanguagesDao languagesDao, GamesOsDao gamesOsDao, GenreDao genreDao, PhotoDao photoDao, PriceDao priceDao, UserDao userDao, PublisherDao publisherDao, GameRequirementDao gameRequirementDao) {
-        this.gameDao = gameDao;
-        this.transactionDao = transactionDao;
-        this.developerDao = developerDao;
-        this.esrbDao = esrbDao;
-        this.gamesDirectxDao = gamesDirectxDao;
-        this.languagesDao = languagesDao;
-        this.gamesOsDao = gamesOsDao;
-        this.genreDao = genreDao;
-        this.photoDao = photoDao;
-        this.priceDao = priceDao;
-        this.userDao = userDao;
-        this.publisherDao = publisherDao;
-        this.gameRequirementDao = gameRequirementDao;
-    }
+    private final GameDao gameDao;
+    private final TransactionDao transactionDao;
+    private final DeveloperDao developerDao;
+    private final EsrbDao esrbDao;
+    private final GamesDirectxDao gamesDirectxDao;
+    private final GamesLanguagesDao languagesDao;
+    private final GamesOsDao gamesOsDao;
+    private final GenreDao genreDao;
+    private final PhotoDao photoDao;
+    private final PriceDao priceDao;
+    private final UserDao userDao;
+    private final PublisherDao publisherDao;
+    private final GameRequirementDao gameRequirementDao;
 
     /*
     POST (/publisher/{id}/game) The publisher create a new game
@@ -476,12 +460,12 @@ public class GameBl {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
         }
 
-        LOGGER.info(game.toString());
+        log.info(game.toString());
         // Getting the language ids in a list
         List<Integer> gamesLanguagesDao = languagesDao.findGameLanguages(gameId);
 
         // Print language id
-        LOGGER.info(gamesLanguagesDao.toString());
+        log.info(gamesLanguagesDao.toString());
 
         // Getting the language information in a list
         List<Language> languageList = languagesDao.findByIdLanguage(gamesLanguagesDao);
@@ -535,7 +519,7 @@ public class GameBl {
         gameDetailsRequest.setPrice(price.getPrice());
 
         // Print game details data
-        LOGGER.info(gameDetailsRequest.toString());
+        log.info(gameDetailsRequest.toString());
 
         return gameDetailsRequest;
     }
