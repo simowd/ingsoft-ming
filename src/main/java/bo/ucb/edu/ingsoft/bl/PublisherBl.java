@@ -24,9 +24,10 @@ public class PublisherBl {
     private PriceDao priceDao;
     private PhotoDao photoDao;
     private CountryDao countryDao;
+    private LanguageDao languageDao;
 
     @Autowired
-    public PublisherBl(PublisherDao publisherDao, UserDao userDao, TransactionDao transactionDao, OrderDao orderDao, GameDao gameDao, DeveloperDao developerDao, PriceDao priceDao, PhotoDao photoDao, CountryDao countryDao) {
+    public PublisherBl(PublisherDao publisherDao, UserDao userDao, TransactionDao transactionDao, OrderDao orderDao, GameDao gameDao, DeveloperDao developerDao, PriceDao priceDao, PhotoDao photoDao, CountryDao countryDao, LanguageDao languageDao) {
         this.publisherDao = publisherDao;
         this.userDao = userDao;
         this.transactionDao = transactionDao;
@@ -36,12 +37,12 @@ public class PublisherBl {
         this.priceDao = priceDao;
         this.photoDao = photoDao;
         this.countryDao = countryDao;
+        this.languageDao = languageDao;
     }
 
-
     /*
-        POST (/publisher) The admin create a new publisher
-    */
+            POST (/publisher) The admin create a new publisher
+        */
     public void createPublisher(PublisherRequest publisherRequest, Transaction transaction){
 
         User user=new User();
@@ -214,6 +215,20 @@ public class PublisherBl {
         // Return object dashboardrequest for the method
         return dashboardRequest;
 
+    }
+
+    /*
+    GET (/languages) The user sees a combobox with languages ids and names.
+    */
+    public List<LanguagesRequest> getLanguages() {
+        List<Language> language = languageDao.LanguagesList();
+
+        List<LanguagesRequest> list = new ArrayList<LanguagesRequest>();
+        for (int i = 0; i < language.size(); i++){
+            LanguagesRequest languageRequest = new LanguagesRequest(language.get(i).getIdLanguage(),language.get(i).getLanguage());
+            list.add(languageRequest);
+        }
+        return list;
     }
 
 }

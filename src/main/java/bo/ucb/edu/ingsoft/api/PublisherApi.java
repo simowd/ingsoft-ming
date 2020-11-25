@@ -59,4 +59,12 @@ public class PublisherApi {
             return publisherBl.PublisherDashboard(idPublisher);
 
     }
+
+    /*
+    GET (/languages) The user sees a combobox with languages ids and names.
+    */
+    @RequestMapping(value = "ming/v1/languages", method = RequestMethod.GET)
+    public List<LanguagesRequest> getLanguages () {
+        return publisherBl.getLanguages();
+    }
 }
