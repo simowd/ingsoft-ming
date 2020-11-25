@@ -4,10 +4,10 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "username": "Admin",
-  "email": "electronic.arts@ea.com",
-  "paypal": "eabusiness@gmail.com",
-  "publisher": "Electronic Arts",
+  "username": "ELJOJOS",
+  "email": "jojos@washin.com",
+  "paypal": "quibo@gmail.com",
+  "publisher": "Huachimingos",
   "idCountry": 8,
   "password": "qwertyuiop"
 }
@@ -19,7 +19,7 @@ Accept: application/json
 
 ###
 #The admin deletes a publisher account
-DELETE http://localhost:8080/ming/v1/publisher/7
+DELETE http://localhost:8080/ming/v1/publisher/11
 Accept: application/json
 ###
 

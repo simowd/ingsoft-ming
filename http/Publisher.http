@@ -31,7 +31,7 @@ Content-Type: application/json
 
 {
   "idEsrb": 4,
-  "title": "Grand Theft Auto V",
+  "title": "Brand Theft Auto 6",
   "game_description": "Grand Theft Auto V es un videojuego de acción-aventura de mundo abierto desarrollado por el estudio Rockstar North y distribuido por Rockstar Games. ",
   "size": "85GB",
   "players": 1,
@@ -62,7 +62,7 @@ Content-Type: application/json
   "languageGames": [1,2],
   "genreGames" : [1,2],
   "price": 59.99,
-  "sale": 0
+  "sale": 20
 
 }
 

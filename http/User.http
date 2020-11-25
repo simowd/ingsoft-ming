@@ -14,7 +14,7 @@ Content-Type: application/json
 
 ###
 #The user sees his profile info
-GET http://localhost:8080/ming/v1/users/18
+GET http://localhost:8080/ming/v1/users/1
 Accept: application/json
 
 ###
