@@ -83,4 +83,12 @@ public class PublisherApi {
     public List<EsrbRequest> getEsrb () {
         return publisherBl.getEsrb();
     }
+
+    /*
+    GET (/directx) The user sees a combobox with directx ids and names.
+    */
+    @RequestMapping(value = "ming/v1/directx", method = RequestMethod.GET)
+    public List<DirectXRequest> getDirectX () {
+        return publisherBl.getDirectX();
+    }
 }

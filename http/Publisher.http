@@ -132,3 +132,8 @@ Accept: application/json
 #The user sees a combobox with esrb ids and names
 GET http://localhost:8080/ming/v1/esrb
 Accept: application/json
+
+###
+#The user sees a combobox with directx ids and names
+GET http://localhost:8080/ming/v1/directx
+Accept: application/json
