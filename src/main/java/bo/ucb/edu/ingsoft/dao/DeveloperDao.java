@@ -11,22 +11,22 @@ import java.util.List;
 public interface DeveloperDao {
 
     //Create developer
-    public void createDeveloper(Developer developer);
+     void createDeveloper(Developer developer);
 
     // Finds the developer by its id
-    public Developer findByIdDeveloper(Integer idDeveloper);
+     Developer findByIdDeveloper(Integer idDeveloper);
 
     // Get developer by publisher
-    public List<Integer> findByPublisher(Integer idPublisher);
+     List<Integer> findByPublisher(Integer idPublisher);
 
 
     //get last id in developers
-    public Integer getLastInsertId();
+     Integer getLastInsertId();
     // Updates the developer info
-    public void updateDeveloper(Developer developer);
+     void updateDeveloper(Developer developer);
 
     // Finds the developer by its name
-    public Integer findBydeveloperName(String developer);
+     Integer findBydeveloperName(String developer);
 
 
 

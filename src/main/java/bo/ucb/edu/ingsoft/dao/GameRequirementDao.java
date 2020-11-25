@@ -12,13 +12,13 @@ import java.util.List;
 public interface GameRequirementDao {
 
     //Inserts a requirements into a game_requirements.
-    public void createGameRequirement(GameRequirements gameRequirements);
+     void createGameRequirement(GameRequirements gameRequirements);
 
     //finds the requirements used by a game
-    public List<GameRequirements> findByIdGamesRequirements(Integer idGame);
+     List<GameRequirements> findByIdGamesRequirements(Integer idGame);
     //updates directx per game
-    public void deleteOldsRequirements(List<Integer> idGameRequirement);
+     void deleteOldsRequirements(List<Integer> idGameRequirement);
 
-    public void changeStatus(Integer idGameRequirement);
+     void changeStatus(Integer idGameRequirement);
 
 }

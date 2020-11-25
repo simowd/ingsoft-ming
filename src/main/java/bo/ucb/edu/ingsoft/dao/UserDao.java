@@ -9,45 +9,45 @@ import java.util.List;
 @Mapper
 public interface UserDao {
     //Create new publisher;
-    public void createPublisher(User user);
+     void createPublisher(User user);
 
     //Get publisher data
-    public User findByUserId(Integer idUser);
+     User findByUserId(Integer idUser);
 
     //Update publisher data;
-    public void updateUser(User user);
+     void updateUser(User user);
 
     //Get publisher mail
-    public User publisherMail(Integer idUser);
+     User publisherMail(Integer idUser);
 
     //Get publisher list (id_user, email)
-    public List<User> listUserMails();
+     List<User> listUserMails();
 
     //Create new user
-    public void userSignUp(User user);
+     void userSignUp(User user);
 
     //Get User Profile Info
-    public User userProfileInfo(Integer idUser);
+     User userProfileInfo(Integer idUser);
 
     //Get User Profile Info for Update
-    public User userInfo(Integer idUser);
+     User userInfo(Integer idUser);
 
     //Get User Profile Password for Update
-    public User userPassword(Integer idUser);
+     User userPassword(Integer idUser);
 
     //Get Countries ids for a group of users
-    public List<Integer> findUsersCountries(List<Integer> idUser);
+     List<Integer> findUsersCountries(List<Integer> idUser);
 
     //Update User's Info
-    public void updateUserInfo(User user);
+     void updateUserInfo(User user);
 
     //Update User's Password
-    public void updateUserPassword(@Param("idUser") Integer idUser, @Param("newPassword") String newPassword);
+     void updateUserPassword(@Param("idUser") Integer idUser, @Param("newPassword") String newPassword);
 
     //Get last id in user
-    public Integer getLastInsertId();
+     Integer getLastInsertId();
 
     //Delete user publisher
-    public void deleteUserPublisher(Integer idUser);
+     void deleteUserPublisher(Integer idUser);
 
 }

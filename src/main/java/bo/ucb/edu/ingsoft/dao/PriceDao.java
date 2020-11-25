@@ -8,15 +8,15 @@ import java.util.List;
 @Mapper
 public interface PriceDao {
     // Get Price data
-    public List<Price> findByIdGame(List<Integer> idGame);
+     List<Price> findByIdGame(List<Integer> idGame);
 
     //Creete Game Price
-    public void createPrice(Price price);
+     void createPrice(Price price);
 
     //Update Game Price
-    public void updatePrice(Price price);
+     void updatePrice(Price price);
 
     //Find Price by Id game
-    public Price findById(Integer idGame);
+     Price findById(Integer idGame);
 
 }

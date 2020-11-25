@@ -10,23 +10,23 @@ import java.util.List;
 @Mapper
 public interface GenreDao {
     //Get Genre name for User Library
-    public List<Genre> genreLibrary (List<Integer> idGame);
+     List<Genre> genreLibrary (List<Integer> idGame);
 
     //Create genres in a game
-    public void createGenreGame(GenreGame genreGame);
+     void createGenreGame(GenreGame genreGame);
 
     //Get Genre name for one Game
-    public List<String> gameGenre (Integer idGame);
+     List<String> gameGenre (Integer idGame);
 
     //Find name of genre by Id
-    public List<GenreGame>  findByIdGamesGenre(Integer idGame);
+     List<GenreGame>  findByIdGamesGenre(Integer idGame);
 
     //Delete genres in a game
-    public void deleteOldsGenreDao(List<Integer> idGameGenre);
+     void deleteOldsGenreDao(List<Integer> idGameGenre);
 
-    public void changeStatus(Integer idGenreGame);
+     void changeStatus(Integer idGenreGame);
 
     //Get a list of genres
-    public List<Genre> GenresList();
+     List<Genre> GenresList();
 
 }
