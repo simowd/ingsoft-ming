@@ -25,9 +25,10 @@ public class PublisherBl {
     private PhotoDao photoDao;
     private CountryDao countryDao;
     private LanguageDao languageDao;
+    private GenreDao genreDao;
 
     @Autowired
-    public PublisherBl(PublisherDao publisherDao, UserDao userDao, TransactionDao transactionDao, OrderDao orderDao, GameDao gameDao, DeveloperDao developerDao, PriceDao priceDao, PhotoDao photoDao, CountryDao countryDao, LanguageDao languageDao) {
+    public PublisherBl(PublisherDao publisherDao, UserDao userDao, TransactionDao transactionDao, OrderDao orderDao, GameDao gameDao, DeveloperDao developerDao, PriceDao priceDao, PhotoDao photoDao, CountryDao countryDao, LanguageDao languageDao, GenreDao genreDao) {
         this.publisherDao = publisherDao;
         this.userDao = userDao;
         this.transactionDao = transactionDao;
@@ -38,11 +39,12 @@ public class PublisherBl {
         this.photoDao = photoDao;
         this.countryDao = countryDao;
         this.languageDao = languageDao;
+        this.genreDao = genreDao;
     }
 
     /*
-            POST (/publisher) The admin create a new publisher
-        */
+        POST (/publisher) The admin create a new publisher
+    */
     public void createPublisher(PublisherRequest publisherRequest, Transaction transaction){
 
         User user=new User();
@@ -227,6 +229,20 @@ public class PublisherBl {
         for (int i = 0; i < language.size(); i++){
             LanguagesRequest languageRequest = new LanguagesRequest(language.get(i).getIdLanguage(),language.get(i).getLanguage());
             list.add(languageRequest);
+        }
+        return list;
+    }
+
+    /*
+    GET (/genres) The user sees a combobox with genres ids and names.
+    */
+    public List<GenresRequest> getGenres() {
+        List<Genre> genre = genreDao.GenresList();
+
+        List<GenresRequest> list = new ArrayList<GenresRequest>();
+        for (int i = 0; i < genre.size(); i++){
+            GenresRequest genreRequest = new GenresRequest(genre.get(i).getIdGenre(),genre.get(i).getGenre());
+            list.add(genreRequest);
         }
         return list;
     }

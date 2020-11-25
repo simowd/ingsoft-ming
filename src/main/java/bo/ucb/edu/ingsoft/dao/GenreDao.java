@@ -2,6 +2,7 @@ package bo.ucb.edu.ingsoft.dao;
 
 import bo.ucb.edu.ingsoft.models.Genre;
 import bo.ucb.edu.ingsoft.models.GenreGame;
+import bo.ucb.edu.ingsoft.models.Language;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -25,6 +26,7 @@ public interface GenreDao {
 
     public void changeStatus(Integer idGenreGame);
 
-
+    //Get a list of genres
+    public List<Genre> GenresList();
 
 }

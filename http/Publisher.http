@@ -123,6 +123,7 @@ Accept: application/json
 GET http://localhost:8080/ming/v1/languages
 Accept: application/json
 
-
-
-
+###
+#The user sees a combobox with genres ids and names
+GET http://localhost:8080/ming/v1/genres
+Accept: application/json
