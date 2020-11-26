@@ -27,9 +27,10 @@ public class PublisherBl {
     private LanguageDao languageDao;
     private GenreDao genreDao;
     private EsrbDao esrbDao;
+    private DirectXDao directXDao;
 
     @Autowired
-    public PublisherBl(PublisherDao publisherDao, UserDao userDao, TransactionDao transactionDao, OrderDao orderDao, GameDao gameDao, DeveloperDao developerDao, PriceDao priceDao, PhotoDao photoDao, CountryDao countryDao, LanguageDao languageDao, GenreDao genreDao, EsrbDao esrbDao) {
+    public PublisherBl(PublisherDao publisherDao, UserDao userDao, TransactionDao transactionDao, OrderDao orderDao, GameDao gameDao, DeveloperDao developerDao, PriceDao priceDao, PhotoDao photoDao, CountryDao countryDao, LanguageDao languageDao, GenreDao genreDao, EsrbDao esrbDao, DirectXDao directXDao) {
         this.publisherDao = publisherDao;
         this.userDao = userDao;
         this.transactionDao = transactionDao;
@@ -42,6 +43,7 @@ public class PublisherBl {
         this.languageDao = languageDao;
         this.genreDao = genreDao;
         this.esrbDao = esrbDao;
+        this.directXDao = directXDao;
     }
 
     /*
@@ -277,6 +279,20 @@ public class PublisherBl {
         for (int i = 0; i < esrb.size(); i++){
             EsrbRequest esrbRequest = new EsrbRequest(esrb.get(i).getIdEsrb(),esrb.get(i).getEsrb());
             list.add(esrbRequest);
+        }
+        return list;
+    }
+
+    /*
+    GET (/directx) The user sees a combobox with directx ids and names.
+    */
+    public List<DirectXRequest> getDirectX() {
+        List<Directx> directx = directXDao.DirectXList();
+
+        List<DirectXRequest> list = new ArrayList<DirectXRequest>();
+        for (int i = 0; i < directx.size(); i++){
+            DirectXRequest directXRequest = new DirectXRequest(directx.get(i).getIdDirectx(),directx.get(i).getVersion());
+            list.add(directXRequest);
         }
         return list;
     }
