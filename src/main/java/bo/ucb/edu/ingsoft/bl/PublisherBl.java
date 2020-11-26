@@ -125,8 +125,7 @@ public class PublisherBl {
 
 
 
-        System.out.println(publisher);
-        System.out.println(ids1);
+
         for(int i=0;i< ids1.size();i++){
             User mails=userDao.publisherMail(ids1.get(i));
             PublisherListRequest publisherListRequest=new PublisherListRequest();
