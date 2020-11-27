@@ -523,7 +523,7 @@ public class GameBl {
         gameDetailsRequest.setImages(photosAux);
         gameDetailsRequest.setDeveloper(developer.getDeveloper());
         gameDetailsRequest.setPlayers(game.getPlayers());
-        gameDetailsRequest.setReleaseDate(game.getReleaseDate());
+        gameDetailsRequest.setReleaseDate(game.getReleaseDate().toString());
         gameDetailsRequest.setGameRequirements(gameRequirements);
         gameDetailsRequest.setColor(game.getColor());
         gameDetailsRequest.setHighlighted(game.getHighlight());

@@ -40,7 +40,7 @@ public class StoreApi {
     /*
     GET (/store/games/{gameId}) Returns all of the important information a game has.
     */
-    @RequestMapping(value = "/ming/store/games/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/ming/v1/store/games/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public GameDetailsRequest getGameInformation(@PathVariable("id") Integer gameId) {
         return gameBl.getGameInformation(gameId);
     }
