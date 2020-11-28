@@ -307,8 +307,8 @@ INSERT INTO genres (genre,status,tx_id,tx_host,tx_user_id,tx_date) VALUES('Depor
 -- Table operating_system
 
 INSERT INTO operating_system (operating_system,logo_path,status,tx_id,tx_host,tx_user_id,tx_date) VALUES ('Windows', 'https://www.flaticon.com/svg/static/icons/svg/732/732076.svg',1,LAST_INSERT_ID(),'192.168.1.10', 1, now());
-INSERT INTO operating_system (operating_system,logo_path,status,tx_id,tx_host,tx_user_id,tx_date) VALUES ('Linux', 'https://www.flaticon.com/svg/static/icons/svg/731/731985.svg',1,LAST_INSERT_ID(),'192.168.1.10', 1, now());
-INSERT INTO operating_system (operating_system,logo_path,status,tx_id,tx_host,tx_user_id,tx_date) VALUES ('MacOS', 'https://www.flaticon.com/svg/static/icons/svg/121/121147.svg',1,LAST_INSERT_ID(),'192.168.1.10', 1, now());
+INSERT INTO operating_system (operating_system,logo_path,status,tx_id,tx_host,tx_user_id,tx_date) VALUES ('Linux', 'https://www.flaticon.com/svg/static/icons/svg/81/81270.svg',1,LAST_INSERT_ID(),'192.168.1.10', 1, now());
+INSERT INTO operating_system (operating_system,logo_path,status,tx_id,tx_host,tx_user_id,tx_date) VALUES ('MacOS', 'https://www.flaticon.com/svg/static/icons/svg/731/731985.svg',1,LAST_INSERT_ID(),'192.168.1.10', 1, now());
 
 -- Table users
 
