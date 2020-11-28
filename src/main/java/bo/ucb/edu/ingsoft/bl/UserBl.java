@@ -43,8 +43,8 @@ public class UserBl {
     /*
     POST (/users/signup) The user creates an account
     */
-    public UserRequest userSignUp(UserRequest userRequest, Transaction transaction){
-        User user=new User();
+    public UserRequest userSignUp(UserRequest userRequest, Transaction transaction) {
+        User user = new User();
 
         user.setName(userRequest.getName());
         user.setLastName(userRequest.getLastname());
@@ -58,7 +58,7 @@ public class UserBl {
         user.setTxDate(transaction.getTxDate());
         userDao.userSignUp(user);
 
-        Integer lastId=userDao.getLastInsertId();
+        Integer lastId = userDao.getLastInsertId();
         String tableUsers = "users";
         transactionDao.updateTablesTransaction(tableUsers, lastId, transaction.getTxId(), transaction.getTxHost(), transaction.getTxUserId(), transaction.getTxDate());
 
@@ -73,12 +73,12 @@ public class UserBl {
     public UserRequest userProfileInfo(Integer idUser) {
         // Getting user information by user id
         User user = userDao.userProfileInfo(idUser);
-        if(user == null || user.getStatus() == 0){
+        if (user == null || user.getStatus() == 0) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
         }
 
         Country country = countryDao.CountryName(user.getIdCountry());
-        if(country == null || country.getStatus() == 0){
+        if (country == null || country.getStatus() == 0) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
         }
 
@@ -92,7 +92,7 @@ public class UserBl {
     public void updateUserProfileInfo(Integer userId, UserRequest userRequest, Transaction transaction) {
         // Getting user information by user id
         User userInfo = userDao.userProfileInfo(userId);
-        if(userInfo == null || userInfo.getStatus() == 0){
+        if (userInfo == null || userInfo.getStatus() == 0) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
         }
         User user = new User();
@@ -115,7 +115,7 @@ public class UserBl {
     public void changeUserPassword(Integer userId, PasswordRequest passwordRequest, Transaction transaction) {
         // Getting user information by user id
         User user = userDao.userProfileInfo(userId);
-        if(user == null || user.getStatus() == 0){
+        if (user == null || user.getStatus() == 0) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
         }
 
@@ -138,20 +138,20 @@ public class UserBl {
     public List<LibraryRequest> getUserLibrary(Integer userId) {
         // Getting library information by user id
         User user = userDao.userProfileInfo(userId);
-        if(user == null || user.getStatus() == 0){
+        if (user == null || user.getStatus() == 0) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
         }
 
         List<LibraryRequest> list = new ArrayList<LibraryRequest>();
         List<Integer> userIdGames = libraryDao.UserGames(userId);
 
-        if (!userIdGames.isEmpty()){
-            for (int i = 0; i < userIdGames.size(); i++){
+        if (!userIdGames.isEmpty()) {
+            for (int i = 0; i < userIdGames.size(); i++) {
                 Game game = gameDao.getGameInfo(userIdGames.get(i));
                 List<String> genre = genreDao.gameGenre(userIdGames.get(i));
                 Photo photo = photoDao.findBannerbyGame(userIdGames.get(i));
                 String photo_path = null;
-                if (photo != null){
+                if (photo != null) {
                     photo_path = photo.getPhotoPath();
                 }
                 LibraryRequest libraryRequest = new LibraryRequest(userIdGames.get(i), game.getName(), genre, photo_path, game.getDownloadPath());
@@ -167,8 +167,8 @@ public class UserBl {
     public List<CountryRequest> getCountries() {
         List<Country> country = countryDao.CountriesList();
         List<CountryRequest> list = new ArrayList<CountryRequest>();
-        for (int i = 0; i < country.size(); i++){
-            CountryRequest countryRequest = new CountryRequest(country.get(i).getIdCountry(),country.get(i).getName());
+        for (int i = 0; i < country.size(); i++) {
+            CountryRequest countryRequest = new CountryRequest(country.get(i).getIdCountry(), country.get(i).getName());
             list.add(countryRequest);
         }
 
@@ -177,8 +177,18 @@ public class UserBl {
 
     public List<GameDetailsRequest> getCartByUser(Integer userId) {
         // Getting games from cart by user id
-        List<GameDetailsRequest> detailsRequests = orderDao.getCartUser(userId);
-
+        List<Game> gameDetails = orderDao.getCartUser(userId);
+        List<GameDetailsRequest> detailsRequests = new ArrayList<>();
+        gameDetails.forEach(game -> {
+            GameDetailsRequest request = new GameDetailsRequest();
+            request.setId(game.getIdGame());
+            request.setTitle(game.getName());
+            request.setPlayers(game.getPlayers());
+            request.setReleaseDate(game.getReleaseDate());
+            Price price = orderDao.getGamePriceById(game.getIdGame());
+            request.setPrice(price.getPrice());
+            detailsRequests.add(request);
+        });
         // Print cart details information
         LOGGER.info(detailsRequests.toString());
 
@@ -257,7 +267,7 @@ public class UserBl {
         // Gets rows from order details
         List<Integer> integerList = orderDao.getOrderDetailGameByUser(gameId, userId);
 
-        if (integerList.size() > 0){
+        if (integerList.size() > 0) {
             // Setting status to removed from cart. This is a logical deletion
             integerList.forEach(integer -> orderDao.updateOrder(2, integer));
 
@@ -271,9 +281,10 @@ public class UserBl {
 
     }
 
-    public List<GameDetailsRequest> purchaseGamesCart(Integer userId, Transaction transaction) {
+    public List<Game> purchaseGamesCart(Integer userId, Transaction transaction) {
         // Gets all games on cart by user id
-        List<GameDetailsRequest> detailsRequests = orderDao.getCartUser(userId);
+
+        List<Game> detailsRequests = orderDao.getCartUser(userId);
 
         // Warn what games are in there
         LOGGER.warn(detailsRequests.toString());

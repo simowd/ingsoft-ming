@@ -1,6 +1,5 @@
 package bo.ucb.edu.ingsoft.dao;
 
-import bo.ucb.edu.ingsoft.dto.GameDetailsRequest;
 import bo.ucb.edu.ingsoft.models.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -43,7 +42,7 @@ public interface OrderDao {
     public List<Orders> getOrdersUser(Integer userIdCart);
 
     // Get orders by user
-    public List<GameDetailsRequest> getCartUser(Integer userIdCart);
+    public List<Game> getCartUser(Integer userIdCart);
 
     // Update status order with user an order id
     public void updateOrder(Integer statusUpdate, Integer idOrder);
@@ -54,4 +53,5 @@ public interface OrderDao {
     // Returns id orders by user
     public List<Integer> getOrderDetailByUser(Integer userId);
 
+    public Price getGamePriceById(Integer gameId);
 }

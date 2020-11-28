@@ -165,13 +165,13 @@
         )
     </insert>
 
-    <select id="getCartUser" resultType="bo.ucb.edu.ingsoft.dto.GameDetailsRequest">
+    <select id="getCartUser" resultType="bo.ucb.edu.ingsoft.models.Game">
         SELECT
-        c.id_game as id,
-        c.name as title,
+        c.id_game as idGame,
+        c.name as name,
         c.players as players,
-        c.release_date as releaseDate,
-        b.price as price
+        c.release_date as releaseDate
+--         ,b.price as price
         FROM orders a,
             order_details b,
             games c
@@ -230,4 +230,23 @@
         a.id_user = #{userId} AND
         a.status = 0
     </select>
+    <select id="getGamePriceById" resultType="bo.ucb.edu.ingsoft.models.Price">
+        SELECT
+        id_price as idPrice,
+        id_game as idGame,
+        price,
+        date,
+        sale,
+        status,
+        tx_id as txId,
+        tx_host as txHost,
+        tx_user_id as txUserId,
+        tx_date as txDate
+        FROM
+        price
+        WHERE
+        id_game = #{gameId} AND
+        status = 1
+    </select>
+
 </mapper>

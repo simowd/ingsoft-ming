@@ -1,7 +1,6 @@
 package bo.ucb.edu.ingsoft.dto;
 
 import bo.ucb.edu.ingsoft.models.Esrb;
-import bo.ucb.edu.ingsoft.models.GameRequirements;
 import bo.ucb.edu.ingsoft.models.GameRequirementsHelper;
 import bo.ucb.edu.ingsoft.models.OperatingSystem;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -22,7 +21,7 @@ public class GameDetailsRequest {
     private List<String> genres;
     private String developer;
     private Integer players;
-    private String releaseDate;
+    private Date releaseDate;
     private List<GameRequirementsHelper> gameRequirements;
     private String color;
     private Integer highlighted;
@@ -57,7 +56,7 @@ public class GameDetailsRequest {
                 '}';
     }
 
-    public GameDetailsRequest(Integer id, String title, ArrayList<String> language, String game_description, String size, Esrb esrb, List<String> images, List<String> genres, String developer, Integer players, String releaseDate, List<GameRequirementsHelper> gameRequirements, String color, Integer highlighted, String download_path, Integer status, List<OperatingSystem> operating_systems, Double sale, Double price) {
+    public GameDetailsRequest(Integer id, String title, ArrayList<String> language, String game_description, String size, Esrb esrb, List<String> images, List<String> genres, String developer, Integer players, Date releaseDate, List<GameRequirementsHelper> gameRequirements, String color, Integer highlighted, String download_path, Integer status, List<OperatingSystem> operating_systems, Double sale, Double price) {
         this.id = id;
         this.title = title;
         this.language = language;
@@ -162,11 +161,11 @@ public class GameDetailsRequest {
         this.players = players;
     }
 
-    public String getReleaseDate() {
+    public Date getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(String releaseDate) {
+    public void setReleaseDate(Date releaseDate) {
         this.releaseDate = releaseDate;
     }
 
