@@ -49,10 +49,10 @@ public class PublisherBl {
     /*
         POST (/publisher) The admin create a new publisher
     */
-    public void createPublisher(PublisherRequest publisherRequest, Transaction transaction){
+    public void createPublisher(PublisherRequest publisherRequest, Transaction transaction) {
 
-        User user=new User();
-        Publisher publisher=new Publisher();
+        User user = new User();
+        Publisher publisher = new Publisher();
 
         // Insert data in user table
         user.setIdCountry(publisherRequest.getIdCountry());
@@ -66,7 +66,7 @@ public class PublisherBl {
         userDao.createPublisher(user);
 
         // Insert data in publisher table
-        Integer lastId=userDao.getLastInsertId();
+        Integer lastId = userDao.getLastInsertId();
         publisher.setIdUser(lastId);
         publisher.setPaypalMail(publisherRequest.getPaypal());
         publisher.setPublisher(publisherRequest.getPublisher());
@@ -76,17 +76,18 @@ public class PublisherBl {
         publisher.setTxDate(transaction.getTxDate());
         publisherDao.createPublisher(publisher);
     }
+
     /*
       GET (/publisher/{id}) shows publisher data
     */
-    public PublisherRequest findByPublisherId (Integer idUser){
+    public PublisherRequest findByPublisherId(Integer idUser) {
 
-        PublisherRequest publisherRequest=new PublisherRequest();
-        User user= userDao.findByUserId(idUser);
-        if(user.getUserType() != 1 || user.getStatus()==0){
+        PublisherRequest publisherRequest = new PublisherRequest();
+        User user = userDao.findByUserId(idUser);
+        if (user.getUserType() != 1 || user.getStatus() == 0) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
         }
-        Publisher publisher=publisherDao.findByPublisherId(idUser);
+        Publisher publisher = publisherDao.findByPublisherId(idUser);
 
         publisherRequest.setUsername(user.getUserName());
         publisherRequest.setEmail(user.getEmail());
@@ -98,39 +99,38 @@ public class PublisherBl {
 
         return publisherRequest;
     }
+
     /*
        GET (/publisher) The admin sees a publisher list
     */
-    public List<PublisherListRequest> getPublisherList(Integer page, String query){
+    public List<PublisherListRequest> getPublisherList(Integer page, String query) {
 
         Integer recordsPerPage = 10;
         Integer offsetValue = (page - 1) * recordsPerPage;
 
-        if(query != null){
-            query = "%" + query.toLowerCase()+ "%";
+        if (query != null) {
+            query = "%" + query.toLowerCase() + "%";
         }
 
-        List<PublisherListRequest> publisherListRequests =new ArrayList<PublisherListRequest>();
-        List<User> user=userDao.listUserMails();
+        List<PublisherListRequest> publisherListRequests = new ArrayList<PublisherListRequest>();
+        List<User> user = userDao.listUserMails();
 
         List<Integer> ids = new ArrayList<Integer>();
-        for(User users : user){
+        for (User users : user) {
             ids.add(users.getIdUser());
         }
 
-        List<Publisher> publisher=publisherDao.listPublisher(recordsPerPage,query,ids,offsetValue);
+        List<Publisher> publisher = publisherDao.listPublisher(recordsPerPage, query, ids, offsetValue);
 
         List<Integer> ids1 = new ArrayList<Integer>();
-        for(Publisher publishers : publisher){
+        for (Publisher publishers : publisher) {
             ids1.add(publishers.getIdUser());
         }
 
 
-
-
-        for(int i=0;i< ids1.size();i++){
-            User mails=userDao.publisherMail(ids1.get(i));
-            PublisherListRequest publisherListRequest=new PublisherListRequest();
+        for (int i = 0; i < ids1.size(); i++) {
+            User mails = userDao.publisherMail(ids1.get(i));
+            PublisherListRequest publisherListRequest = new PublisherListRequest();
 
             publisherListRequest.setIdUser(publisher.get(i).getIdUser());
             publisherListRequest.setEmail(mails.getEmail());
@@ -141,25 +141,26 @@ public class PublisherBl {
         }
         return publisherListRequests;
     }
+
     /*
         DELETE (/publisher/{id}) The admin delete a publisher account
     */
-    public void deletePublisher (Integer idUser, Transaction transaction){
-      userDao.deleteUserPublisher(idUser);
-      publisherDao.deletePublisher(idUser);
-      String users = "users", publishers="publishers";
-      transactionDao.updateTablesTransaction(users,idUser, transactionDao.getLastInsertId(), transaction.getTxHost(), transaction.getTxUserId(), transaction.getTxDate());
-      transactionDao.updateTablesTransaction(publishers,idUser, transactionDao.getLastInsertId(), transaction.getTxHost(), transaction.getTxUserId(), transaction.getTxDate());
+    public void deletePublisher(Integer idUser, Transaction transaction) {
+        userDao.deleteUserPublisher(idUser);
+        publisherDao.deletePublisher(idUser);
+        String users = "users", publishers = "publishers";
+        transactionDao.updateTablesTransaction(users, idUser, transactionDao.getLastInsertId(), transaction.getTxHost(), transaction.getTxUserId(), transaction.getTxDate());
+        transactionDao.updateTablesTransaction(publishers, idUser, transactionDao.getLastInsertId(), transaction.getTxHost(), transaction.getTxUserId(), transaction.getTxDate());
     }
 
     /*
        PUT (/publisher/{id}) The publisher can update his account
    */
-    public PublisherRequest updatePublisher(PublisherRequest publisherRequest, Transaction transaction, Integer userId){
-        User user=new User();
-        Publisher publisher=new Publisher();
-        User user1= userDao.findByUserId(userId);
-        if(user1.getUserType() != 1 || user1.getStatus()==0){
+    public PublisherRequest updatePublisher(PublisherRequest publisherRequest, Transaction transaction, Integer userId) {
+        User user = new User();
+        Publisher publisher = new Publisher();
+        User user1 = userDao.findByUserId(userId);
+        if (user1.getUserType() != 1 || user1.getStatus() == 0) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
         }
         user.setIdUser(userId);
@@ -172,9 +173,9 @@ public class PublisherBl {
         user.setTxUserId(transaction.getTxUserId());
         user.setTxDate(transaction.getTxDate());
 
-        String oldPassword =user.getPassword();
-        String newPassword =publisherRequest.getRepeat_password();
-        if((oldPassword).equals(newPassword)){
+        String oldPassword = user.getPassword();
+        String newPassword = publisherRequest.getRepeat_password();
+        if ((oldPassword).equals(newPassword)) {
             userDao.updateUser(user);
             publisher.setIdUser(userId);
             publisher.setPaypalMail(publisherRequest.getPaypal());
@@ -186,47 +187,48 @@ public class PublisherBl {
 
             publisherDao.updatePublisher(publisher);
 
-        }else{
+        } else {
             throw new ResponseStatusException(
                     HttpStatus.UNAUTHORIZED, "Wrong Password");
         }
-        String users = "users", publishers="publishers";
-        transactionDao.updateTablesTransaction(users,userId, transactionDao.getLastInsertId(), transaction.getTxHost(), transaction.getTxUserId(), transaction.getTxDate());
-        transactionDao.updateTablesTransaction(publishers,userId, transactionDao.getLastInsertId(), transaction.getTxHost(), transaction.getTxUserId(), transaction.getTxDate());
+        String users = "users", publishers = "publishers";
+        transactionDao.updateTablesTransaction(users, userId, transactionDao.getLastInsertId(), transaction.getTxHost(), transaction.getTxUserId(), transaction.getTxDate());
+        transactionDao.updateTablesTransaction(publishers, userId, transactionDao.getLastInsertId(), transaction.getTxHost(), transaction.getTxUserId(), transaction.getTxDate());
         return publisherRequest;
 
     }
+
     // Get the publisher statistics
-    public DashboardRequest PublisherDashboard(Integer idUser){
+    public DashboardRequest PublisherDashboard(Integer idUser) {
         // Publisher Name, Mail and Paypalmail
-        Publisher pubId=publisherDao.findByPublisherId(idUser);
-        User mail=userDao.publisherMail(idUser);
+        Publisher pubId = publisherDao.findByPublisherId(idUser);
+        User mail = userDao.publisherMail(idUser);
         // Publisher's developers ids
-        List<Integer> developer=developerDao.findByPublisher(pubId.getIdPublisher());
+        List<Integer> developer = developerDao.findByPublisher(pubId.getIdPublisher());
 
         //Publisher games ids
-        List<Integer> game=gameDao.findGamebyPublisher(developer);
+        List<Integer> game = gameDao.findGamebyPublisher(developer);
         // Publisher total sells and total earnings
-        Integer totalSells=orderDao.gameSellsPublisher(game);
-        Double totalEarnings=orderDao.gameEarnings(game);
+        Integer totalSells = orderDao.gameSellsPublisher(game);
+        Double totalEarnings = orderDao.gameEarnings(game);
         // Month list
-        List<Integer> months=new ArrayList<>();
-        for (int i=1;i<=12;i++){
+        List<Integer> months = new ArrayList<>();
+        for (int i = 1; i <= 12; i++) {
             months.add(i);
         }
         // Monthly statistics
-        List<monthlyDashboard> monthlyEarnings=orderDao.gameEarningsMonth(game,months);
+        List<monthlyDashboard> monthlyEarnings = orderDao.gameEarningsMonth(game, months);
         // Countries ids
-        List<Integer> countries=orderDao.gameOrderCountry(game);
+        List<Integer> countries = orderDao.gameOrderCountry(game);
         // Country statistics
-        List<countryDashboard> totalCountrySells=orderDao.gameOrderCountryCount(game,countries);
+        List<countryDashboard> totalCountrySells = orderDao.gameOrderCountryCount(game, countries);
 
         // Games statistics
-        List<gameDashboard> gameSells=orderDao.gameSellsGame(game);
+        List<gameDashboard> gameSells = orderDao.gameSellsGame(game);
 
 
         // Call dashboardrequest dto
-        DashboardRequest dashboardRequest=new DashboardRequest();
+        DashboardRequest dashboardRequest = new DashboardRequest();
         // Set dashboard values
         dashboardRequest.setPublisher(pubId.getPublisher());
         dashboardRequest.setEmail(mail.getEmail());
@@ -248,8 +250,8 @@ public class PublisherBl {
         List<Language> language = languageDao.LanguagesList();
 
         List<LanguagesRequest> list = new ArrayList<LanguagesRequest>();
-        for (int i = 0; i < language.size(); i++){
-            LanguagesRequest languageRequest = new LanguagesRequest(language.get(i).getIdLanguage(),language.get(i).getLanguage());
+        for (int i = 0; i < language.size(); i++) {
+            LanguagesRequest languageRequest = new LanguagesRequest(language.get(i).getIdLanguage(), language.get(i).getLanguage());
             list.add(languageRequest);
         }
         return list;
@@ -262,8 +264,8 @@ public class PublisherBl {
         List<Genre> genre = genreDao.GenresList();
 
         List<GenresRequest> list = new ArrayList<GenresRequest>();
-        for (int i = 0; i < genre.size(); i++){
-            GenresRequest genreRequest = new GenresRequest(genre.get(i).getIdGenre(),genre.get(i).getGenre());
+        for (int i = 0; i < genre.size(); i++) {
+            GenresRequest genreRequest = new GenresRequest(genre.get(i).getIdGenre(), genre.get(i).getGenre());
             list.add(genreRequest);
         }
         return list;
@@ -276,8 +278,8 @@ public class PublisherBl {
         List<Esrb> esrb = esrbDao.EsrbList();
 
         List<EsrbRequest> list = new ArrayList<EsrbRequest>();
-        for (int i = 0; i < esrb.size(); i++){
-            EsrbRequest esrbRequest = new EsrbRequest(esrb.get(i).getIdEsrb(),esrb.get(i).getEsrb());
+        for (int i = 0; i < esrb.size(); i++) {
+            EsrbRequest esrbRequest = new EsrbRequest(esrb.get(i).getIdEsrb(), esrb.get(i).getEsrb());
             list.add(esrbRequest);
         }
         return list;
@@ -290,8 +292,8 @@ public class PublisherBl {
         List<Directx> directx = directXDao.DirectXList();
 
         List<DirectXRequest> list = new ArrayList<DirectXRequest>();
-        for (int i = 0; i < directx.size(); i++){
-            DirectXRequest directXRequest = new DirectXRequest(directx.get(i).getIdDirectx(),directx.get(i).getVersion());
+        for (int i = 0; i < directx.size(); i++) {
+            DirectXRequest directXRequest = new DirectXRequest(directx.get(i).getIdDirectx(), directx.get(i).getVersion());
             list.add(directXRequest);
         }
         return list;

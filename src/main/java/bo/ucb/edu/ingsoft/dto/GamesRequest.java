@@ -2,9 +2,6 @@ package bo.ucb.edu.ingsoft.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-import java.sql.Timestamp;
-import java.util.Date;
-
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class GamesRequest {
     private String id;

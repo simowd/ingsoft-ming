@@ -19,7 +19,7 @@ public interface PublisherDao {
     public void updatePublisher(Publisher publisher);
 
     //Get publisher list
-    public List<Publisher> listPublisher(@Param("a") Integer page, @Param("b") String query ,@Param("c") List<Integer> idUser, @Param("d") Integer offset);
+    public List<Publisher> listPublisher(@Param("a") Integer page, @Param("b") String query, @Param("c") List<Integer> idUser, @Param("d") Integer offset);
 
     //delete  publisher
     public void deletePublisher(Integer idUser);

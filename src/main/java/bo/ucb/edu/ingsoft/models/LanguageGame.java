@@ -1,6 +1,6 @@
 package bo.ucb.edu.ingsoft.models;
 
-public class LanguageGame extends Transactions{
+public class LanguageGame extends Transactions {
     private Integer idLanguageGame;
     private Integer idGame;
     private Integer idLanguage;

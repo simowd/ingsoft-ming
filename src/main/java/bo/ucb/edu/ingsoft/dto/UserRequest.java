@@ -15,7 +15,7 @@ public class UserRequest {
     private Integer id_country;
     private String password;
 
-    public UserRequest(){
+    public UserRequest() {
     }
 
     public UserRequest(String username, String alias, String email, String country, String photo_path) {

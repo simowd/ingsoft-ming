@@ -10,7 +10,6 @@ public class PublisherListRequest {
     private String publisher;
 
 
-
     public PublisherListRequest() {
     }
 

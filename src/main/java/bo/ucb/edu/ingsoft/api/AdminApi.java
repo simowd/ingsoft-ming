@@ -3,13 +3,15 @@ package bo.ucb.edu.ingsoft.api;
 import bo.ucb.edu.ingsoft.bl.GameBl;
 import bo.ucb.edu.ingsoft.bl.PublisherBl;
 import bo.ucb.edu.ingsoft.bl.TransactionBl;
-import bo.ucb.edu.ingsoft.dto.*;
+import bo.ucb.edu.ingsoft.dto.PublisherListRequest;
+import bo.ucb.edu.ingsoft.dto.PublisherRequest;
+import bo.ucb.edu.ingsoft.dto.SetHighlightRequest;
+import bo.ucb.edu.ingsoft.dto.Transaction;
 import bo.ucb.edu.ingsoft.util.TransactionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -31,9 +33,9 @@ public class AdminApi {
        POST (/publisher) The admin create a new publisher
     */
     @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE,
-            consumes = MediaType.APPLICATION_JSON_VALUE,value = "/ming/v1/publisher")
+            consumes = MediaType.APPLICATION_JSON_VALUE, value = "/ming/v1/publisher")
     @ResponseStatus(value = HttpStatus.OK)
-    public void createPublisher(@RequestBody PublisherRequest publisherRequest, HttpServletRequest request){
+    public void createPublisher(@RequestBody PublisherRequest publisherRequest, HttpServletRequest request) {
         Transaction transaction = TransactionUtil.createTransaction(request);
         transactionBl.createTransaction(transaction);
         publisherBl.createPublisher(publisherRequest, transaction);
@@ -42,30 +44,31 @@ public class AdminApi {
     /*
         GET (/publisher) The admin sees a publisher list
     */
-    @RequestMapping(value = "/ming/v1/publisher",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/ming/v1/publisher", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<PublisherListRequest> publisherList(@RequestParam Integer page, @RequestParam(required = false) String query) {
-            return publisherBl.getPublisherList(page ,query);
+        return publisherBl.getPublisherList(page, query);
     }
 
     /*
         DELETE (/publisher/{id}) The admin delete a publisher account
     */
-    @RequestMapping(value = "/ming/v1/publisher/{id}",method = RequestMethod.DELETE)
+    @RequestMapping(value = "/ming/v1/publisher/{id}", method = RequestMethod.DELETE)
     @ResponseStatus(value = HttpStatus.OK)
     public void deletePublisher(@PathVariable("id") Integer userId, HttpServletRequest request) {
-            Transaction transaction = TransactionUtil.createTransaction(request);
-            transactionBl.createTransaction(transaction);
-            publisherBl.deletePublisher(userId,transaction);
+        Transaction transaction = TransactionUtil.createTransaction(request);
+        transactionBl.createTransaction(transaction);
+        publisherBl.deletePublisher(userId, transaction);
     }
 
     /*
     PUT (/highlight/{gameId}) The selected game changes its highlight status
     */
     @ResponseStatus(value = HttpStatus.OK)
-    @RequestMapping(value = "/ming/v1/highlight/{id}",method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody void updatePublisher(@PathVariable("id") Integer gameId, @RequestBody SetHighlightRequest setHighlightRequest, HttpServletRequest request) {
-            Transaction transaction = TransactionUtil.createTransaction(request);
-            transactionBl.createTransaction(transaction);
-            gameBl.updateHighlight(setHighlightRequest,transaction,gameId);
+    @RequestMapping(value = "/ming/v1/highlight/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    void updatePublisher(@PathVariable("id") Integer gameId, @RequestBody SetHighlightRequest setHighlightRequest, HttpServletRequest request) {
+        Transaction transaction = TransactionUtil.createTransaction(request);
+        transactionBl.createTransaction(transaction);
+        gameBl.updateHighlight(setHighlightRequest, transaction, gameId);
     }
 }

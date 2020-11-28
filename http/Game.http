@@ -44,6 +44,7 @@ Content-Type: application/json
 
 ### Get information game /games/{id}
 GET http://localhost:8080/ming/store/games/3
+
 ###
 GET http://localhost:8080/ming/store/games/4
 Accept: application/json

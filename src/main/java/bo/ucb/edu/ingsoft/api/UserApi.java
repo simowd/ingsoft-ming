@@ -83,7 +83,7 @@ public class UserApi {
     GET (/countries) The user sees a combobox with countries ids and names.
     */
     @RequestMapping(value = "ming/v1/countries", method = RequestMethod.GET)
-    public List<CountryRequest> getCountries () {
+    public List<CountryRequest> getCountries() {
         return userBl.getCountries();
     }
 

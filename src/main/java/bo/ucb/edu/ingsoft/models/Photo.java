@@ -1,6 +1,6 @@
 package bo.ucb.edu.ingsoft.models;
 
-public class Photo  extends Transactions  {
+public class Photo extends Transactions {
     private Integer idPhoto;
     private Integer idGame;
     private String photoPath;

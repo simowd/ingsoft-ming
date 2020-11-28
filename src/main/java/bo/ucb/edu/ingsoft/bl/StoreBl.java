@@ -42,8 +42,8 @@ public class StoreBl {
         Integer recordsPerPage = 10;
         Integer offsetValue = (page - 1) * recordsPerPage;
 
-        if(query != null){
-            query = "%" + query.toLowerCase()+ "%";
+        if (query != null) {
+            query = "%" + query.toLowerCase() + "%";
         }
         GameHelper gameHelper = new GameHelper(recordsPerPage, offsetValue, query, highlight, latest, sale, publisher);
         List<Game> games = gameDao.findPage(gameHelper);
@@ -60,7 +60,7 @@ public class StoreBl {
                 Developer developer = developerDao.findByIdDeveloper(games.get(i).getIdDeveloper());
                 if (price != null && photo != null) {
                     //Create a desired object and then put it on the list
-                    GamesRequest gamesRequest = new GamesRequest(ids.get(i).toString(),games.get(i).getName(),games.get(i).getDescription(),developer.getDeveloper(),price.getPrice(),price.getSale(),photo.getPhotoPath(),games.get(i).getHighlight(),games.get(i).getReleaseDate().toString(),games.get(i).getColor());
+                    GamesRequest gamesRequest = new GamesRequest(ids.get(i).toString(), games.get(i).getName(), games.get(i).getDescription(), developer.getDeveloper(), price.getPrice(), price.getSale(), photo.getPhotoPath(), games.get(i).getHighlight(), games.get(i).getReleaseDate().toString(), games.get(i).getColor());
                     list.add(gamesRequest);
                 }
             }

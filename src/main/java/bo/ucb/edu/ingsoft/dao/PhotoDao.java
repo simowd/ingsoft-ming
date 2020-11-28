@@ -1,10 +1,8 @@
 package bo.ucb.edu.ingsoft.dao;
 
-import bo.ucb.edu.ingsoft.models.Game;
 import bo.ucb.edu.ingsoft.models.Photo;
 import org.apache.ibatis.annotations.Mapper;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Mapper
@@ -22,16 +20,16 @@ public interface PhotoDao {
     public Photo findBannerbyGame(Integer idGame);
 
     //Create Banner
-    public void createPhotoBanner (Photo photo);
+    public void createPhotoBanner(Photo photo);
 
     //Create Photo
-    public void createPhoto (Photo photo);
+    public void createPhoto(Photo photo);
 
     //Update Photo Banner
-    public void updatePhotoBanner (Photo photo);
+    public void updatePhotoBanner(Photo photo);
 
     //Update Photo
-    public void updatePhoto (Photo photo);
+    public void updatePhoto(Photo photo);
 
     //Find Photo by Id game
     public List<Integer> findByPhotos(Integer idGame);

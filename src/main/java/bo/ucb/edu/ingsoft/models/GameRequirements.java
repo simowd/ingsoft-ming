@@ -2,7 +2,7 @@ package bo.ucb.edu.ingsoft.models;
 
 import java.util.Date;
 
-public class GameRequirements extends Transactions{
+public class GameRequirements extends Transactions {
     private Integer idGameRequirement;
     private Integer idGame;
     private Integer idOperatingSystem;

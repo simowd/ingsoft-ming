@@ -34,7 +34,7 @@ public class StoreApi {
     */
     @RequestMapping(value = "/ming/v1/games", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<GamesRequest> getHomepage(@RequestParam Integer page, @RequestParam(required = false) String query, @RequestParam(required = false) Boolean highlight, @RequestParam(required = false) Boolean latest, @RequestParam(required = false) Boolean sale, @RequestParam(required = false) String publisher) {
-        return storeBl.getGames(page,query,highlight,latest,sale,publisher);
+        return storeBl.getGames(page, query, highlight, latest, sale, publisher);
     }
 
     /*

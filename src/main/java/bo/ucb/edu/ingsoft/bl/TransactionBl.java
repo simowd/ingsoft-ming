@@ -15,7 +15,7 @@ public class TransactionBl {
         this.transactionDao = transactionDao;
     }
 
-    public Transaction createTransaction (Transaction transaction) {
+    public Transaction createTransaction(Transaction transaction) {
         // Registramos la transacción en la Base de Datos
         this.transactionDao.create(transaction);
 

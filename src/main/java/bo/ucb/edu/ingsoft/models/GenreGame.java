@@ -1,6 +1,6 @@
 package bo.ucb.edu.ingsoft.models;
 
-public class GenreGame  extends Transactions {
+public class GenreGame extends Transactions {
 
     private Integer idGenreGame;
     private Integer idGame;

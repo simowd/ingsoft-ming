@@ -34,7 +34,7 @@ Content-Type: application/json
 
 ###
 #The user can edit his password
-PUT http://localhost:8080/ming/v1/users/20/password
+PUT http://localhost:8080/ming/v1/users/2/password
 Accept: application/json
 Content-Type: application/json
 

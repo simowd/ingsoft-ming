@@ -30,9 +30,9 @@ public class PublisherApi {
     /*
        GET (/publisher/{id}) shows publisher data
     */
-    @RequestMapping(value = "/ming/v1/publisher/{id}",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public PublisherRequest findById (@PathVariable("id") Integer userId) {
-            return publisherBl.findByPublisherId(userId);
+    @RequestMapping(value = "/ming/v1/publisher/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public PublisherRequest findById(@PathVariable("id") Integer userId) {
+        return publisherBl.findByPublisherId(userId);
 
     }
 
@@ -41,22 +41,22 @@ public class PublisherApi {
         PUT (/publisher/{id}) The publisher can update his account
     */
 
-    @RequestMapping(value = "/ming/v1/publisher/{id}",method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/ming/v1/publisher/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
-    public  void updatePublisher(@PathVariable("id") Integer userId,@RequestBody PublisherRequest publisherRequest, HttpServletRequest request) {
+    public void updatePublisher(@PathVariable("id") Integer userId, @RequestBody PublisherRequest publisherRequest, HttpServletRequest request) {
 
-            Transaction transaction = TransactionUtil.createTransaction(request);
-            transactionBl.createTransaction(transaction);
-            publisherBl.updatePublisher(publisherRequest,transaction,userId);
+        Transaction transaction = TransactionUtil.createTransaction(request);
+        transactionBl.createTransaction(transaction);
+        publisherBl.updatePublisher(publisherRequest, transaction, userId);
 
     }
 
 
-    @RequestMapping(value="/ming/publisher/{id}/dashboard", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public DashboardRequest PublisherDashboard(@PathVariable("id") Integer idPublisher){
+    @RequestMapping(value = "/ming/publisher/{id}/dashboard", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public DashboardRequest PublisherDashboard(@PathVariable("id") Integer idPublisher) {
 
 
-            return publisherBl.PublisherDashboard(idPublisher);
+        return publisherBl.PublisherDashboard(idPublisher);
 
     }
 
@@ -64,7 +64,7 @@ public class PublisherApi {
     GET (/languages) The user sees a combobox with languages ids and names.
     */
     @RequestMapping(value = "ming/v1/languages", method = RequestMethod.GET)
-    public List<LanguagesRequest> getLanguages () {
+    public List<LanguagesRequest> getLanguages() {
         return publisherBl.getLanguages();
     }
 
@@ -72,7 +72,7 @@ public class PublisherApi {
     GET (/languages) The user sees a combobox with languages ids and names.
     */
     @RequestMapping(value = "ming/v1/genres", method = RequestMethod.GET)
-    public List<GenresRequest> getGenres () {
+    public List<GenresRequest> getGenres() {
         return publisherBl.getGenres();
     }
 
@@ -80,7 +80,7 @@ public class PublisherApi {
     GET (/esrb) The user sees a combobox with esrb ids and names.
     */
     @RequestMapping(value = "ming/v1/esrb", method = RequestMethod.GET)
-    public List<EsrbRequest> getEsrb () {
+    public List<EsrbRequest> getEsrb() {
         return publisherBl.getEsrb();
     }
 
@@ -88,7 +88,7 @@ public class PublisherApi {
     GET (/directx) The user sees a combobox with directx ids and names.
     */
     @RequestMapping(value = "ming/v1/directx", method = RequestMethod.GET)
-    public List<DirectXRequest> getDirectX () {
+    public List<DirectXRequest> getDirectX() {
         return publisherBl.getDirectX();
     }
 }

@@ -3,7 +3,7 @@ package bo.ucb.edu.ingsoft.models;
 import java.sql.Timestamp;
 import java.util.Date;
 
-public class Game extends Transactions{
+public class Game extends Transactions {
     private Integer idGame;
     private Integer idEsrb;
     private Integer idDeveloper;

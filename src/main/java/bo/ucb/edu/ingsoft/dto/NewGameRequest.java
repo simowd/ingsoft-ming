@@ -4,7 +4,6 @@ import bo.ucb.edu.ingsoft.models.GameRequirements;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.sql.Timestamp;
-import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 
