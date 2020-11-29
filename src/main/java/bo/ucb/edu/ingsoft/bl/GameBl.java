@@ -17,7 +17,6 @@ import java.util.List;
 public class GameBl {
 
     private GameDao gameDao;
-    private TransactionDao transactionDao;
     private DeveloperDao developerDao;
     private EsrbDao esrbDao;
     private GamesDirectxDao gamesDirectxDao;
@@ -26,16 +25,14 @@ public class GameBl {
     private GenreDao genreDao;
     private PhotoDao photoDao;
     private PriceDao priceDao;
-    private UserDao userDao;
     private PublisherDao publisherDao;
     private GameRequirementDao gameRequirementDao;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GameBl.class);
 
     @Autowired
-    public GameBl(GameDao gameDao, TransactionDao transactionDao, DeveloperDao developerDao, EsrbDao esrbDao, GamesDirectxDao gamesDirectxDao, GamesLanguagesDao languagesDao, GamesOsDao gamesOsDao, GenreDao genreDao, PhotoDao photoDao, PriceDao priceDao, UserDao userDao, PublisherDao publisherDao, GameRequirementDao gameRequirementDao) {
+    public GameBl(GameDao gameDao, DeveloperDao developerDao, EsrbDao esrbDao, GamesDirectxDao gamesDirectxDao, GamesLanguagesDao languagesDao, GamesOsDao gamesOsDao, GenreDao genreDao, PhotoDao photoDao, PriceDao priceDao, PublisherDao publisherDao, GameRequirementDao gameRequirementDao) {
         this.gameDao = gameDao;
-        this.transactionDao = transactionDao;
         this.developerDao = developerDao;
         this.esrbDao = esrbDao;
         this.gamesDirectxDao = gamesDirectxDao;
@@ -44,7 +41,6 @@ public class GameBl {
         this.genreDao = genreDao;
         this.photoDao = photoDao;
         this.priceDao = priceDao;
-        this.userDao = userDao;
         this.publisherDao = publisherDao;
         this.gameRequirementDao = gameRequirementDao;
     }
@@ -53,7 +49,6 @@ public class GameBl {
     POST (/publisher/{id}/game) The publisher create a new game
     */
     public void createGame(NewGameRequest newGameRequest, Transaction transaction, Integer idPublisher) {
-
         Game game = new Game();
         Developer developer = new Developer();
         GameDirectx gameDirectx = new GameDirectx();
@@ -94,13 +89,12 @@ public class GameBl {
         game.setTxDate(transaction.getTxDate());
         gameDao.createGame(game);
 
-        List<Integer> directIds = new ArrayList<Integer>();
+        List<Integer> directIds = newGameRequest.getDirectx();
         Integer idGame = gameDao.getLastInsertId();
 
-        directIds = newGameRequest.getDirectx();
-        for (int i = 0; i < directIds.size(); i++) {
+        for (Integer directId : directIds) {
 
-            gameDirectx.setIdDirectx(directIds.get(i));
+            gameDirectx.setIdDirectx(directId);
             gameDirectx.setIdGame(idGame);
             gameDirectx.setTxId(transaction.getTxId());
             gameDirectx.setTxHost(transaction.getTxHost());
@@ -109,12 +103,10 @@ public class GameBl {
             gamesDirectxDao.createGameDirectx(gameDirectx);
         }
 
-        List<Integer> operatingSystemIds = new ArrayList<Integer>();
-        operatingSystemIds = newGameRequest.getOperatingSystem();
+        List<Integer> operatingSystemIds = newGameRequest.getOperatingSystem();
+        for (Integer operatingSystemId : operatingSystemIds) {
 
-        for (int i = 0; i < operatingSystemIds.size(); i++) {
-
-            gameOS.setIdOperatingSystem(operatingSystemIds.get(i));
+            gameOS.setIdOperatingSystem(operatingSystemId);
             gameOS.setIdGame(idGame);
             gameOS.setTxId(transaction.getTxId());
             gameOS.setTxHost(transaction.getTxHost());
@@ -123,11 +115,10 @@ public class GameBl {
             gamesOsDao.createGameOs(gameOS);
         }
 
-        List<Integer> languagesIds = new ArrayList<Integer>();
-        languagesIds = newGameRequest.getLanguageGames();
-        for (int i = 0; i < languagesIds.size(); i++) {
+        List<Integer> languagesIds = newGameRequest.getLanguageGames();
+        for (Integer languagesId : languagesIds) {
 
-            languageGame.setIdLanguage(languagesIds.get(i));
+            languageGame.setIdLanguage(languagesId);
             languageGame.setIdGame(idGame);
             languageGame.setTxId(transaction.getTxId());
             languageGame.setTxHost(transaction.getTxHost());
@@ -137,11 +128,10 @@ public class GameBl {
         }
 
 
-        List<Integer> genreIds = new ArrayList<Integer>();
-        genreIds = newGameRequest.getGenreGames();
-        for (int i = 0; i < genreIds.size(); i++) {
+        List<Integer> genreIds = newGameRequest.getGenreGames();
+        for (Integer genreId : genreIds) {
 
-            genreGame.setIdGenre(genreIds.get(i));
+            genreGame.setIdGenre(genreId);
             genreGame.setIdGame(idGame);
             genreGame.setTxId(transaction.getTxId());
             genreGame.setTxHost(transaction.getTxHost());
@@ -151,8 +141,7 @@ public class GameBl {
         }
 
 
-        List<String> imagesPath = new ArrayList<String>();
-        imagesPath = newGameRequest.getImages();
+        List<String> imagesPath = newGameRequest.getImages();
         for (int i = 0; i < imagesPath.size(); i++) {
 
             if (i == 0) {
@@ -209,7 +198,6 @@ public class GameBl {
     */
     public void updateGame(NewGameRequest newGameRequest, Transaction transaction, Integer idGame) {
         Game game = new Game();
-        Developer developer1 = new Developer();
         Developer developer = new Developer();
         GameDirectx gameDirectx = new GameDirectx();
         GameOS gameOS = new GameOS();
@@ -219,12 +207,12 @@ public class GameBl {
         Price price = new Price();
         GameRequirements gameRequirements = new GameRequirements();
 
-        String developers = "developers";
+//        String developers = "developers";
 
         Integer idDeveloper = gameDao.findByDeveloperGame(idGame);
-        developer1 = developerDao.findByIdDeveloper(idDeveloper);
+        Developer developer1 = developerDao.findByIdDeveloper(idDeveloper);
 
-        Integer idUser = publisherDao.findUserIdByIdPublisher(developer1.getIdPublisher());
+//        Integer idUser = publisherDao.findUserIdByIdPublisher(developer1.getIdPublisher());
 
 
         //Update developer
@@ -272,17 +260,17 @@ public class GameBl {
         List<Integer> directIds = new ArrayList<Integer>();
         directIds = newGameRequest.getDirectx();
 
-        for (int i = 0; i < directIds.size(); i++) {
-            Integer flag = 0;
+        for (Integer directId : directIds) {
+            int flag = 0;
             for (int j = 0; j < ids.size(); j++) {
 
-                if (directIds.get(i) == idDirectx.get(j)) {
+                if (directId.equals(idDirectx.get(j))) {
                     flag = 1;
                     gamesDirectxDao.changeStatus(ids.get(j));
                 }
             }
             if (flag == 0) {
-                gameDirectx.setIdDirectx(directIds.get(i));
+                gameDirectx.setIdDirectx(directId);
                 gameDirectx.setIdGame(idGame);
                 gameDirectx.setTxId(transaction.getTxId());
                 gameDirectx.setTxHost(transaction.getTxHost());
@@ -304,19 +292,18 @@ public class GameBl {
         }
         gamesOsDao.deleteOldsOs(idsGameOS);
 
-        List<Integer> operatingSystemIds = new ArrayList<Integer>();
-        operatingSystemIds = newGameRequest.getOperatingSystem();
-        for (int i = 0; i < operatingSystemIds.size(); i++) {
-            Integer flag = 0;
+        List<Integer> operatingSystemIds = newGameRequest.getOperatingSystem();
+        for (Integer operatingSystemId : operatingSystemIds) {
+            int flag = 0;
             for (int j = 0; j < idsGameOS.size(); j++) {
 
-                if (operatingSystemIds.get(i) == idsOperatingSystem.get(j)) {
+                if (operatingSystemId.equals(idsOperatingSystem.get(j))) {
                     flag = 1;
                     gamesOsDao.changeStatus(idsGameOS.get(j));
                 }
             }
             if (flag == 0) {
-                gameOS.setIdOperatingSystem(operatingSystemIds.get(i));
+                gameOS.setIdOperatingSystem(operatingSystemId);
                 gameOS.setIdGame(idGame);
                 gameOS.setTxId(transaction.getTxId());
                 gameOS.setTxHost(transaction.getTxHost());
@@ -338,19 +325,18 @@ public class GameBl {
         }
         languagesDao.deleteOldsLanguages(idsLanguagesGames);
 
-        List<Integer> languagesIds = new ArrayList<Integer>();
-        languagesIds = newGameRequest.getLanguageGames();
-        for (int i = 0; i < languagesIds.size(); i++) {
-            Integer flag = 0;
+        List<Integer> languagesIds = newGameRequest.getLanguageGames();
+        for (Integer languagesId : languagesIds) {
+            int flag = 0;
             for (int j = 0; j < idsLanguagesGames.size(); j++) {
 
-                if (languagesIds.get(i) == idsLanguages.get(j)) {
+                if (languagesId.equals(idsLanguages.get(j))) {
                     flag = 1;
                     languagesDao.changeStatus(idsLanguagesGames.get(j));
                 }
             }
             if (flag == 0) {
-                languageGame.setIdLanguage(languagesIds.get(i));
+                languageGame.setIdLanguage(languagesId);
                 languageGame.setIdGame(idGame);
                 languageGame.setTxId(transaction.getTxId());
                 languageGame.setTxHost(transaction.getTxHost());
@@ -372,19 +358,18 @@ public class GameBl {
             idsGenre.add(idsGenreGames1.getIdGenre());
         }
         genreDao.deleteOldsGenreDao(idsGenreGames);
-        List<Integer> genreIds = new ArrayList<Integer>();
-        genreIds = newGameRequest.getGenreGames();
-        for (int i = 0; i < genreIds.size(); i++) {
-            Integer flag = 0;
+        List<Integer> genreIds = newGameRequest.getGenreGames();
+        for (Integer genreId : genreIds) {
+            int flag = 0;
             for (int j = 0; j < idsGenreGames.size(); j++) {
 
-                if (genreIds.get(i) == idsGenre.get(j)) {
+                if (genreId.equals(idsGenre.get(j))) {
                     flag = 1;
                     genreDao.changeStatus(idsGenreGames.get(j));
                 }
             }
             if (flag == 0) {
-                genreGame.setIdGenre(genreIds.get(i));
+                genreGame.setIdGenre(genreId);
                 genreGame.setIdGame(idGame);
                 genreGame.setTxId(transaction.getTxId());
                 genreGame.setTxHost(transaction.getTxHost());
@@ -438,16 +423,15 @@ public class GameBl {
         }
         gameRequirementDao.deleteOldsRequirements(idsGenreGames);
 
-        List<GameRequirements> gameRequirements1 = new ArrayList<GameRequirements>();
-        gameRequirements1 = newGameRequest.getRequirements();
+        List<GameRequirements> gameRequirements1 = newGameRequest.getRequirements();
 
 
         for (GameRequirements requirements2 : gameRequirements1) {
-            Integer flag = 0;
+            int flag = 0;
 
             for (int j = 0; j < idsGameRequirements.size(); j++) {
 
-                if (requirements2.getIdOperatingSystem() == idsOperatingSystemRequirements.get(j)) {
+                if (requirements2.getIdOperatingSystem().equals(idsOperatingSystemRequirements.get(j))) {
                     flag = 1;
                     gameRequirementDao.changeStatus(idsGameRequirements.get(j));
                 }
@@ -544,6 +528,8 @@ public class GameBl {
           DELETE (/publisher/{id}/game) The publisher can delete game
        */
     public void deleteGame(Integer idGame, Transaction transaction) {
+        // Print transaction
+        LOGGER.warn(transaction.toString());
         gameDao.deleteGame(idGame);
     }
 

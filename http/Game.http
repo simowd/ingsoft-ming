@@ -1,4 +1,4 @@
-POST http://localhost:8080/ming/publisher/1/game
+POST http://localhost:8080/ming/v1/publisher/1/game
 Accept: application/json
 Content-Type: application/json
 
@@ -10,6 +10,20 @@ Content-Type: application/json
   "players": 7,
   "processor": "Intel 10",
   "release_date": "2019-10-11T13:33:05.673",
+  "requirements": [
+    {
+      "idOperatingSystem": 1,
+      "processor": "Intel i9",
+      "memory": "16GB RAM",
+      "graphics": "GeForce 3800 ti"
+    },
+    {
+      "idOperatingSystem": 2,
+      "processor": "Intel i9",
+      "memory": "16GB RAM",
+      "graphics": "GeForce 3800 ti"
+    }
+  ],
   "memory": "15GB RAM",
   "graphics": "GeForce la chetada x2",
   "color": "#1111",
@@ -43,11 +57,11 @@ Content-Type: application/json
 }
 
 ### Get information game /games/{id}
-GET http://localhost:8080/ming/store/games/3
+GET http://localhost:8080/ming/v1/store/games/4
 
-###
-GET http://localhost:8080/ming/store/games/4
-Accept: application/json
+### 4.
+GET http://localhost:8080/ming/v1/store/games/3
+
 
 ### Single purchase POST user's id and game's id
 POST http://localhost:8080/ming/store/single/purchase/

@@ -105,7 +105,7 @@ public class PublisherBl {
     */
     public List<PublisherListRequest> getPublisherList(Integer page, String query) {
 
-        Integer recordsPerPage = 10;
+        int recordsPerPage = 10;
         Integer offsetValue = (page - 1) * recordsPerPage;
 
         if (query != null) {
@@ -250,8 +250,8 @@ public class PublisherBl {
         List<Language> language = languageDao.LanguagesList();
 
         List<LanguagesRequest> list = new ArrayList<LanguagesRequest>();
-        for (int i = 0; i < language.size(); i++) {
-            LanguagesRequest languageRequest = new LanguagesRequest(language.get(i).getIdLanguage(), language.get(i).getLanguage());
+        for (Language value : language) {
+            LanguagesRequest languageRequest = new LanguagesRequest(value.getIdLanguage(), value.getLanguage());
             list.add(languageRequest);
         }
         return list;
@@ -264,8 +264,8 @@ public class PublisherBl {
         List<Genre> genre = genreDao.GenresList();
 
         List<GenresRequest> list = new ArrayList<GenresRequest>();
-        for (int i = 0; i < genre.size(); i++) {
-            GenresRequest genreRequest = new GenresRequest(genre.get(i).getIdGenre(), genre.get(i).getGenre());
+        for (Genre value : genre) {
+            GenresRequest genreRequest = new GenresRequest(value.getIdGenre(), value.getGenre());
             list.add(genreRequest);
         }
         return list;
@@ -278,8 +278,8 @@ public class PublisherBl {
         List<Esrb> esrb = esrbDao.EsrbList();
 
         List<EsrbRequest> list = new ArrayList<EsrbRequest>();
-        for (int i = 0; i < esrb.size(); i++) {
-            EsrbRequest esrbRequest = new EsrbRequest(esrb.get(i).getIdEsrb(), esrb.get(i).getEsrb());
+        for (Esrb value : esrb) {
+            EsrbRequest esrbRequest = new EsrbRequest(value.getIdEsrb(), value.getEsrb());
             list.add(esrbRequest);
         }
         return list;
@@ -292,8 +292,8 @@ public class PublisherBl {
         List<Directx> directx = directXDao.DirectXList();
 
         List<DirectXRequest> list = new ArrayList<DirectXRequest>();
-        for (int i = 0; i < directx.size(); i++) {
-            DirectXRequest directXRequest = new DirectXRequest(directx.get(i).getIdDirectx(), directx.get(i).getVersion());
+        for (Directx value : directx) {
+            DirectXRequest directXRequest = new DirectXRequest(value.getIdDirectx(), value.getVersion());
             list.add(directXRequest);
         }
         return list;

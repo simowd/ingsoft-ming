@@ -82,8 +82,7 @@ public class UserBl {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
         }
 
-        UserRequest userRequest = new UserRequest(user.getUserName(), user.getAlias(), user.getEmail(), country.getName(), user.getPhotoPath());
-        return userRequest;
+        return new UserRequest(user.getUserName(), user.getAlias(), user.getEmail(), country.getName(), user.getPhotoPath());
     }
 
     /*
@@ -146,15 +145,15 @@ public class UserBl {
         List<Integer> userIdGames = libraryDao.UserGames(userId);
 
         if (!userIdGames.isEmpty()) {
-            for (int i = 0; i < userIdGames.size(); i++) {
-                Game game = gameDao.getGameInfo(userIdGames.get(i));
-                List<String> genre = genreDao.gameGenre(userIdGames.get(i));
-                Photo photo = photoDao.findBannerbyGame(userIdGames.get(i));
+            for (Integer userIdGame : userIdGames) {
+                Game game = gameDao.getGameInfo(userIdGame);
+                List<String> genre = genreDao.gameGenre(userIdGame);
+                Photo photo = photoDao.findBannerbyGame(userIdGame);
                 String photo_path = null;
                 if (photo != null) {
                     photo_path = photo.getPhotoPath();
                 }
-                LibraryRequest libraryRequest = new LibraryRequest(userIdGames.get(i), game.getName(), genre, photo_path, game.getDownloadPath());
+                LibraryRequest libraryRequest = new LibraryRequest(userIdGame, game.getName(), genre, photo_path, game.getDownloadPath());
                 list.add(libraryRequest);
             }
         }
@@ -167,8 +166,8 @@ public class UserBl {
     public List<CountryRequest> getCountries() {
         List<Country> country = countryDao.CountriesList();
         List<CountryRequest> list = new ArrayList<CountryRequest>();
-        for (int i = 0; i < country.size(); i++) {
-            CountryRequest countryRequest = new CountryRequest(country.get(i).getIdCountry(), country.get(i).getName());
+        for (Country value : country) {
+            CountryRequest countryRequest = new CountryRequest(value.getIdCountry(), value.getName());
             list.add(countryRequest);
         }
 
@@ -233,23 +232,23 @@ public class UserBl {
         LOGGER.info(order.toString());
 
         // Loading data from game, order and price into order details
-        OrderDetails orderDetail = new OrderDetails();
-        orderDetail.setIdGame(game.getIdGame());
-        orderDetail.setIdOrder(order.getIdOrder());
-        orderDetail.setPrice(price.getPrice());
+        OrderDetails orderDetails = new OrderDetails();
+        orderDetails.setIdGame(game.getIdGame());
+        orderDetails.setIdOrder(order.getIdOrder());
+        orderDetails.setPrice(price.getPrice());
 
         // Setting status current game on cart
-        orderDetail.setStatus(0);
-        orderDetail.setTxId(transaction.getTxId());
-        orderDetail.setTxHost(transaction.getTxHost());
-        orderDetail.setTxUserId(transaction.getTxUserId());
-        orderDetail.setTxDate(transaction.getTxDate());
+        orderDetails.setStatus(0);
+        orderDetails.setTxId(transaction.getTxId());
+        orderDetails.setTxHost(transaction.getTxHost());
+        orderDetails.setTxUserId(transaction.getTxUserId());
+        orderDetails.setTxDate(transaction.getTxDate());
 
         // Create a new row on order_details in DataBase
-        orderDao.createOrderDetails(orderDetail);
+        orderDao.createOrderDetails(orderDetails);
 
         // Print orderDetails information
-        LOGGER.info(orderDetail.toString());
+        LOGGER.info(orderDetails.toString());
 
         // Setting data from game and price to return the result
         GameDetailsRequest gameDetailsRequest = new GameDetailsRequest();
@@ -282,8 +281,10 @@ public class UserBl {
     }
 
     public List<Game> purchaseGamesCart(Integer userId, Transaction transaction) {
-        // Gets all games on cart by user id
+        //Print transaction
+        LOGGER.warn(transaction.toString());
 
+        // Gets all games on cart by user id
         List<Game> detailsRequests = orderDao.getCartUser(userId);
 
         // Warn what games are in there
