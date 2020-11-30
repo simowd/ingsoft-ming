@@ -4,7 +4,7 @@ Accept: application/json
 
 ###
 #Shows a publisher data
-GET http://localhost:8080/ming/v1/publisher/7
+GET http://localhost:8080/ming/v1/publisher/3
 Accept: application/json
 
 ###

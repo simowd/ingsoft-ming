@@ -12,8 +12,11 @@ public interface PublisherDao {
     //Create new publisher;
     public void createPublisher(Publisher publisher);
 
-    //Get publisher data
+    //Dashboard
     public Publisher findByPublisherId(Integer idUser);
+
+    //Get publisher data
+    public Publisher findByPublisherId1(Integer idPublisher);
 
     //Update publisher data;
     public void updatePublisher(Publisher publisher);

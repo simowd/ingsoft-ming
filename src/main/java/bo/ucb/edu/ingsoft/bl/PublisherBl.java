@@ -80,15 +80,19 @@ public class PublisherBl {
     /*
       GET (/publisher/{id}) shows publisher data
     */
-    public PublisherRequest findByPublisherId(Integer idUser) {
+    public PublisherRequest findByPublisherId(Integer idPublisher) {
 
         PublisherRequest publisherRequest = new PublisherRequest();
-        User user = userDao.findByUserId(idUser);
+
+        Publisher publisher = publisherDao.findByPublisherId1(idPublisher);
+
+        User user = userDao.findByUserId(publisher.getIdUser());
+
         if (user.getUserType() != 1 || user.getStatus() == 0) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
         }
-        Publisher publisher = publisherDao.findByPublisherId(idUser);
 
+        publisherRequest.setIdUser(user.getIdUser());
         publisherRequest.setUsername(user.getUserName());
         publisherRequest.setEmail(user.getEmail());
         publisherRequest.setPaypal(publisher.getPaypalMail());
