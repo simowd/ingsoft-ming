@@ -18,5 +18,7 @@ public interface GameRequirementDao {
     public void deleteOldsRequirements(List<Integer> idGameRequirement);
 
     public void changeStatus(Integer idGameRequirement);
+    //Update game requirements
+    public void updateData(GameRequirements gameRequirements);
 
 }

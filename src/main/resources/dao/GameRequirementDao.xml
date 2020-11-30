@@ -49,5 +49,18 @@
          id_game_requirement=#{idGameRequirement}
 
     </update>
+    <update id="updateData">
+        UPDATE game_requirements
+        SET
+            processor=#{processor},
+            memory=#{memory},
+            graphics=#{graphics},
+            tx_id=#{txId},
+            tx_host=#{txHost},
+            tx_user_id=#{txUserId},
+            tx_date=#{txDate}
+        WHERE
+        id_game_requirement=#{idGameRequirement}
+    </update>
 
 </mapper>

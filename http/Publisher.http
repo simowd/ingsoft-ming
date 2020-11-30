@@ -82,7 +82,7 @@ Content-Type: application/json
 
 ###
 #The publisher edit a game
-PUT http://localhost:8080/ming/v1/publisher/4/game
+PUT http://localhost:8080/ming/v1/publisher/13/game
 Accept: application/json
 Content-Type: application/json
 
@@ -115,7 +115,7 @@ Content-Type: application/json
     "http//222",
     "http//333"
   ],
-  "developer": "Rockstar North",
+  "developer": "Rockstar Northeeeeeeeeer",
   "directx": [
     1,
     2

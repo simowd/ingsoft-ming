@@ -224,6 +224,7 @@ public class GameBl {
             developer.setTxUserId(publisherDao.findUserIdByIdPublisher(developer1.getIdPublisher()));
             developer.setTxDate(transaction.getTxDate());
             developerDao.createDeveloper(developer);
+            idDeveloper=developerDao.getLastInsertId();
         }
         //Update game
         game.setIdGame(idGame);
@@ -421,7 +422,7 @@ public class GameBl {
         for (GameRequirements idsGenreGames1 : requirements) {
             idsOperatingSystemRequirements.add(idsGenreGames1.getIdOperatingSystem());
         }
-        gameRequirementDao.deleteOldsRequirements(idsGenreGames);
+        gameRequirementDao.deleteOldsRequirements(idsGameRequirements);
 
         List<GameRequirements> gameRequirements1 = newGameRequest.getRequirements();
 
@@ -434,6 +435,15 @@ public class GameBl {
                 if (requirements2.getIdOperatingSystem().equals(idsOperatingSystemRequirements.get(j))) {
                     flag = 1;
                     gameRequirementDao.changeStatus(idsGameRequirements.get(j));
+                    gameRequirements.setIdGameRequirement(idsGameRequirements.get(j));
+                    gameRequirements.setProcessor(requirements2.getProcessor());
+                    gameRequirements.setMemory(requirements2.getMemory());
+                    gameRequirements.setGraphics(requirements2.getGraphics());
+                    gameRequirements.setTxId(transaction.getTxId());
+                    gameRequirements.setTxHost(transaction.getTxHost());
+                    gameRequirements.setTxUserId(publisherDao.findUserIdByIdPublisher(developer1.getIdPublisher()));
+                    gameRequirements.setTxDate(transaction.getTxDate());
+                    gameRequirementDao.updateData(gameRequirements);
                 }
             }
             if (flag == 0) {
