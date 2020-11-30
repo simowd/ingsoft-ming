@@ -1,5 +1,6 @@
 package bo.ucb.edu.ingsoft.dto;
 
+import bo.ucb.edu.ingsoft.models.Directx;
 import bo.ucb.edu.ingsoft.models.Esrb;
 import bo.ucb.edu.ingsoft.models.GameRequirementsHelper;
 import bo.ucb.edu.ingsoft.models.OperatingSystem;
@@ -30,6 +31,10 @@ public class GameDetailsRequest {
     private List<OperatingSystem> operating_systems;
     private Double sale;
     private Double price;
+    private List<Directx> direct_x;
+
+    public GameDetailsRequest() {
+    }
 
     @Override
     public String toString() {
@@ -53,32 +58,8 @@ public class GameDetailsRequest {
                 ", operating_systems=" + operating_systems +
                 ", sale=" + sale +
                 ", price=" + price +
+                ", direct_x=" + direct_x +
                 '}';
-    }
-
-    public GameDetailsRequest(Integer id, String title, ArrayList<String> language, String game_description, String size, Esrb esrb, List<String> images, List<String> genres, String developer, Integer players, Date releaseDate, List<GameRequirementsHelper> gameRequirements, String color, Integer highlighted, String download_path, Integer status, List<OperatingSystem> operating_systems, Double sale, Double price) {
-        this.id = id;
-        this.title = title;
-        this.language = language;
-        this.game_description = game_description;
-        this.size = size;
-        this.esrb = esrb;
-        this.images = images;
-        this.genres = genres;
-        this.developer = developer;
-        this.players = players;
-        this.releaseDate = releaseDate;
-        this.gameRequirements = gameRequirements;
-        this.color = color;
-        this.highlighted = highlighted;
-        this.download_path = download_path;
-        this.status = status;
-        this.operating_systems = operating_systems;
-        this.sale = sale;
-        this.price = price;
-    }
-
-    public GameDetailsRequest() {
     }
 
     public Integer getId() {
@@ -231,5 +212,36 @@ public class GameDetailsRequest {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public List<Directx> getDirect_x() {
+        return direct_x;
+    }
+
+    public void setDirect_x(List<Directx> direct_x) {
+        this.direct_x = direct_x;
+    }
+
+    public GameDetailsRequest(Integer id, String title, ArrayList<String> language, String game_description, String size, Esrb esrb, List<String> images, List<String> genres, String developer, Integer players, Date releaseDate, List<GameRequirementsHelper> gameRequirements, String color, Integer highlighted, String download_path, Integer status, List<OperatingSystem> operating_systems, Double sale, Double price, List<Directx> direct_x) {
+        this.id = id;
+        this.title = title;
+        this.language = language;
+        this.game_description = game_description;
+        this.size = size;
+        this.esrb = esrb;
+        this.images = images;
+        this.genres = genres;
+        this.developer = developer;
+        this.players = players;
+        this.releaseDate = releaseDate;
+        this.gameRequirements = gameRequirements;
+        this.color = color;
+        this.highlighted = highlighted;
+        this.download_path = download_path;
+        this.status = status;
+        this.operating_systems = operating_systems;
+        this.sale = sale;
+        this.price = price;
+        this.direct_x = direct_x;
     }
 }

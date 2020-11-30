@@ -521,6 +521,10 @@ public class GameBl {
 
         List<GameRequirementsHelper> gameRequirements = gameDao.getRequirements(gameId);
 
+        //Getting DirectX by game id
+        List <Integer> directXV = gamesDirectxDao.findByGame(gameId);
+        List <Directx> directxList = gamesDirectxDao.findByIdDirectx(directXV);
+
         // Loading data into GameDetailsRequest
         GameDetailsRequest gameDetailsRequest = new GameDetailsRequest();
         gameDetailsRequest.setId(gameId);
@@ -542,6 +546,7 @@ public class GameBl {
         gameDetailsRequest.setGenres(genres);
         gameDetailsRequest.setSale(price.getSale());
         gameDetailsRequest.setPrice(price.getPrice());
+        gameDetailsRequest.setDirect_x(directxList);
 
         // Print game details data
         LOGGER.info(gameDetailsRequest.toString());
