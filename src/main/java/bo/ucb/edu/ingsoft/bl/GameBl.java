@@ -216,7 +216,21 @@ public class GameBl {
 
 
         //Update developer
-        if (developer1.getDeveloper().compareTo(newGameRequest.getDeveloper()) != 0) {
+        List<Integer> idPublishers = new ArrayList<Integer>();
+        idPublishers=developerDao.findByPublisher(developer1.getIdPublisher());
+
+        Integer aux=0;
+
+        for (int j = 0; j < idPublishers.size(); j++){
+            Developer developer2=developerDao.findByIdDeveloper(idPublishers.get(j));
+
+            if (developer2.getDeveloper().equals(newGameRequest.getDeveloper())){
+                idDeveloper=developer2.getIdDeveloper();
+                aux=1;
+            }
+        }
+
+        if (developer1.getDeveloper().compareTo(newGameRequest.getDeveloper()) != 0 && aux==0) {
             developer.setIdPublisher(developer1.getIdPublisher());
             developer.setDeveloper(newGameRequest.getDeveloper());
             developer.setTxId(transaction.getTxId());
@@ -226,6 +240,7 @@ public class GameBl {
             developerDao.createDeveloper(developer);
             idDeveloper=developerDao.getLastInsertId();
         }
+
         //Update game
         game.setIdGame(idGame);
         game.setIdEsrb(newGameRequest.getIdEsrb());
@@ -506,6 +521,10 @@ public class GameBl {
 
         List<GameRequirementsHelper> gameRequirements = gameDao.getRequirements(gameId);
 
+        //Getting DirectX by game id
+        List <Integer> directXV = gamesDirectxDao.findByGame(gameId);
+        List <Directx> directxList = gamesDirectxDao.findByIdDirectx(directXV);
+
         // Loading data into GameDetailsRequest
         GameDetailsRequest gameDetailsRequest = new GameDetailsRequest();
         gameDetailsRequest.setId(gameId);
@@ -527,6 +546,7 @@ public class GameBl {
         gameDetailsRequest.setGenres(genres);
         gameDetailsRequest.setSale(price.getSale());
         gameDetailsRequest.setPrice(price.getPrice());
+        gameDetailsRequest.setDirect_x(directxList);
 
         // Print game details data
         LOGGER.info(gameDetailsRequest.toString());
