@@ -56,7 +56,10 @@ Content-Type: application/json
   "images": [
     "http//11",
     "http//22",
-    "http//33"
+    "http//33",
+    "fdfdf",
+    "dfds",
+    "rsfsfs"
   ],
   "developer": "Rockstar North",
   "directx": [
@@ -111,11 +114,13 @@ Content-Type: application/json
   "highlighted": 0,
   "download_path": "gta/download.com",
   "images": [
-    "http//111",
-    "http//222",
-    "http//333"
+    "http//111rrr",
+    "http//222rrr",
+    "http//333rrrr",
+    "frdfvfdklvnhfdjk"
+
   ],
-  "developer": "Rockstar Northdfd",
+  "developer": "Rockstar North",
   "directx": [
     1,
     2

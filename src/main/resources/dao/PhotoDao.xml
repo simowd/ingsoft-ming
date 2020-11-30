@@ -99,5 +99,17 @@
             id_game=#{idGame}
     </select>
 
+    <update id="deleteOldsPhotos">
+        UPDATE photos
+        SET
+        status=0
+        WHERE
+        id_photos in
+        <foreach collection="list" item="item" index="index"
+                 open="(" separator="," close = ")">
+            #{item}
+        </foreach>
+    </update>
+
 
 </mapper>

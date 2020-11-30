@@ -34,4 +34,6 @@ public interface PhotoDao {
     //Find Photo by Id game
     public List<Integer> findByPhotos(Integer idGame);
 
+    public void deleteOldsPhotos(List<Integer> idGamePhoto);
+
 }

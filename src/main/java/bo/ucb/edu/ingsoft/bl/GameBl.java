@@ -398,21 +398,32 @@ public class GameBl {
         List<String> imagesPath = new ArrayList<String>();
         imagesPath = newGameRequest.getImages();
 
+
+
         List<Integer> idGameImages = photoDao.findByPhotos(idGame);
 
+        photoDao.deleteOldsPhotos(idGameImages);
 
         for (int i = 0; i < imagesPath.size(); i++) {
 
             if (i == 0) {
-                photo.setIdPhoto(idGameImages.get(i));
                 photo.setIdGame(idGame);
                 photo.setPhotoPath(imagesPath.get(i));
-                photoDao.updatePhotoBanner(photo);
+                photo.setType(1);
+                photo.setTxId(transaction.getTxId());
+                photo.setTxHost(transaction.getTxHost());
+                photo.setTxUserId(publisherDao.findUserIdByIdPublisher(developer1.getIdPublisher()));
+                photo.setTxDate(transaction.getTxDate());
+                photoDao.createPhotoBanner(photo);
             } else {
-                photo.setIdPhoto(idGameImages.get(i));
                 photo.setIdGame(idGame);
                 photo.setPhotoPath(imagesPath.get(i));
-                photoDao.updatePhoto(photo);
+                photo.setType(2);
+                photo.setTxId(transaction.getTxId());
+                photo.setTxHost(transaction.getTxHost());
+                photo.setTxUserId(publisherDao.findUserIdByIdPublisher(developer1.getIdPublisher()));
+                photo.setTxDate(transaction.getTxDate());
+                photoDao.createPhoto(photo);
             }
 
         }
