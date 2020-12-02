@@ -1,5 +1,8 @@
 package bo.ucb.edu.ingsoft.models;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class monthlyDashboard {
     private Integer month;
     private Integer year;

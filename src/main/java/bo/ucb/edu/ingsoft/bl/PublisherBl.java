@@ -224,10 +224,12 @@ public class PublisherBl {
         List<monthlyDashboard> monthlyEarnings = orderDao.gameEarningsMonth(game, months);
         // Countries ids
         List<Integer> countries = orderDao.gameOrderCountry(game);
+        System.out.println(countries);
         // Country statistics
-
-
-        List<countryDashboard> totalCountrySells = orderDao.gameOrderCountryCount(game, countries);
+        List<countryDashboard> totalCountrySells = new ArrayList<>();
+        if(!countries.isEmpty() && !game.isEmpty()){
+            totalCountrySells = orderDao.gameOrderCountryCount(game, countries);
+        }
 
         // Games statistics
         List<gameDashboard> gameSells = orderDao.gameSellsGame(game);
