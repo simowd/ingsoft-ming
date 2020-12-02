@@ -225,23 +225,34 @@ public class PublisherBl {
         // Countries ids
         List<Integer> countries = orderDao.gameOrderCountry(game);
         // Country statistics
+
+
         List<countryDashboard> totalCountrySells = orderDao.gameOrderCountryCount(game, countries);
 
         // Games statistics
         List<gameDashboard> gameSells = orderDao.gameSellsGame(game);
 
-
         // Call dashboardrequest dto
         DashboardRequest dashboardRequest = new DashboardRequest();
-        // Set dashboard values
-        dashboardRequest.setPublisher(pubId.getPublisher());
-        dashboardRequest.setEmail(mail.getEmail());
-        dashboardRequest.setPaypal(pubId.getPaypalMail());
-        dashboardRequest.setSells(totalSells);
-        dashboardRequest.setEarnings(totalEarnings);
-        dashboardRequest.setMonthlyData(monthlyEarnings);
-        dashboardRequest.setCountryData(totalCountrySells);
-        dashboardRequest.setGameData(gameSells);
+
+        if(totalSells==null || totalEarnings==null || monthlyEarnings==null || totalCountrySells==null || gameSells==null){
+
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find data");
+        }
+        else {
+
+            // Set dashboard values
+            dashboardRequest.setPublisher(pubId.getPublisher());
+            dashboardRequest.setEmail(mail.getEmail());
+            dashboardRequest.setPaypal(pubId.getPaypalMail());
+            dashboardRequest.setSells(totalSells);
+            dashboardRequest.setEarnings(totalEarnings);
+            dashboardRequest.setMonthlyData(monthlyEarnings);
+            dashboardRequest.setCountryData(totalCountrySells);
+            dashboardRequest.setGameData(gameSells);
+        }
+
+
         // Return object dashboardrequest for the method
         return dashboardRequest;
 

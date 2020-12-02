@@ -68,8 +68,7 @@
                  open="(" separator="," close=")">
             #{item}
         </foreach>
-        group by
-        users.id_country
+
     </select>
 
     <select id="gameOrderCountryCount" resultType="bo.ucb.edu.ingsoft.models.countryDashboard">

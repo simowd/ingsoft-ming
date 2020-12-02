@@ -1,5 +1,5 @@
 #The admin sees a publisher statistics
-GET http://localhost:8080//ming/publisher/5/dashboard
+GET http://localhost:8080//ming/publisher/6/dashboard
 Accept: application/json
 
 ###
