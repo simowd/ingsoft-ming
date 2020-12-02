@@ -122,4 +122,14 @@ public class UserApi {
         transactionBl.createTransaction(transaction);
         return userBl.purchaseGamesCart(userId, transaction);
     }
+
+    /*
+    POST (/login) The user logs in
+    */
+    @RequestMapping(value = "/ming/v1/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(value = HttpStatus.OK)
+    public LoginUserRequest userSignUp(@RequestBody LoginRequest LoginRequest) {
+
+        return userBl.userLogin(LoginRequest);
+    }
 }

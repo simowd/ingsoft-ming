@@ -68,3 +68,13 @@ DELETE http://localhost:8080/ming/2/3/cart
 ### purchase games from /users/{id}/
 POST http://localhost:8080/ming/users/2/cart/purchase
 Accept: application/json
+
+###The user logs in
+POST http://localhost:8080/ming/v1/login
+Accept: application/json
+Content-Type: application/json
+
+{
+  "username": "DemonSlayer89",
+  "password": "contra123"
+}

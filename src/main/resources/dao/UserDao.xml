@@ -170,4 +170,35 @@
         WHERE
             id_user=#{idUser}
     </update>
+
+    <select id="userFindByLogin" resultType="bo.ucb.edu.ingsoft.models.User">
+        SELECT
+               users.id_user as idUser,
+
+               users.user_type as userType,
+               users.username as userName,
+               users.alias as alias,
+               users.photo_path as photoPath
+        FROM users
+
+        where
+        users.username=#{username} and
+        users.password=#{password} and
+        users.status=1
+
+    </select>
+
+    <select id="publisherFindByLogin" resultType="bo.ucb.edu.ingsoft.models.Publisher">
+            SELECT
+                publishers.id_publisher as idPublisher,
+                publishers.publisher as publisher
+            FROM users inner join publishers
+                  on
+                          users.id_user = publishers.id_user
+            where
+            users.username=#{username} and
+            users.password=#{password} and
+            publishers.status=1
+
+    </select>
 </mapper>

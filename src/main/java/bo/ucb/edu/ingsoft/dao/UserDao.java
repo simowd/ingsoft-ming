@@ -1,5 +1,8 @@
 package bo.ucb.edu.ingsoft.dao;
 
+import bo.ucb.edu.ingsoft.dto.LoginRequest;
+import bo.ucb.edu.ingsoft.dto.LoginUserRequest;
+import bo.ucb.edu.ingsoft.models.Publisher;
 import bo.ucb.edu.ingsoft.models.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -49,5 +52,9 @@ public interface UserDao {
 
     //Delete user publisher
     public void deleteUserPublisher(Integer idUser);
+
+    //Login user
+    public User userFindByLogin(LoginRequest loginRequest);
+    public Publisher publisherFindByLogin(LoginRequest loginRequest);
 
 }

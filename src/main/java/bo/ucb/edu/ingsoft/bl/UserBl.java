@@ -299,4 +299,32 @@ public class UserBl {
         return detailsRequests;
     }
 
+    public LoginUserRequest userLogin(LoginRequest loginRequest) {
+        if (loginRequest.getUsername() == null || loginRequest.getPassword()==null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find user");
+        }
+        User user=userDao.userFindByLogin(loginRequest);
+        Publisher publisher= userDao.publisherFindByLogin(loginRequest);
+
+        if(user==null){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find user");
+        }
+
+        LoginUserRequest lg=new LoginUserRequest();
+        if(publisher!=null){
+            lg.setId_publisher(publisher.getIdPublisher());
+            lg.setPublisher(publisher.getPublisher());
+        }
+
+        lg.setId_user(user.getIdUser());
+
+        lg.setUser_type(user.getUserType());
+        lg.setUsername(user.getUserName());
+        lg.setAlias(user.getAlias());
+        lg.setPhoto_path(user.getPhotoPath());
+
+
+        return lg;
+    }
+
 }
