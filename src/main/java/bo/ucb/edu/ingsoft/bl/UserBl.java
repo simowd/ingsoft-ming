@@ -300,8 +300,22 @@ public class UserBl {
         List<Integer> integerList = orderDao.getOrderDetailByUser(userId);
 
         // Setting status to game bought.
-        integerList.forEach(integer -> orderDao.updateOrder(1, integer));
-
+        integerList.forEach(integer -> {
+            orderDao.updateOrder(1, integer);
+        });
+        detailsRequests.forEach(game -> {
+//             Add game to library
+            Library library = new Library();
+            library.setIdGame(game.getIdGame());
+            library.setIdUser(userId);
+            library.setDownload(0);
+            library.setStatus(1);
+            library.setTxId(transaction.getTxId());
+            library.setTxHost(transaction.getTxHost());
+            library.setTxUserId(transaction.getTxUserId());
+            library.setTxDate(transaction.getTxDate());
+            libraryDao.addGameToLibrary(library);
+        });
         return detailsRequests;
     }
 

@@ -59,14 +59,14 @@ GET http://localhost:8080/ming/users/3/cart
 Accept: application/json
 
 ###  /ming/{user add}/{game to}/ cart
-POST http://localhost:8080/ming/3/5/cart
+POST http://localhost:8080/ming/3/2/cart
 Accept: application/json
 
 ### /ming/{user}/{remove game from}/cart
 DELETE http://localhost:8080/ming/2/3/cart
 
 ### purchase games from /users/{id}/
-POST http://localhost:8080/ming/users/2/cart/purchase
+POST http://localhost:8080/ming/users/3/cart/purchase
 Accept: application/json
 
 ###The user logs in
