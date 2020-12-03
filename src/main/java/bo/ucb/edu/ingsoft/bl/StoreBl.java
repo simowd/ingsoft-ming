@@ -19,18 +19,20 @@ public class StoreBl {
     private UserDao userDao;
     private OrderDao orderDao;
     private DeveloperDao developerDao;
-
+    private LibraryDao libraryDao;
     private static final Logger LOGGER = LoggerFactory.getLogger(StoreBl.class);
 
     @Autowired
-    public StoreBl(GameDao gameDao, PriceDao priceDao, PhotoDao photoDao, UserDao userDao, OrderDao orderDao, DeveloperDao developerDao) {
+    public StoreBl(GameDao gameDao, PriceDao priceDao, PhotoDao photoDao, UserDao userDao, OrderDao orderDao, DeveloperDao developerDao, LibraryDao libraryDao) {
         this.gameDao = gameDao;
         this.priceDao = priceDao;
         this.photoDao = photoDao;
         this.userDao = userDao;
         this.orderDao = orderDao;
         this.developerDao = developerDao;
+        this.libraryDao = libraryDao;
     }
+
 
     /*
     The user gets a paginated view of the homepage
@@ -139,6 +141,17 @@ public class StoreBl {
         paymentRequest.setAlias(user.getAlias());
         paymentRequest.setCountry(user.getIdCountry().toString());
 
+        // Add game to library
+        Library library = new Library();
+        library.setIdGame(game.getIdGame());
+        library.setIdUser(user.getIdUser());
+        library.setDownload(0);
+        library.setStatus(1);
+        library.setTxId(transaction.getTxId());
+        library.setTxHost(transaction.getTxHost());
+        library.setTxUserId(transaction.getTxUserId());
+        library.setTxDate(transaction.getTxDate());
+        libraryDao.addGameToLibrary(library);
         return paymentRequest;
     }
 

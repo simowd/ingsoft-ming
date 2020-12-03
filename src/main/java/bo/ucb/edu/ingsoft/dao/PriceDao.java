@@ -19,4 +19,6 @@ public interface PriceDao {
     //Find Price by Id game
     public Price findById(Integer idGame);
 
+    // Get sale by id game
+    public Double findSale(Integer idGame);
 }

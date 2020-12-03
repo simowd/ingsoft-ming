@@ -11,7 +11,7 @@ public class Game extends Transactions {
     private String description;
     private String size;
     private Integer players;
-    private Timestamp releaseDate;
+    private String releaseDate;
     private String processor;
     private String memory;
     private String graphics;
@@ -23,7 +23,7 @@ public class Game extends Transactions {
     public Game() {
     }
 
-    public Game(Integer idGame, Integer idEsrb, Integer idDeveloper, String name, String description, String size, Integer players, Timestamp releaseDate, String processor, String memory, String graphics, String color, Integer highlight, String downloadPath, Integer status) {
+    public Game(Integer idGame, Integer idEsrb, Integer idDeveloper, String name, String description, String size, Integer players, String releaseDate, String processor, String memory, String graphics, String color, Integer highlight, String downloadPath, Integer status) {
         this.idGame = idGame;
         this.idEsrb = idEsrb;
         this.idDeveloper = idDeveloper;
@@ -41,7 +41,7 @@ public class Game extends Transactions {
         this.status = status;
     }
 
-    public Game(Integer txId, String txHost, Integer txUser, Date txDate, Integer idGame, Integer idEsrb, Integer idDeveloper, String name, String description, String size, Integer players, Timestamp releaseDate, String processor, String memory, String graphics, String color, Integer highlight, String downloadPath, Integer status) {
+    public Game(Integer txId, String txHost, Integer txUser, Date txDate, Integer idGame, Integer idEsrb, Integer idDeveloper, String name, String description, String size, Integer players, String releaseDate, String processor, String memory, String graphics, String color, Integer highlight, String downloadPath, Integer status) {
         super(txId, txHost, txUser, txDate);
         this.idGame = idGame;
         this.idEsrb = idEsrb;
@@ -116,11 +116,11 @@ public class Game extends Transactions {
         this.players = players;
     }
 
-    public Timestamp getReleaseDate() {
+    public String getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(Timestamp releaseDate) {
+    public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
     }
 

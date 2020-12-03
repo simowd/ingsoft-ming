@@ -15,7 +15,7 @@ public class NewGameRequest {
     private String game_description;
     private String size;
     private Integer players;
-    private Timestamp release_date;
+    private String release_date;
     private List<GameRequirements> requirements;
     private String color;
     private Integer highlighted;
@@ -108,11 +108,11 @@ public class NewGameRequest {
         this.players = players;
     }
 
-    public Timestamp getRelease_date() {
+    public String getRelease_date() {
         return release_date;
     }
 
-    public void setRelease_date(Timestamp release_date) {
+    public void setRelease_date(String release_date) {
         this.release_date = release_date;
     }
 

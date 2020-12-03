@@ -19,7 +19,7 @@ Accept: application/json
 
 ###
 #The user can edit his profile info
-PUT http://localhost:8080/ming/v1/users/2
+PUT http://localhost:8080/ming/v1/users/3
 Accept: application/json
 Content-Type: application/json
 
@@ -29,7 +29,7 @@ Content-Type: application/json
   "alias": "Natham Drake",
   "email": "Drake@yopmail.com",
   "id_country": 27,
-  "photo_path": "images.com.nuevo"
+  "photo_path": " https://i.pinimg.com/564x/84/ad/07/84ad07dfc05d24769cf0036f5bf87f9c.jpg"
 }
 
 ###
@@ -55,11 +55,11 @@ Accept: application/json
 
 ###
 #The user sees his purchase cart
-GET http://localhost:8080/ming/users/1/cart
+GET http://localhost:8080/ming/users/3/cart
 Accept: application/json
 
 ###  /ming/{user add}/{game to}/ cart
-POST http://localhost:8080/ming/2/3/cart
+POST http://localhost:8080/ming/3/5/cart
 Accept: application/json
 
 ### /ming/{user}/{remove game from}/cart

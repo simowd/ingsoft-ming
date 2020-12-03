@@ -51,5 +51,11 @@
         WHERE id_game = #{idGame}
         AND status = 1
     </select>
+    <select id="findSale" resultType="java.lang.Double">
+        SELECT sale
+        FROM price
+        WHERE id_game = #{idGame}
+          AND status = 1
+    </select>
 
 </mapper>

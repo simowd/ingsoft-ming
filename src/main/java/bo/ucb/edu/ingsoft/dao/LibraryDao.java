@@ -12,4 +12,7 @@ public interface LibraryDao {
 
     //Get User Games
     public List<Integer> UserGames(Integer idUser);
+
+    //Add game to library
+    public void addGameToLibrary(Library library);
 }

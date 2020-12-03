@@ -29,4 +29,15 @@
         AND
             status = 1
     </select>
+
+    <insert id="addGameToLibrary" parameterType="bo.ucb.edu.ingsoft.models.Library">
+        INSERT INTO library (`id_user`, `id_game`, `download`,
+                                   `status`, `tx_id`, `tx_host`,
+                                   `tx_user_id`, `tx_date`)
+        VALUES (
+                   #{idUser}, #{idGame}, #{download}, #{status},
+                   #{txId}, #{txHost}, #{txUserId},
+                   #{txDate}
+               )
+    </insert>
 </mapper>

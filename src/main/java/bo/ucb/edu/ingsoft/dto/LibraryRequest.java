@@ -7,6 +7,8 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class LibraryRequest {
     private Integer id;
+    private Integer idUser;
+    private Integer idGame;
     private String title;
     private List<String> genre;
     private String banner;

@@ -179,11 +179,17 @@ public class UserBl {
         List<Game> gameDetails = orderDao.getCartUser(userId);
         List<GameDetailsRequest> detailsRequests = new ArrayList<>();
         gameDetails.forEach(game -> {
+            List<Photo> photoList = photoDao.findPhotosByGameId(game.getIdGame());
+            List<String> path = new ArrayList<>();
+            photoList.forEach(photo -> path.add(photo.getPhotoPath()));
             GameDetailsRequest request = new GameDetailsRequest();
             request.setId(game.getIdGame());
             request.setTitle(game.getName());
+            request.setImages(path);
+            request.setColor(game.getColor());
             request.setPlayers(game.getPlayers());
             request.setReleaseDate(game.getReleaseDate());
+            request.setSale(priceDao.findSale(game.getIdGame()));
             Price price = orderDao.getGamePriceById(game.getIdGame());
             request.setPrice(price.getPrice());
             detailsRequests.add(request);
@@ -300,18 +306,18 @@ public class UserBl {
     }
 
     public LoginUserRequest userLogin(LoginRequest loginRequest) {
-        if (loginRequest.getUsername() == null || loginRequest.getPassword()==null) {
+        if (loginRequest.getUsername() == null || loginRequest.getPassword() == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find user");
         }
-        User user=userDao.userFindByLogin(loginRequest);
-        Publisher publisher= userDao.publisherFindByLogin(loginRequest);
+        User user = userDao.userFindByLogin(loginRequest);
+        Publisher publisher = userDao.publisherFindByLogin(loginRequest);
 
-        if(user==null){
+        if (user == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find user");
         }
 
-        LoginUserRequest lg=new LoginUserRequest();
-        if(publisher!=null){
+        LoginUserRequest lg = new LoginUserRequest();
+        if (publisher != null) {
             lg.setId_publisher(publisher.getIdPublisher());
             lg.setPublisher(publisher.getPublisher());
         }

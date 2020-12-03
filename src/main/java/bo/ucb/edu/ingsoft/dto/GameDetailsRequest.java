@@ -22,7 +22,7 @@ public class GameDetailsRequest {
     private List<String> genres;
     private String developer;
     private Integer players;
-    private Date releaseDate;
+    private String releaseDate;
     private List<GameRequirementsHelper> gameRequirements;
     private String color;
     private Integer highlighted;
@@ -49,7 +49,7 @@ public class GameDetailsRequest {
                 ", genres=" + genres +
                 ", developer='" + developer + '\'' +
                 ", players=" + players +
-                ", releaseDate=" + releaseDate +
+                ", releaseDate=" + releaseDate.toString() +
                 ", gameRequirements=" + gameRequirements +
                 ", color='" + color + '\'' +
                 ", highlighted=" + highlighted +
@@ -142,11 +142,11 @@ public class GameDetailsRequest {
         this.players = players;
     }
 
-    public Date getReleaseDate() {
+    public String getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(Date releaseDate) {
+    public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
     }
 
@@ -222,7 +222,7 @@ public class GameDetailsRequest {
         this.direct_x = direct_x;
     }
 
-    public GameDetailsRequest(Integer id, String title, ArrayList<String> language, String game_description, String size, Esrb esrb, List<String> images, List<String> genres, String developer, Integer players, Date releaseDate, List<GameRequirementsHelper> gameRequirements, String color, Integer highlighted, String download_path, Integer status, List<OperatingSystem> operating_systems, Double sale, Double price, List<Directx> direct_x) {
+    public GameDetailsRequest(Integer id, String title, ArrayList<String> language, String game_description, String size, Esrb esrb, List<String> images, List<String> genres, String developer, Integer players, String releaseDate, List<GameRequirementsHelper> gameRequirements, String color, Integer highlighted, String download_path, Integer status, List<OperatingSystem> operating_systems, Double sale, Double price, List<Directx> direct_x) {
         this.id = id;
         this.title = title;
         this.language = language;

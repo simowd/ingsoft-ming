@@ -169,7 +169,8 @@
         c.id_game as idGame,
         c.name as name,
         c.players as players,
-        c.release_date as releaseDate
+        c.release_date as releaseDate,
+        c.color as color
 --         ,b.price as price
         FROM orders a,
             order_details b,
@@ -178,6 +179,7 @@
             a.id_user = #{userIdCart} AND
             a.id_order = b.id_order AND
             b.id_game = c.id_game AND
+            c.release_date BETWEEN CURDATE()-INTERVAL 1 WEEK AND CURDATE() AND
             a.status = 0
     </select>
 
